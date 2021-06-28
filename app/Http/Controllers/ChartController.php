@@ -49,6 +49,7 @@ class ChartController extends Controller
         $quantity = $quan;
         $color = $colour;
         $categories = Category::all();
-        return response(compact('sum','chartData','quantity','color','categories'));
+        $id = $get;
+        return response(compact('id','sum','chartData','quantity','color','categories'));
     }
 }

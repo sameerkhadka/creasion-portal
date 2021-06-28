@@ -13,7 +13,9 @@
   @endforeach
 </select>
 <h1>Oxygen</h1>
-<canvas id="pie-chart" height="50" width="150"></canvas>
+@foreach ($categories as $item)
+    <canvas class="canvas" id="pie-chart{{ $item->id }}" height="50" width="150"></canvas>
+@endforeach
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -27,7 +29,7 @@
 $(document).ready(function(){
   $('.project').change(function(){
       var value = $(this).val();
-      document.getElementById("pie-chart").innerHTML = "";
+
       $.ajax({
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -38,6 +40,8 @@ $(document).ready(function(){
         beforeSend: function () {
         },
         success: function(response){
+            $('.canvas').hide();
+            $('#pie-chart'+response.id).show();
             var data = [{
                         data: response.quantity,
                         backgroundColor: response.color,
@@ -66,7 +70,7 @@ $(document).ready(function(){
                         }
                         };
 
-                        var ctx = document.getElementById("pie-chart").getContext('2d');
+                        var ctx = document.getElementById("pie-chart"+response.id).getContext('2d');
                         var myChart = new Chart(ctx, {
                         type: 'doughnut',
                         data: {
