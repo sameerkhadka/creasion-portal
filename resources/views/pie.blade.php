@@ -20,50 +20,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 <script type="text/javascript">
-var data = [{
-  data: [<?php echo $quantity; ?>],
-  backgroundColor: [<?php echo $color; ?>],
-  hoverBackgroundColor: [<?php echo $color; ?>],
-}];
 
-var options = {
-  responsive: true,
-  legend: {
-    onClick: (e) => e.stopPropagation(),
-            display: true,
-            postion: 'right',
-         },
-  tooltips: {
-    enabled: true
-  },
-  plugins: {
-    datalabels: {
-      formatter: (value, ctx) => {
-        let sum = ctx.dataset._meta[0].total;
-        let percentage = (value * 100 / sum).toFixed(2) + "%";
-        return percentage;
-      },
-      color: '#fff',
-    }
-  }
-};
-
-var ctx = document.getElementById("pie-chart").getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-  labels: [<?php echo $chartData; ?>],
-    datasets: data
-  },
-  options: options
-});
 </script>
 
 <script>
 $(document).ready(function(){
   $('.project').change(function(){
       var value = $(this).val();
-      console.log(value);
+      document.getElementById("pie-chart").innerHTML = "";
       $.ajax({
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -73,8 +37,44 @@ $(document).ready(function(){
         data:{ value:value },
         beforeSend: function () {
         },
-        success: function(data){
-          console.log('done');
+        success: function(response){
+            var data = [{
+                        data: response.quantity,
+                        backgroundColor: response.color,
+                        hoverBackgroundColor: response.color,
+                        }];
+
+                        var options = {
+                        responsive: true,
+                        legend: {
+                            onClick: (e) => e.stopPropagation(),
+                                    display: true,
+                                    postion: 'right',
+                                },
+                        tooltips: {
+                            enabled: true
+                        },
+                        plugins: {
+                            datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = response.sum;
+                                let percentage = (value * 100 / sum).toFixed(2) + "%";
+                                return percentage;
+                            },
+                            color: '#fff',
+                            }
+                        }
+                        };
+
+                        var ctx = document.getElementById("pie-chart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                        labels: response.chartData,
+                            datasets: data
+                        },
+                        options: options
+                        });
         }
       });
   });

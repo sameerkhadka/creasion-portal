@@ -25,7 +25,7 @@ class ChartController extends Controller
         }
         $chartData = $data;
         $quantity = $quan;
-        $color = $colour;             
+        $color = $colour;
         return view('pie', compact('chartData','quantity','color'))->with('categories', Category::all());
     }
 
@@ -35,17 +35,20 @@ class ChartController extends Controller
         $result = Particular::select('*')
         ->where('category_id', '=', $get)
         ->get();
-        $data = "";
-        $quan = "";
-        $colour = "";
+        $data = [];
+        $quan = [];
+        $colour = [];
+        $sum = 0;
         foreach($result as $val){
-             $data.="'$val->name',";
-             $quan.="$val->Quantity,";
-             $colour.="'$val->color',";
+             array_push($data,$val->name);
+             array_push($quan,$val->Quantity);
+             array_push($colour,$val->color);
+            $sum = $sum + $val->Quantity;
         }
         $chartData = $data;
         $quantity = $quan;
-        $color = $colour;             
-        return view('pie', compact('chartData','quantity','color'))->with('categories', Category::all());
+        $color = $colour;
+        $categories = Category::all();
+        return response(compact('sum','chartData','quantity','color','categories'));
     }
 }
