@@ -27,10 +27,17 @@
 
 <script>
 $(document).ready(function(){
+    callMethod(1);
   $('.project').change(function(){
       var value = $(this).val();
+        callMethod(value);
 
-      $.ajax({
+  });
+});
+
+
+function callMethod(value){
+    $.ajax({
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
@@ -81,8 +88,7 @@ $(document).ready(function(){
                         });
         }
       });
-  });
-});
+}
 </script>
 
 </html>
