@@ -10,27 +10,14 @@ use App\Models\Category;
 
 class ChartController extends Controller
 {
-    public function PieChart()
+    public function index()
     {
-        $result = Particular::select('*')
-        ->where('category_id', '=', '1')
-        ->get();
-        $data = "";
-        $quan = "";
-        $colour = "";
-        foreach($result as $val){
-             $data.="'$val->name',";
-             $quan.="$val->Quantity,";
-             $colour.="'$val->color',";
-        }
-        $chartData = $data;
-        $quantity = $quan;
-        $color = $colour;
-        return view('pie', compact('chartData','quantity','color'))->with('categories', Category::all());
+        $categories = Category::all();
+        return view('pie', compact('categories'));
     }
 
     public function dynamic(Request $request)
-    {
+    {   
         $get = $request->value;
         $result = Particular::select('*')
         ->where('category_id', '=', $get)

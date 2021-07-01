@@ -18,9 +18,9 @@ use App\Http\Controllers\ChartController;
 //     return view('p');
 // });
 
-Route::get('/', [ChartController::class,'PieChart'])->name('index');
+Route::get('/', [ChartController::class,'index'])->name('index');
 
-Route::POST('/', [ChartController::class,'dynamic'])->name('dynamic');
+Route::POST('/pie', [ChartController::class,'dynamic'])->name('dynamic');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
