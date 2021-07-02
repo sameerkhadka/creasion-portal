@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\RequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,15 @@ use App\Http\Controllers\ChartController;
 //     return view('p');
 // });
 
-Route::get('/', [ChartController::class,'index'])->name('index');
+Route::get('/pie', [ChartController::class,'index'])->name('index');
 
 Route::POST('/pie', [ChartController::class,'dynamic'])->name('dynamic');
+
+Route::get('/', [RequestController::class,'index'])->name('index');
+
+Route::POST('/request', [RequestController::class,'request'])->name('request');
+
+Route::POST('/responses/add', [RequestController::class,'add_response'])->name('add_response');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
