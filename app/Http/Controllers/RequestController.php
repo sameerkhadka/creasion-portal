@@ -32,7 +32,7 @@ class RequestController extends Controller
     public function request(Request $request)
     {
         if($request->req_type == "individual")
-        { 
+        {
            $individual = new Individual();
            $individual->name = $request->name;
            $individual->gender = $request->gender;
@@ -47,7 +47,7 @@ class RequestController extends Controller
            $req->individual_id = $individual->id;
            $req->details = $request->detail;
            $req->save();
-           
+
            return redirect()->route('index');
         }
         elseif($request->req_type == "institution")
@@ -62,12 +62,12 @@ class RequestController extends Controller
             $institution->local_level_id = $request->local_level;
             $institution->coordinates = $request->coordinates;
             $institution->save();
- 
+
             $req = new UserRequest();
             $req->institution_id = $institution->id;
             $req->details = $request->details;
             $req->save();
-            
+
             return redirect()->route('index');
         }
 
@@ -75,7 +75,7 @@ class RequestController extends Controller
 
     public function add_response(Request $request)
     {
-        return $request;
+        dd($request->individual_id);
     }
 
 }

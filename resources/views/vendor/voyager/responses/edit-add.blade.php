@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="panel panel-bordered">
+                <div id="app" class="panel panel-bordered">
                     <!-- form start -->
                     <form role="form"
                             class="form-edit-add"
@@ -51,22 +51,36 @@
                             @endif
                             @php
                                 $user_request = \App\Models\UserRequest::find(request("requestid"));
-                                echo $user_request;
+                                $inventories  = \App\Models\Inventory::all();
                             @endphp
                             <!-- Adding / Editing -->
-                            <!-- <div class="form-group  col-md-12 ">                                    
-                                    <label class="control-label" for="name">Individual Id</label>
-                                    <input type="text" class="form-control" name="individual_id" placeholder="Individual Id" value="">                                     
-                            </div> -->
+                            <div v-for="(item,index) in respondedItems">
+                                <div class="form-group  col-md-6 ">
+                                        <label class="control-label" for="name">Select Item</label>
+                                        <select class="form-control" v-model="item.inventory_id">
+                                            <option value="-1" selected="selected" disabled>Select Items</option>
+                                            <option :value="inventory.id" v-for="inventory in inventories">@{{ inventory.title }}</option>
+                                        </select>
+                                </div>
+                                <div class="form-group  col-md-5 ">
+                                    <label class="control-label" for="name">Quantity</label>
+                                    <input required type="number" class="form-control" v-model.number="item.quantity" >
+                                </div>
+                                <div class="form-group  col-md-1" v-if="index!=0">
+                                    <label class="control-label" for="name"></label>
+                                    <input  class="btn btn-danger" type="button" v-on:click="deleteItem(index)" value="Delete">
+                                </div>
 
-                            <input type="hidden" name="individual_id" value="{{ $user_request->individual_id}}">
-                            <input type="hidden" name="institution_id" value="{{ $user_request->institution_id}}">
+                            </div>
+
 
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
+                            <input :disabled="submitting" v-on:click="addItem" class="btn btn-success" type="button" value="Add">
+
                             @section('submit-buttons')
-                                <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                                <button :disabled="submitting" v-on:click="submitData" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
                             @stop
                             @yield('submit-buttons')
                         </div>
@@ -111,6 +125,50 @@
 @stop
 
 @section('javascript')
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                iterations:1,
+                inventories: @json($inventories),
+                respondedItems: [
+                    {
+                        inventory_id: -1,
+                        quantity: 0
+                    }
+                ],
+                submitting: false
+            },
+            methods:{
+                addItem(){
+                    this.respondedItems.push({
+                        inventory_id: -1,
+                        quantity: 0
+                    });
+                },
+                deleteItem(index){
+                    this.respondedItems.splice(index,1);
+                },
+                submitData(e){
+                    e.preventDefault();
+                    this.submitting = true;
+                    tempthis = this;
+                    axios.post('{{ route("add_response") }}',
+                    {
+                        '_token':'{{ csrf_token() }}',
+                        'responded_items': this.respondedItems,
+                        'individual_id':@json($user_request->individual_id),
+                        'institution_id':@json($user_request->institution_id),
+                    }).then((response) => {
+                        tempthis.submitting = false;
+                        // window.location.replace("/admin/responses");
+                    })
+                }
+            }
+        })
+    </script>
     <script>
         var params = {};
         var $file;

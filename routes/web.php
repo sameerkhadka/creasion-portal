@@ -3,12 +3,8 @@
 use App\District;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
-<<<<<<< HEAD
-use App\Municipality;
 use App\Province;
-=======
 use App\Http\Controllers\RequestController;
->>>>>>> 3bc8068b88c0ef5a63c96d92274ad35f6ed1507a
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +21,6 @@ use App\Http\Controllers\RequestController;
 //     return view('p');
 // });
 
-<<<<<<< HEAD
 // Route::get('importData',function(){
 //     $provinces = json_decode(file_get_contents(public_path().'/json/provinces.json'),true)['provinces'];
 //     $districts = json_decode(file_get_contents(public_path().'/json/districts.json'),true)['districts'];
@@ -48,9 +43,7 @@ use App\Http\Controllers\RequestController;
 // });
 
 Route::get('/', [ChartController::class,'index'])->name('index');
-=======
 Route::get('/pie', [ChartController::class,'index'])->name('index');
->>>>>>> 3bc8068b88c0ef5a63c96d92274ad35f6ed1507a
 
 Route::POST('/pie', [ChartController::class,'dynamic'])->name('dynamic');
 
