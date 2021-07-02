@@ -42,9 +42,6 @@ use App\Http\Controllers\RequestController;
 //     }
 // });
 
-Route::get('/', [ChartController::class,'index'])->name('index');
-Route::get('/pie', [ChartController::class,'index'])->name('index');
-
 Route::POST('/pie', [ChartController::class,'dynamic'])->name('dynamic');
 
 Route::get('/', [RequestController::class,'index'])->name('index');

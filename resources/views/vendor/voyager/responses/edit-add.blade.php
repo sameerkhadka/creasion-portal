@@ -51,9 +51,61 @@
                             @endif
                             @php
                                 $user_request = \App\Models\UserRequest::find(request("requestid"));
+                                $user = \App\Models\UserRequest::with(["individual", "institution"])->find($user_request->individual_id);
+                                dd($user->individual->name);
+
+                            // dd($user_request);
                                 $inventories  = \App\Models\Inventory::all();
                             @endphp
+                            
                             <!-- Adding / Editing -->
+                            <div class="form-group  col-md-12 ">
+                                    <label class="control-label" for="name">Name</label>
+                                    <input type="text" class="form-control" value="{{$user->individual->name}}">
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Project</label>
+                                <input type="text" class="form-control" value="{{$user_request->project}}">
+                            </div>
+
+                            @if($user_request->individual_id != "")
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Gender</label>
+                                <input type="text" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Age</label>
+                                <input type="text" class="form-control" value="">
+                            </div>
+                            @endif
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Province</label>
+                                <input type="text" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">District</label>
+                                <input type="text" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Local Level</label>
+                                <input type="text" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">District</label>
+                                <input type="text" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Message</label>
+                                <textarea name="details" class="form-control" rows="5" cols="20"> Message </textarea>
+                            </div>
+
                             <div v-for="(item,index) in respondedItems">
                                 <div class="form-group  col-md-6 ">
                                         <label class="control-label" for="name">Select Item</label>

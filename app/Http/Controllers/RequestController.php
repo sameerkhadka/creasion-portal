@@ -18,6 +18,8 @@ use App\Models\LocalLevel;
 
 use App\Models\UserRequest;
 
+use App\Models\Project;
+
 class RequestController extends Controller
 {
     public function index()
@@ -26,7 +28,8 @@ class RequestController extends Controller
         $district = District::all();
         $local = LocalLevel::all();
         $types = InstitutionType::all();
-        return view('request', compact('types','province','district','local'));
+        $project = Project::all();
+        return view('request', compact('types','province','district','local','project'));
     }
 
     public function request(Request $request)
@@ -46,6 +49,7 @@ class RequestController extends Controller
            $req = new UserRequest();
            $req->individual_id = $individual->id;
            $req->details = $request->detail;
+           $req->project = $request->project;
            $req->save();
 
            return redirect()->route('index');
@@ -66,6 +70,7 @@ class RequestController extends Controller
             $req = new UserRequest();
             $req->institution_id = $institution->id;
             $req->details = $request->details;
+            $req->project = $request->projects;
             $req->save();
 
             return redirect()->route('index');

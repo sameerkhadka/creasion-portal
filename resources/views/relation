@@ -7,3 +7,5 @@ MODEL
     {
         return $this->belongsTo(Individual::class);
     }
+
+
