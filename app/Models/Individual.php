@@ -13,4 +13,12 @@ class Individual extends Model
     {
         return $this->belongsTo(Province::class);
     }
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+    public function localLevel()
+    {
+        return $this->belongsTo(LocalLevel::class);
+    }
 }

@@ -28,12 +28,9 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $province = Province::all();
-        $district = District::all();
-        $local = LocalLevel::all();
         $types = InstitutionType::all();
         $project = Project::all();
-        return view('request', compact('types','province','district','local','project'));
+        return view('request', compact('types','project'));
     }
 
     public function request(Request $request)
@@ -66,9 +63,9 @@ class RequestController extends Controller
             $institution->institution_type_id = $request->type;
             $institution->contact_person = $request->contact_person;
             $institution->contact_number = $request->contact_number;
-            $institution->province_id = $request->province;
-            $institution->district_id = $request->district;
-            $institution->local_level_id = $request->local_level;
+            $institution->province_id = $request->province_id;
+            $institution->district_id = $request->district_id;
+            $institution->local_level_id = $request->local_level_id;
             $institution->coordinates = $request->coordinates;
             $institution->save();
 
@@ -84,7 +81,7 @@ class RequestController extends Controller
     }
 
     public function add_response(Request $request)
-    {   
+    {
         $response = new Response();
         if($request->individual_id)
         {
@@ -94,7 +91,7 @@ class RequestController extends Controller
         {
             $response->institution_id = $request->institution_id;
         }
-        $response->save();       
+        $response->save();
 
         foreach($request->responded_items as $item)
         {
@@ -103,9 +100,9 @@ class RequestController extends Controller
             $responded_item->inventory_id = $item['inventory_id'];
             $responded_item->quantity = $item['quantity'];
             $responded_item->save();
-        }       
-       
-            
+        }
+
+
     }
 
 }
