@@ -270,7 +270,7 @@
                                                 @endcan
                                                 @endif
                                             @endforeach
-                                            <a href="/admin/responses/create?requestid={{ $data->id }}" title="View" class="btn btn-sm btn-success pull-right view" style="margin-right:4px">
+                                            <a href="/admin/responses/create?requestid={{ $data->id }}" title="Response" class="btn btn-sm btn-success pull-right view" style="margin-right:4px">
                                                 <i class="voyager-bulb"></i> <span class="hidden-xs hidden-sm">Respond</span>
                                             </a>
                                         </td>

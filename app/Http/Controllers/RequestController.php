@@ -20,6 +20,10 @@ use App\Models\UserRequest;
 
 use App\Models\Project;
 
+use App\Models\Response;
+
+use App\Models\InventoryResponse;
+
 class RequestController extends Controller
 {
     public function index()
@@ -44,12 +48,13 @@ class RequestController extends Controller
            $individual->district_id = $request->district_id;
            $individual->local_level_id = $request->local_level_id;
            $individual->coordinates = $request->coordinate;
+           $individual->contact_number = $request->phone;
            $individual->save();
 
            $req = new UserRequest();
            $req->individual_id = $individual->id;
            $req->details = $request->detail;
-           $req->project = $request->project;
+           $req->project_id = $request->project;
            $req->save();
 
            return redirect()->route('index');
@@ -70,7 +75,7 @@ class RequestController extends Controller
             $req = new UserRequest();
             $req->institution_id = $institution->id;
             $req->details = $request->details;
-            $req->project = $request->projects;
+            $req->project_id = $request->projects;
             $req->save();
 
             return redirect()->route('index');
@@ -79,8 +84,28 @@ class RequestController extends Controller
     }
 
     public function add_response(Request $request)
-    {
-        dd($request->individual_id);
+    {   
+        $response = new Response();
+        if($request->individual_id)
+        {
+            $response->individual_id = $request->individual_id;
+        }
+        else
+        {
+            $response->institution_id = $request->institution_id;
+        }
+        $response->save();       
+
+        foreach($request->responded_items as $item)
+        {
+            $responded_item = new InventoryResponse();
+            $responded_item->response_id = $response->id;
+            $responded_item->inventory_id = $item['inventory_id'];
+            $responded_item->quantity = $item['quantity'];
+            $responded_item->save();
+        }       
+       
+            
     }
 
 }
