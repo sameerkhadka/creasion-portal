@@ -49,61 +49,77 @@
                                     </ul>
                                 </div>
                             @endif
-                            @php
-                                $user_request = \App\Models\UserRequest::find(request("requestid"));
-                                $user = \App\Models\UserRequest::with(["individual", "institution"])->find($user_request->individual_id);
-                                dd($user->individual->name);
 
-                            // dd($user_request);
-                                $inventories  = \App\Models\Inventory::all();
+                            @php
+
+                                $user_request = \App\Models\UserRequest::find(request("requestid")); 
+                                if($user_request->individual_id) 
+                                {
+                                    $user = \App\Models\Individual::find($user_request->individual_id);
+                                }                             
+                                    
+                                else
+                                {
+                                    $user = \App\Models\Institution::find($user_request->institution_id);
+                                }
+
+                                $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
+                                
                             @endphp
                             
                             <!-- Adding / Editing -->
                             <div class="form-group  col-md-12 ">
                                     <label class="control-label" for="name">Name</label>
-                                    <input type="text" class="form-control" value="{{$user->individual->name}}">
+                                    <input type="text" class="form-control" value="{{$user->name}}" readonly>
                             </div>
 
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Project</label>
-                                <input type="text" class="form-control" value="{{$user_request->project}}">
+                                <input type="text" class="form-control" value="{{$user_request->project->title}}" readonly>
                             </div>
 
-                            @if($user_request->individual_id != "")
+                            @if($user_request->individual_id)
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Gender</label>
-                                <input type="text" class="form-control" value="">
+                                <input type="text" class="form-control" value="{{$user->gender}}" readonly>
                             </div>
 
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Age</label>
-                                <input type="text" class="form-control" value="">
+                                <input type="text" class="form-control" value="{{$user->age}}" readonly>
                             </div>
+                            @else
+
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Contact Person</label>
+                                <input type="text" class="form-control" value="{{$user->contact_person}}" readonly>
+                            </div>
+
                             @endif
 
                             <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Phone</label>
+                                <input type="text" class="form-control" value="{{$user->contact_number}}" readonly>
+                            </div>
+
+                            <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Province</label>
-                                <input type="text" class="form-control" value="">
+                                <input type="text" class="form-control" value="{{$user->province_id}}" readonly>
                             </div>
 
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">District</label>
-                                <input type="text" class="form-control" value="">
+                                <input type="text" class="form-control" value="{{$user->district_id}}" readonly>
                             </div>
 
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Local Level</label>
-                                <input type="text" class="form-control" value="">
-                            </div>
-
-                            <div class="form-group  col-md-12 ">
-                                <label class="control-label" for="name">District</label>
-                                <input type="text" class="form-control" value="">
+                                <input type="text" class="form-control" value="{{$user->local_level_id}}" readonly>
                             </div>
 
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Message</label>
-                                <textarea name="details" class="form-control" rows="5" cols="20"> Message </textarea>
+                                <textarea name="details" class="form-control" rows="5" cols="20" readonly> {{$user_request->details}} </textarea>
                             </div>
 
                             <div v-for="(item,index) in respondedItems">
@@ -215,7 +231,7 @@
                         'institution_id':@json($user_request->institution_id),
                     }).then((response) => {
                         tempthis.submitting = false;
-                        // window.location.replace("/admin/responses");
+                        window.location.replace("/admin/responses");
                     })
                 }
             }

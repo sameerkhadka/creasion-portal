@@ -30,6 +30,7 @@
         <option value="female">Female</option>
         <option value="others">Others</option>
         </select> <br> <br>
+    Contact Number:<input type="text" name="phone"> <br> <br>
     Age:<input type="number" name="age"> <br> <br>
     Province:
     <select name="province_id">

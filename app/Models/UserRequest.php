@@ -17,4 +17,9 @@ class UserRequest extends Model
     {
         return $this->belongsTo(Institution::class);
     }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
