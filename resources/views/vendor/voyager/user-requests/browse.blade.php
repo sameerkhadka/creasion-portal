@@ -170,15 +170,7 @@
                                                         {{ $data->{$row->field} }}
                                                     @endif
                                                 @elseif($row->type == 'checkbox')
-                                                    @if(property_exists($row->details, 'on') && property_exists($row->details, 'off'))
-                                                        @if($data->{$row->field})
-                                                            <span class="label label-info">{{ $row->details->on }}</span>
-                                                        @else
-                                                            <span class="label label-primary">{{ $row->details->off }}</span>
-                                                        @endif
-                                                    @else
-                                                    {{ $data->{$row->field} }}
-                                                    @endif
+                                                    <input id="verify{{ $data->id }}" onclick="verify({{ $data->id }})" type="checkbox" @if($data->verified) checked @endif>
                                                 @elseif($row->type == 'color')
                                                     <span class="badge badge-lg" style="background-color: {{ $data->{$row->field} }}">{{ $data->{$row->field} }}</span>
                                                 @elseif($row->type == 'text')
@@ -270,9 +262,16 @@
                                                 @endcan
                                                 @endif
                                             @endforeach
-                                            <a href="/admin/responses/create?requestid={{ $data->id }}" title="Response" class="btn btn-sm btn-success pull-right view" style="margin-right:4px">
-                                                <i class="voyager-bulb"></i> <span class="hidden-xs hidden-sm">Respond</span>
-                                            </a>
+                                            @php $response = \App\Models\Response::where('user_request_id',$data->id)->first(); @endphp
+                                            @if($response)
+                                                <a href="/admin/responses/{{ $response->id }}/edit" title="Response" class="btn btn-sm btn-success  pull-right view" style="margin-right:4px">
+                                                    <i class="voyager-bulb"></i> <span class="hidden-xs hidden-sm">Edit Reponse</span>
+                                                </a>
+                                            @else
+                                                <a href="/admin/responses/create?requestid={{ $data->id }}" title="Response" class="btn btn-sm btn-success pull-right view" style="margin-right:4px">
+                                                    <i class="voyager-bulb"></i> <span class="hidden-xs hidden-sm">Respond</span>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -334,10 +333,21 @@
 
 @section('javascript')
     <!-- DataTables -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
         <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
     @endif
     <script>
+        function verify(id){
+            if ($(`#verify${id}`).is(":checked"))
+            {
+                var val = 1;
+            }
+            else{
+                var val = 0;
+            }
+            axios.post('/verify-request',{ val,id })
+        }
         $(document).ready(function () {
             @if (!$dataType->server_side)
                 var table = $('#dataTable').DataTable({!! json_encode(

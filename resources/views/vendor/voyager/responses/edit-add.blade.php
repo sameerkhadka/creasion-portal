@@ -31,9 +31,7 @@
                             action="{{ $edit ? route('voyager.'.$dataType->slug.'.update', $dataTypeContent->getKey()) : route('add_response') }}"
                             method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
-                        @if($edit)
-                            {{ method_field("PUT") }}
-                        @endif
+
 
                         <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
@@ -50,22 +48,47 @@
                                 </div>
                             @endif
 
-                            @php
 
-                                $user_request = \App\Models\UserRequest::find(request("requestid"));
-                                if($user_request->individual_id)
-                                {
-                                    $user = \App\Models\Individual::find($user_request->individual_id);
-                                }
 
-                                else
-                                {
-                                    $user = \App\Models\Institution::find($user_request->institution_id);
-                                }
+                            @if($edit)
+                                @php
+                                    $user_request = \App\Models\UserRequest::find($dataTypeContent->user_request_id);
+                                    $responseInventories = \App\Models\Response::find($dataTypeContent->id)->inventories;
+                                    $modelInventories = [];
+                                    foreach($responseInventories as $item){
+                                        $pivot = $item['pivot'];
+                                        unset($pivot['response_id']);
+                                        array_push($modelInventories,$pivot);
+                                    }
+                                    if($user_request->individual_id)
+                                    {
+                                        $user = \App\Models\Individual::find($user_request->individual_id);
+                                    }
 
-                                $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
+                                    else
+                                    {
+                                        $user = \App\Models\Institution::find($user_request->institution_id);
+                                    }
+                                    $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
 
-                            @endphp
+                                @endphp
+                            @else
+                                @php
+                                    $user_request = \App\Models\UserRequest::find(request("requestid"));
+                                    if($user_request->individual_id)
+                                    {
+                                        $user = \App\Models\Individual::find($user_request->individual_id);
+                                    }
+
+                                    else
+                                    {
+                                        $user = \App\Models\Institution::find($user_request->institution_id);
+                                    }
+
+                                    $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
+
+                                @endphp
+                            @endif
 
                             <!-- Adding / Editing -->
                             <div class="form-group  col-md-3 ">
@@ -145,12 +168,15 @@
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
-                            <input :disabled="submitting" v-on:click="addItem" class="btn btn-success" type="button" value="Add">
+                            <input :disabled="submitting" v-on:click="addItem" class="btn btn-success" type="button" value="Add Items">
 
                             @section('submit-buttons')
                                 <button :disabled="submitting" v-on:click="submitData" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
                             @stop
+
                             @yield('submit-buttons')
+                            <input :disabled="submitting" onclick="window.history.back();" class="btn btn-secondary" type="button" value="Back">
+
                         </div>
                     </form>
 
@@ -209,6 +235,11 @@
                 ],
                 submitting: false
             },
+            mounted(){
+                @if($edit)
+                    this.respondedItems = @json($modelInventories)
+                @endif
+            },
             methods:{
                 addItem(){
                     this.respondedItems.push({
@@ -229,9 +260,11 @@
                         'responded_items': this.respondedItems,
                         'individual_id':@json($user_request->individual_id),
                         'institution_id':@json($user_request->institution_id),
+                        'user_request_id':@json($user_request->id),
+                        'response_id': '{{ $dataTypeContent->id }}'
                     }).then((response) => {
                         tempthis.submitting = false;
-                        window.location.replace("/admin/responses");
+                        window.history.back()
                     })
                 }
             }

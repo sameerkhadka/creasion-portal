@@ -23,14 +23,22 @@ use App\Models\Project;
 use App\Models\Response;
 
 use App\Models\InventoryResponse;
+use Illuminate\Support\Facades\Session;
 
 class RequestController extends Controller
 {
     public function index()
     {
+        return Response::with('userRequest','institution','individual','inventories')->get();
         $types = InstitutionType::all();
         $project = Project::all();
         return view('request', compact('types','project'));
+    }
+
+    public function verifyRequest(Request $request){
+        $user_request = UserRequest::find($request->id);
+        $user_request->verified = $request->val;
+        $user_request->update();
     }
 
     public function request(Request $request)
@@ -82,26 +90,35 @@ class RequestController extends Controller
 
     public function add_response(Request $request)
     {
-        $response = new Response();
-        if($request->individual_id)
-        {
-            $response->individual_id = $request->individual_id;
-        }
-        else
-        {
-            $response->institution_id = $request->institution_id;
-        }
-        $response->save();
+        // creation
+        if(!$request->response_id){
+            $response = new Response();
+            if($request->individual_id)
+            {
+                $response->individual_id = $request->individual_id;
+            }
+            else
+            {
+                $response->institution_id = $request->institution_id;
+            }
+            $response->user_request_id = $request->user_request_id;
+            $response->save();
+         }
+         //update
+         else{
+             $response = Response::find($request->response_id);
+         }
+        //  dd($response);
 
-        foreach($request->responded_items as $item)
-        {
-            $responded_item = new InventoryResponse();
-            $responded_item->response_id = $response->id;
-            $responded_item->inventory_id = $item['inventory_id'];
-            $responded_item->quantity = $item['quantity'];
-            $responded_item->save();
-        }
+        //removing all inventory with -1
+        $respondedItems = collect($request->responded_items)->filter(function($item){
+            return $item['inventory_id']!=-1;
+        });
 
+        //saving in inventory_response table
+        $response->inventories()->detach();
+        $response->inventories()->attach($respondedItems);
+        Session::flash('success','Succesfully Updated Response');
 
     }
 

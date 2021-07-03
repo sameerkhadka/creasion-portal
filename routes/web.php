@@ -45,6 +45,7 @@ use App\Http\Controllers\RequestController;
 Route::POST('/pie', [ChartController::class,'dynamic'])->name('dynamic');
 
 Route::get('/', [RequestController::class,'index'])->name('index');
+Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
 
 Route::POST('/request', [RequestController::class,'request'])->name('request');
 

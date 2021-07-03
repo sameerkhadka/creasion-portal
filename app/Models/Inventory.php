@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     use HasFactory;
+    public function responses(){
+        return $this->belongsToMany(Response::class);
+    }
 }
