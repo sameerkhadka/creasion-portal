@@ -83,6 +83,9 @@
                                                 <input type="checkbox" class="select_all">
                                             </th>
                                         @endif
+                                        <th>
+                                            Name
+                                        </th>
                                         @foreach($dataType->browseRows as $row)
                                         <th>
                                             @if ($isServerSide && in_array($row->field, $sortableColumns))
@@ -112,6 +115,7 @@
                                                 <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
                                             </td>
                                         @endif
+                                        <td>{{ $data->institution_id ? \App\Models\Institution::find($data->institution_id)->name : \App\Models\Individual::find($data->individual_id)->name}}</td>
                                         @foreach($dataType->browseRows as $row)
                                             @php
                                             if ($data->{$row->field.'_browse'}) {
@@ -251,7 +255,7 @@
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
-                                        
+
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                 @php
