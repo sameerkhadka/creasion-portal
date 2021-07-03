@@ -68,51 +68,51 @@
                             @endphp
 
                             <!-- Adding / Editing -->
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                     <label class="control-label" for="name">Name</label>
                                     <input type="text" class="form-control" value="{{$user->name}}" readonly>
                             </div>
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Project</label>
                                 <input type="text" class="form-control" value="{{$user_request->project->title}}" readonly>
                             </div>
 
                             @if($user_request->individual_id)
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Gender</label>
                                 <input type="text" class="form-control" value="{{$user->gender}}" readonly>
                             </div>
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Age</label>
                                 <input type="text" class="form-control" value="{{$user->age}}" readonly>
                             </div>
                             @else
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Contact Person</label>
                                 <input type="text" class="form-control" value="{{$user->contact_person}}" readonly>
                             </div>
 
                             @endif
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Phone</label>
                                 <input type="text" class="form-control" value="{{$user->contact_number}}" readonly>
                             </div>
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Province</label>
                                 <input type="text" class="form-control" value="{{ optional($user->province)->title_en}}" readonly>
                             </div>
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">District</label>
                                 <input type="text" class="form-control" value="{{ optional($user->district)->title_en}}" readonly>
                             </div>
 
-                            <div class="form-group  col-md-12 ">
+                            <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Local Level</label>
                                 <input type="text" class="form-control" value="{{ optional($user->localLevel)->title_en }}" readonly>
                             </div>
