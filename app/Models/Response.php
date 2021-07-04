@@ -8,26 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Response extends Model
 {
     use HasFactory;
-    protected $appends = ['coordinates','project'];
+    protected $appends = ['project'];
     public function inventories(){
         return $this->belongsToMany(Inventory::class)->withPivot('quantity');
     }
 
     public function institution(){
-        return $this->belongsTo(Institution::class);
+        return $this->belongsTo(Institution::class)->with(['district','province','localLevel']);
     }
 
     public function individual(){
-        return $this->belongsTo(Individual::class);
+        return $this->belongsTo(Individual::class)->with(['district','province','localLevel']);
     }
 
     public function userRequest(){
         return $this->belongsTo(UserRequest::class)->select(['id','project_id'])->with('project');
     }
-    public function getCoordinatesAttribute()
-    {
-        return $this->individual->coordinates;
-    }
+
     public function getProjectAttribute()
     {
         return $this->userRequest->project;

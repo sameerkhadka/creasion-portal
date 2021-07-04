@@ -115,7 +115,7 @@
                                                 <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
                                             </td>
                                         @endif
-                                        <td>{{ $data->institution_id ? \App\Models\Institution::find($data->institution_id)->name : \App\Models\Individual::find($data->individual_id)->name}}</td>
+                                        <td >{{ $data->institution_id ? \App\Models\Institution::find($data->institution_id)->name : \App\Models\Individual::find($data->individual_id)->name}} </td>
                                         @foreach($dataType->browseRows as $row)
                                             @php
                                             if ($data->{$row->field.'_browse'}) {
@@ -346,7 +346,9 @@
             else{
                 var val = 0;
             }
-            axios.post('/verify-request',{ val,id })
+            axios.post('/verify-request',{ val,id }).then((response)=>{
+                toastr.success(response.data.msg);
+            });
         }
         $(document).ready(function () {
             @if (!$dataType->server_side)

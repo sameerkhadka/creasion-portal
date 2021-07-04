@@ -138,6 +138,9 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
         toastr.error("toastr alert-type " + alertType + " is unknown");
     }
     @endif
+    @if(Session::has('success'))
+        toastr.success('{{ Session::get("success") }}')
+    @endif
 </script>
 @include('voyager::media.manager')
 @yield('javascript')

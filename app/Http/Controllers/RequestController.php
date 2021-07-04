@@ -29,7 +29,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-        // return Response::with('userRequest','institution','individual','inventories')->get();
+        return Response::with('userRequest','institution','individual','inventories')->find(6);
         $types = InstitutionType::all();
         $project = Project::all();
         return view('request', compact('types','project'));
@@ -39,6 +39,10 @@ class RequestController extends Controller
         $user_request = UserRequest::find($request->id);
         $user_request->verified = $request->val;
         $user_request->update();
+        $msg = $request->val ? 'verified' : 'unverified';
+        return response([
+            "msg" => "Successfully {$msg}"
+        ],200);
     }
 
     public function request(Request $request)
@@ -90,6 +94,7 @@ class RequestController extends Controller
 
     public function add_response(Request $request)
     {
+        $type = 'created';
         // creation
         if(!$request->response_id){
             $response = new Response();
@@ -107,6 +112,7 @@ class RequestController extends Controller
          //update
          else{
              $response = Response::find($request->response_id);
+             $type = 'updated';
          }
         //  dd($response);
 
@@ -118,7 +124,7 @@ class RequestController extends Controller
         //saving in inventory_response table
         $response->inventories()->detach();
         $response->inventories()->attach($respondedItems);
-        Session::flash('success','Succesfully Updated Response');
+        Session::flash('success',"Response {$type} successfully" );
 
     }
 

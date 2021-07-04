@@ -175,7 +175,7 @@
                             @stop
 
                             @yield('submit-buttons')
-                            <input :disabled="submitting" onclick="window.history.back();" class="btn btn-secondary" type="button" value="Back">
+                            <input :disabled="submitting" onclick="window.location=document.referrer;" class="btn btn-secondary" type="button" value="Back">
 
                         </div>
                     </form>
@@ -219,7 +219,7 @@
 @stop
 
 @section('javascript')
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var app = new Vue({
@@ -264,7 +264,7 @@
                         'response_id': '{{ $dataTypeContent->id }}'
                     }).then((response) => {
                         tempthis.submitting = false;
-                        window.history.back()
+                        window.location=document.referrer;
                     })
                 }
             }
