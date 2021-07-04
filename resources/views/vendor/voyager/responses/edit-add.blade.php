@@ -20,6 +20,17 @@
 @stop
 
 @section('content')
+    @php 
+    if(request("requestid"))
+    {
+        $user_request = \App\Models\UserRequest::find(request("requestid"));
+        if(!$user_request->seen)
+           {
+            $user_request->seen = "1";
+            $user_request->save();
+           } 
+    }    
+    @endphp
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -153,10 +164,11 @@
                                             <option :value="inventory.id" v-for="inventory in inventories">@{{ inventory.title }}</option>
                                         </select>
                                 </div>
-                                <div class="form-group  col-md-5 ">
+                                <div class="form-group  col-md-2 ">
                                     <label class="control-label" for="name">Quantity</label>
                                     <input required type="number" class="form-control" v-model.number="item.quantity" >
                                 </div>
+                                
                                 <div class="form-group  col-md-1" v-if="index!=0">
                                     <label class="control-label" for="name"></label>
                                     <input  class="btn btn-danger" type="button" v-on:click="deleteItem(index)" value="Delete">

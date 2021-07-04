@@ -29,6 +29,7 @@ class RequestController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         $features = Response::with('userRequest','institution','individual','inventories')->get();
         $response['type'] = 'FeatureCollection';
         $i = 0;
@@ -41,6 +42,9 @@ class RequestController extends Controller
         }
         return $response;
 
+=======
+        // return Response::with('userRequest','institution','individual','inventories');
+>>>>>>> f7f1355c618d75605307f8f9906516dc04f8d697
         $types = InstitutionType::all();
         $project = Project::all();
         return view('request', compact('types','project'));
