@@ -29,7 +29,18 @@ class RequestController extends Controller
 {
     public function index()
     {
-        return Response::with('userRequest','institution','individual','inventories')->find(6);
+        $features = Response::with('userRequest','institution','individual','inventories')->get();
+        $response['type'] = 'FeatureCollection';
+        $i = 0;
+        foreach($features as $item){
+            $response['features'][$i]['type']='Feature';
+            $response['features'][$i]['properties']=$item;
+            $response['features'][$i]['geometry']['type']="Point";
+            $response['features'][$i]['geometry']['coordinates']=$item->institution_id ? $item->institution->coordinates : $item->individual->coordinates;
+            $i++;
+        }
+        return $response;
+
         $types = InstitutionType::all();
         $project = Project::all();
         return view('request', compact('types','project'));
