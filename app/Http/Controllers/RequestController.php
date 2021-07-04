@@ -29,7 +29,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-        return Response::with('userRequest','institution','individual','inventories')->find(6);
+        // return Response::with('userRequest','institution','individual','inventories');
         $types = InstitutionType::all();
         $project = Project::all();
         return view('request', compact('types','project'));

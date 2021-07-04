@@ -17,9 +17,9 @@ use App\Http\Controllers\RequestController;
 |
 */
 
-// Route::get('/p', function () {
-//     return view('p');
-// });
+Route::get('/pieOld', function () {
+    return view('pieOld');
+});
 
 // Route::get('importData',function(){
 //     $provinces = json_decode(file_get_contents(public_path().'/json/provinces.json'),true)['provinces'];
@@ -41,10 +41,11 @@ use App\Http\Controllers\RequestController;
 //         );
 //     }
 // });
-
-Route::POST('/pie', [ChartController::class,'dynamic'])->name('dynamic');
+Route::GET('/pie', [ChartController::class,'index']);
+Route::POST('/piee', [ChartController::class,'dynamic'])->name('dynamic');
 
 Route::get('/', [RequestController::class,'index'])->name('index');
+
 Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
 
 Route::POST('/request', [RequestController::class,'request'])->name('request');

@@ -109,13 +109,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach($dataTypeContent as $data)
-                                    <tr>
+                                    <tr @if(!$data->seen) style="font-weight:600!important" @endif>
                                         @if($showCheckboxColumn)
                                             <td>
                                                 <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
                                             </td>
                                         @endif
-                                        <td >{{ $data->institution_id ? \App\Models\Institution::find($data->institution_id)->name : \App\Models\Individual::find($data->individual_id)->name}} </td>
+                                        <td>{{ $data->institution_id ? \App\Models\Institution::find($data->institution_id)->name : \App\Models\Individual::find($data->individual_id)->name}} </td>
                                         @foreach($dataType->browseRows as $row)
                                             @php
                                             if ($data->{$row->field.'_browse'}) {
