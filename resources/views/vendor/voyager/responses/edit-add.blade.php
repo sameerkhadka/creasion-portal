@@ -20,7 +20,7 @@
 @stop
 
 @section('content')
-    @php 
+    @php
     if(request("requestid"))
     {
         $user_request = \App\Models\UserRequest::find(request("requestid"));
@@ -28,8 +28,8 @@
            {
             $user_request->seen = "1";
             $user_request->save();
-           } 
-    }    
+           }
+    }
     @endphp
     <div class="page-content edit-add container-fluid">
         <div class="row">
@@ -168,7 +168,14 @@
                                     <label class="control-label" for="name">Quantity</label>
                                     <input required type="number" class="form-control" v-model.number="item.quantity" >
                                 </div>
-                                
+                                <div class="form-group  col-md-3 ">
+                                    <label class="control-label" for="name">Unit</label>
+                                    <input required type="text" class="form-control" v-model.number="item.unit" >
+                                </div>
+
+
+
+
                                 <div class="form-group  col-md-1" v-if="index!=0">
                                     <label class="control-label" for="name"></label>
                                     <input  class="btn btn-danger" type="button" v-on:click="deleteItem(index)" value="Delete">
@@ -242,7 +249,8 @@
                 respondedItems: [
                     {
                         inventory_id: -1,
-                        quantity: 0
+                        quantity: 0,
+                        unit:""
                     }
                 ],
                 submitting: false
@@ -256,7 +264,8 @@
                 addItem(){
                     this.respondedItems.push({
                         inventory_id: -1,
-                        quantity: 0
+                        quantity: 0,
+                        unit:""
                     });
                 },
                 deleteItem(index){

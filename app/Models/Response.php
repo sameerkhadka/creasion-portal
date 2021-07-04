@@ -10,7 +10,7 @@ class Response extends Model
     use HasFactory;
     protected $appends = ['project'];
     public function inventories(){
-        return $this->belongsToMany(Inventory::class)->withPivot('quantity');
+        return $this->belongsToMany(Inventory::class)->withPivot('quantity','unit');
     }
 
     public function institution(){
