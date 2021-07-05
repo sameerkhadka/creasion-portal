@@ -3,6 +3,8 @@
 use App\District;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\FilterController;
+use App\Http\Controllers\MapController;
 use App\Province;
 use App\Http\Controllers\RequestController;
 
@@ -45,6 +47,11 @@ Route::GET('/pie', [ChartController::class,'index']);
 Route::POST('/piee', [ChartController::class,'dynamic'])->name('dynamic');
 
 Route::get('/', [RequestController::class,'index'])->name('index');
+
+
+Route::post('/filter-response', [FilterController::class,'filterResponse']);
+
+Route::get('/map',[MapController::class,'index'])->name('map');
 
 Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
 

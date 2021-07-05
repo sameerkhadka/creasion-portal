@@ -20,4 +20,7 @@ class Institution extends Model
     {
         return $this->belongsTo(LocalLevel::class);
     }
+    public function institutionType(){
+        return $this->belongsTo(InstitutionType::class);
+    }
 }
