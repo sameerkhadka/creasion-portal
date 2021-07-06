@@ -10,14 +10,14 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-    
+
     }
     .header-logo {
         a {
             font-size: 28px;
             font-weight: 500;
             color: $base-color;
-    
+
             span {
                 margin: 0;
                 font-weight: 100;
@@ -31,7 +31,7 @@ header {
 
         a {
             text-transform: uppercase;
-            margin: 0 50px 0 0; 
+            margin: 0 50px 0 0;
 
             &:last-child {
                 margin-right: 0;
@@ -47,7 +47,7 @@ header {
         background: $base-color;
         display: flex;
         justify-content: center;
-        align-items: center;    
+        align-items: center;
         width: 120px;
         height: 40px;
         border-radius: 4px;
@@ -64,23 +64,23 @@ header {
             ion-icon {
                 margin-right: 5px;
             }
-            
+
         }
-        
+
     }
-    
-    
+
+
 }
 
 
 .map-wrapper {
     position: relative;
 
-    #map { 
-        position: relative; 
-        top: 0; 
-        bottom: 0; 
-        width: 100%;  
+    #map {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        width: 100%;
         height: calc(100vh - 100px)
     }
 
@@ -97,7 +97,7 @@ header {
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
-   
+
         cursor: pointer;
         transition: transform 450ms;
 
@@ -122,8 +122,8 @@ header {
                 ion-icon {
                     margin-right: 5px;
                 }
-            } 
-            
+            }
+
         }
 
         .filter-card {
@@ -169,9 +169,9 @@ header {
             }
         }
     }
-    
+
     .mapboxgl-popup-content {
-  
+
         border-radius: 10px;
         box-shadow: none;
         padding: 10px 10px 15px;
@@ -184,7 +184,7 @@ header {
         background: #fff;
         padding: 0;
         box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
-    
+
         button.mapboxgl-popup-close-button {
             font-size: 30px;
             width: auto;
@@ -193,7 +193,7 @@ header {
             font-weight: 100;
             color: #fff;
         }
-    
+
     }
 
     .info-card-header {
@@ -241,7 +241,7 @@ header {
             align-items: center;
             min-height: 30px;
         }
-        
+
         .title, .item-title {
             font-weight: 700;
             line-height: 1.25;
@@ -253,7 +253,7 @@ header {
             font-family: 'Proxima Nova';
             font-weight: lighter;
         }
-        
+
         .text, .item-text {
             line-height: 1.25;
             font-style: normal;
@@ -263,7 +263,7 @@ header {
             font-size: 13px;
             font-weight: 300;
         }
-        
+
     }
 
     .items {
@@ -286,15 +286,86 @@ header {
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        
+
         .item {
             width: 50%;
             display: flex;
             align-items: center;
             min-height: 30px;
         }
-        
+
     }
 }
 
 
+.numbers {
+    background: #eeefef;
+    padding: 50px 0;
+
+    .nums-head {
+        width: 40%;
+
+        h4 {
+            ion-icon {
+                color: $base-color;
+            }
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    }
+
+    .demographs {
+        padding: 30px 0;
+        padding-top: 60px;
+
+        .chart-sing {
+            margin: 10px 0;
+        }
+
+        g.highcharts-exporting-group {
+            display: none;
+        }
+
+        text.highcharts-credits {
+            display: none;
+        }
+
+        tspan {
+            font-size: 14px;
+            font-family: 'Moderat';
+        }
+
+        tspan.heading-main {
+            display: block;
+        }
+
+        g.highcharts-legend.highcharts-no-tooltip {
+            display: none;
+        }
+
+    }
+}
+
+.partners {
+    background: #eeefef;
+    padding: 80px 0;
+
+    .item {
+        img {
+            width: 100%;
+            height: 170px;
+            object-fit: contain;
+            background: white;
+            padding: 10px;
+            filter: saturate(0%);
+            cursor: pointer;
+
+            &:hover {
+                filter: saturate(100%);
+            }
+
+        }
+    }
+}

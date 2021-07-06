@@ -30,7 +30,7 @@ $(".update").on("click", (e) => {
         map.getSource('cylinders').setData(response.data);
 
     });
- 
+
     // Map Fly to the Province
     if (selectedProvince == 3) {
         map.flyTo({
@@ -83,14 +83,14 @@ $("select").niceSelect();
 // Map
 mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
 
+
 var map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/yogeshkarki/ckqhmewto4m2317p8n8qarotc",
     center: [83.0074, 28.4764],
-    zoom: 6,
+    minZoom: 6, // note the camel-case
+     maxZoom: 15
 });
-
-
 
 
 
@@ -101,7 +101,7 @@ var map = new mapboxgl.Map({
 
         axios.post('/filter-response',{'selectedProject':null,'selectedProvince':null,'selectedDistrict':null}).then((response)=>{
             map.getSource('cylinders').setData(response.data);
-        
+
         });
 
         // loading the respond data
