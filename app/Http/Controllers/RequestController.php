@@ -23,6 +23,7 @@ use App\Models\Project;
 use App\Models\Response;
 
 use App\Models\InventoryResponse;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class RequestController extends Controller
@@ -96,24 +97,31 @@ class RequestController extends Controller
         $type = 'created';
         // creation
         if(!$request->response_id){
-            $response = new Response();
-            if($request->individual_id)
-            {
-                $response->individual_id = $request->individual_id;
-            }
-            else
-            {
-                $response->institution_id = $request->institution_id;
-            }
-            $response->user_request_id = $request->user_request_id;
-            $response->save();
+                $response = new Response();
+                if($request->individual_id)
+                {
+                    $response->individual_id = $request->individual_id;
+                }
+                else
+                {
+                    $response->institution_id = $request->institution_id;
+                }
+                $response->user_request_id = $request->user_request_id;
+                $response->save();
          }
          //update
          else{
              $response = Response::find($request->response_id);
              $type = 'updated';
          }
+
         //  dd($response);
+
+        // what is user_request id?
+         $user_request_id = $response->user_request_id;
+         $user_request = UserRequest::find($user_request_id);
+         $user_request->verified = 1;
+         $user_request->update();
 
         //removing all inventory with -1
         $respondedItems = collect($request->responded_items)->filter(function($item){
