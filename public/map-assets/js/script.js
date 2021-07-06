@@ -258,7 +258,6 @@ var map = new mapboxgl.Map({
             var individual = e.features[0].properties.individual_id;
 
 
-                debugger;
                 var getInstitution =  JSON.parse(e.features[0].properties.institution)
                 var getIndividual = JSON.parse(e.features[0].properties.individual)
 
@@ -267,10 +266,10 @@ var map = new mapboxgl.Map({
                     provinceName = getInstitution ? getInstitution.province.title: getIndividual.province.title,
                     districtId = getInstitution ? getInstitution.district.id: getIndividual.district.id,
                     districtName = getInstitution ? getInstitution.district.title: getIndividual.district.title,
-
+                    localLevelName = getInstitution ? getInstitution.local_level?.title : getIndividual.local_level?.title,
                     type = getInstitution ?  getInstitution.institution_type.title : "Individual",
                     elective1 = getInstitution ? getInstitution.contact_person: getIndividual.gender,
-                    elective2 = getInstitution ? getInstitution.contact_phone: getIndividual.age;
+                    elective2 = getInstitution ? getInstitution.contact_number: getIndividual.age;
 
                     var inventories = JSON.parse(e.features[0].properties.inventories);
 
@@ -315,7 +314,7 @@ var map = new mapboxgl.Map({
                             <div class="info-desc">
                                 <div class="info-desc-wrapper">
                                     <div class="data">
-                                        <div class="title">${institution ? "Instituation Type" : "Respone Type"}</div>
+                                        <div class="title">${getInstitution ? "Instituation Type" : "Respone Type"}</div>
                                         <div class="text">${type}</div>
 
                                     </div>
@@ -330,7 +329,7 @@ var map = new mapboxgl.Map({
                                 </div>
                                 <div class="info-desc-wrapper">
                                     <div class="data">
-                                        <div class="title">${institution ? "Contact Person" : "Gender"}</div>
+                                        <div class="title">${getInstitution ? "Contact Person" : "Gender"}</div>
                                         <div class="text">${elective1}</div>
                                     </div>
                                 </div>
@@ -343,15 +342,14 @@ var map = new mapboxgl.Map({
 
                                 <div class="info-desc-wrapper">
                                     <div class="data">
-                                        <div class="title">${institution ? "Contact Number" : "Age"}</div>
+                                        <div class="title">${getInstitution ? "Contact Number" : "Age"}</div>
                                         <div class="text">${elective2 ? elective2 :""}</div>
                                     </div>
                                 </div>
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">Municipality</div>
-                                        <div class="text">Local address</div>
-
+                                        <div class="text">${ localLevelName || '' }</div>
                                     </div>
                                 </div>
                             </div>
