@@ -139,7 +139,7 @@
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Province</label>
                                 <input type="text" class="form-control" value="{{ optional($user->province)->title_en}}" readonly>
-                            </div>
+                            </div> 
 
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">District</label>
