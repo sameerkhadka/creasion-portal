@@ -22,4 +22,12 @@ class UserRequest extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function inventories(){
+        return $this->belongsToMany(Inventory::class)->withPivot('quantity','unit');
+    }
+
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
 }

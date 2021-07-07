@@ -29,6 +29,8 @@ class Response extends Model
     {
         return $this->userRequest->project;
     }
-
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
 
 }
