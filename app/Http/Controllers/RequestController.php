@@ -58,6 +58,7 @@ class RequestController extends Controller
            $individual->local_level_id = $request->local_level_id;
            $individual->coordinates = $request->coordinate;
            $individual->contact_number = $request->phone;
+           $individual->created_at = $request->date;
            $individual->save();
 
            $req = new UserRequest();
@@ -71,20 +72,21 @@ class RequestController extends Controller
         elseif($request->req_type == "institution")
         {
             $institution = new Institution();
-            $institution->name = $request->title;
+            $institution->name = $request->name;
             $institution->institution_type_id = $request->type;
             $institution->contact_person = $request->contact_person;
-            $institution->contact_number = $request->contact_number;
+            $institution->contact_number = $request->phone;
             $institution->province_id = $request->province_id;
             $institution->district_id = $request->district_id;
             $institution->local_level_id = $request->local_level_id;
-            $institution->coordinates = $request->coordinates;
+            $institution->coordinates = $request->coordinate;
+            $institution->created_at = $request->date;
             $institution->save();
 
             $req = new UserRequest();
             $req->institution_id = $institution->id;
-            $req->details = $request->details;
-            $req->project_id = $request->projects;
+            $req->details = $request->detail;
+            $req->project_id = $request->project;
             $req->save();
 
             return redirect()->route('index');
