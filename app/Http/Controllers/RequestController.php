@@ -108,12 +108,15 @@ class RequestController extends Controller
                 {
                     $response->institution_id = $request->institution_id;
                 }
+                $response->created_at = $request->responses['created_at'];
                 $response->user_request_id = $request->user_request_id;
                 $response->save();
          }
          //update
          else{
              $response = Response::find($request->response_id);
+             $response->created_at = $request->responses['created_at'];
+             $response->update();
              $type = 'updated';
          }
 

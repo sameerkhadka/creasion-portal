@@ -64,7 +64,9 @@
                             @if($edit)
                                 @php
                                     $user_request = \App\Models\UserRequest::find($dataTypeContent->user_request_id);
-                                    $responseInventories = \App\Models\Response::find($dataTypeContent->id)->inventories;
+                                    $dataTypeContent->response_date = \Carbon\Carbon::parse($dataTypeContent->created_at)->format('m/d/Y g:i A');
+                                    // $dataTypeContent contains responses data.
+                                    $responseInventories = $dataTypeContent->inventories;
                                     $modelInventories = [];
                                     foreach($responseInventories as $item){
                                         $pivot = $item['pivot'];
@@ -139,7 +141,7 @@
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Province</label>
                                 <input type="text" class="form-control" value="{{ optional($user->province)->title_en}}" readonly>
-                            </div> 
+                            </div>
 
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">District</label>
@@ -155,7 +157,10 @@
                                 <label class="control-label" for="name">Message</label>
                                 <textarea name="details" class="form-control" rows="5" cols="20" readonly> {{$user_request->details}} </textarea>
                             </div>
-
+                            <div class="form-group  col-md-12 ">
+                                <label class="control-label" for="name">Respond Date</label>
+                                  <vuejs-datepicker v-model="dataTypeContent.created_at"></vuejs-datepicker>
+                            </div>
                             <div v-for="(item,index) in respondedItems">
                                 <div class="form-group  col-md-6 ">
                                         <label class="control-label" for="name">Select Item</label>
@@ -238,11 +243,17 @@
 @stop
 
 @section('javascript')
-    {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var app = new Vue({
             el: '#app',
+            components: {
+                vuejsDatepicker
+            },
             data: {
                 iterations:1,
                 inventories: @json($inventories),
@@ -253,14 +264,19 @@
                         unit:""
                     }
                 ],
+                dataTypeContent:{},
                 submitting: false
             },
             mounted(){
                 @if($edit)
-                    this.respondedItems = @json($modelInventories)
+                    this.respondedItems = @json($modelInventories);
+                    this.dataTypeContent = @json($dataTypeContent);
                 @endif
             },
             methods:{
+                customFormatter(date) {
+                     return moment(date).format('m/d/Y g:i A');
+                },
                 addItem(){
                     this.respondedItems.push({
                         inventory_id: -1,
@@ -282,6 +298,7 @@
                         'individual_id':@json($user_request->individual_id),
                         'institution_id':@json($user_request->institution_id),
                         'user_request_id':@json($user_request->id),
+                        'responses': this.dataTypeContent,
                         'response_id': '{{ $dataTypeContent->id }}'
                     }).then((response) => {
                         tempthis.submitting = false;
@@ -290,6 +307,10 @@
                 }
             }
         })
+    </script>
+
+    <script>
+        $('.vdp-datepicker>div>input').addClass('form-control');
     </script>
     <script>
         var params = {};
