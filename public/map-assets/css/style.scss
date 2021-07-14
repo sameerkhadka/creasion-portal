@@ -75,6 +75,13 @@ header {
 
 .map-wrapper {
     position: relative;
+    overflow: hidden;
+
+    .row {
+        div {
+            padding: 0
+        }
+    }
 
     #map {
         position: relative;
@@ -86,13 +93,12 @@ header {
 
 
     .filter {
-        width: 350px;
+        width: 100%;
         background: #fff;
         min-height: 400px;
-        top: 20%;
-        padding-left: 40px;
-        position: absolute;
-        z-index: 99;
+
+        padding: 40px 0;
+        padding-left: 100px;
         background-color: #ffffff;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;

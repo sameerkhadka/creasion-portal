@@ -28,8 +28,41 @@ $(".update").on("click", (e) => {
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response',{'selectedProject':selectedProject,'selectedProvince':selectedProvince,'selectedDistrict':selectedDistrict}).then((response)=>{
         map.getSource('cylinders').setData(response.data);
+        
+        for(var i=1; i<=7; i++) {
+            if(map.getLayer(`province${i}-fill`)){
+                map.removeLayer(`province${i}-fill`);
+            }
+        }
+      
+        console.log( map.getLayer('urban-areas-fill'));
+        
+
+        map.addSource(`province${selectedProvince}`, {
+            type: "geojson",
+            data: `/map-assets/json/coordinates/Province-${selectedProvince}.geojson`,
+        });
+    
+        map.addLayer({
+            id: `province${selectedProvince}-fill`,
+            type: "line",
+            source: `province${selectedProvince}`,
+            layout: {},
+            paint: {
+                "line-color": "#333",
+            },
+        });
+
+        
+
+        
+        
 
     });
+   
+    
+
+    
 
     // Map Fly to the Province
     if (selectedProvince == 3) {
@@ -38,44 +71,60 @@ $(".update").on("click", (e) => {
             zoom: 8.5,
             essential: true,
         });
+
+
     } else if (selectedProvince == 1) {
         map.flyTo({
             center: [86.3193, 27.213],
             zoom: 8,
             essential: true,
         });
+
+
     } else if (selectedProvince == 2) {
         map.flyTo({
             center: [85.6343, 26.9319],
             zoom: 9,
             essential: true,
         });
+
     } else if (selectedProvince == 4) {
         map.flyTo({
             center: [83.801, 28.3479],
             zoom: 8,
             essential: true,
         });
+
     } else if (selectedProvince == 5) {
         map.flyTo({
             center: [82.5018, 28.0623],
             zoom: 8.5,
             essential: true,
         });
+
     } else if (selectedProvince == 6) {
         map.flyTo({
             center: [82.0239, 29.26],
             zoom: 7.5,
             essential: true,
         });
+
     } else if (selectedProvince == 7) {
         map.flyTo({
             center: [80.8539, 29.3175],
             zoom: 8,
             essential: true,
         });
+
     }
+
+
+    
+
 });
+
+
+
 
 $("select").niceSelect();
 
@@ -86,8 +135,8 @@ mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1c
 
 var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/yogeshkarki/ckqhmewto4m2317p8n8qarotc",
-    center: [83.0074, 28.4764],
+    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
+    center: [84.5074, 28.4764],
     minZoom: 6, // note the camel-case
      maxZoom: 15
 });
@@ -368,5 +417,4 @@ var map = new mapboxgl.Map({
         });
 
     });
-
 
