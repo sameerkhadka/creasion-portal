@@ -99,7 +99,8 @@
                                     }
 
                                     $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
-
+            
+                                    $projects = $user_request->projects;
                                 @endphp
                             @endif
 
@@ -111,7 +112,9 @@
 
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Project</label>
-                                <input type="text" class="form-control" value="{{$user_request->project->title}}" readonly>
+                                @foreach($projects as $item)
+                                <input type="text" class="form-control" value="{{$item->title}}" readonly>
+                                @endforeach
                             </div>
 
                             @if($user_request->individual_id)

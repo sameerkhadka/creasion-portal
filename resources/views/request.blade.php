@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nepal Relief Fund</title>
 
-
-
-
     <link rel="stylesheet" href="/map-assets/css/bootstrap.css">
 
     <link rel="stylesheet" href="/map-assets/css/owl.carousel.min.css">
@@ -171,10 +168,12 @@
                                 </p>
                                 @endforeach
                             </div>
+                            <h5>Request Date</h5>
+
+                            <vuejs-datepicker v-model="modelData.requestDate"></vuejs-datepicker>
 
                             <div class="upload-doc" id="individualOxygen">
-                                <h5>Upload Document</h5>
-
+                                <h5>Request Date</h5>
                                 <form action="/file-upload" class="dropzone">
                                     <div class="fallback">
                                       <input name="file" type="file" multiple />
@@ -260,6 +259,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
+
                     <button class="btn btn-success" v-on:click="submit">Submit</button>
                 </div>
 
@@ -267,80 +267,11 @@
         </div>
     </section>
 
-
-
-    <!-- <form action="{{ route('request') }}" method="POST">
-        @csrf
-        <label for="type">Who are you:</label>
-
-        <select name="req_type" id="type">
-            <option value="individual">Individual</option>
-            <option value="institution">Institution</option>
-        </select>
-        <br>
-        <br>
-
-        Project:
-        <select name="project">
-            @foreach ($projects as $item)
-                <option value="{{ $item->id }}">{{ $item->title }}</option>
-            @endforeach
-        </select> <br> <br>
-        Name: <input type="text" name="name"> <br> <br>
-
-        <div id="individual" class="group">
-            Gender:
-            <select name="gender">
-                <option value="male" selected>Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
-            </select> <br> <br>
-            Age:<input type="number" name="age"> <br> <br>
-        </div>
-
-        <div id="institution" class="group">
-            Institution type:
-            <select name="type">
-                <option selected></option>
-                @foreach ($types as $type)
-                    <option value="{{ $type->id }}">{{ $type->title }}</option>
-                @endforeach
-            </select> <br> <br>
-            Contact Person:<input type="text" name="contact_person"> <br> <br>
-        </div>
-        Contact Number:<input type="text" name="phone"> <br> <br>
-        <div class="filter-card">
-            <label>Province</label>
-
-            <select name="province_id" id="provinces">
-                <option value="-1" selected >Select</option>
-            </select>
-
-        </div>
-
-        <div class="filter-card">
-            <label>District</label>
-
-            <select name="district_id" id="districts">
-                <option value="-1" selected >Select</option>
-            </select>
-
-        </div>
-        <div class="filter-card">
-            <label>Municipality</label>
-
-            <select name="local_level_id" id="municipalities">
-                <option value="-1" selected >Select</option>
-            </select>
-        </div>
-        Request Date:<input type="text" class="datepicker" name="date"> <br> <br>
-        Coordinates:<input type="text" name="coordinate"> <br> <br>
-        <textarea name="detail" rows="4" cols="50"> Message </textarea> <br> <br>
-        <button type="submit">Request</button>
-    </form> -->
 </body>
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     class GetDefaultData {
         constructor(){
@@ -349,6 +280,7 @@
                 modelData: {
                     userType: 'individual',
                     projectType: [],
+                    requestDate: '',
                     district : 0,
                     province : 0,
                     localAddress: '',
@@ -374,6 +306,9 @@
     var myDynamic = new GetDefaultData();
     var app = new Vue({
             el: '#app',
+            components: {
+                vuejsDatepicker
+            },
             data: myDynamic.data,
             computed:{
                 projectsWithInventories : function() {
@@ -394,6 +329,9 @@
                 }
             },
             methods:{
+                customFormatter(date) {
+                     return moment(date).format('m/d/Y g:i A');
+                },
                 submit(){
                     var formData = new FormData(); // Currently empty
                     formData.append('modelData', JSON.stringify(this.modelData));
