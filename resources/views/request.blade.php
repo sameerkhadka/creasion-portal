@@ -171,10 +171,12 @@
                                 </p>
                                 @endforeach
                             </div>
+                            <h5>Request Date</h5>
+
+                            <vuejs-datepicker v-model="modelData.requestDate"></vuejs-datepicker>
 
                             <div class="upload-doc" id="individualOxygen">
-                                <h5>Upload Document</h5>
-
+                                <h5>Request Date</h5>
                                 <form action="/file-upload" class="dropzone">
                                     <div class="fallback">
                                       <input name="file" type="file" multiple />
@@ -260,6 +262,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
+
                     <button class="btn btn-success" v-on:click="submit">Submit</button>
                 </div>
 
@@ -341,6 +344,8 @@
 </body>
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     class GetDefaultData {
         constructor(){
@@ -349,6 +354,7 @@
                 modelData: {
                     userType: 'individual',
                     projectType: [],
+                    requestDate: '',
                     district : 0,
                     province : 0,
                     localAddress: '',
@@ -374,6 +380,9 @@
     var myDynamic = new GetDefaultData();
     var app = new Vue({
             el: '#app',
+            components: {
+                vuejsDatepicker
+            },
             data: myDynamic.data,
             computed:{
                 projectsWithInventories : function() {
@@ -394,6 +403,9 @@
                 }
             },
             methods:{
+                customFormatter(date) {
+                     return moment(date).format('m/d/Y g:i A');
+                },
                 submit(){
                     var formData = new FormData(); // Currently empty
                     formData.append('modelData', JSON.stringify(this.modelData));
