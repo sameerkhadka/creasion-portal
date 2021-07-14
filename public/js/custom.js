@@ -16,6 +16,7 @@ $('#provinces').on('change',function(){
         $("#districts").append(`<option value="${item.id}">${item.title}</option>`)
     });
     $('select').niceSelect();
+    app.getProvince()
 });
 
 
@@ -31,4 +32,5 @@ $('#districts').on('change',function(){
         $("#municipalities").append(`<option value="${item.id}">${item.title}</option>`)
     });
     $('select').niceSelect();
+    app.getDistrict()
 });

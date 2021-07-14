@@ -31,8 +31,10 @@ class RequestController extends Controller
     public function index()
     {
         $types = InstitutionType::all();
-        $project = Project::all();
-        return view('request', compact('types','project'));
+        $projects = Project::with('inventories')->get();
+        $provinces = Province::with('districts')->get();
+
+        return view('request', compact('types','projects','provinces'));
     }
 
     public function verifyRequest(Request $request){
@@ -47,6 +49,7 @@ class RequestController extends Controller
 
     public function request(Request $request)
     {
+        return json_decode($request->projectWithInventories);
         if($request->req_type == "individual")
         {
            $individual = new Individual();

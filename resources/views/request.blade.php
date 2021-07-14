@@ -30,12 +30,12 @@
     <link rel="stylesheet" href="/map-assets/css/responsive.css">
 
     <style>
-        #map-select { 
+        #map-select {
                 position: relative;
                 top: 0;
                 bottom: 0;
                 width: 100%;
-                height: 300px; 
+                height: 300px;
         }
     </style>
 
@@ -66,7 +66,7 @@
     </header>
 
 
-<section class="section-request">
+<section class="section-request" id="app">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -75,12 +75,12 @@
 
                         <div class="user-type">
                             <p>
-                                <input type="radio" id="individual" name="user-type" checked>
+                                <input type="radio" id="individual" v-model="modelData.userType" name="user-type" value="individual">
                                 <label for="individual">Individual</label>
                             </p>
 
                             <p>
-                                <input type="radio" id="institution" name="user-type" >
+                                <input type="radio" id="institution" v-model="modelData.userType" name="user-type" value="institution">
                                 <label for="institution">Institution</label>
                             </p>
                         </div>
@@ -91,28 +91,28 @@
                                 <div class="col-md-12">
                                     <div class="form-card">
                                         <p>Full Name</p>
-                                        <input type="text" value="Yogesh Karki">
+                                        <input type="text" v-model="modelData.individual.fullName">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-card">
                                         <p>Contact Number</p>
-                                        <input type="number" value="9860895638">
+                                        <input type="number" v-model="modelData.individual.contactNumber">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-card">
                                         <p>Gender</p>
-                                        <input type="text" value="Male">
+                                        <input type="text" v-model="modelData.individual.gender">
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-card">
                                         <p>Age</p>
-                                        <input type="number" value="34">
+                                        <input type="number" v-model="modelData.individual.age">
                                     </div>
                                 </div>
                             </div>
@@ -124,39 +124,39 @@
                                 <div class="col-md-12">
                                     <div class="form-card">
                                         <p>Organization's Name</p>
-                                        <input type="text" value="Creasion Nepal">
+                                        <input type="text" v-model="modelData.institution.organizationName">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-card">
                                         <p>Organization's Type</p>
-                                        <input type="text" value="Hospital">
+                                        <input type="text" v-model="modelData.institution.organizationType">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-card">
                                         <p>Organization's Address</p>
-                                        <input type="text" value="Lazimpat, Kathmandu">
+                                        <input type="text" v-model="modelData.institution.organizationAddress">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-card">
                                         <p>Contact Person</p>
-                                        <input type="text" value="Yogesh Karki">
+                                        <input type="text" v-model="modelData.institution.contactPerson">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-card">
                                         <p>Contact Number</p>
-                                        <input type="number" value="9860895638">
+                                        <input type="number" v-model="modelData.institution.contactNumber">
                                     </div>
                                 </div>
 
-                                
+
                             </div>
                         </div>
 
@@ -164,20 +164,12 @@
                             <h5>Select Project</h5>
 
                             <div class="project-type">
+                                @foreach($projects as $item)
                                 <p>
-                                    <input type="checkbox" id="oxygen" name="project-type" checked>
-                                    <label for="oxygen">Oxygen</label>
+                                    <input type="checkbox" id="{{ $item->title }}" name="project-type" v-model.number="modelData.projectType" value="{{ $item->id }}">
+                                    <label for="{{ $item->title }}">{{ $item->title }}</label>
                                 </p>
-
-                                <p>
-                                    <input type="checkbox" id="covid19-safety" name="project-type" >
-                                    <label for="covid19-safety">Covid 19 Safety Kit</label>
-                                </p>
-
-                                <p>
-                                    <input type="checkbox" id="essential" name="project-type" >
-                                    <label for="essential">Essentials</label>
-                                </p>
+                                @endforeach
                             </div>
 
                             <div class="upload-doc" id="individualOxygen">
@@ -190,11 +182,11 @@
                                   </form>
                             </div>
                         </div>
-                        
+
                     </div>
 
                 </div>
-    
+
                 <div class="col-md-4">
                     <div class="location-info">
                         <h5>Relief Request Location</h5>
@@ -205,29 +197,29 @@
                                 <div class="col-md-6">
                                     <div class="filter-card form-card">
                                         <p>Province</p>
-                        
+
                                         <select id="provinces">
                                             <option value="-1" selected disabled>Select Province</option>
                                         </select>
-                        
+
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="filter-card form-card">
                                         <p>District</p>
-                        
+
                                         <select id="districts">
                                             <option value="-1" selected disabled>Select District</option>
                                         </select>
-                        
+
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-card">
                                         <p>Local Address</p>
-                                        <input type="text" value="Local Address">
+                                        <input type="text" v-model="modelData.localAddress">
                                     </div>
                                 </div>
 
@@ -240,50 +232,35 @@
                                     </div>
                                 </div>
 
-                               
+
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="item-listing">
-                        <h5>Oxygen</h5>
-
-                        <div class="item-lists">
+                    <div v-for="project in projectsWithInventories" class="item-listing">
+                        <h5>@{{ project.title }}</h5>
+                        <div v-for="inventoryItem in project.inventories" class="item-lists">
                             <p>
-                                <input type="checkbox" id="oxygen_cylinder" name="inventories" >
-                                <label for="oxygen_cylinder">Oxygen Cylinder</label>
+                                <input type="checkbox" :id="inventoryItem.title" v-on:click="checkItem(inventoryItem)" v-model="inventoryItem.checked" name="inventories" >
+                                <label :for="inventoryItem.title">@{{ inventoryItem.title }}</label>
                             </p>
 
                             <p>
                                 <label for="" class="label-small">Qty</label>
-                                <input type="text">
+                                <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.requestQuantity">
                             </p>
 
                             <p>
                                 <label for="" class="label-small">Units</label>
-                                <input type="text">
-                            </p>
-                        </div>
-
-                        <div class="item-lists">
-                            <p>
-                                <input type="checkbox" id="oxygen_regulator" name="inventories" >
-                                <label for="oxygen_regulator">Oxygen Regulator</label>
-                            </p>
-
-                            <p>
-                                <label for="" class="label-small">Qty</label>
-                                <input type="text">
-                            </p>
-
-                            <p>
-                                <label for="" class="label-small">Units</label>
-                                <input type="text">
+                                <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units">
                             </p>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-success" v-on:click="submit">Submit</button>
                 </div>
 
             </div>
@@ -305,7 +282,7 @@
 
         Project:
         <select name="project">
-            @foreach ($project as $item)
+            @foreach ($projects as $item)
                 <option value="{{ $item->id }}">{{ $item->title }}</option>
             @endforeach
         </select> <br> <br>
@@ -331,7 +308,7 @@
             </select> <br> <br>
             Contact Person:<input type="text" name="contact_person"> <br> <br>
         </div>
-        Contact Number:<input type="text" name="phone"> <br> <br>    
+        Contact Number:<input type="text" name="phone"> <br> <br>
         <div class="filter-card">
             <label>Province</label>
 
@@ -356,13 +333,91 @@
                 <option value="-1" selected >Select</option>
             </select>
         </div>
-        Request Date:<input type="text" class="datepicker" name="date"> <br> <br>     
+        Request Date:<input type="text" class="datepicker" name="date"> <br> <br>
         Coordinates:<input type="text" name="coordinate"> <br> <br>
         <textarea name="detail" rows="4" cols="50"> Message </textarea> <br> <br>
         <button type="submit">Request</button>
     </form> -->
 </body>
-
+<script src="{{ asset('js/vue.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    class GetDefaultData {
+        constructor(){
+            this.data = {
+                projects : @json($projects),
+                modelData: {
+                    userType: 'individual',
+                    projectType: [],
+                    district : 0,
+                    province : 0,
+                    localAddress: '',
+                    coordinate:[],
+                    individual:{
+                        fullName: "",
+                        contactNumber: "",
+                        gender: "",
+                        age: "",
+                    },
+                    institution: {
+                        organizationName: "",
+                        organizationType: "",
+                        organizationAddress: "",
+                        contactPerson: "",
+                        contactNumber: "",
+                    }
+                }
+            };
+        }
+    }
+    var myInitial = new GetDefaultData();
+    var myDynamic = new GetDefaultData();
+    var app = new Vue({
+            el: '#app',
+            data: myDynamic.data,
+            computed:{
+                projectsWithInventories : function() {
+                    var tempthis = this;
+                    return this.projects.filter(function(item){
+                        return tempthis.modelData.projectType.includes(+item.id);
+                    })
+                }
+            },
+            watch:{
+                'modelData.userType' :function(val){
+                    if(val==='institution'){
+                        this.modelData.individual = JSON.parse(JSON.stringify(myInitial.data.modelData.individual));
+                    }
+                    else if(val==='individual'){
+                        this.modelData.institution = JSON.parse(JSON.stringify(myInitial.data.modelData.institution));
+                    }
+                }
+            },
+            methods:{
+                submit(){
+                    var formData = new FormData(); // Currently empty
+                    formData.append('modelData', JSON.stringify(this.modelData));
+                    formData.append('projectWithInventories', JSON.stringify(this.projectsWithInventories));
+                    axios.post('{{ route("request") }}',formData)
+                },
+                getProvince(){
+                    this.modelData.province = +document.getElementById('provinces').value;
+                },
+                getDistrict(){
+                    this.modelData.district = +document.getElementById('districts').value;
+                },
+                setLongLat(long,lat){
+                    this.modelData.coordinate = [long,lat];
+                },
+                checkItem(inventoryItem){
+                    if(inventoryItem.checked){
+                        inventoryItem.requestQuantity = null;
+                        inventoryItem.units = null;
+                    }
+                }
+            }
+        });
+</script>
 <script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>
     <script src="/map-assets/js/owl.carousel.min.js"></script>
@@ -370,7 +425,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-<!-- 
+<!--
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -396,20 +451,21 @@ var map = new mapboxgl.Map({
     minZoom: 5, // note the camel-case
      maxZoom: 15
 });
- 
+
 var marker = new mapboxgl.Marker({
 draggable: true
 })
 .setLngLat([85.32399, 27.70254])
 .addTo(map);
- 
+
 function onDragEnd() {
 var lngLat = marker.getLngLat();
 coordinates.style.display = 'block';
+app.setLongLat(lngLat.lng,lngLat.lat);
 coordinates.innerHTML =
 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
 }
- 
+
 marker.on('dragend', onDragEnd);
 
     map.addControl(
@@ -458,7 +514,7 @@ $("#individual").on("click", function(){
     check = $(this).prop("checked");
     $("#institution-form").removeClass("activeTab");
     $("#individual-form").addClass("activeTab");
-    
+
 })
 
 $("#institution").on("click", function(){
@@ -473,6 +529,8 @@ $("#institution").on("click", function(){
 
 
 </script>
+
+
 
 
 </html>
