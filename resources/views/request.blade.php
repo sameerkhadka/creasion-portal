@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nepal Relief Fund</title>
 
-
-
-
     <link rel="stylesheet" href="/map-assets/css/bootstrap.css">
 
     <link rel="stylesheet" href="/map-assets/css/owl.carousel.min.css">
@@ -270,77 +267,6 @@
         </div>
     </section>
 
-
-
-    <!-- <form action="{{ route('request') }}" method="POST">
-        @csrf
-        <label for="type">Who are you:</label>
-
-        <select name="req_type" id="type">
-            <option value="individual">Individual</option>
-            <option value="institution">Institution</option>
-        </select>
-        <br>
-        <br>
-
-        Project:
-        <select name="project">
-            @foreach ($projects as $item)
-                <option value="{{ $item->id }}">{{ $item->title }}</option>
-            @endforeach
-        </select> <br> <br>
-        Name: <input type="text" name="name"> <br> <br>
-
-        <div id="individual" class="group">
-            Gender:
-            <select name="gender">
-                <option value="male" selected>Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
-            </select> <br> <br>
-            Age:<input type="number" name="age"> <br> <br>
-        </div>
-
-        <div id="institution" class="group">
-            Institution type:
-            <select name="type">
-                <option selected></option>
-                @foreach ($types as $type)
-                    <option value="{{ $type->id }}">{{ $type->title }}</option>
-                @endforeach
-            </select> <br> <br>
-            Contact Person:<input type="text" name="contact_person"> <br> <br>
-        </div>
-        Contact Number:<input type="text" name="phone"> <br> <br>
-        <div class="filter-card">
-            <label>Province</label>
-
-            <select name="province_id" id="provinces">
-                <option value="-1" selected >Select</option>
-            </select>
-
-        </div>
-
-        <div class="filter-card">
-            <label>District</label>
-
-            <select name="district_id" id="districts">
-                <option value="-1" selected >Select</option>
-            </select>
-
-        </div>
-        <div class="filter-card">
-            <label>Municipality</label>
-
-            <select name="local_level_id" id="municipalities">
-                <option value="-1" selected >Select</option>
-            </select>
-        </div>
-        Request Date:<input type="text" class="datepicker" name="date"> <br> <br>
-        Coordinates:<input type="text" name="coordinate"> <br> <br>
-        <textarea name="detail" rows="4" cols="50"> Message </textarea> <br> <br>
-        <button type="submit">Request</button>
-    </form> -->
 </body>
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -23,7 +23,13 @@ use App\Models\Project;
 use App\Models\Response;
 
 use App\Models\InventoryResponse;
+
 use App\Models\User;
+
+use App\Models\ProjectUserRequest;
+
+use App\Models\InventoryUserRequest;
+
 use Illuminate\Support\Facades\Session;
 
 class RequestController extends Controller
@@ -48,53 +54,100 @@ class RequestController extends Controller
     }
 
     public function request(Request $request)
-    {
-        return json_decode($request->projectWithInventories);
-        if($request->req_type == "individual")
+    {        
+        // return json_decode($request->projectWithInventories, true);
+        $modelData = json_decode($request->modelData, true);
+        if($modelData["userType"] == "individual")
         {
            $individual = new Individual();
-           $individual->name = $request->name;
-           $individual->gender = $request->gender;
-           $individual->age = $request->age;
-           $individual->province_id = $request->province_id;
-           $individual->district_id = $request->district_id;
-           $individual->local_level_id = $request->local_level_id;
-           $individual->coordinates = $request->coordinate;
-           $individual->contact_number = $request->phone;
-           $individual->created_at = $request->date;
+           $individual->name = $modelData["individual"]["fullName"];
+           $individual->gender = $modelData["individual"]["gender"];
+           $individual->age = $modelData["individual"]["age"];
+           $individual->contact_number = $modelData["individual"]["contactNumber"];
+           $individual->province_id = $modelData["province"];
+           $individual->district_id = $modelData["district"];
+           $individual->localAddress = $modelData["localAddress"];
+           $individual->coordinates = json_encode($modelData["coordinate"]);           
+           $individual->created_at = $modelData["requestDate"];
            $individual->save();
 
            $req = new UserRequest();
            $req->individual_id = $individual->id;
-           $req->details = $request->detail;
-           $req->project_id = $request->project;
+        //    $req->details = $request->detail;
+        //    $req->project_id = $request->project;
            $req->save();
 
-           return redirect()->route('index');
+           foreach(json_decode($request->projectWithInventories, true) as $item)
+            {
+                    $project = new ProjectUserRequest();
+                    $project->project_id = $item["id"];
+                    $project->user_request_id = $req->id;
+                    $project->save();
+            
+                foreach($item["inventories"] as $inventory)
+                {
+                    if(isset($inventory["checked"]))
+                    {
+                        if($inventory["checked"])
+                        {
+                            $invent = new InventoryUserRequest();
+                            $invent->inventory_id = $inventory["id"];
+                            $invent->quantity = $inventory["requestQuantity"];                    
+                            $invent->unit = $inventory["units"];
+                            $invent->user_request_id = $req->id;
+                            $invent->save();
+                            // return $inventory["title"];
+                        }
+                    }
+                }            
+            }
         }
-        elseif($request->req_type == "institution")
+        elseif($modelData["userType"] == "institution")
         {
             $institution = new Institution();
-            $institution->name = $request->name;
-            $institution->institution_type_id = $request->type;
-            $institution->contact_person = $request->contact_person;
-            $institution->contact_number = $request->phone;
-            $institution->province_id = $request->province_id;
-            $institution->district_id = $request->district_id;
-            $institution->local_level_id = $request->local_level_id;
-            $institution->coordinates = $request->coordinate;
-            $institution->created_at = $request->date;
+            $institution->name = $modelData["institution"]["organizationName"];
+            $institution->organizationType = $modelData["institution"]["organizationType"];
+            $institution->address = $modelData["institution"]["organizationAddress"];
+            $institution->contact_person = $modelData["institution"]["contactPerson"];
+            $institution->contact_number = $modelData["institution"]["contactNumber"];
+            $institution->province_id = $modelData["province"];
+            $institution->district_id = $modelData["district"];
+            $institution->localAddress = $modelData["localAddress"];
+            $institution->coordinates = json_encode($modelData["coordinate"]);         
+            $institution->created_at = $modelData["requestDate"];
             $institution->save();
 
             $req = new UserRequest();
             $req->institution_id = $institution->id;
-            $req->details = $request->detail;
-            $req->project_id = $request->project;
+            // $req->details = $request->detail;
+            // $req->project_id = $request->project;
             $req->save();
 
-            return redirect()->route('index');
+            foreach(json_decode($request->projectWithInventories, true) as $item)
+            {
+                    $project = new ProjectUserRequest();
+                    $project->project_id = $item["id"];
+                    $project->user_request_id = $req->id;
+                    $project->save();
+            
+                foreach($item["inventories"] as $inventory)
+                {   
+                    if(isset($inventory["checked"]))
+                        {
+                        if($inventory["checked"]){
+                            $invent = new InventoryUserRequest();
+                            $invent->inventory_id = $inventory["id"];
+                            $invent->quantity = $inventory["requestQuantity"];                    
+                            $invent->unit = $inventory["units"];
+                            $invent->user_request_id = $req->id;
+                            $invent->save();
+                            // return $inventory["title"];
+                        }
+                    }
+                }            
+            }
         }
-
+        return redirect()->route('index');
     }
 
     public function add_response(Request $request)

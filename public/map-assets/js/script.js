@@ -86,7 +86,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1c
 
 var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/yogeshkarki/ckqhmewto4m2317p8n8qarotc",
+    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
     center: [83.0074, 28.4764],
     minZoom: 6, // note the camel-case
      maxZoom: 15
