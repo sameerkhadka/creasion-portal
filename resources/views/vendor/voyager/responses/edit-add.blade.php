@@ -82,8 +82,8 @@
                                     {
                                         $user = \App\Models\Institution::find($user_request->institution_id);
                                     }
-                                    $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
-
+                                    $inventories  = \App\Models\Inventory::whereIn('project_id', $user_request->projects->pluck('id'))->get();
+                                    $projects = $user_request->projects;
                                 @endphp
                             @else
                                 @php
@@ -98,8 +98,13 @@
                                         $user = \App\Models\Institution::find($user_request->institution_id);
                                     }
 
-                                    $inventories  = \App\Models\Inventory::where(['project_id' => $user_request->project_id])->get();
-            
+                                    $inventories  = \App\Models\Inventory::whereIn('project_id', $user_request->projects->pluck('id'))->get();
+                                    $modelInventories = [];
+                                    foreach($user_request->inventories as $item){
+                                        $pivot = $item['pivot'];
+                                        unset($pivot['user_request_id']);
+                                        array_push($modelInventories,$pivot);
+                                    }
                                     $projects = $user_request->projects;
                                 @endphp
                             @endif
@@ -271,8 +276,10 @@
                 submitting: false
             },
             mounted(){
-                @if($edit)
+                @if(isset($modelInventories))
                     this.respondedItems = @json($modelInventories);
+                @endif
+                @if($edit)
                     this.dataTypeContent = @json($dataTypeContent);
                 @endif
             },

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Response extends Model
 {
     use HasFactory;
-    protected $appends = ['project'];
     public function inventories(){
         return $this->belongsToMany(Inventory::class)->withPivot('quantity','unit');
     }
@@ -25,10 +24,6 @@ class Response extends Model
         return $this->belongsTo(UserRequest::class)->select(['id','project_id'])->with('project');
     }
 
-    public function getProjectAttribute()
-    {
-        return $this->userRequest->project;
-    }
     public function projects(){
         return $this->belongsToMany(Project::class);
     }
