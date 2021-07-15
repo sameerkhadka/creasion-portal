@@ -31,6 +31,7 @@ use App\Models\ProjectUserRequest;
 use App\Models\InventoryUserRequest;
 
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -92,7 +93,7 @@ class RequestController extends Controller
            $individual->province_id = $modelData["province"];
            $individual->district_id = $modelData["district"];
            $individual->localAddress = $modelData["localAddress"];
-           $individual->coordinates = json_encode($modelData["coordinate"]);           
+           $individual->coordinates = json_encode($modelData["coordinate"]);
            $individual->created_at = $modelData["requestDate"];
            $individual->save();
 
@@ -108,7 +109,7 @@ class RequestController extends Controller
                     $project->project_id = $item["id"];
                     $project->user_request_id = $req->id;
                     $project->save();
-            
+
                 foreach($item["inventories"] as $inventory)
                 {
                     if(isset($inventory["checked"]))
@@ -117,14 +118,14 @@ class RequestController extends Controller
                         {
                             $invent = new InventoryUserRequest();
                             $invent->inventory_id = $inventory["id"];
-                            $invent->quantity = $inventory["requestQuantity"];                    
+                            $invent->quantity = $inventory["requestQuantity"];
                             $invent->unit = $inventory["units"];
                             $invent->user_request_id = $req->id;
                             $invent->save();
                             // return $inventory["title"];
                         }
                     }
-                }            
+                }
             }
         }
         elseif($modelData["userType"] == "institution")
@@ -138,7 +139,7 @@ class RequestController extends Controller
             $institution->province_id = $modelData["province"];
             $institution->district_id = $modelData["district"];
             $institution->localAddress = $modelData["localAddress"];
-            $institution->coordinates = json_encode($modelData["coordinate"]);         
+            $institution->coordinates = json_encode($modelData["coordinate"]);
             $institution->created_at = $modelData["requestDate"];
             $institution->save();
 
@@ -154,22 +155,22 @@ class RequestController extends Controller
                     $project->project_id = $item["id"];
                     $project->user_request_id = $req->id;
                     $project->save();
-            
+
                 foreach($item["inventories"] as $inventory)
-                {   
+                {
                     if(isset($inventory["checked"]))
                         {
                         if($inventory["checked"]){
                             $invent = new InventoryUserRequest();
                             $invent->inventory_id = $inventory["id"];
-                            $invent->quantity = $inventory["requestQuantity"];                    
+                            $invent->quantity = $inventory["requestQuantity"];
                             $invent->unit = $inventory["units"];
                             $invent->user_request_id = $req->id;
                             $invent->save();
                             // return $inventory["title"];
                         }
                     }
-                }            
+                }
             }
         }
         return redirect()->route('index');

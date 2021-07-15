@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/map-assets/css/reset.css">
     <link rel="stylesheet" href="/map-assets/css/style.css">
     <link rel="stylesheet" href="/map-assets/css/responsive.css">
+    <link rel="stylesheet" href="{{ asset('css/vue2Dropzone.min.css') }}">
 
     <style>
         #map-select {
@@ -159,7 +160,6 @@
 
                         <div class="project-select">
                             <h5>Select Project</h5>
-
                             <div class="project-type">
                                 @foreach($projects as $item)
                                 <p>
@@ -173,18 +173,24 @@
                             <vuejs-datepicker v-model="modelData.requestDate"></vuejs-datepicker>
 
                             <div class="upload-doc" id="individualOxygen">
-                                <h5>Request Date</h5>
-                                <form action="/file-upload" class="dropzone">
-                                    <div class="fallback">
-                                      <input name="file" type="file" multiple />
-                                    </div>
-                                  </form>
+                                <h5>Files</h5>
+                                <vue-dropzone v-model="modelData.files" ref="myVueDropzone" id="customdropzone"
+                                @vdropzone-complete="successFileUpload"
+                                @vdropzone-removed-file="deleteFile"
+                                :options="{
+                                    url: 'https://httpbin.org/post',
+                                    thumbnailWidth: 150,
+                                    maxFilesize: 0.5,
+                                    headers: { 'My-Awesome-Header': 'header value' },
+                                    addRemoveLinks: true,
+                                }"></vue-dropzone>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
+
 
                 <div class="col-md-4">
                     <div class="location-info">
@@ -266,17 +272,21 @@
             </div>
         </div>
     </section>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </body>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('js/vue2dropzone.js') }}"></script>
 <script>
     class GetDefaultData {
         constructor(){
             this.data = {
                 projects : @json($projects),
+                myFiles:[],
                 modelData: {
                     userType: 'individual',
                     projectType: [],
@@ -307,9 +317,12 @@
     var app = new Vue({
             el: '#app',
             components: {
-                vuejsDatepicker
+                vuejsDatepicker,
+                vueDropzone: vue2Dropzone
             },
-            data: myDynamic.data,
+            data: function(){
+                return myDynamic.data;
+            },
             computed:{
                 projectsWithInventories : function() {
                     var tempthis = this;
@@ -329,14 +342,35 @@
                 }
             },
             methods:{
+                deleteFile(file, error, xhr){
+                    this.myFiles.splice(this.myFiles.indexOf(file), 1);
+
+                },
+                successFileUpload(file){
+                    this.myFiles.push(file);
+                },
                 customFormatter(date) {
                      return moment(date).format('m/d/Y g:i A');
                 },
                 submit(){
                     var formData = new FormData(); // Currently empty
+                    if (this.myFiles.length > 0) {
+                        for (var i = 0; i < this.myFiles.length; i++) {
+                            let file = this.myFiles[i];
+                            formData.append(`myFiles[${i}]`, file);
+                        }
+                    }
                     formData.append('modelData', JSON.stringify(this.modelData));
                     formData.append('projectWithInventories', JSON.stringify(this.projectsWithInventories));
-                    axios.post('{{ route("request") }}',formData)
+                    axios.post('{{ route("request") }}',formData).then().catch(function(error){
+                        if (error.response) {
+                            Object.values(error.response.data.errors).forEach((error)=>{
+                                // toastr.error(error[0]);
+                                toastr.error(error[0]);
+
+                            })
+                        }
+                    })
                 },
                 getProvince(){
                     this.modelData.province = +document.getElementById('provinces').value;
