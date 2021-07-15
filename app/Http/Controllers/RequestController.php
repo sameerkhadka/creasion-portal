@@ -32,6 +32,8 @@ use App\Models\InventoryUserRequest;
 
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Validator;
+
 class RequestController extends Controller
 {
     public function index()
@@ -54,9 +56,32 @@ class RequestController extends Controller
     }
 
     public function request(Request $request)
-    {        
-        // return json_decode($request->projectWithInventories, true);
+    {   dd($request->all());
         $modelData = json_decode($request->modelData, true);
+        $validator = Validator::make($modelData, [
+            'individual.fullName' => 'required',
+            'individual.gender' => 'required', 
+            'individual.age' => 'required', 
+            'individual.contactNumber' => 'required', 
+            'institution.organizationName' => 'required', 
+            'institution.organizationType' => 'required', 
+            'institution.organizationAddress' => 'required', 
+            'institution.contactPerson' => 'required', 
+            'province' => 'required',  
+            'district' => 'required',  
+            'localAddress' => 'required',            
+        ],[],['individual.fullName' => 'Full Name',
+        'individual.gender' => 'Gender', 
+        'individual.age' => 'Age', 
+        'individual.contactNumber' => 'Contact Number', 
+        'institution.organizationName' => 'Organization Name', 
+        'institution.organizationType' => 'Organization Type', 
+        'institution.organizationAddress' => 'Organization Address', 
+        'institution.contactPerson' => 'Contact Person',
+        ])->validate();
+        
+        return response()->json(['error'=>$validator->errors()]);
+
         if($modelData["userType"] == "individual")
         {
            $individual = new Individual();
