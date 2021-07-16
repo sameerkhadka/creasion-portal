@@ -152,7 +152,90 @@ var map = new mapboxgl.Map({
         axios.post('/filter-response',{'selectedProject':null,'selectedProvince':null,'selectedDistrict':null}).then((response)=>{
             map.getSource('cylinders').setData(response.data);
 
+            console.log(response.data)
+
+
+            var portalData = response.data;
+
+            buildLists(portalData);
+
+            function buildLists(portalData){
+                portalData.features.forEach(function(data){
+                    const latlng = data.geometry.coordinates
+
+                    // console.log(latlng)
+
+                    var prop = data.properties;
+                    var indId = prop.individual_id;
+                 
+
+                    var name = indId ? prop.individual.name : prop.institution.name ;
+                    var project = prop.project.title;
+
+                    var indIcon = '<ion-icon name="person-outline"></ion-icon>';
+                    var insIcon = '<ion-icon name="business-outline"></ion-icon>';
+
+                    var listingitems = `
+                                    <div class="list-wrap">
+                                        <div class="icon">
+                                            ${indId ? indIcon : insIcon }
+                                            
+                                        </div>
+
+                                        <div class="des">
+                                            <h4>${name}</h4>
+                                            <p class="for-project" >${project} </p>
+                                            <div class="date">
+                                                <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
+                                            </div>
+                                            <h6>Responded with ${prop.inventories.length} items</h6>
+                                        </div>
+                                    </div>
+                                `
+
+                  
+
+                    var listings = document.getElementById('map-lists');
+                 
+
+                    var listing = listings.appendChild(document.createElement('div'));
+                    listing.className = 'data-item';
+
+                    var link = listing.appendChild(document.createElement('a'));
+                    link.className = 'title';
+                    link.href = "#"
+                    link.id = 'link-' + prop.id;
+                    link.innerHTML = listingitems;
+
+
+
+                    link.addEventListener("click" ,() =>  {
+                        var coords =latlng;
+
+                        console.log(coords);
+
+                        map.flyTo({
+                            center: coords,
+                            zoom: 10,
+                            essential: true,
+                        });
+                    })
+
+                    
+                    // var displayName = link.appendChild(document.createElement('h4'));
+                    // displayName.innerText = name
+                    // var linkDes = link.appendChild(document.createElement('div'));
+                    // linkDes.className = 'list-desc'
+                    // var displayProject = linkDes.appendChild(document.createElement('p'));
+                    // displayProject.innerText = project
+                })
+            }
+
         });
+
+
+
+
 
         // loading the respond data
         map.addSource("cylinders", {
@@ -176,6 +259,7 @@ var map = new mapboxgl.Map({
             layout: {},
             paint: {
                 "line-color": "#333",
+                // "fill-color":"#11b4da",
             },
         });
 
@@ -299,8 +383,18 @@ var map = new mapboxgl.Map({
             });
         });
 
+    
+   
+
         map.on("click", "unclustered-point", function (e) {
-            var coordinates = e.features[0].geometry.coordinates.slice();
+            loadMarkerData(e);
+            console.log(e)
+        });
+
+    });
+
+    function loadMarkerData(e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
 
             var type = e.features[0].properties.type;
 
@@ -415,8 +509,6 @@ var map = new mapboxgl.Map({
                         `
                     )
                 .addTo(map);
-        });
-
-    });
+    }
 
  
