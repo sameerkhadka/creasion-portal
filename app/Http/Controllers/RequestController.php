@@ -34,6 +34,8 @@ use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Str;
+
 class RequestController extends Controller
 {
     public function index()
@@ -56,33 +58,24 @@ class RequestController extends Controller
     }
 
     public function request(Request $request)
-    {   
+    {
         $modelData = json_decode($request->modelData, true);
-       Validator::make($modelData, [
-            'individual.fullName' => 'required',
-            'individual.gender' => 'required', 
-            'individual.age' => 'required', 
-            'individual.contactNumber' => 'required', 
-            'institution.organizationName' => 'required', 
-            'institution.organizationType' => 'required', 
-            'institution.organizationAddress' => 'required', 
-            'institution.contactPerson' => 'required', 
-            'province' => 'required',  
-            'district' => 'required',  
-            'localAddress' => 'required',            
-        ],[],['individual.fullName' => 'Full Name',
-        'individual.gender' => 'Gender', 
-        'individual.age' => 'Age', 
-        'individual.contactNumber' => 'Contact Number', 
-        'institution.organizationName' => 'Organization Name', 
-        'institution.organizationType' => 'Organization Type', 
-        'institution.organizationAddress' => 'Organization Address', 
-        'institution.contactPerson' => 'Contact Person',
-        ])->validate();
-        
-
         if($modelData["userType"] == "individual")
         {
+            Validator::make($modelData, [
+                'individual.fullName' => 'required',
+                'individual.gender' => 'required',
+                'individual.age' => 'required',
+                'individual.contactNumber' => 'required',
+                'province' => 'required',
+                'district' => 'required',
+                'localAddress' => 'required',
+            ],[],[
+            'individual.fullName' => 'Full Name',
+            'individual.gender' => 'Gender',
+            'individual.age' => 'Age',
+            'individual.contactNumber' => 'Contact Number',
+            ])->validate();
            $individual = new Individual();
            $individual->name = $modelData["individual"]["fullName"];
            $individual->gender = $modelData["individual"]["gender"];
@@ -128,6 +121,20 @@ class RequestController extends Controller
         }
         elseif($modelData["userType"] == "institution")
         {
+            Validator::make($modelData, [
+                'institution.organizationName' => 'required',
+                'institution.organizationType' => 'required',
+                'institution.organizationAddress' => 'required',
+                'institution.contactPerson' => 'required',
+                'province' => 'required',
+                'district' => 'required',
+                'localAddress' => 'required',
+            ],[],[
+            'institution.organizationName' => 'Organization Name',
+            'institution.organizationType' => 'Organization Type',
+            'institution.organizationAddress' => 'Organization Address',
+            'institution.contactPerson' => 'Contact Person',
+            ])->validate();
             $institution = new Institution();
             $institution->name = $modelData["institution"]["organizationName"];
             $institution->organizationType = $modelData["institution"]["organizationType"];
@@ -171,6 +178,22 @@ class RequestController extends Controller
                 }
             }
         }
+        $fileArr = [];
+        if(isset($request->myFiles)){
+            if($files=$request->file('myFiles')){
+                foreach($files as $file){
+                    $storedFileName = Str::random(20).'.'.$file->getClientOriginalExtension();
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileArr[] = [
+                        'download_link' => 'user-requests/'.$storedFileName,
+                        'original_name' => $originalFileName
+                    ];
+                    $file->move('storage/user-requests'.'/',$storedFileName);
+                }
+            }
+        }
+        $req->files = json_encode($fileArr);
+        $req->update();
         return redirect()->route('index');
     }
 
@@ -191,7 +214,7 @@ class RequestController extends Controller
                 $response->created_at = $request->responses['created_at'];
                 $response->user_request_id = $request->user_request_id;
                 $response->save();
-         }
+        }
          //update
          else{
              $response = Response::find($request->response_id);
