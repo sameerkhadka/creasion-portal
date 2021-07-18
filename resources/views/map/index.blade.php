@@ -57,66 +57,57 @@
     <section class="map-wrapper">
         <div class="row">
             <div class="col-md-3">
-                <section class="filter">
-                    <div class="filter-head">
-                        <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
-                    </div>
-
-                    <div class="filter-card-wrap">
-
-                        <div class="filter-card">
-                            <label>Relief Project</label>
-                            <select id="projects">
-                                <option data-display="Select Project" value="" selected>Select Projects</option>
-                                @foreach ($projects as $item)
-                                <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="filter-card">
-                            <label>Province</label>
-
-                            <select id="provinces">
-                                <option value="-1" selected disabled>Select Province</option>
-                            </select>
-
-                        </div>
-
-                        <div class="filter-card">
-                            <label>District</label>
-
-                            <select id="districts">
-                                <option value="-1" selected disabled>Select District</option>
-                            </select>
-
-                        </div>
-
-
-
-                        <!-- <div class="filter-card">
-                            <label>Institutions Type</label>
-
-                            <select id="institutions_type">
-                                <option  value="" select >Select All</option>
-                                <option value="1">Community Hospital</option>
-                                <option value="2">NGO</option>
-                                <option value="3">Local Municipality</option>
-                                <option value="4">Community Hospital</option>
-                                <option value="5">Goverment Hospital</option>
-                            </select>
-
-                        </div> -->
-
-                        <div class="filter-card">
-                            <a href="" class="update">Update</a>
-                            <button><ion-icon name="refresh-outline"></ion-icon> Reset</button>
-                        </div>
-                    </div>
-                </section>
+                
+                <div class="sidebar">
+                
+                    <div id="map-lists"></div>
+                </div>
             </div>
 
             <div class="col-md-9">
+            <section class="filter">
+        <div class="filter-head">
+            <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
+        </div>
+
+        <div class="filter-card-wrap">
+
+            <div class="filter-card">
+                <label>Relief Project</label>
+                <select id="projects">
+                    <option data-display="Select Project" value="" selected>Select Projects</option>
+                    @foreach ($projects as $item)
+                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="filter-card">
+                <label>Province</label>
+
+                <select id="provinces">
+                    <option value="-1" selected disabled>Select Province</option>
+                </select>
+
+            </div>
+
+            <div class="filter-card">
+                <label>District</label>
+
+                <select id="districts">
+                    <option value="-1" selected disabled>Select District</option>
+                </select>
+
+            </div>
+
+
+
+            <div class="filter-card">
+                <a href="" class="update">Update</a>
+                <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Reset</button>
+            </div>
+        </div>
+    </section>
                 <div id="map"></div>
             </div>
         </div>
@@ -140,6 +131,7 @@
                 </p>
             </div>
 
+                
 
                 <div class="demographs">
                     <div class="row">
@@ -238,6 +230,8 @@
         </div>
     </section>
 
+
+   
 
     <script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>

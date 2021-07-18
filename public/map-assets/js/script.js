@@ -29,27 +29,27 @@ $(".update").on("click", (e) => {
     axios.post('/filter-response',{'selectedProject':selectedProject,'selectedProvince':selectedProvince,'selectedDistrict':selectedDistrict}).then((response)=>{
         map.getSource('cylinders').setData(response.data);
         
-        for(var i=1; i<=7; i++) {
-            if(map.getLayer(`province${i}-fill`)){
-                map.removeLayer(`province${i}-fill`);
-            }
-        }
-      
-        console.log( map.getLayer('urban-areas-fill'));
-        
+ 
 
-        map.addSource(`province${selectedProvince}`, {
+        
+        map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+            if (map.getLayer(item.id))
+                map.removeLayer(item.id)
+        })
+    
+        const currentTimestamp = Date.now()
+        map.addSource(`province${selectedProvince}-${currentTimestamp}`, {
             type: "geojson",
-            data: `/map-assets/json/coordinates/Province-${selectedProvince}.geojson`,
+            data: `../json/coordinates/Province-${selectedProvince}.geojson`,
         });
     
         map.addLayer({
-            id: `province${selectedProvince}-fill`,
+            id: `province${selectedProvince}-${Date.now()}-fill`,
             type: "line",
-            source: `province${selectedProvince}`,
+            source: `province${selectedProvince}-${currentTimestamp}`,
             layout: {},
             paint: {
-                "line-color": "#333",
+                "line-color": "#0a405a",
             },
         });
 
@@ -66,11 +66,15 @@ $(".update").on("click", (e) => {
 
     // Map Fly to the Province
     if (selectedProvince == 3) {
-        map.flyTo({
-            center: [85.2588, 27.7346],
-            zoom: 8.5,
-            essential: true,
-        });
+        var bbox = [
+            83.9187728578849,
+            26.9191431698797,
+            86.5727626547517,
+            28.3862845807188
+          ];
+        map.fitBounds(bbox, {
+            padding: {top: 100, bottom:25, left: 15, right: 5}
+            });
 
 
     } else if (selectedProvince == 1) {
@@ -123,6 +127,46 @@ $(".update").on("click", (e) => {
 
 });
 
+$("#reset-btn").on('click', (e) => {
+
+    map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+    const timeStamp = Date.now()
+    map.addSource(`urban-areas-${timeStamp}`, {
+        type: "geojson",
+        data: "/map-assets/json/region.geojson",
+    });
+
+    map.addLayer({
+        id: `urban-areas-${timeStamp}-fill`,
+        type: "line",
+        source: `urban-areas-${timeStamp}`,
+        layout: {},
+        paint: {
+            "line-color": "#0a405a",
+        },
+    });
+
+    map.flyTo({
+        center: [83.0074, 28.4764],
+        zoom: 6, // note the camel-case
+    })
+
+})
+
+$("select").niceSelect();
+
+mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
+
+var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
+    center: [83.0074, 28.4764],
+    minZoom: 6, // note the camel-case
+    maxZoom: 15
+});
 
 
 
@@ -152,7 +196,90 @@ var map = new mapboxgl.Map({
         axios.post('/filter-response',{'selectedProject':null,'selectedProvince':null,'selectedDistrict':null}).then((response)=>{
             map.getSource('cylinders').setData(response.data);
 
+            console.log(response.data)
+
+
+            var portalData = response.data;
+
+            buildLists(portalData);
+
+            function buildLists(portalData){
+                portalData.features.forEach(function(data){
+                    const latlng = data.geometry.coordinates
+
+                    // console.log(latlng)
+
+                    var prop = data.properties;
+                    var indId = prop.individual_id;
+                 
+
+                    var name = indId ? prop.individual.name : prop.institution.name ;
+                    var project = prop.project.title;
+
+                    var indIcon = '<ion-icon name="person-outline"></ion-icon>';
+                    var insIcon = '<ion-icon name="business-outline"></ion-icon>';
+
+                    var listingitems = `
+                                    <div class="list-wrap">
+                                        <div class="icon">
+                                            ${indId ? indIcon : insIcon }
+                                            
+                                        </div>
+
+                                        <div class="des">
+                                            <h4>${name}</h4>
+                                            <p class="for-project" >${project} </p>
+                                            <div class="date">
+                                                <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
+                                            </div>
+                                            <h6>Responded with ${prop.inventories.length} items</h6>
+                                        </div>
+                                    </div>
+                                `
+
+                  
+
+                    var listings = document.getElementById('map-lists');
+                 
+
+                    var listing = listings.appendChild(document.createElement('div'));
+                    listing.className = 'data-item';
+
+                    var link = listing.appendChild(document.createElement('a'));
+                    link.className = 'title';
+                    link.href = "#"
+                    link.id = 'link-' + prop.id;
+                    link.innerHTML = listingitems;
+
+
+
+                    link.addEventListener("click" ,() =>  {
+                        var coords =latlng;
+
+                        console.log(coords);
+
+                        map.flyTo({
+                            center: coords,
+                            zoom: 10,
+                            essential: true,
+                        });
+                    })
+
+                    
+                    // var displayName = link.appendChild(document.createElement('h4'));
+                    // displayName.innerText = name
+                    // var linkDes = link.appendChild(document.createElement('div'));
+                    // linkDes.className = 'list-desc'
+                    // var displayProject = linkDes.appendChild(document.createElement('p'));
+                    // displayProject.innerText = project
+                })
+            }
+
         });
+
+
+
+
 
         // loading the respond data
         map.addSource("cylinders", {
@@ -175,7 +302,8 @@ var map = new mapboxgl.Map({
             source: "urban-areas",
             layout: {},
             paint: {
-                "line-color": "#333",
+                "line-color": "#0a405a",
+                // "fill-color":"#11b4da",
             },
         });
 
@@ -299,8 +427,18 @@ var map = new mapboxgl.Map({
             });
         });
 
+    
+   
+
         map.on("click", "unclustered-point", function (e) {
-            var coordinates = e.features[0].geometry.coordinates.slice();
+            loadMarkerData(e);
+            console.log(e)
+        });
+
+    });
+
+    function loadMarkerData(e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
 
             var type = e.features[0].properties.type;
 
@@ -415,8 +553,6 @@ var map = new mapboxgl.Map({
                         `
                     )
                 .addTo(map);
-        });
-
-    });
+    }
 
  

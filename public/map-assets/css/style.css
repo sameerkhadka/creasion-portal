@@ -6,8 +6,6 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 header .header-wrap {
@@ -90,7 +88,7 @@ header .request a ion-icon {
   overflow: hidden;
 }
 
-.map-wrapper .row div {
+.map-wrapper .row .col-md-3, .map-wrapper .row .col-md-9 {
   padding: 0;
 }
 
@@ -103,11 +101,14 @@ header .request a ion-icon {
 }
 
 .map-wrapper .filter {
-  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  width: 230px;
   background: #fff;
   min-height: 400px;
   padding: 40px 0;
-  padding-left: 100px;
   background-color: #ffffff;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -552,5 +553,71 @@ header .request a ion-icon {
   max-width: 40px;
   height: 34px;
   text-align: center;
+}
+
+.sidebar .data-item {
+  margin: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 20px;
+}
+
+.sidebar .data-item a:hover {
+  color: inherit;
+}
+
+.sidebar .data-item a:hover h4 {
+  color: #11b4da;
+}
+
+.sidebar .data-item .list-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sidebar .data-item .list-wrap .icon {
+  width: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar .data-item .list-wrap .icon ion-icon {
+  font-size: 18px;
+}
+
+.sidebar .data-item .list-wrap h4 {
+  font-size: 16px;
+}
+
+.sidebar .data-item .list-wrap p.for-project {
+  font-size: 14px;
+  margin-top: 5px;
+  line-height: 1;
+}
+
+.sidebar .data-item .list-wrap h6 {
+  font-size: 14px;
+}
+
+.sidebar .data-item .list-wrap .date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sidebar .data-item .list-wrap .date ion-icon {
+  font-size: 12px;
+}
+
+.sidebar .data-item .list-wrap .date span {
+  margin-left: 5px;
+}
+
+.sidebar .data-item .list-wrap .date p {
+  font-size: 14px;
 }
 /*# sourceMappingURL=style.css.map */
