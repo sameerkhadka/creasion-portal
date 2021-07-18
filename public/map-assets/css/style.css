@@ -429,7 +429,7 @@ header .request a ion-icon {
 }
 
 .section-request .general-info {
-  padding-right: 80px;
+  padding-right: 20px;
 }
 
 .section-request .general-info h5 {
@@ -442,12 +442,15 @@ header .request a ion-icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .section-request .user-type p, .section-request .project-type p {
-  margin-right: 40px;
+  margin: 10px 0px;
+  margin-right: 25px;
   font-family: 'Proxima Nova';
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .section-request .filter-card .nice-select {
@@ -489,6 +492,27 @@ header .request a ion-icon {
   margin-top: 40px;
 }
 
+.project-req-date {
+  margin-top: 40px;
+}
+
+.project-req-date h5 {
+  margin-bottom: 0 !important;
+}
+
+.project-req-date input {
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #859194;
+}
+
+.project-req-date input:focus {
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #43c4e2;
+}
+
 .upload-doc {
   margin-top: 40px;
 }
@@ -507,13 +531,18 @@ header .request a ion-icon {
 }
 
 .item-listing {
-  margin-left: 50px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.item-listing:first-child {
+  margin-top: 0;
 }
 
 .item-listing h5 {
   font-size: 17px;
   text-transform: uppercase;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .item-lists {
@@ -526,6 +555,11 @@ header .request a ion-icon {
   margin: 10px 0;
   border-bottom: 1px solid #b7b7b7;
   padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+.item-lists:last-child {
+  border-bottom: 0;
 }
 
 .item-lists p:first-child {
@@ -619,5 +653,30 @@ header .request a ion-icon {
 
 .sidebar .data-item .list-wrap .date p {
   font-size: 14px;
+}
+
+.item-list-wrapper {
+  position: relative;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+.item-list-wrapper::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.item-list-wrapper::-webkit-scrollbar {
+  width: 5px;
+  background-color: #fff;
+}
+
+.item-list-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #11b4da;
 }
 /*# sourceMappingURL=style.css.map */

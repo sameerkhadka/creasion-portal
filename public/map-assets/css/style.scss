@@ -398,7 +398,7 @@ header {
     }
 
     .general-info {
-        padding-right: 80px;
+        padding-right: 20px;
 
         h5 {
             font-size: 17px;
@@ -409,11 +409,13 @@ header {
 
     .user-type, .project-type {
         display: flex;
+        flex-wrap: wrap;
 
         p {
-            margin-right: 40px;
+            margin: 10px 0px;
+            margin-right: 25px;
             font-family: 'Proxima Nova';
-            font-size: 16px;
+            font-size: 15px;
         }
 
     }
@@ -462,6 +464,30 @@ header {
 
 .project-select {
     margin-top: 40px;
+    
+
+}
+
+.project-req-date {
+    margin-top: 40px;
+
+    h5 {
+        margin-bottom: 0 !important;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px 0;    
+        border: 0;
+        border-bottom: 1px solid #859194;
+
+        &:focus {
+            outline: none;
+            border: 0;
+            border-bottom: 1px solid #43c4e2;
+        }
+    }
+
 }
 
 .upload-doc {
@@ -484,12 +510,17 @@ header {
 }
 
 .item-listing {
-    margin-left: 50px;
+    margin-left: 30px;
+    margin-top: 30px;
+
+    &:first-child {
+        margin-top: 0;
+    }
     
     h5 {
         font-size: 17px;
         text-transform: uppercase;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
     }
 }
 
@@ -499,6 +530,11 @@ header {
     margin: 10px 0;
     border-bottom: 1px solid #b7b7b7;
     padding-bottom: 20px;
+    padding-right: 20px;
+
+    &:last-child {
+        border-bottom: 0;
+    }
 
     p {
         &:first-child {
@@ -588,4 +624,29 @@ header {
            }
        }
    }
+}
+
+.item-list-wrapper {
+    position: relative;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #fff;
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: #fff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #11b4da;
+    
+    }
+    
 }

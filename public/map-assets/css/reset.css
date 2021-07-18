@@ -174,3 +174,28 @@ input::-webkit-inner-spin-button {
 }
 
 #location-select { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+.dz-default.dz-message span {
+  font-size: 12px;
+  font-family: 'Proxima Nova';
+}
+
+.dropzone .dz-preview .dz-success-mark svg, .dropzone .dz-preview .dz-error-mark svg {
+  display: none !important;
+}
+
+.vue-dropzone>.dz-preview:hover .dz-remove {
+  font-size: 9px;
+  text-transform: capitalize;
+  text-decoration: none;
+  border: 1px solid #FFF;
+  font-family: 'Proxima Nova';
+  font-weight: 300;
+}
+
+.dropzone .dz-preview.dz-error:hover .dz-error-message {
+  opacity: 1;
+  pointer-events: auto;
+  margin-top: -43px;
+  font-size: 11px;
+}

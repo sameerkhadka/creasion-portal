@@ -67,7 +67,7 @@
 <section class="section-request" id="app">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="general-info">
                         <h5>General Information</h5>
 
@@ -168,9 +168,12 @@
                                 </p>
                                 @endforeach
                             </div>
-                            <h5>Request Date</h5>
+                            
+                            <div class="project-req-date">
+                                <h5>Request Date</h5>
 
-                            <vuejs-datepicker v-model="modelData.requestDate"></vuejs-datepicker>
+                                <vuejs-datepicker v-model="modelData.requestDate"></vuejs-datepicker>
+                            </div>
 
                             <div class="upload-doc" id="individualOxygen">
                                 <h5>Files</h5>
@@ -180,7 +183,7 @@
                                 :options="{
                                     url: 'https://httpbin.org/post',
                                     thumbnailWidth: 150,
-                                    maxFilesize: 0.5,
+                                    maxFilesize: 12,
                                     headers: { 'My-Awesome-Header': 'header value' },
                                     addRemoveLinks: true,
                                 }"></vue-dropzone>
@@ -243,24 +246,26 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div v-for="project in projectsWithInventories" class="item-listing">
-                        <h5>@{{ project.title }}</h5>
-                        <div v-for="inventoryItem in project.inventories" class="item-lists">
-                            <p>
-                                <input type="checkbox" :id="inventoryItem.title" v-model="inventoryItem.checked" name="inventories" >
-                                <label :for="inventoryItem.title">@{{ inventoryItem.title }}</label>
-                            </p>
+                <div class="col-md-4">
+                    <div class="item-list-wrapper">
+                        <div v-for="project in projectsWithInventories" class="item-listing">
+                            <h5>@{{ project.title }}</h5>
+                            <div v-for="inventoryItem in project.inventories" class="item-lists">
+                                <p>
+                                    <input type="checkbox" :id="inventoryItem.title" v-model="inventoryItem.checked" name="inventories" >
+                                    <label :for="inventoryItem.title">@{{ inventoryItem.title }}</label>
+                                </p>
 
-                            <p>
-                                <label for="" class="label-small">Qty</label>
-                                <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.requestQuantity">
-                            </p>
+                                <p>
+                                    <label for="" class="label-small">Qty</label>
+                                    <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.requestQuantity">
+                                </p>
 
-                            <p>
-                                <label for="" class="label-small">Units</label>
-                                <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units">
-                            </p>
+                                <p>
+                                    <label for="" class="label-small">Units</label>
+                                    <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units">
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
