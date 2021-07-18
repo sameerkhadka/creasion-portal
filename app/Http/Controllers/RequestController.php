@@ -70,11 +70,13 @@ class RequestController extends Controller
                 'province' => 'required',
                 'district' => 'required',
                 'localAddress' => 'required',
+                'coordinate' => 'required',
             ],[],[
             'individual.fullName' => 'Full Name',
             'individual.gender' => 'Gender',
             'individual.age' => 'Age',
             'individual.contactNumber' => 'Contact Number',
+            'coordinate' => 'Co-ordinate',
             ])->validate();
            $individual = new Individual();
            $individual->name = $modelData["individual"]["fullName"];
@@ -85,7 +87,6 @@ class RequestController extends Controller
            $individual->district_id = $modelData["district"];
            $individual->localAddress = $modelData["localAddress"];
            $individual->coordinates = json_encode($modelData["coordinate"]);
-           $individual->created_at = $modelData["requestDate"];
            $individual->save();
 
            $req = new UserRequest();
@@ -129,11 +130,14 @@ class RequestController extends Controller
                 'province' => 'required',
                 'district' => 'required',
                 'localAddress' => 'required',
+                'coordinate' => 'required',
+
             ],[],[
             'institution.organizationName' => 'Organization Name',
             'institution.organizationType' => 'Organization Type',
             'institution.organizationAddress' => 'Organization Address',
             'institution.contactPerson' => 'Contact Person',
+            'coordinate' => 'Co-ordinate',
             ])->validate();
             $institution = new Institution();
             $institution->name = $modelData["institution"]["organizationName"];
@@ -145,7 +149,7 @@ class RequestController extends Controller
             $institution->district_id = $modelData["district"];
             $institution->localAddress = $modelData["localAddress"];
             $institution->coordinates = json_encode($modelData["coordinate"]);
-            $institution->created_at = $modelData["requestDate"];
+
             $institution->save();
 
             $req = new UserRequest();
@@ -193,8 +197,12 @@ class RequestController extends Controller
             }
         }
         $req->files = json_encode($fileArr);
+        if(isset($modelData["requestDate"])){
+            $req->created_at = $modelData["requestDate"];
+        }
         $req->update();
-        return redirect()->route('index');
+        Session::flash('success','Successfully Saved');
+        return response(['msg'=>'succeed'],200);
     }
 
     public function add_response(Request $request)
