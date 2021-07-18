@@ -45,7 +45,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="header-logo">
-                    <a href="index.html">
+                    <a href="{{ route('index') }}">
                         NEPAL RELIEF <span>PORTAL</span>
                     </a>
                 </div>
@@ -183,7 +183,10 @@
                                 :options="{
                                     url: 'https://httpbin.org/post',
                                     thumbnailWidth: 150,
+<<<<<<< HEAD
                                     maxFilesize: 12,
+=======
+>>>>>>> 08cf753195e423d36dd6cd56da60d427764ae732
                                     headers: { 'My-Awesome-Header': 'header value' },
                                     addRemoveLinks: true,
                                 }"></vue-dropzone>
@@ -271,7 +274,7 @@
                 </div>
                 <div class="col-md-3">
 
-                    <button class="btn btn-success" v-on:click="submit">Submit</button>
+                    <button class="btn btn-success" :disabled="processing" v-on:click="submit">Submit</button>
                 </div>
 
             </div>
@@ -281,7 +284,7 @@
 
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/vue.js') }}"></script>
+<script src="{{ asset('js/vue.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -313,7 +316,8 @@
                         contactPerson: "",
                         contactNumber: "",
                     }
-                }
+                },
+                processing:false
             };
         }
     }
@@ -359,6 +363,8 @@
                 },
                 submit(){
                     var formData = new FormData(); // Currently empty
+                    var tempthis = this;
+                    this.processing = true;
                     if (this.myFiles.length > 0) {
                         for (var i = 0; i < this.myFiles.length; i++) {
                             let file = this.myFiles[i];
@@ -367,13 +373,18 @@
                     }
                     formData.append('modelData', JSON.stringify(this.modelData));
                     formData.append('projectWithInventories', JSON.stringify(this.projectsWithInventories));
-                    axios.post('{{ route("request") }}',formData).then().catch(function(error){
+                    axios.post('{{ route("request") }}',formData).then(function(response){
+                        window.location = document.referrer;
+                        tempthis.processing = false;
+                    }).catch(function(error){
                         if (error.response) {
                             Object.values(error.response.data.errors).forEach((error)=>{
                                 // toastr.error(error[0]);
                                 toastr.error(error[0]);
 
                             })
+                            tempthis.processing = false;
+
                         }
                     })
                 },
@@ -394,6 +405,11 @@
                 }
             }
         });
+</script>
+<script>
+@if(session('success'))
+    toastr.success('{{ session("success") }}')
+@endif
 </script>
 <script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>
