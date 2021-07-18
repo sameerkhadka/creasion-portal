@@ -183,10 +183,7 @@
                                 :options="{
                                     url: 'https://httpbin.org/post',
                                     thumbnailWidth: 150,
-<<<<<<< HEAD
                                     maxFilesize: 12,
-=======
->>>>>>> 08cf753195e423d36dd6cd56da60d427764ae732
                                     headers: { 'My-Awesome-Header': 'header value' },
                                     addRemoveLinks: true,
                                 }"></vue-dropzone>
