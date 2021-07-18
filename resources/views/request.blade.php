@@ -248,7 +248,7 @@
                         <h5>@{{ project.title }}</h5>
                         <div v-for="inventoryItem in project.inventories" class="item-lists">
                             <p>
-                                <input type="checkbox" :id="inventoryItem.title" v-on:click="checkItem(inventoryItem)" v-model="inventoryItem.checked" name="inventories" >
+                                <input type="checkbox" :id="inventoryItem.title" v-model="inventoryItem.checked" name="inventories" >
                                 <label :for="inventoryItem.title">@{{ inventoryItem.title }}</label>
                             </p>
 

@@ -21,11 +21,9 @@ class Response extends Model
     }
 
     public function userRequest(){
-        return $this->belongsTo(UserRequest::class)->select(['id','project_id'])->with('project');
+        return $this->belongsTo(UserRequest::class)->select(['id'])->with('projects');
     }
 
-    public function projects(){
-        return $this->belongsToMany(Project::class);
-    }
+
 
 }
