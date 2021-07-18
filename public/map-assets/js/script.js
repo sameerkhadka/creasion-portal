@@ -196,7 +196,7 @@ var map = new mapboxgl.Map({
         axios.post('/filter-response',{'selectedProject':null,'selectedProvince':null,'selectedDistrict':null}).then((response)=>{
             map.getSource('cylinders').setData(response.data);
 
-            console.log(response.data)
+            
 
 
             var portalData = response.data;
@@ -214,8 +214,8 @@ var map = new mapboxgl.Map({
                  
 
                     var name = indId ? prop.individual.name : prop.institution.name ;
-                    var project = prop.project.title;
-
+                    var project = prop.user_request.project.title;
+            
                     var indIcon = '<ion-icon name="person-outline"></ion-icon>';
                     var insIcon = '<ion-icon name="business-outline"></ion-icon>';
 
@@ -228,7 +228,7 @@ var map = new mapboxgl.Map({
 
                                         <div class="des">
                                             <h4>${name}</h4>
-                                            <p class="for-project" >${project} </p>
+                                            <p class="for-project" > ${project}</p>
                                             <div class="date">
                                                 <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
                                             </div>
