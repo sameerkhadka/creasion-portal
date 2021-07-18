@@ -206,7 +206,7 @@
                                     <div class="filter-card form-card">
                                         <p>Province</p>
 
-                                        <select id="provinces">
+                                        <select class="for-niceselect"  id="provinces">
                                             <option value="-1" selected disabled>Select Province</option>
                                         </select>
 
@@ -217,7 +217,7 @@
                                     <div class="filter-card form-card">
                                         <p>District</p>
 
-                                        <select id="districts">
+                                        <select class="for-niceselect" id="districts">
                                             <option value="-1" selected disabled>Select District</option>
                                         </select>
 
