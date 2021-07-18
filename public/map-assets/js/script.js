@@ -29,27 +29,27 @@ $(".update").on("click", (e) => {
     axios.post('/filter-response',{'selectedProject':selectedProject,'selectedProvince':selectedProvince,'selectedDistrict':selectedDistrict}).then((response)=>{
         map.getSource('cylinders').setData(response.data);
         
-        for(var i=1; i<=7; i++) {
-            if(map.getLayer(`province${i}-fill`)){
-                map.removeLayer(`province${i}-fill`);
-            }
-        }
-      
-        console.log( map.getLayer('urban-areas-fill'));
-        
+ 
 
-        map.addSource(`province${selectedProvince}`, {
+        
+        map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+            if (map.getLayer(item.id))
+                map.removeLayer(item.id)
+        })
+    
+        const currentTimestamp = Date.now()
+        map.addSource(`province${selectedProvince}-${currentTimestamp}`, {
             type: "geojson",
-            data: `/map-assets/json/coordinates/Province-${selectedProvince}.geojson`,
+            data: `../json/coordinates/Province-${selectedProvince}.geojson`,
         });
     
         map.addLayer({
-            id: `province${selectedProvince}-fill`,
+            id: `province${selectedProvince}-${Date.now()}-fill`,
             type: "line",
-            source: `province${selectedProvince}`,
+            source: `province${selectedProvince}-${currentTimestamp}`,
             layout: {},
             paint: {
-                "line-color": "#333",
+                "line-color": "#0a405a",
             },
         });
 
@@ -66,11 +66,15 @@ $(".update").on("click", (e) => {
 
     // Map Fly to the Province
     if (selectedProvince == 3) {
-        map.flyTo({
-            center: [85.2588, 27.7346],
-            zoom: 8.5,
-            essential: true,
-        });
+        var bbox = [
+            83.9187728578849,
+            26.9191431698797,
+            86.5727626547517,
+            28.3862845807188
+          ];
+        map.fitBounds(bbox, {
+            padding: {top: 100, bottom:25, left: 15, right: 5}
+            });
 
 
     } else if (selectedProvince == 1) {
@@ -123,6 +127,46 @@ $(".update").on("click", (e) => {
 
 });
 
+$("#reset-btn").on('click', (e) => {
+
+    map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+    const timeStamp = Date.now()
+    map.addSource(`urban-areas-${timeStamp}`, {
+        type: "geojson",
+        data: "/map-assets/json/region.geojson",
+    });
+
+    map.addLayer({
+        id: `urban-areas-${timeStamp}-fill`,
+        type: "line",
+        source: `urban-areas-${timeStamp}`,
+        layout: {},
+        paint: {
+            "line-color": "#0a405a",
+        },
+    });
+
+    map.flyTo({
+        center: [83.0074, 28.4764],
+        zoom: 6, // note the camel-case
+    })
+
+})
+
+$("select").niceSelect();
+
+mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
+
+var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
+    center: [83.0074, 28.4764],
+    minZoom: 6, // note the camel-case
+    maxZoom: 15
+});
 
 
 
@@ -258,7 +302,7 @@ var map = new mapboxgl.Map({
             source: "urban-areas",
             layout: {},
             paint: {
-                "line-color": "#333",
+                "line-color": "#0a405a",
                 // "fill-color":"#11b4da",
             },
         });
