@@ -45,7 +45,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="header-logo">
-                    <a href="index.html">
+                    <a href="{{ route('index') }}">
                         NEPAL RELIEF <span>PORTAL</span>
                     </a>
                 </div>

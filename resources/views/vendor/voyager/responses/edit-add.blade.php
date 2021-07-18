@@ -111,7 +111,7 @@
 
                             <!-- Adding / Editing -->
                             <div class="form-group  col-md-3 ">
-                                    <label class="control-label" for="name">Name</label>
+                                    <label class="control-label" for="name">{{$user_request->individual_id ? "Name" : "Organization Name" }}</label>
                                     <input type="text" class="form-control" value="{{$user->name}}" readonly>
                             </div>
 
@@ -158,7 +158,7 @@
 
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Local Level</label>
-                                <input type="text" class="form-control" value="{{ optional($user->localLevel)->title_en }}" readonly>
+                                <input type="text" class="form-control" value="{{$user->localAddress}}" readonly>
                             </div>
 
                             <div class="form-group  col-md-12 ">
