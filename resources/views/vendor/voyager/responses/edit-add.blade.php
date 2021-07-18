@@ -117,9 +117,20 @@
 
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Project</label>
-                                @foreach($projects as $item)
-                                <input type="text" class="form-control" value="{{$item->title}}" readonly>
-                                @endforeach
+                                @php 
+                                $num_of_items = count($projects);
+                                $num_count = 0;
+                                @endphp
+                                <input type="text" class="form-control" value="@php 
+                                foreach($projects as $item) 
+                                { 
+                                    echo $item->title; 
+                                    $num_count = $num_count + 1;
+                                    if ($num_count < $num_of_items) {
+                                      echo ", ";
+                                    } 
+                                }  
+                                    @endphp" readonly>                               
                             </div>
 
                             @if($user_request->individual_id)
@@ -134,6 +145,12 @@
                             </div>
                             @else
 
+                            <div class="form-group  col-md-3 ">
+                                <label class="control-label" for="name">Organization's Address</label>
+                                <input type="text" class="form-control" value="{{$user->address}}" readonly>
+                            </div>
+
+                            
                             <div class="form-group  col-md-3 ">
                                 <label class="control-label" for="name">Contact Person</label>
                                 <input type="text" class="form-control" value="{{$user->contact_person}}" readonly>
