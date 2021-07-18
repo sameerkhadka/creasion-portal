@@ -32,6 +32,10 @@ use App\Models\InventoryUserRequest;
 
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Str;
+
 class RequestController extends Controller
 {
     public function index()
@@ -54,11 +58,24 @@ class RequestController extends Controller
     }
 
     public function request(Request $request)
-    {        
-        // return json_decode($request->projectWithInventories, true);
+    {
         $modelData = json_decode($request->modelData, true);
         if($modelData["userType"] == "individual")
         {
+            Validator::make($modelData, [
+                'individual.fullName' => 'required',
+                'individual.gender' => 'required',
+                'individual.age' => 'required',
+                'individual.contactNumber' => 'required',
+                'province' => 'required',
+                'district' => 'required',
+                'localAddress' => 'required',
+            ],[],[
+            'individual.fullName' => 'Full Name',
+            'individual.gender' => 'Gender',
+            'individual.age' => 'Age',
+            'individual.contactNumber' => 'Contact Number',
+            ])->validate();
            $individual = new Individual();
            $individual->name = $modelData["individual"]["fullName"];
            $individual->gender = $modelData["individual"]["gender"];
@@ -67,7 +84,7 @@ class RequestController extends Controller
            $individual->province_id = $modelData["province"];
            $individual->district_id = $modelData["district"];
            $individual->localAddress = $modelData["localAddress"];
-           $individual->coordinates = json_encode($modelData["coordinate"]);           
+           $individual->coordinates = json_encode($modelData["coordinate"]);
            $individual->created_at = $modelData["requestDate"];
            $individual->save();
 
@@ -83,7 +100,7 @@ class RequestController extends Controller
                     $project->project_id = $item["id"];
                     $project->user_request_id = $req->id;
                     $project->save();
-            
+
                 foreach($item["inventories"] as $inventory)
                 {
                     if(isset($inventory["checked"]))
@@ -92,18 +109,32 @@ class RequestController extends Controller
                         {
                             $invent = new InventoryUserRequest();
                             $invent->inventory_id = $inventory["id"];
-                            $invent->quantity = $inventory["requestQuantity"];                    
+                            $invent->quantity = $inventory["requestQuantity"];
                             $invent->unit = $inventory["units"];
                             $invent->user_request_id = $req->id;
                             $invent->save();
                             // return $inventory["title"];
                         }
                     }
-                }            
+                }
             }
         }
         elseif($modelData["userType"] == "institution")
         {
+            Validator::make($modelData, [
+                'institution.organizationName' => 'required',
+                'institution.organizationType' => 'required',
+                'institution.organizationAddress' => 'required',
+                'institution.contactPerson' => 'required',
+                'province' => 'required',
+                'district' => 'required',
+                'localAddress' => 'required',
+            ],[],[
+            'institution.organizationName' => 'Organization Name',
+            'institution.organizationType' => 'Organization Type',
+            'institution.organizationAddress' => 'Organization Address',
+            'institution.contactPerson' => 'Contact Person',
+            ])->validate();
             $institution = new Institution();
             $institution->name = $modelData["institution"]["organizationName"];
             $institution->organizationType = $modelData["institution"]["organizationType"];
@@ -113,7 +144,7 @@ class RequestController extends Controller
             $institution->province_id = $modelData["province"];
             $institution->district_id = $modelData["district"];
             $institution->localAddress = $modelData["localAddress"];
-            $institution->coordinates = json_encode($modelData["coordinate"]);         
+            $institution->coordinates = json_encode($modelData["coordinate"]);
             $institution->created_at = $modelData["requestDate"];
             $institution->save();
 
@@ -129,24 +160,40 @@ class RequestController extends Controller
                     $project->project_id = $item["id"];
                     $project->user_request_id = $req->id;
                     $project->save();
-            
+
                 foreach($item["inventories"] as $inventory)
-                {   
+                {
                     if(isset($inventory["checked"]))
                         {
                         if($inventory["checked"]){
                             $invent = new InventoryUserRequest();
                             $invent->inventory_id = $inventory["id"];
-                            $invent->quantity = $inventory["requestQuantity"];                    
+                            $invent->quantity = $inventory["requestQuantity"];
                             $invent->unit = $inventory["units"];
                             $invent->user_request_id = $req->id;
                             $invent->save();
                             // return $inventory["title"];
                         }
                     }
-                }            
+                }
             }
         }
+        $fileArr = [];
+        if(isset($request->myFiles)){
+            if($files=$request->file('myFiles')){
+                foreach($files as $file){
+                    $storedFileName = Str::random(20).'.'.$file->getClientOriginalExtension();
+                    $originalFileName = $file->getClientOriginalName();
+                    $fileArr[] = [
+                        'download_link' => 'user-requests/'.$storedFileName,
+                        'original_name' => $originalFileName
+                    ];
+                    $file->move('storage/user-requests'.'/',$storedFileName);
+                }
+            }
+        }
+        $req->files = json_encode($fileArr);
+        $req->update();
         return redirect()->route('index');
     }
 
@@ -167,7 +214,7 @@ class RequestController extends Controller
                 $response->created_at = $request->responses['created_at'];
                 $response->user_request_id = $request->user_request_id;
                 $response->save();
-         }
+        }
          //update
          else{
              $response = Response::find($request->response_id);
