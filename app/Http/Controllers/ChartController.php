@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Models\Particular;
 
-use App\Models\Category;
+use App\Models\Project;
 
 class ChartController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return view('pie', compact('categories'));
+        $projects = Project::all();
+        return view('pie', compact('projects'));
     }
 
     public function dynamic(Request $request)
     {   
         $get = $request->value;
         $result = Particular::select('*')
-        ->where('category_id', '=', $get)
+        ->where('project_id', '=', $get)
         ->get();
         $data = [];
         $quan = [];
@@ -35,8 +35,8 @@ class ChartController extends Controller
         $chartData = $data;
         $quantity = $quan;
         $color = $colour;
-        $categories = Category::all();
+        $projects = Project::all();
         $id = $get;
-        return response(compact('id','sum','chartData','quantity','color','categories'));
+        return response(compact('id','sum','chartData','quantity','color','projects'));
     }
 }
