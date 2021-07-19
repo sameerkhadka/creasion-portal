@@ -93,11 +93,22 @@
                                         </div>
                                     </div>
 
+<<<<<<< HEAD
                                     <div class="col-md-4">
                                         <div class="form-card">
                                             <p>Gender</p>
                                             <input type="text" v-model="modelData.individual.gender" />
                                         </div>
+=======
+                                <div class="col-md-4">
+                                    <div class="form-card">
+                                        <p>Gender</p>
+                                        <select class="form-select" v-model="modelData.individual.gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+>>>>>>> 8a8fbcd3c6c71c9c17644e7fcacbb5a6b0e0a352
                                     </div>
 
                                     <div class="col-md-2">
@@ -148,6 +159,7 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
                             <div class="project-select">
                                 <h5>Select Project</h5>
                                 <div class="project-type">
@@ -158,6 +170,21 @@
                                     </p>
                                     @endforeach
                                 </div>
+=======
+                        <div class="project-select">
+                            <h5>Select Project</h5>
+                            <div class="project-type">
+                                @foreach($projects as $item)
+                                <p>
+                                    <input type="checkbox" id="{{ $item->title }}" name="project-type" v-model.number="modelData.projectType" value="{{ $item->id }}">
+                                    <label for="{{ $item->title }}">{{ $item->title }}</label>
+                                </p>
+                                @endforeach
+                            </div>
+
+                            <div class="project-req-date">
+                                <h5>Request Date</h5>
+>>>>>>> 8a8fbcd3c6c71c9c17644e7fcacbb5a6b0e0a352
 
                                 <div class="project-req-date">
                                     <h5>Request Date</h5>
@@ -260,6 +287,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </section>
         <link
             rel="stylesheet"
@@ -317,6 +345,38 @@
                             contactPerson: "",
                             contactNumber: "",
                         }
+=======
+        </div>
+    </section>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</body>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/vue.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('js/vue2dropzone.js') }}"></script>
+<script>
+    class GetDefaultData {
+        constructor(){
+            this.data = {
+                projects : @json($projects),
+                myFiles:[],
+                modelData: {
+                    userType: 'individual',
+                    projectType: [],
+                    requestDate: '',
+                    district : 0,
+                    province : 0,
+                    localAddress: '',
+                    coordinate:[],
+                    individual:{
+                        fullName: "",
+                        contactNumber: "",
+                        gender: "Male",
+                        age: "",
+>>>>>>> 8a8fbcd3c6c71c9c17644e7fcacbb5a6b0e0a352
                     },
                     processing:false
                 };
