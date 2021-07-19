@@ -178,10 +178,10 @@
                                 <input type="text" class="form-control" value="{{$user->localAddress}}" readonly>
                             </div>
 
-                            <div class="form-group  col-md-12 ">
+                            {{-- <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Message</label>
                                 <textarea name="details" class="form-control" rows="5" cols="20" readonly> {{$user_request->details}} </textarea>
-                            </div>
+                            </div> --}}
                             <div class="form-group  col-md-12 ">
                                 <label class="control-label" for="name">Respond Date</label>
                                   <vuejs-datepicker v-model="dataTypeContent.created_at"></vuejs-datepicker>
