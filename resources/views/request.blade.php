@@ -412,7 +412,7 @@
     toastr.success('{{ session("success") }}')
 @endif
 </script>
-<script src="/map-assets/js/jquery.min.js"></script>
+    <script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>
     <script src="/map-assets/js/owl.carousel.min.js"></script>
 
@@ -473,7 +473,7 @@ marker.on('dragend', onDragEnd);
 
     </script>
 
-    <script type="module" src="/map-assets/js/script.js"></script>
+    {{-- <script type="module" src="/map-assets/js/script.js"></script> --}}
     <script type="module" src="/map-assets/js/request.js"></script>
 
 
