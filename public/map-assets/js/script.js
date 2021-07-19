@@ -156,7 +156,7 @@ $("#reset-btn").on('click', (e) => {
 
 })
 
-$("select").niceSelect();
+$(".for-niceselect").niceSelect();
 
 mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
 
@@ -170,7 +170,7 @@ var map = new mapboxgl.Map({
 
 
 
-$("select").niceSelect();
+
 
 
 // Map

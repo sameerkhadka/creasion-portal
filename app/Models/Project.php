@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
     public function inventories(){
-        return $this->hasMany(Inventory::class,'project_id');
+        return $this->hasMany(Inventory::class,'project_id')->where('status',1);
     }
     public function responses(){
         return $this->belongsToMany(Response::class);

@@ -103,7 +103,11 @@
                                 <div class="col-md-4">
                                     <div class="form-card">
                                         <p>Gender</p>
-                                        <input type="text" v-model="modelData.individual.gender">
+                                        <select class="form-select" v-model="modelData.individual.gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -168,7 +172,7 @@
                                 </p>
                                 @endforeach
                             </div>
-                            
+
                             <div class="project-req-date">
                                 <h5>Request Date</h5>
 
@@ -206,7 +210,7 @@
                                     <div class="filter-card form-card">
                                         <p>Province</p>
 
-                                        <select id="provinces">
+                                        <select class="for-niceselect"  id="provinces">
                                             <option value="-1" selected disabled>Select Province</option>
                                         </select>
 
@@ -217,7 +221,7 @@
                                     <div class="filter-card form-card">
                                         <p>District</p>
 
-                                        <select id="districts">
+                                        <select class="for-niceselect" id="districts">
                                             <option value="-1" selected disabled>Select District</option>
                                         </select>
 
@@ -281,7 +285,7 @@
 
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/vue.min.js') }}"></script>
+<script src="{{ asset('js/vue.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -303,7 +307,7 @@
                     individual:{
                         fullName: "",
                         contactNumber: "",
-                        gender: "",
+                        gender: "Male",
                         age: "",
                     },
                     institution: {
