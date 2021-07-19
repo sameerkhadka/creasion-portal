@@ -267,7 +267,13 @@
 
                                 <p>
                                     <label for="" class="label-small">Units</label>
-                                    <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units">
+                                    <select :disabled = "!inventoryItem.checked" class="form-select" v-model="inventoryItem.units">
+                                        <option value="Pcs">Pcs </option>
+                                        <option value="Boxes">Boxes </option>
+                                        <option value="Packets">Packets</option>
+                                    </select>
+
+                                    {{-- <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units"> --}}
                                 </p>
                             </div>
                         </div>

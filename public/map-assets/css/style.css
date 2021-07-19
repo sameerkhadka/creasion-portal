@@ -594,6 +594,17 @@ header .request a ion-icon {
   margin-bottom: 5px;
 }
 
+.item-lists select.form-select {
+  height: 34px;
+  text-align: center;
+  background: #f8f8f8;
+  border: 1px solid #d0d0d0;
+}
+
+.item-lists select.form-select:focus {
+  outline: none;
+}
+
 .item-lists input {
   max-width: 40px;
   height: 34px;

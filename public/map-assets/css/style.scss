@@ -567,7 +567,18 @@ header {
         margin-bottom: 5px;
     }
 
-   
+    select.form-select {
+        
+        height: 34px;
+        text-align: center;
+        background: #f8f8f8;
+        border: 1px solid #d0d0d0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
     input {
         max-width: 40px;
         height: 34px;
