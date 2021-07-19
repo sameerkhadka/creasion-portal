@@ -3,6 +3,7 @@ import {districts,provinces,municipalities} from './resources.js';
 provinces.forEach((item) => {
     $("#provinces").append(`<option value="${item.id}">${item.title}</option>`)
 });
+$('select.for-niceselect').niceSelect();
 
 $('#provinces').on('change',function(){
     let provinceID = $(this).val();
@@ -15,7 +16,7 @@ $('#provinces').on('change',function(){
     items.forEach((item) => {
         $("#districts").append(`<option value="${item.id}">${item.title}</option>`)
     });
-    $('select').niceSelect();
+    $('select.for-niceselect').niceSelect();
     app.getProvince()
 });
 
@@ -31,6 +32,6 @@ $('#districts').on('change',function(){
     items.forEach((item) => {
         $("#municipalities").append(`<option value="${item.id}">${item.title}</option>`)
     });
-    $('select').niceSelect();
+    $('select.for-niceselect').niceSelect();
     app.getDistrict()
 });
