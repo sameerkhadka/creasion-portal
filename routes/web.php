@@ -3,6 +3,7 @@
 use App\District;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\CheckboxController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\MapController;
 use App\Province;
@@ -54,6 +55,8 @@ Route::post('/filter-response', [FilterController::class,'filterResponse']);
 Route::get('/map',[MapController::class,'index'])->name('map');
 
 Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
+
+Route::post('/update-data', [CheckboxController::class,'updateStatus'])->name('update-data');
 
 Route::POST('/request', [RequestController::class,'request'])->name('request');
 

@@ -307,7 +307,7 @@
                     individual:{
                         fullName: "",
                         contactNumber: "",
-                        gender: "",
+                        gender: "Male",
                         age: "",
                     },
                     institution: {
