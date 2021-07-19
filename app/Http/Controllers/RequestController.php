@@ -66,7 +66,6 @@ class RequestController extends Controller
                 'individual.fullName' => 'required',
                 'individual.gender' => 'required',
                 'individual.age' => 'required',
-                'individual.contactNumber' => 'required',
                 'province' => 'required',
                 'district' => 'required',
                 'localAddress' => 'required',
@@ -75,7 +74,6 @@ class RequestController extends Controller
             'individual.fullName' => 'Full Name',
             'individual.gender' => 'Gender',
             'individual.age' => 'Age',
-            'individual.contactNumber' => 'Contact Number',
             'coordinate' => 'Co-ordinate',
             ])->validate();
            $individual = new Individual();
