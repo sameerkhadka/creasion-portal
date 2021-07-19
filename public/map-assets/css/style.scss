@@ -442,6 +442,18 @@ header {
     .form-card {
         margin: 15px 0;
 
+        .form-select {
+            width: 100%;
+            padding: 10px 0;
+            border: 0;
+            border-bottom: 1px solid #859194;
+
+
+            &:focus {
+                outline: none;
+            }
+        }
+
         p {
             font-size: 14px;
             margin-bottom: 0px;

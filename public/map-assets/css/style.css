@@ -470,6 +470,17 @@ header .request a ion-icon {
   margin: 15px 0;
 }
 
+.section-request .form-card .form-select {
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #859194;
+}
+
+.section-request .form-card .form-select:focus {
+  outline: none;
+}
+
 .section-request .form-card p {
   font-size: 14px;
   margin-bottom: 0px;
