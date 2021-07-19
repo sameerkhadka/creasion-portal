@@ -262,7 +262,7 @@
 
                                 <p>
                                     <label for="" class="label-small">Qty</label>
-                                    <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.requestQuantity">
+                                    <input :disabled = "!inventoryItem.checked" type="number" v-model.number="inventoryItem.requestQuantity">
                                 </p>
 
                                 <p>
