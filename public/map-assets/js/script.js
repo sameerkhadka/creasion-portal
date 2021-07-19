@@ -16,7 +16,8 @@ $("#provinces").on("change", function () {
     items.forEach((item) => {
         $("#districts").append(`<option value="${item.id}">${item.title}</option>`);
     });
-    $("select").niceSelect();
+    $("select.for-niceselect").niceSelect();
+
 });
 
 
@@ -156,7 +157,7 @@ $("#reset-btn").on('click', (e) => {
 
 })
 
-$(".for-niceselect").niceSelect();
+$("select.for-niceselect").niceSelect();
 
 mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
 

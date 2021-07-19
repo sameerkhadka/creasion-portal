@@ -40,11 +40,11 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $types = InstitutionType::all();
+        // $types = InstitutionType::all();
         $projects = Project::with('inventories')->get();
         $provinces = Province::with('districts')->get();
 
-        return view('request', compact('types','projects','provinces'));
+        return view('request', compact('projects','provinces'));
     }
 
     public function verifyRequest(Request $request){
