@@ -173,6 +173,74 @@ input::-webkit-inner-spin-button {
     transform: scale(1);
 }
 
+
+.item-lists [type="checkbox"]:checked {
+  display: none;
+}
+
+
+
+.item-lists [type="checkbox"]:checked,
+.item-lists [type="checkbox"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+.item-lists [type="checkbox"]:checked + label,
+.item-lists [type="checkbox"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+.item-lists [type="checkbox"]:checked + label:before,
+.item-lists [type="checkbox"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+
+.item-lists [type="checkbox"]:checked + label:after,
+.item-lists [type="checkbox"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #11b4da;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.item-lists [type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+.item-lists label {
+  margin-left: 0 !important;
+}
+
+
+.item-lists [type="checkbox"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
 #location-select { position: absolute; top: 0; bottom: 0; width: 100%; }
 
 .dz-default.dz-message span {
