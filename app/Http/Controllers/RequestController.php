@@ -197,7 +197,7 @@ class RequestController extends Controller
             }
         }
         $req->files = json_encode($fileArr);
-        if(isset($modelData["requestDate"])){
+        if($modelData["requestDate"]){
             $req->created_at = $modelData["requestDate"];
         }
         $req->update();
