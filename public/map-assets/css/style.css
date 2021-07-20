@@ -88,8 +88,9 @@ header .request a ion-icon {
   overflow: hidden;
 }
 
-.map-wrapper .row .col-md-3, .map-wrapper .row .col-md-9 {
+.map-wrapper .row .bg-color {
   padding: 0;
+  background-color: #E5EFF4;
 }
 
 .map-wrapper #map {
@@ -600,10 +601,57 @@ header .request a ion-icon {
   text-align: center;
 }
 
+.sidebar .sidebar-header {
+  background: #fff;
+  border-bottom: 1px solid #cccfd1;
+}
+
+.sidebar .sidebar-header ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sidebar .sidebar-header ul li.active {
+  background: #e5eff4;
+}
+
+.sidebar .sidebar-header ul li {
+  padding: 10px 0;
+  width: 110px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar .sidebar-header ul li a {
+  display: block;
+}
+
+.sidebar .sidebar-header ul li a span {
+  width: 12px;
+  height: 12px;
+  background: #11b4da;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .sidebar .data-item {
   margin: 10px 0;
-  border-bottom: 1px solid #f0f0f0;
-  padding: 10px 20px;
+  border-bottom: 1px solid #CCCFD1;
+  padding: 15px 38px;
+}
+
+.sidebar .data-item:first-child {
+  margin-top: 0;
 }
 
 .sidebar .data-item a:hover {
@@ -621,7 +669,11 @@ header .request a ion-icon {
 }
 
 .sidebar .data-item .list-wrap .icon {
-  width: 50px;
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: transparent;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -630,18 +682,37 @@ header .request a ion-icon {
           justify-content: center;
 }
 
-.sidebar .data-item .list-wrap .icon ion-icon {
-  font-size: 18px;
+.sidebar .data-item .list-wrap .main-color {
+  background: #11B4DA;
+}
+
+.sidebar .data-item .list-wrap .prj-oxy {
+  background: #EE4545;
+}
+
+.sidebar .data-item .list-wrap .prj-ess {
+  background: #46E8BC;
+}
+
+.sidebar .data-item .list-wrap .prj-cov {
+  background: #5A45EE;
+}
+
+.sidebar .data-item .list-wrap .des {
+  padding-left: 15px;
 }
 
 .sidebar .data-item .list-wrap h4 {
   font-size: 16px;
+  font-family: 'Proxima Nova';
+  font-weight: 500;
 }
 
-.sidebar .data-item .list-wrap p.for-project {
+.sidebar .data-item .list-wrap p {
   font-size: 14px;
-  margin-top: 5px;
+  margin: 5px 0 3px;
   line-height: 1;
+  color: #717171;
 }
 
 .sidebar .data-item .list-wrap h6 {
@@ -660,6 +731,7 @@ header .request a ion-icon {
 
 .sidebar .data-item .list-wrap .date span {
   margin-left: 5px;
+  font-size: 14px;
 }
 
 .sidebar .data-item .list-wrap .date p {

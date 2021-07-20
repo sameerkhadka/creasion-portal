@@ -56,15 +56,22 @@
 
     <section class="map-wrapper">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 bg-color  ">
                 
                 <div class="sidebar">
-                
+                    <div class="sidebar-header">
+                        <ul>
+                            <li class="active"><a href="" id="all"><span></span>All</a> </li>
+                            <li><a href="" id="oxygen-for-nepal"><span></span>Oxygen </a> </li>
+                            <li><a href="" id="covid-19-safety-kit"><span></span>Covid-</a> </li>
+                            <li><a href="" id="essentials"><span></span> Essentials</a> </li>
+                        </ul>
+                    </div>
                     <div id="map-lists"></div>
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-8 ">
             <section class="filter">
         <div class="filter-head">
             <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>

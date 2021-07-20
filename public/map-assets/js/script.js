@@ -180,7 +180,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1c
 
 var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
+    style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
 
     center: [84.5074, 28.4764],
     minZoom: 6, // note the camel-case
@@ -208,33 +208,58 @@ var map = new mapboxgl.Map({
                 portalData.features.forEach(function(data){
                     const latlng = data.geometry.coordinates
 
-                    // console.log(latlng)
+        
 
                     var prop = data.properties;
                     var indId = prop.individual_id;
                  
 
                     var name = indId ? prop.individual.name : prop.institution.name ;
-                    // var project = prop.user_request.project.title;
-                    console.log(prop)
+    
 
-                    var indIcon = '<ion-icon name="person-outline"></ion-icon>';
-                    var insIcon = '<ion-icon name="business-outline"></ion-icon>';
+                    var userRequests = prop.user_request.projects
+                    
+          
+
+                    var requestedProjects = [];
+                                        userRequests.forEach(function(request){
+                        requestedProjects.push(request.title);
+
+                    })
+
+               
+
+                    var projectColor;
+                    
+                    console.log(requestedProjects)
+
+                    if(requestedProjects.length> 1) {
+                        projectColor = "main-color"
+                    } else if(requestedProjects == "Oxygen") {
+                        projectColor = "prj-oxy"
+                        
+
+                    }
+                    else if(requestedProjects == "COVID19 Safety Kit") {
+                        projectColor = "prj-cov"
+                    }
+                    else if(requestedProjects == "Essentials") {
+                        projectColor = "prj-ess"
+                    }
 
                     var listingitems = `
                                     <div class="list-wrap">
-                                        <div class="icon">
-                                            ${indId ? indIcon : insIcon }
+                                        <div class="icon ${projectColor}">
                                             
                                         </div>
 
                                         <div class="des">
                                             <h4>${name}</h4>
-                                            <p class="for-project" > $asd{project}</p>
+                                            <p class= " forProject" > ${requestedProjects}</p>
                                             <div class="date">
                                                 <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
                                             </div>
-                                            <h6>Responded with ${prop.inventories.length} items</h6>
+                                          
                                         </div>
                                     </div>
                                 `
@@ -258,7 +283,6 @@ var map = new mapboxgl.Map({
                     link.addEventListener("click" ,() =>  {
                         var coords =latlng;
 
-                        console.log(coords);
 
                         map.flyTo({
                             center: coords,
@@ -434,7 +458,7 @@ var map = new mapboxgl.Map({
 
         map.on("click", "unclustered-point", function (e) {
             loadMarkerData(e);
-            console.log(e)
+            // console.log(e)
         });
 
     });

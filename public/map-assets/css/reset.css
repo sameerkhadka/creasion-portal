@@ -52,7 +52,21 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.main-color {
+  background: #11B4DA;
+}
 
+.prj-oxy, a#oxygen-for-nepal span {
+  background: #EE4545;
+}
+
+.prj-ess, a#essentials span  {
+  background: #46E8BC;
+}
+
+.prj-cov, a#covid-19-safety-kit span {
+  background: #5A45EE;
+}
 
 .user-type [type="radio"]:checked,
 .user-type [type="radio"]:not(:checked) {
