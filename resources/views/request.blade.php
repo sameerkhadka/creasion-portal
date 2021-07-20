@@ -438,50 +438,63 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- <script src="/map-assets/js/chart.js"></script> -->
+    <script type="module" src="/map-assets/js/script.js"></script>
+    <script type="module" src="/map-assets/js/request.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+ 
+<!-- Promise polyfill script is required -->
+<!-- to use Mapbox GL Geocoder in IE 11. -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
     <script>
 
-var coordinates = document.getElementById('coordinates');
-mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
-
-var map = new mapboxgl.Map({
-    container: "map-select",
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [84.0074, 28.4764],
-    minZoom: 5, // note the camel-case
-     maxZoom: 15
-});
-
-var marker = new mapboxgl.Marker({
-draggable: true
-})
-.setLngLat([85.32399, 27.70254])
-.addTo(map);
-
-function onDragEnd() {
-var lngLat = marker.getLngLat();
-coordinates.style.display = 'block';
-app.setLongLat(lngLat.lng,lngLat.lat);
-coordinates.innerHTML =
-'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-}
-
-marker.on('dragend', onDragEnd);
-
-    map.addControl(
-        new mapboxgl.GeolocateControl({
-            positionOptions: {
-            enableHighAccuracy: true
-        },
-        trackUserLocation: true
+        var coordinates = document.getElementById('coordinates');
+        mapboxgl.accessToken = "pk.eyJ1Ijoia2hhZGthc2FtIiwiYSI6ImNrcmJzczRjZDBlMzQzMHBleXUzN3I5cnQifQ.lptDLSXqDJJ-foFLioGRZA";
+        
+        var map = new mapboxgl.Map({
+            container: "map-select",
+            style: 'mapbox://styles/khadkasam/ckrby7qfp100f17qyws84z8l2',
+            center: [84.0074, 28.4764],
+            minZoom: 5, // note the camel-case
+             maxZoom: 15
+        });
+        
+        var marker = new mapboxgl.Marker({
+        draggable: true
         })
-    );
-
-    </script>
-
-    <script type="module" src="/map-assets/js/script.js"></script>
-    <script type="module" src="/map-assets/js/request.js"></script>
-
+        .setLngLat([85.32399, 27.70254])
+        .addTo(map);
+        
+        function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        coordinates.style.display = 'block';
+        app.setLongLat(lngLat.lng,lngLat.lat);
+        coordinates.innerHTML =
+        'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+        }
+        
+        marker.on('dragend', onDragEnd);
+        
+            map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+                })
+            );
+        
+            map.addControl(
+            new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+            })
+            );
+            </script>
+        
 
 <script type="module" src="{{ asset('js/custom.js') }}"></script>
 <script>

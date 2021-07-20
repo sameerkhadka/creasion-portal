@@ -159,31 +159,20 @@ $("#reset-btn").on('click', (e) => {
 
 $("select.for-niceselect").niceSelect();
 
-mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
-
-var map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
-    center: [83.0074, 28.4764],
-    minZoom: 6, // note the camel-case
-    maxZoom: 15
-});
-
-
 
 
 
 
 // Map
-mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
+mapboxgl.accessToken = "pk.eyJ1Ijoia2hhZGthc2FtIiwiYSI6ImNrcmJzczRjZDBlMzQzMHBleXUzN3I5cnQifQ.lptDLSXqDJJ-foFLioGRZA";
 
 
 var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/yogeshkarki/ckr1vizp9fae218o9n7pzwiy9",
+    style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
 
     center: [84.5074, 28.4764],
-    minZoom: 6, // note the camel-case
+    zoom: 6, // note the camel-case
      maxZoom: 15
 });
 
@@ -215,8 +204,8 @@ var map = new mapboxgl.Map({
                  
 
                     var name = indId ? prop.individual.name : prop.institution.name ;
-                    // var project = prop.user_request.project.title;
-                    console.log(prop)
+                    var project = prop.user_request.projects;
+                    console.log(project)
 
                     var indIcon = '<ion-icon name="person-outline"></ion-icon>';
                     var insIcon = '<ion-icon name="business-outline"></ion-icon>';
