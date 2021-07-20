@@ -262,12 +262,18 @@
 
                                 <p>
                                     <label for="" class="label-small">Qty</label>
-                                    <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.requestQuantity">
+                                    <input :disabled = "!inventoryItem.checked" type="number" v-model.number="inventoryItem.requestQuantity">
                                 </p>
 
                                 <p>
                                     <label for="" class="label-small">Units</label>
-                                    <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units">
+                                    <select :disabled = "!inventoryItem.checked" class="form-select" v-model="inventoryItem.units">
+                                        <option value="Pcs">Pcs </option>
+                                        <option value="Boxes">Boxes </option>
+                                        <option value="Packets">Packets</option>
+                                    </select>
+
+                                    {{-- <input :disabled = "!inventoryItem.checked" type="text" v-model.number="inventoryItem.units"> --}}
                                 </p>
                             </div>
                         </div>
@@ -412,7 +418,7 @@
     toastr.success('{{ session("success") }}')
 @endif
 </script>
-    <script src="/map-assets/js/jquery.min.js"></script>
+<script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>
     <script src="/map-assets/js/owl.carousel.min.js"></script>
 
@@ -473,7 +479,7 @@ marker.on('dragend', onDragEnd);
 
     </script>
 
-    {{-- <script type="module" src="/map-assets/js/script.js"></script> --}}
+    <script type="module" src="/map-assets/js/script.js"></script>
     <script type="module" src="/map-assets/js/request.js"></script>
 
 

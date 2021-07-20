@@ -11,11 +11,11 @@
 <body>
     <label for="project">Choose a project:</label>
     <select name="project" id="project" class="project">
-        @foreach ($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @foreach ($projects as $project)
+            <option value="{{ $project->id }}">{{ $project->title }}</option>
         @endforeach
     </select>
-    @foreach ($categories as $item)
+    @foreach ($projects as $item)
         <canvas class="canvas" id="pie-chart{{ $item->id }}" height="50" width="150"></canvas>
     @endforeach
 </body>
