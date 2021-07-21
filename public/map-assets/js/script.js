@@ -467,13 +467,16 @@ var map = new mapboxgl.Map({
                 var getInstitution =  JSON.parse(e.features[0].properties.institution)
                 var getIndividual = JSON.parse(e.features[0].properties.individual)
 
+                
                 var name = getInstitution ? getInstitution.name : getIndividual.name,
                     provinceId = getInstitution ? getInstitution.province.id: getIndividual.province.id,
                     provinceName = getInstitution ? getInstitution.province.title: getIndividual.province.title,
                     districtId = getInstitution ? getInstitution.district.id: getIndividual.district.id,
                     districtName = getInstitution ? getInstitution.district.title: getIndividual.district.title,
                     localLevelName = getInstitution ? getInstitution.local_level?.title : getIndividual.local_level?.title,
-                    type = getInstitution ?  getInstitution.institution_type.title : "Individual",
+        
+
+                    type = getInstitution ?  getInstitution.organizationType : "Individual",
                     elective1 = getInstitution ? getInstitution.contact_person: getIndividual.gender,
                     elective2 = getInstitution ? getInstitution.contact_number: getIndividual.age;
 
