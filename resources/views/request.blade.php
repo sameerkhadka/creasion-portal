@@ -456,9 +456,9 @@
         
         var map = new mapboxgl.Map({
             container: "map-select",
-            style: 'mapbox://styles/khadkasam/ckrby7qfp100f17qyws84z8l2',
-            center: [84.0074, 28.4764],
-            minZoom: 5, // note the camel-case
+            style: 'mapbox://styles/khadkasam/ckrd0c9tc212j17qyc5egnqm3',
+            center: [84.1074, 28.4764],
+            minZoom: 5.4, // note the camel-case
              maxZoom: 15
         });
         
