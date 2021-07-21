@@ -612,6 +612,12 @@ header .request a ion-icon {
   text-align: center;
 }
 
+.sidebar #map-lists {
+  position: relative;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
 .sidebar .sidebar-header {
   background: #fff;
   border-bottom: 1px solid #cccfd1;
@@ -663,6 +669,10 @@ header .request a ion-icon {
 
 .sidebar .data-item:first-child {
   margin-top: 0;
+}
+
+.sidebar .data-item:last-child {
+  border-bottom: 0;
 }
 
 .sidebar .data-item a:hover {
