@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="col-md-8 ">
+            <div class="col-md-9 ">
             <section class="filter">
         <div class="filter-head">
             <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
