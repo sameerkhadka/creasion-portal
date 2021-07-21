@@ -10,7 +10,7 @@ class FilterController extends Controller
     public function filterResponse(Request $request){
         $provinceID  = (int)$request->selectedProvince; //3
         $districtID  = (int)$request->selectedDistrict; //31
-        // $projectID = (int)$request->selectedProject; //
+        $projectID = (int)$request->selectedProject; 
         // $provinceID  = 3; //3
         // $districtID  = 31; //31
         // $projectID = $request->filterProject; //
@@ -18,6 +18,14 @@ class FilterController extends Controller
         $features = $responses->when($districtID,function($query) use ($districtID){
                 return $query->filter(function($item) use ($districtID){
                     return optional($item->individual)->district_id==$districtID || optional($item->institution)->district_id==$districtID;
+                });
+            })
+            ->when($projectID, function($query) use ($projectID){
+                return $query->filter(function($item) use ($projectID){
+                    $projects = $item->userRequest->projects;
+                    foreach($projects as $projectItem){
+                        if($projectID==$projectItem->id) return true;
+                    }
                 });
             })
             ->when($provinceID,function($query) use ($provinceID){
