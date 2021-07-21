@@ -13,7 +13,7 @@ class Response extends Model
     }
 
     public function institution(){
-        return $this->belongsTo(Institution::class)->with(['district','province','localLevel','institutionType']);
+        return $this->belongsTo(Institution::class)->with(['district','province','localLevel']);
     }
 
     public function individual(){
