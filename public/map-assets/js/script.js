@@ -220,7 +220,6 @@ var map = new mapboxgl.Map({
 
                     var projectColor;
                     
-                    console.log(requestedProjects)
 
                     if(requestedProjects.length> 1) {
                         projectColor = "main-color"
@@ -315,7 +314,11 @@ var map = new mapboxgl.Map({
             id: "urban-areas-fill",
             type: "line",
             source: "urban-areas",
-            layout: {},
+            layout: {
+                // 'text-field': ['get', 'description'],
+               
+                
+            },
             paint: {
                 "line-color": "#0a405a",
                 // "fill-color":"#11b4da",
