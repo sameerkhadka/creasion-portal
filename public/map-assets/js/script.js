@@ -280,12 +280,7 @@ var map = new mapboxgl.Map({
                     })
 
                     
-                    // var displayName = link.appendChild(document.createElement('h4'));
-                    // displayName.innerText = name
-                    // var linkDes = link.appendChild(document.createElement('div'));
-                    // linkDes.className = 'list-desc'
-                    // var displayProject = linkDes.appendChild(document.createElement('p'));
-                    // displayProject.innerText = project
+              
                 })
             }
 
@@ -321,9 +316,30 @@ var map = new mapboxgl.Map({
             },
             paint: {
                 "line-color": "#0a405a",
-                // "fill-color":"#11b4da",
             },
         });
+
+
+
+        map.addSource('province-label', {
+            'type': 'geojson',
+            'data': "/map-assets/json/label-province.geojson"
+        });
+            
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'source': 'province-label',
+            'layout': {
+            'text-field': ['get', 'description'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            }
+        });
+
+
+
 
         map.addLayer({
             id: "clusters",
