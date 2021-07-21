@@ -183,6 +183,23 @@ var map = new mapboxgl.Map({
 
     map.on('load', function () {
 
+        map.addSource('province-label', {
+            'type': 'geojson',
+            'data': "/map-assets/json/label-province.geojson"
+        });
+            
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'source': 'province-label',
+            'layout': {
+            'text-field': ['get', 'description'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            }
+        });
+
         axios.post('/filter-response',{'selectedProject':null,'selectedProvince':null,'selectedDistrict':null}).then((response)=>{
             map.getSource('cylinders').setData(response.data);
 
@@ -321,22 +338,7 @@ var map = new mapboxgl.Map({
 
 
 
-        map.addSource('province-label', {
-            'type': 'geojson',
-            'data': "/map-assets/json/label-province.geojson"
-        });
-            
-        map.addLayer({
-            'id': 'poi-labels',
-            'type': 'symbol',
-            'source': 'province-label',
-            'layout': {
-            'text-field': ['get', 'description'],
-            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-            'text-radial-offset': 0.5,
-            'text-justify': 'auto',
-            }
-        });
+        
 
 
 
