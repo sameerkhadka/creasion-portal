@@ -14,3 +14,13 @@
     </div>   
 @stop
 
+@section('javascript')
+<script>
+    function refresh() {
+        console.log("Hello");
+        window.setTimeout(refresh, 5000);
+    }
+
+    refresh();
+</script>
+@stop
