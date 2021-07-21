@@ -281,3 +281,14 @@ input::-webkit-inner-spin-button {
   margin-top: -43px;
   font-size: 11px;
 }
+
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  position: absolute;
+  top: -2px;
+  right: 50px;
+}
+
+input.mapboxgl-ctrl-geocoder--input {
+  padding-left: 35px !important;
+}
+

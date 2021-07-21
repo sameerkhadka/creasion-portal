@@ -42,9 +42,9 @@
                 </div>
 
                 <div class="head-nav">
-                    <a href="" class="active">Respond Maps</a>
+                    <!-- <a href="" class="active">Respond Maps</a>
                     <a href="">DEMOGRAPHICS</a>
-                    <a href="">Responds</a>
+                    <a href="">Responds</a> -->
                 </div>
 
                 <div class="request">
@@ -63,7 +63,7 @@
                         <ul>
                             <li class="active"><a href="" id="all"><span></span>All</a> </li>
                             <li><a href="" id="oxygen-for-nepal"><span></span>Oxygen </a> </li>
-                            <li><a href="" id="covid-19-safety-kit"><span></span>Covid-</a> </li>
+                            <li><a href="" id="covid-19-safety-kit"><span></span>Covid-19</a> </li>
                             <li><a href="" id="essentials"><span></span> Essentials</a> </li>
                         </ul>
                     </div>
