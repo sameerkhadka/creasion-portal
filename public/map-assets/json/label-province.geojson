@@ -1,0 +1,104 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Province 1"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.27197088279,
+            27.21052319087246
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Province 2"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.68968070300077,
+            27.058019228980092
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Bagmati"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.47056392270287,
+            27.67865196906648
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Gandaki"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.04977237130528,
+            28.40906158952393
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Province 5"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.68667353277905,
+            28.051445416166732
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Karnali"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.28232937335169,
+            29.253508516077503
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "Sudurpashchim"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.94032627817676,
+            29.324895476256362
+          ]
+        }
+      }
+
+
+    ]
+  }
