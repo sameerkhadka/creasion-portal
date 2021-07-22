@@ -1,0 +1,104 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "JHAPA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.47019221726813,
+            26.61748610045546
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "ILAM"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.91323301163462,
+            26.584542707538894
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "PANCHTHAR"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.90156852180152,
+            26.88116091466986
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "TAPLEJUNG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.33094988258416,
+            26.990930640958236
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "MORANG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.170042959904,
+            26.65061352129045
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "SUNSARI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.5489515139999,
+            27.154388251573035
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "BHOJPUR"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            87.27821232065018,
+            27.58212973365446
+          ]
+        }
+      }
+
+
+    ]
+  }

@@ -589,6 +589,12 @@ header {
 
 .sidebar {
 
+    #map-lists {
+        position: relative;
+        height: calc(100vh - 150px);
+        overflow-y: auto;
+    }
+
     .sidebar-header {
     
         background: #fff;
@@ -637,6 +643,10 @@ header {
 
         &:first-child {
             margin-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: 0;
         }
 
         a {
