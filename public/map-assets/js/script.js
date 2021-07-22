@@ -30,10 +30,6 @@ $(".update").on("click", (e) => {
     var selectedProject = $("#projects").val();
     var selectedProvince = $("#provinces").val();
 
-
-   
-
-
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response', {
         'selectedProject': selectedProject,
@@ -47,15 +43,13 @@ $(".update").on("click", (e) => {
         map.removeLayer("poi-labels")
     }
 
-    
-
 
     map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
     })
 
-    map.getStyle().layers.filter(layer => layer.type === 'symbol').forEach(item => {
+    map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
     })
