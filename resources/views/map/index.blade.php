@@ -92,7 +92,7 @@
             <div class="filter-card">
                 <label>Province</label>
 
-                <select class="for-niceselect" id="provinces">
+                <select  id="provinces">
                     <option value="-1" selected disabled>Select Province</option>
                 </select>
 
@@ -101,7 +101,7 @@
             <div class="filter-card">
                 <label>District</label>
 
-                <select class="for-niceselect" id="districts">
+                <select  id="districts">
                     <option value="-1" selected disabled>Select District</option>
                 </select>
 

@@ -122,11 +122,10 @@ provinces.forEach((item) => {
 $("#provinces").on("change", function() {
     var provinceID = $(this).val();
     $("#districts").html("");
-    $("#districts").siblings(".nice-select").remove();
     var items = districts.filter((item) => {
         return item.province == provinceID;
     });
-    $("#districts").append(`<option value="-1" selected disabled>Select</option>`);
+    $("#districts").append(`<option value="-1" selected disabled>Select District</option>`);
     items.forEach((item) => {
         $("#districts").append(`<option value="${item.id}">${item.title}</option>`);
     });
@@ -138,9 +137,8 @@ $("#provinces").on("change", function() {
 
 $(".update").on("click", (e) => {
     e.preventDefault();
-    var selectedProject = $("#projects").val();
+    var selectedProject = $(".sidebar-project.active").attr('data-id');
     var selectedProvince = $("#provinces").val();
-
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response', {
         'selectedProject': selectedProject,
@@ -327,9 +325,8 @@ $("#reset-btn").on('click', (e) => {
     document.querySelector('#map-lists').innerHTML = "";
     $('.sidebar-project').removeClass('active');
     $('.sidebar-project').first().addClass('active');
-
-    $("#projects").val() = -1;
-
+    $('#provinces').val(-1);
+   console.log($('#provinces').val());
 
     loadMapData();
 })
