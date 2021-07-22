@@ -61,7 +61,7 @@
                 <div class="sidebar">
                     <div class="sidebar-header">
                         <ul>
-                            <li class="active"><a href="" data-id="null" class="sidebar-project" id="all"><span></span>All</a> </li>
+                            <li ><a href="" data-id="null" class="sidebar-project active" id="all"><span></span>All</a> </li>
                              @foreach ($projects as $item)
                             <li><a href="#" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
                             @endforeach

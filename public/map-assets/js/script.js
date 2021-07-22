@@ -6,6 +6,8 @@ import {
 
 $('.sidebar-project').on('click',function(e){
     e.preventDefault();
+    $('.sidebar-project').removeClass('active');
+    $(this).toggleClass('active')
 
     var projectID =$(this).data("id");
     
@@ -18,6 +20,8 @@ $('.sidebar-project').on('click',function(e){
         document.querySelector('#map-lists').innerHTML = "";
         buildLists(response.data)
     });
+
+    resetData();
 });
 
 function buildLists(portalData) {
@@ -318,20 +322,42 @@ $(".update").on("click", (e) => {
 
 });
 
-
-
-
 $("#reset-btn").on('click', (e) => {
+    resetData();
+    document.querySelector('#map-lists').innerHTML = "";
+    $('.sidebar-project').removeClass('active');
+    $('.sidebar-project').first().addClass('active');
+
+    $("#projects").val() = -1;
+
+
+    loadMapData();
+})
+
+
+
+function resetData() {
+
+    
+    
+    if(map.getLayer("poi-labels")) {
+        map.removeLayer("poi-labels")
+    }
+
+    map.getStyle().layers.filter(layer => layer.id.includes('poi-labels')).forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
 
     map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
     })
 
-    map.getStyle().layers.filter(layer => layer.type === 'symbol').forEach(item => {
+    map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
-    })
+    }) 
 
   
 
@@ -375,11 +401,10 @@ $("#reset-btn").on('click', (e) => {
     });
 
     map.flyTo({
-        center: [83.0074, 28.4764],
-        zoom: 6, // note the camel-case
+        center: [84.1074, 28.4764],
+        zoom: 6.7, // note the camel-case
     })
-
-})
+}
 
 $("select.for-niceselect").niceSelect();
 
