@@ -173,7 +173,7 @@ var map = new mapboxgl.Map({
 
     center: [84.1074, 28.4764],
     minZoom: 6.7, // note the camel-case
-     maxZoom: 10
+     maxZoom: 11
 });
 
 
