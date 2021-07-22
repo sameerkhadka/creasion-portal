@@ -61,10 +61,10 @@
                 <div class="sidebar">
                     <div class="sidebar-header">
                         <ul>
-                            <li class="active"><a href="" id="all"><span></span>All</a> </li>
-                            <li><a href="" id="oxygen-for-nepal"><span></span>Oxygen </a> </li>
-                            <li><a href="" id="covid-19-safety-kit"><span></span>Covid-19</a> </li>
-                            <li><a href="" id="essentials"><span></span> Essentials</a> </li>
+                            <li class="active"><a href="" data-id="null" class="sidebar-project" id="all"><span></span>All</a> </li>
+                             @foreach ($projects as $item)
+                            <li><a href="#" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div id="map-lists"></div>

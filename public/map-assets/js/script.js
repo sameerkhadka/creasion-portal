@@ -4,7 +4,21 @@ import {
 } from "../resources.js";
 
 
+$('.sidebar-project').on('click',function(e){
+    e.preventDefault();
 
+    var projectID =$(this).data("id");
+    
+    axios.post('/filter-response', {
+        'selectedProject': projectID,
+        'selectedProvince': null,
+        'selectedDistrict': null
+    }).then((response) => {
+        map.getSource('cylinders').setData(response.data);
+        document.querySelector('#map-lists').innerHTML = "";
+        buildLists(response.data)
+    });
+});
 
 function buildLists(portalData) {
     portalData.features.forEach(function(data) {
