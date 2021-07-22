@@ -29,6 +29,11 @@ $(".update").on("click", (e) => {
     e.preventDefault();
     var selectedProject = $("#projects").val();
     var selectedProvince = $("#provinces").val();
+
+
+   
+
+
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response', {
         'selectedProject': selectedProject,
@@ -36,62 +41,60 @@ $(".update").on("click", (e) => {
         'selectedDistrict': selectedDistrict
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
-
-        map.removeLayer("poi-labels")
-
-
-        map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
-            if (map.getLayer(item.id))
-                map.removeLayer(item.id)
-        })
-
-        map.getStyle().layers.filter(layer => layer.type === 'symbol').forEach(item => {
-            if (map.getLayer(item.id))
-                map.removeLayer(item.id)
-        })
-
-        const currentTimestamp = Date.now()
-        map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
-            'type': 'geojson',
-            'data': `../json/coordinates/label-province${selectedProvince}.geojson`
-        });
-
-        map.addLayer({
-            'id': `district-labels--${Date.now()}`,
-            'type': 'symbol',
-            'source': `district-label${selectedProvince}-${currentTimestamp}`,
-            'layout': {
-                'text-field': ['get', 'description'],
-                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-                'text-radial-offset': 0.5,
-                'text-justify': 'auto',
-            }
-        });
-
-        map.addSource(`province${selectedProvince}-${currentTimestamp}`, {
-            type: "geojson",
-            data: `../json/coordinates/Province-${selectedProvince}.geojson`,
-        });
-
-        map.addLayer({
-            id: `province${selectedProvince}-${Date.now()}-fill`,
-            type: "line",
-            source: `province${selectedProvince}-${currentTimestamp}`,
-            layout: {},
-            paint: {
-                "line-color": "#0a405a",
-            },
-        });
-
-
-
-
     });
 
+    if(map.getLayer("poi-labels")) {
+        map.removeLayer("poi-labels")
+    }
+
+    
 
 
+    map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
 
-    // Map Fly to the Province
+    map.getStyle().layers.filter(layer => layer.type === 'symbol').forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+
+    const currentTimestamp = Date.now()
+    map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
+        'type': 'geojson',
+        'data': `../json/coordinates/label-province${selectedProvince}.geojson`
+    });
+
+    map.addLayer({
+        'id': `district-labels--${Date.now()}`,
+        'type': 'symbol',
+        'source': `district-label${selectedProvince}-${currentTimestamp}`,
+        'layout': {
+            'text-field': ['get', 'description'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            "text-size": 10,
+        }
+    });
+
+    map.addSource(`province${selectedProvince}-${currentTimestamp}`, {
+        type: "geojson",
+        data: `../json/coordinates/Province-${selectedProvince}.geojson`,
+    });
+
+    map.addLayer({
+        id: `province${selectedProvince}-${Date.now()}-fill`,
+        type: "line",
+        source: `province${selectedProvince}-${currentTimestamp}`,
+        layout: {},
+        paint: {
+            "line-color": "#0a405a",
+        },
+    });
+
+// Map Fly to the Province
     if (selectedProvince == 3) {
         var bbox = [
             83.9187728578849,
@@ -210,8 +213,10 @@ $(".update").on("click", (e) => {
 
 
 
-
 });
+
+
+
 
 $("#reset-btn").on('click', (e) => {
 
@@ -244,8 +249,11 @@ $("#reset-btn").on('click', (e) => {
             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
             'text-radial-offset': 0.5,
             'text-justify': 'auto',
+            "text-size": 10,
         }
     });
+
+    
 
 
     map.addSource(`urban-areas-${timeStamp}`, {
@@ -285,17 +293,11 @@ var map = new mapboxgl.Map({
 
     center: [84.1074, 28.4764],
     minZoom: 6.7, // note the camel-case
-    maxZoom: 10
+    maxZoom: 20
 });
 
 
-
-
-// Map
-
-map.on('load', function() {
-
-    
+function loadMapData() { 
     axios.post('/filter-response', {
         'selectedProject': null,
         'selectedProvince': null,
@@ -400,8 +402,16 @@ map.on('load', function() {
         }
 
     });
+}
 
 
+// Map
+
+map.on('load', function() {
+
+    
+    
+    loadMapData();
 
 
     // loading the respond data
@@ -443,13 +453,14 @@ map.on('load', function() {
         filter: ["has", "point_count"],
         paint: {
             "circle-color": ["step", ["get", "point_count"], "#51bbd6", 100, "#f1f075", 750, "#f28cb1"],
-            "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40],
+            "circle-radius": ["step", ["get", "point_count"], 12 ,43 , 2],
         },
     });
 
     map.addLayer({
         id: "cluster-count",
         type: "symbol",
+        iconAllowOverlay: true,
         source: "cylinders",
         filter: ["has", "point_count"],
         layout: {
@@ -462,6 +473,7 @@ map.on('load', function() {
     map.addLayer({
         id: "unclustered-point",
         type: "symbol",
+        iconAllowOverlay: true,
         source: "cylinders",
         filter: ["!", ["has", "point_count"]],
         layout: {
@@ -573,12 +585,15 @@ map.on('load', function() {
     map.addLayer({
         'id': 'poi-labels',
         'type': 'symbol',
+        'iconAllowOverlay': 'true',
         'source': 'province-label',
         'layout': {
             'text-field': ['get', 'description'],
             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
             'text-radial-offset': 0.5,
             'text-justify': 'auto',
+            
+            "text-size": 11,
         }
     });
 
