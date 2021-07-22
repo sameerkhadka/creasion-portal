@@ -4,13 +4,13 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Province 1"
+          "description": "SAPTARI"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            87.27197088279,
-            27.21052319087246
+            86.74613765632571,
+            26.598120783222697
           ]
         }
       },
@@ -18,13 +18,13 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Province 2"
+          "description": "SIRAHA"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            85.68968070300077,
-            27.058019228980092
+            86.34242043781617,
+            26.74645805665663
           ]
         }
       },
@@ -32,13 +32,13 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Bagmati"
+          "description": "DHANUSA"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            85.17056392270287,
-            27.77865196906648
+            86.03388019638834,
+            26.82874155006638
           ]
         }
       },
@@ -46,13 +46,13 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Gandaki"
+          "description": "MAHOTTARI"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            84.04977237130528,
-            28.40906158952393
+            85.81991252749117,
+            26.879132990566962
           ]
         }
       },
@@ -60,13 +60,13 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Province 5"
+          "description": "SARLAHI"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            82.68667353277905,
-            28.051445416166732
+            85.56531220869543,
+            26.986159229293165
           ]
         }
       },
@@ -74,13 +74,13 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Karnali"
+          "description": "BARA"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            82.75232937335169,
-            29.253508516077503
+            85.07064142997248,
+            27.10795953654191
           ]
         }
       },
@@ -88,13 +88,26 @@
       {
         "type": "Feature",
         "properties": {
-          "description": "Sudurpashchim"
+          "description": "PARSA"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [
-            80.94032627817676,
-            29.324895476256362
+            84.7801630348537,
+            27.23968735545858
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "RAUTAHAT"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.30233086363795,
+            27.001574082293832
           ]
         }
       }
