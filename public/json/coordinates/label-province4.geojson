@@ -1,0 +1,152 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "GORKHA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.79017695666025,
+            28.318827196979154
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KASKI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.9973481375455,
+            28.35494649649246
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "LAMJUNG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.43005349109238,
+            28.289315668818336
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "SYANGJA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.80321443774628,
+            28.021106723604202
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "TANAHU"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [            
+            84.251194633256,
+            27.955370177536444
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "MANANG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.22451544738435,
+            28.672919154212916
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "BAGLUNG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.25046309844505,
+            28.347502509289278
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "MYAGDI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.45999324326222,
+            28.553146704365126
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "PARBAT"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.67889009696687,
+            28.211300319870627
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "MUSTANG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.85787282576845,
+            28.98131449146188
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "Nawalpur"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.059,
+            27.7555
+          ]
+        }
+      }
+    ]
+  }

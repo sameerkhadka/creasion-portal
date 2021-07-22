@@ -60,6 +60,8 @@ Route::post('/update-data', [CheckboxController::class,'updateStatus'])->name('u
 
 Route::POST('/request', [RequestController::class,'request'])->name('request');
 
+Route::get('/new-request', [RequestController::class,'new_request'])->name('new_request');
+
 Route::POST('/responses/add', [RequestController::class,'add_response'])->name('add_response');
 
 Route::group(['prefix' => 'admin'], function () {

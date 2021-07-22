@@ -27,7 +27,7 @@ use App\Models\User;
 use App\Models\ProjectUserRequest;
 
 use App\Models\InventoryUserRequest;
-
+use App\Models\Setting;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Validator;
@@ -43,6 +43,32 @@ class RequestController extends Controller
         $provinces = Province::with('districts')->get();
 
         return view('request', compact('projects','provinces'));
+    }
+
+    public function new_request(Request $request){
+        // 11
+        $settingTotalRequests = Setting::where('key','admin.total_requests')->first();
+        // 13
+        $totalRequestsCount = UserRequest::all()->count();
+
+        // 2 request new
+        $totalNewRequestsCount = $totalRequestsCount - $settingTotalRequests->value;
+
+        if($totalNewRequestsCount<0){  $settingTotalRequests->value = $totalRequestsCount; $settingTotalRequests->update();  $totalNewRequestsCount=0; }
+
+        if($totalNewRequestsCount==0) return response(['msg'=>'No New Request','totalNewRequestsCount'=>0],200);
+
+        $newRequests = UserRequest::orderBy('id','desc')->take($totalNewRequestsCount)->get();
+        $settingTotalRequests->value = $totalRequestsCount;
+        $settingTotalRequests->update();
+        
+        return response([
+            'msg'=>$totalNewRequestsCount.' New Requests',
+            'totalNewRequestsCount'=>$totalNewRequestsCount,
+            'newRequests'=>$newRequests
+        ],200);
+
+
     }
 
     public function verifyRequest(Request $request){

@@ -1,0 +1,128 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KAILALI RUKUM"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.8792246054029,
+            28.741641922944602
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "ACHHAM"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.29711239175032,
+            29.11256817441899
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DOTI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.89456957808088,
+            29.169642090029008
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "BAJHANG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.17871770328547,
+            29.708245162950185
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "BAJURA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [            
+            81.56316251291287,
+            29.561322426006946
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KANCHANPUR"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.32179602711126,
+            28.861823786795433
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DADELDHURA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.48906942024193,
+            29.223121930278023
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "BAITADI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.5715166401557,
+            29.50754103122814
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DARCHULA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.7918926088294,
+            29.89194957501019
+          ]
+        }
+      }
+    ]
+  }

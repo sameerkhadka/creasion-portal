@@ -1,0 +1,164 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KAPILVASTU"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.9814859011405,
+            27.627803742491572
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "PARASI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.73871051466158,
+            27.52825076350813
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "RUPANDEHI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.38955026950569,
+            27.576678115670248
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "ARGHAKHANCHI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.07931919696374,
+            27.908546382344674
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "GULMI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [            
+            83.30702478352003,
+            28.0938944697723
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "PALPA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.62365185219313,
+            27.817372432844827
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DANG"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.41038219013222,
+            27.9641441834616
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "PYUTHAN"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.86502527526966,
+            28.115453861229355
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "ROLPA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.62805588402239,
+            28.344166349140597
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "EASTERN RUKUM"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.81088475092417,
+            28.673989710571888
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "BANKE"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.82228931219758,
+            28.087169830604655
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "BARDIYA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.40151534237341,
+            28.383668908446907
+          ]
+        }
+      }
+    ]
+  }

@@ -1,0 +1,140 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "WESTERN RUKUM"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.46045156349273,
+            28.738837863481795
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "SALYAN"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.13874784335462,
+            28.39649855398913
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DOLPA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            83.05217011480939,
+            29.170655636885265
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "HUMLA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.8798655626356,
+            30.03232237658345
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "JUMLA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [            
+            82.21726673306101,
+            29.2717137976417
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KALIKOT"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.75203278875941,
+            29.19511546221388
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "MUGU"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.37059299567565,
+            29.61807481164375
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "SURKHET"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.5864078212924,
+            28.641183310260914
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DAILEKH"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            81.67887551495463,
+            28.881388856821495
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "JAJARKOT"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            82.16787118974288,
+            28.865380352837356
+          ]
+        }
+      }
+    ]
+  }
