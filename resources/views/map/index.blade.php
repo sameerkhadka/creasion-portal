@@ -79,7 +79,7 @@
 
         <div class="filter-card-wrap">
 
-            <div class="filter-card">
+            <!-- <div class="filter-card">
                 <label>Relief Project</label>
                 <select class="for-niceselect" id="projects">
                     <option data-display="Select Project" value="" selected>Select Projects</option>
@@ -87,7 +87,7 @@
                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> -->
 
             <div class="filter-card">
                 <label>Province</label>

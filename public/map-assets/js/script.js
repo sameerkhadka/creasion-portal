@@ -3,6 +3,99 @@ import {
     provinces
 } from "../resources.js";
 
+
+
+
+function buildLists(portalData) {
+    portalData.features.forEach(function(data) {
+        const latlng = data.geometry.coordinates
+
+
+
+        var prop = data.properties;
+        var indId = prop.individual_id;
+
+
+        var name = indId ? prop.individual.name : prop.institution.name;
+
+
+        var userRequests = prop.user_request.projects
+
+
+
+        var requestedProjects = [];
+        userRequests.forEach(function(request) {
+            requestedProjects.push(request.title);
+
+        })
+
+
+
+        var projectColor;
+
+
+        if (requestedProjects.length > 1) {
+            projectColor = "main-color"
+        } else if (requestedProjects == "Oxygen") {
+            projectColor = "prj-oxy"
+
+
+        } else if (requestedProjects == "COVID19 Safety Kit") {
+            projectColor = "prj-cov"
+        } else if (requestedProjects == "Essentials") {
+            projectColor = "prj-ess"
+        }
+
+        var listingitems = `
+                            <div class="list-wrap">
+                                <div class="icon ${projectColor}">
+                                    
+                                </div>
+
+                                <div class="des">
+                                    <h4>${name}</h4>
+                                    <p class= " forProject" > ${requestedProjects}</p>
+                                    <div class="date">
+                                        <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        `
+
+
+
+        var listings = document.getElementById('map-lists');
+
+
+        var listing = listings.appendChild(document.createElement('div'));
+        listing.className = 'data-item';
+
+        var link = listing.appendChild(document.createElement('a'));
+        link.className = 'title';
+        link.href = "#"
+        link.id = 'link-' + prop.id;
+        link.innerHTML = listingitems;
+
+
+
+        link.addEventListener("click", () => {
+            var coords = latlng;
+
+
+            map.flyTo({
+                center: coords,
+                zoom: 10,
+                essential: true,
+            });
+        })
+
+
+
+    })
+}
+
+
 // Distirct with respect to province
 provinces.forEach((item) => {
     $("#provinces").append(`<option value="${item.id}">${item.title}</option>`);
@@ -37,6 +130,8 @@ $(".update").on("click", (e) => {
         'selectedDistrict': selectedDistrict
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
+        document.querySelector('#map-lists').innerHTML = "";
+        buildLists(response.data)
     });
 
     if(map.getLayer("poi-labels")) {
@@ -306,94 +401,7 @@ function loadMapData() {
 
         buildLists(portalData);
 
-        function buildLists(portalData) {
-            portalData.features.forEach(function(data) {
-                const latlng = data.geometry.coordinates
-
-
-
-                var prop = data.properties;
-                var indId = prop.individual_id;
-
-
-                var name = indId ? prop.individual.name : prop.institution.name;
-
-
-                var userRequests = prop.user_request.projects
-
-
-
-                var requestedProjects = [];
-                userRequests.forEach(function(request) {
-                    requestedProjects.push(request.title);
-
-                })
-
-
-
-                var projectColor;
-
-
-                if (requestedProjects.length > 1) {
-                    projectColor = "main-color"
-                } else if (requestedProjects == "Oxygen") {
-                    projectColor = "prj-oxy"
-
-
-                } else if (requestedProjects == "COVID19 Safety Kit") {
-                    projectColor = "prj-cov"
-                } else if (requestedProjects == "Essentials") {
-                    projectColor = "prj-ess"
-                }
-
-                var listingitems = `
-                                    <div class="list-wrap">
-                                        <div class="icon ${projectColor}">
-                                            
-                                        </div>
-
-                                        <div class="des">
-                                            <h4>${name}</h4>
-                                            <p class= " forProject" > ${requestedProjects}</p>
-                                            <div class="date">
-                                                <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                `
-
-
-
-                var listings = document.getElementById('map-lists');
-
-
-                var listing = listings.appendChild(document.createElement('div'));
-                listing.className = 'data-item';
-
-                var link = listing.appendChild(document.createElement('a'));
-                link.className = 'title';
-                link.href = "#"
-                link.id = 'link-' + prop.id;
-                link.innerHTML = listingitems;
-
-
-
-                link.addEventListener("click", () => {
-                    var coords = latlng;
-
-
-                    map.flyTo({
-                        center: coords,
-                        zoom: 10,
-                        essential: true,
-                    });
-                })
-
-
-
-            })
-        }
+        
 
     });
 }
