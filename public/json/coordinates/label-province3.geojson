@@ -1,0 +1,184 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "SINDHULI"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.94376814650762,
+            27.201466891627046
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "RAMECHHAP"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            86.17737024301982,
+            27.51361408075647
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DOLAKHA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            86.19861865752415,
+            27.78572113706842
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "BHAKTAPUR"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.44078719752078,
+            27.67769038360649
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "DHADING"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.96016032720414,
+            27.954707468396766
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KATHMANDU"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.34735132692755,
+            27.728201081500877
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "KAVREPALANCHOWK"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.61948290583136,
+            27.535356393143648
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "LALITPUR"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.34268866827021,
+            27.53968576100482
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "NUWAKOT"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.23538711779088,
+            27.915073265545022
+          ]
+        }
+      },{
+        "type": "Feature",
+        "properties": {
+          "description": "RASUWA"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.41594692791568,
+            28.183248202537015
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "SINDHUPALCHOK"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.73962867740835,
+            27.914972455286772
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "CHITWAN"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            84.43453047394195,
+            27.584942259802776
+          ]
+        }
+      },
+
+      {
+        "type": "Feature",
+        "properties": {
+          "description": "MAKWANPUR"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.07919101599765,
+            27.46996511067159
+          ]
+        }
+      }
+
+
+
+    ]
+  }
