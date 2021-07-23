@@ -10,7 +10,7 @@ class MapController extends Controller
 {
     public function index(){
         $projects = Project::all();
-        $partners = Partner::all();
+        $partners = Partner::orderBy('order')->get();
         return view('map.index',compact('projects','partners'));
     }
 }
