@@ -24,6 +24,13 @@ $('.sidebar-project').on('click',function(e){
 
         document.querySelector('.sidebar-selected').innerText = projectName;
 
+        var selectedProjectColor = document.querySelector('.icon-color');
+
+        selectedProjectColor.classList.remove(1);
+        selectedProjectColor.classList.remove(2);
+        selectedProjectColor.classList.remove(3);        
+        selectedProjectColor.classList.toggle(projectID)
+
         buildLists(response.data)
 
     });
@@ -75,19 +82,24 @@ function buildLists(portalData) {
 
         var projectColor;
 
-
         if (requestedProjects.length > 1) {
             projectColor = "main-color"
+            
      
         } else if (requestedProjects == "Oxygen For Nepal") {
             projectColor = "prj-oxy"
+           
 
 
         } else if (requestedProjects == "COVID19 Safety Kit") {
             projectColor = "prj-cov"
+        
         } else if (requestedProjects == "Essentials") {
             projectColor = "prj-ess"
+
         }
+
+        
 
         var listingitems = `
                             <div class="list-wrap">

@@ -71,7 +71,7 @@
                         </ul> -->
 
                         <div class="selected-project">
-                            <span class="icon"></span>
+                            <span class="icon icon-color"></span>
 
                             <div class="text">
                                 <p>Selected Project</p>

@@ -56,7 +56,19 @@ input::-webkit-inner-spin-button {
   background: #11B4DA;
 }
 
-.prj-oxy, a#oxygen-for-nepal span {
+span.icon.icon-color.\31{
+  background: #EE4545 !important;
+}
+
+span.icon.icon-color.\32 {
+  background: #5A45EE !important; 
+}
+
+span.icon.icon-color.\33 {
+  background: #46E8BC !important;
+}
+
+.prj-oxy, a#oxygen-for-nepal span{
   background: #EE4545;
 }
 
