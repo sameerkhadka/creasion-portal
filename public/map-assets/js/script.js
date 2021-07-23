@@ -4,12 +4,15 @@ import {
 } from "../resources.js";
 
 
+
 $('.sidebar-project').on('click',function(e){
     e.preventDefault();
     $('.sidebar-project').removeClass('active');
     $(this).toggleClass('active')
 
+    console.log(this)
     var projectID =$(this).data("id");
+    var projectName = $(this).data('title')
     
     axios.post('/filter-response', {
         'selectedProject': projectID,
@@ -18,19 +21,36 @@ $('.sidebar-project').on('click',function(e){
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
         document.querySelector('#map-lists').innerHTML = "";
+
+        document.querySelector('.sidebar-selected').innerText = projectName;
+
         buildLists(response.data)
+
     });
 
+    
+
+    $('#provinces').val(-1);
+    $('#districts').val(-1);
+
+    
     resetData();
 });
 
 function buildLists(portalData) {
-    portalData.features.forEach(function(data) {
+    
+      
+
+        document.querySelector('.total-responds').innerText = portalData.features.length ;
+
+
+        portalData.features.forEach(function(data) {
         const latlng = data.geometry.coordinates
 
 
 
         var prop = data.properties;
+        
         var indId = prop.individual_id;
 
 
@@ -39,21 +59,26 @@ function buildLists(portalData) {
 
         var userRequests = prop.user_request.projects
 
-
+      
 
         var requestedProjects = [];
+      
         userRequests.forEach(function(request) {
             requestedProjects.push(request.title);
-
+            
         })
 
+        
 
+        
+        
 
         var projectColor;
 
 
         if (requestedProjects.length > 1) {
             projectColor = "main-color"
+     
         } else if (requestedProjects == "Oxygen") {
             projectColor = "prj-oxy"
 
@@ -95,6 +120,7 @@ function buildLists(portalData) {
         link.id = 'link-' + prop.id;
         link.innerHTML = listingitems;
 
+        
 
 
         link.addEventListener("click", () => {
@@ -326,7 +352,8 @@ $("#reset-btn").on('click', (e) => {
     $('.sidebar-project').removeClass('active');
     $('.sidebar-project').first().addClass('active');
     $('#provinces').val(-1);
-   console.log($('#provinces').val());
+    $('#districts').val(-1);
+
 
     loadMapData();
 })
@@ -375,7 +402,7 @@ function resetData() {
             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
             'text-radial-offset': 0.5,
             'text-justify': 'auto',
-            "text-size": 10,
+            "text-size": 14,
         }
     });
 
@@ -412,14 +439,61 @@ $("select.for-niceselect").niceSelect();
 mapboxgl.accessToken = "pk.eyJ1Ijoia2hhZGthc2FtIiwiYSI6ImNrcmJzczRjZDBlMzQzMHBleXUzN3I5cnQifQ.lptDLSXqDJJ-foFLioGRZA";
 
 
-var map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
+// var map = new mapboxgl.Map({
+//     container: "map",
+//     style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
 
-    center: [84.1074, 28.4764],
-    minZoom: 6.7, // note the camel-case
-    maxZoom: 20
-});
+//     center: [84.1074, 28.4764],
+//     minZoom: 6.2, // note the camel-case
+//     maxZoom: 20
+
+// });
+
+// var bbox = [
+
+//     80.092948,
+//     31.254807,
+//     88.184761,
+//     25.782567
+// ];
+// map.fitBounds(bbox, {
+//     padding: {
+//         top: 100,
+//         bottom: 25,
+//         left: 15,
+//         right: 5
+//     }
+// });
+
+var mapBoxWidth = $('#map').width();
+
+
+
+if(mapBoxWidth < 1100) {
+    var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
+    
+        center: [84.1074, 28.4764],
+        minZoom: 6.2, // note the camel-case
+        maxZoom: 20
+    });
+} else if(mapBoxWidth > 1100) {
+    var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
+    
+        center: [84.1074, 28.4764],
+        minZoom: 6.7, // note the camel-case
+        maxZoom: 20
+    });
+}
+ 
+
+
+
+
+
 
 
 function loadMapData() { 
@@ -443,11 +517,15 @@ function loadMapData() {
 }
 
 
+
+
+
+
 // Map
 
 map.on('load', function() {
 
-    
+
     
     loadMapData();
 
@@ -472,7 +550,7 @@ map.on('load', function() {
         type: "line",
         source: "urban-areas",
         layout: {
-            // 'text-field': ['get', 'description'],
+
 
 
         },
@@ -631,7 +709,7 @@ map.on('load', function() {
             'text-radial-offset': 0.5,
             'text-justify': 'auto',
             
-            "text-size": 11,
+            "text-size": 14,
         }
     });
 

@@ -33,18 +33,21 @@
 <body>
 
     <header>
-        <div class="container">
+        <div class="container-fluid">
             <div class="header-wrap">
                 <div class="header-logo">
                     <a href="">
-                        NEPAL RELIEF <span>PORTAL</span>
+                        <img src="/map-assets/images/nepalreliefportal.svg" alt="">
                     </a>
                 </div>
 
                 <div class="head-nav">
-                    <!-- <a href="" class="active">Respond Maps</a>
-                    <a href="">DEMOGRAPHICS</a>
-                    <a href="">Responds</a> -->
+                    <ul>
+                        <li ><a href="" data-title="All" data-id="null" class="sidebar-project active" id="all"><span></span>All</a> </li>
+                            @foreach ($projects as $item)
+                        <li><a href="#" data-title= "{{ $item->title }}" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
+                        @endforeach
+                    </ul>
                 </div>
 
                 <div class="request">
@@ -60,61 +63,65 @@
                 
                 <div class="sidebar">
                     <div class="sidebar-header">
-                        <ul>
+                        <!-- <ul>
                             <li ><a href="" data-id="null" class="sidebar-project active" id="all"><span></span>All</a> </li>
                              @foreach ($projects as $item)
                             <li><a href="#" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
+
+                        <div class="selected-project">
+                            <span class="icon"></span>
+
+                            <div class="text">
+                                <p>Selected Project</p>
+                                <h4 class="sidebar-selected">All</h4>
+                            </div>
+                        </div>
+
+                        <div class="responded-num">
+                            <h4 class="total-responds">00</h4>
+                            <p>Responds</p>
+                        </div>
                     </div>
                     <div id="map-lists"></div>
                 </div>
             </div>
 
             <div class="col-md-9 ">
-            <section class="filter">
-        <div class="filter-head">
-            <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
-        </div>
+            <!-- <section class="filter">
+                <div class="filter-head">
+                    <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
+                </div>
 
-        <div class="filter-card-wrap">
+                <div class="filter-card-wrap">
 
-            <!-- <div class="filter-card">
-                <label>Relief Project</label>
-                <select class="for-niceselect" id="projects">
-                    <option data-display="Select Project" value="" selected>Select Projects</option>
-                    @foreach ($projects as $item)
-                    <option value="{{ $item->id }}">{{ $item->title }}</option>
-                    @endforeach
-                </select>
-            </div> -->
+                    <div class="filter-card">
+                        <label>Province</label>
 
-            <div class="filter-card">
-                <label>Province</label>
+                        <select  id="provinces">
+                            <option value="-1" selected disabled>Select Province</option>
+                        </select>
 
-                <select  id="provinces">
-                    <option value="-1" selected disabled>Select Province</option>
-                </select>
+                    </div>
 
-            </div>
+                    <div class="filter-card">
+                        <label>District</label>
 
-            <div class="filter-card">
-                <label>District</label>
+                        <select  id="districts">
+                            <option value="-1" selected disabled>Select District</option>
+                        </select>
 
-                <select  id="districts">
-                    <option value="-1" selected disabled>Select District</option>
-                </select>
-
-            </div>
+                    </div>
 
 
 
-            <div class="filter-card">
-                <a href="" class="update">Update</a>
-                <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Reset</button>
-            </div>
-        </div>
-    </section>
+                    <div class="filter-card">
+                        <a href="" class="update">Update</a>
+                        <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Reset</button>
+                    </div>
+                </div>
+            </section> -->
                 <div id="map"></div>
             </div>
         </div>

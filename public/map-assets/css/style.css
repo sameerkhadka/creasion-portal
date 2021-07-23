@@ -20,33 +20,27 @@ header .header-wrap {
           align-items: center;
 }
 
-header .header-logo a {
-  font-size: 28px;
-  font-weight: 500;
-  color: #11b4da;
-}
-
-header .header-logo a span {
-  margin: 0;
-  font-weight: 100;
-  color: #000;
+header .header-logo a img {
+  width: 450px;
 }
 
 header .head-nav {
   margin-left: -80px;
 }
 
-header .head-nav a {
+header .head-nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .head-nav ul li a {
   text-transform: uppercase;
   margin: 0 50px 0 0;
 }
 
-header .head-nav a:last-child {
+header .head-nav ul li:last-child {
   margin-right: 0;
-}
-
-header .head-nav a.active {
-  color: #11b4da;
 }
 
 header .request {
@@ -619,8 +613,60 @@ header .request a ion-icon {
 }
 
 .sidebar .sidebar-header {
-  background: #fff;
+  background: #e9f2f6;
   border-bottom: 1px solid #cccfd1;
+  padding: 25px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sidebar .sidebar-header .selected-project {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.sidebar .sidebar-header .selected-project span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #ee4545;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.sidebar .sidebar-header .selected-project p {
+  font-family: "Proxima Nova";
+  font-size: 12px;
+  line-height: 1;
+}
+
+.sidebar .sidebar-header .selected-project h4 {
+  font-size: 20px;
+}
+
+.sidebar .sidebar-header .responded-num {
+  text-align: center;
+}
+
+.sidebar .sidebar-header .responded-num h4 {
+  font-size: 30px;
+}
+
+.sidebar .sidebar-header .responded-num p {
+  font-family: "Proxima Nova";
+  font-size: 12px;
+  line-height: 1;
 }
 
 .sidebar .sidebar-header ul {

@@ -19,6 +19,10 @@
         max-width: 1290px;
     }   
 
+    header .header-logo a img {
+        width: 309px;
+    }
+
 }
 
 @media screen and (max-width: 1024px) {
