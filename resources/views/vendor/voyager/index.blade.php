@@ -7,7 +7,7 @@
         <div class="analytics-container">
             
                 <p id="msg" style="border-radius:4px; font-weight:600; padding:20px; background:#fff; margin:0; color:#999; text-align:center;">
-                   Dashboard
+                   
                 </p>          
                        
         </div>
@@ -25,12 +25,45 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             if(data.totalNewRequestsCount>0){
                 toastr.success(data.msg)
                 document.getElementById('msg').innerHTML = data.msg
-
+ 
                 // add these data from data.newRequests to that table
-                
+               
             }
             else{
-                document.getElementById('msg').innerText= data.msg
+                document.getElementById('msg').innerHTML= data.msg
+         
+
+                 var newData = data.newRequests;
+
+                var toDisplayId = [];
+                var toDisplayName = [];
+
+                 newData.forEach( (item)=> {
+                  
+                    toDisplayId.push(item.individual.id)
+                    toDisplayName.push(item.individual.name)
+
+                    
+
+                 })
+
+                var displayTable = ` 
+                
+
+                    <table>
+                        <tr> 
+                            <th>Name</th>
+                            <th>Id</th>
+                        </tr>
+                        <tr>
+                            <td>${toDisplayName}</td>
+                            <td> ${toDisplayId}</td>
+                        </tr>
+                    <table>
+                    
+                `
+
+                document.querySelector('#msg').innerHTML = displayTable ;
             }
         })
         window.setTimeout(refresh, 5000);
