@@ -79,7 +79,7 @@ function buildLists(portalData) {
         if (requestedProjects.length > 1) {
             projectColor = "main-color"
      
-        } else if (requestedProjects == "Oxygen") {
+        } else if (requestedProjects == "Oxygen For Nepal") {
             projectColor = "prj-oxy"
 
 
