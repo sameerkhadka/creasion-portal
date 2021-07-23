@@ -180,11 +180,13 @@
     <section class="partners" id="section-partners">
         <div class="container">
             <div class="partner-slider owl-carousel">
+                @foreach($partners as $partner)
                 <div class="item">
-                    <img src="/map-assets/images/american-nepal-medical-foundation.png" alt="">
+                    <img src="{{Voyager::image($partner->image)}}" alt="">
                 </div>
+                @endforeach
 
-                <div class="item">
+                {{-- <div class="item">
                     <img src="/map-assets/images/animal-nepal.png" alt="">
                 </div>
 
@@ -215,7 +217,7 @@
                 <div class="item">
                     <img src="/map-assets/images/merging-nepsocs.png" alt="">
                 </div>
-
+ 
                 <div class="item">
                     <img src="/map-assets/images/mission-rebuild-nepal.png" alt="">
                 </div>
@@ -231,7 +233,7 @@
 
                 <div class="item">
                     <img src="/map-assets/images/the-coca-cola-foundation.png" alt="">
-                </div>
+                </div> --}}
 
             </div>
         </div>
