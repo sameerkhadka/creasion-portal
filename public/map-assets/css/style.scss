@@ -605,20 +605,20 @@ header {
         ul {
             display: flex;
 
-            li.active {
-                background: #e5eff4;
+            .active {
+                background: #e5eff4;    
             }
 
             li {
-                padding: 10px 0;
-                width: 110px;
-                height: 80px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                
 
                 a {
-                    display: block;
+                    padding: 10px 0;
+                    width: 110px;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
                     span {
                     

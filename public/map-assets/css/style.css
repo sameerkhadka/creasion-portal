@@ -629,11 +629,11 @@ header .request a ion-icon {
   display: flex;
 }
 
-.sidebar .sidebar-header ul li.active {
+.sidebar .sidebar-header ul .active {
   background: #e5eff4;
 }
 
-.sidebar .sidebar-header ul li {
+.sidebar .sidebar-header ul li a {
   padding: 10px 0;
   width: 110px;
   height: 80px;
@@ -646,10 +646,6 @@ header .request a ion-icon {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.sidebar .sidebar-header ul li a {
-  display: block;
 }
 
 .sidebar .sidebar-header ul li a span {

@@ -61,10 +61,10 @@
                 <div class="sidebar">
                     <div class="sidebar-header">
                         <ul>
-                            <li class="active"><a href="" id="all"><span></span>All</a> </li>
-                            <li><a href="" id="oxygen-for-nepal"><span></span>Oxygen </a> </li>
-                            <li><a href="" id="covid-19-safety-kit"><span></span>Covid-19</a> </li>
-                            <li><a href="" id="essentials"><span></span> Essentials</a> </li>
+                            <li ><a href="" data-id="null" class="sidebar-project active" id="all"><span></span>All</a> </li>
+                             @foreach ($projects as $item)
+                            <li><a href="#" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div id="map-lists"></div>
@@ -79,20 +79,20 @@
 
         <div class="filter-card-wrap">
 
-            <div class="filter-card">
+            <!-- <div class="filter-card">
                 <label>Relief Project</label>
-                <select id="projects">
+                <select class="for-niceselect" id="projects">
                     <option data-display="Select Project" value="" selected>Select Projects</option>
                     @foreach ($projects as $item)
                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> -->
 
             <div class="filter-card">
                 <label>Province</label>
 
-                <select id="provinces">
+                <select  id="provinces">
                     <option value="-1" selected disabled>Select Province</option>
                 </select>
 
@@ -101,7 +101,7 @@
             <div class="filter-card">
                 <label>District</label>
 
-                <select id="districts">
+                <select  id="districts">
                     <option value="-1" selected disabled>Select District</option>
                 </select>
 

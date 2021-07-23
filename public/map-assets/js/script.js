@@ -3,6 +3,117 @@ import {
     provinces
 } from "../resources.js";
 
+
+$('.sidebar-project').on('click',function(e){
+    e.preventDefault();
+    $('.sidebar-project').removeClass('active');
+    $(this).toggleClass('active')
+
+    var projectID =$(this).data("id");
+    
+    axios.post('/filter-response', {
+        'selectedProject': projectID,
+        'selectedProvince': null,
+        'selectedDistrict': null
+    }).then((response) => {
+        map.getSource('cylinders').setData(response.data);
+        document.querySelector('#map-lists').innerHTML = "";
+        buildLists(response.data)
+    });
+
+    resetData();
+});
+
+function buildLists(portalData) {
+    portalData.features.forEach(function(data) {
+        const latlng = data.geometry.coordinates
+
+
+
+        var prop = data.properties;
+        var indId = prop.individual_id;
+
+
+        var name = indId ? prop.individual.name : prop.institution.name;
+
+
+        var userRequests = prop.user_request.projects
+
+
+
+        var requestedProjects = [];
+        userRequests.forEach(function(request) {
+            requestedProjects.push(request.title);
+
+        })
+
+
+
+        var projectColor;
+
+
+        if (requestedProjects.length > 1) {
+            projectColor = "main-color"
+        } else if (requestedProjects == "Oxygen") {
+            projectColor = "prj-oxy"
+
+
+        } else if (requestedProjects == "COVID19 Safety Kit") {
+            projectColor = "prj-cov"
+        } else if (requestedProjects == "Essentials") {
+            projectColor = "prj-ess"
+        }
+
+        var listingitems = `
+                            <div class="list-wrap">
+                                <div class="icon ${projectColor}">
+                                    
+                                </div>
+
+                                <div class="des">
+                                    <h4>${name}</h4>
+                                    <p class= " forProject" > ${requestedProjects}</p>
+                                    <div class="date">
+                                        <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        `
+
+
+
+        var listings = document.getElementById('map-lists');
+
+
+        var listing = listings.appendChild(document.createElement('div'));
+        listing.className = 'data-item';
+
+        var link = listing.appendChild(document.createElement('a'));
+        link.className = 'title';
+        link.href = "#"
+        link.id = 'link-' + prop.id;
+        link.innerHTML = listingitems;
+
+
+
+        link.addEventListener("click", () => {
+            var coords = latlng;
+
+
+            map.flyTo({
+                center: coords,
+                zoom: 10,
+                essential: true,
+            });
+        })
+
+
+
+    })
+}
+
+
 // Distirct with respect to province
 provinces.forEach((item) => {
     $("#provinces").append(`<option value="${item.id}">${item.title}</option>`);
@@ -11,11 +122,10 @@ provinces.forEach((item) => {
 $("#provinces").on("change", function() {
     var provinceID = $(this).val();
     $("#districts").html("");
-    $("#districts").siblings(".nice-select").remove();
     var items = districts.filter((item) => {
         return item.province == provinceID;
     });
-    $("#districts").append(`<option value="-1" selected disabled>Select</option>`);
+    $("#districts").append(`<option value="-1" selected disabled>Select District</option>`);
     items.forEach((item) => {
         $("#districts").append(`<option value="${item.id}">${item.title}</option>`);
     });
@@ -27,7 +137,7 @@ $("#provinces").on("change", function() {
 
 $(".update").on("click", (e) => {
     e.preventDefault();
-    var selectedProject = $("#projects").val();
+    var selectedProject = $(".sidebar-project.active").attr('data-id');
     var selectedProvince = $("#provinces").val();
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response', {
@@ -36,62 +146,60 @@ $(".update").on("click", (e) => {
         'selectedDistrict': selectedDistrict
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
-
-        map.removeLayer("poi-labels")
-
-
-        map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
-            if (map.getLayer(item.id))
-                map.removeLayer(item.id)
-        })
-
-        map.getStyle().layers.filter(layer => layer.type === 'symbol').forEach(item => {
-            if (map.getLayer(item.id))
-                map.removeLayer(item.id)
-        })
-
-        const currentTimestamp = Date.now()
-        map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
-            'type': 'geojson',
-            'data': `../json/coordinates/label-province${selectedProvince}.geojson`
-        });
-
-        map.addLayer({
-            'id': `district-labels--${Date.now()}`,
-            'type': 'symbol',
-            'source': `district-label${selectedProvince}-${currentTimestamp}`,
-            'layout': {
-                'text-field': ['get', 'description'],
-                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-                'text-radial-offset': 0.5,
-                'text-justify': 'auto',
-            }
-        });
-
-        map.addSource(`province${selectedProvince}-${currentTimestamp}`, {
-            type: "geojson",
-            data: `../json/coordinates/Province-${selectedProvince}.geojson`,
-        });
-
-        map.addLayer({
-            id: `province${selectedProvince}-${Date.now()}-fill`,
-            type: "line",
-            source: `province${selectedProvince}-${currentTimestamp}`,
-            layout: {},
-            paint: {
-                "line-color": "#0a405a",
-            },
-        });
-
-
-
-
+        document.querySelector('#map-lists').innerHTML = "";
+        buildLists(response.data)
     });
 
+    if(map.getLayer("poi-labels")) {
+        map.removeLayer("poi-labels")
+    }
 
 
+    map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
 
-    // Map Fly to the Province
+    map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+
+    const currentTimestamp = Date.now()
+    map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
+        'type': 'geojson',
+        'data': `../json/coordinates/label-province${selectedProvince}.geojson`
+    });
+
+    map.addLayer({
+        'id': `district-labels--${Date.now()}`,
+        'type': 'symbol',
+        'source': `district-label${selectedProvince}-${currentTimestamp}`,
+        'layout': {
+            'text-field': ['get', 'description'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            "text-size": 10,
+        }
+    });
+
+    map.addSource(`province${selectedProvince}-${currentTimestamp}`, {
+        type: "geojson",
+        data: `../json/coordinates/Province-${selectedProvince}.geojson`,
+    });
+
+    map.addLayer({
+        id: `province${selectedProvince}-${Date.now()}-fill`,
+        type: "line",
+        source: `province${selectedProvince}-${currentTimestamp}`,
+        layout: {},
+        paint: {
+            "line-color": "#0a405a",
+        },
+    });
+
+// Map Fly to the Province
     if (selectedProvince == 3) {
         var bbox = [
             83.9187728578849,
@@ -210,20 +318,43 @@ $(".update").on("click", (e) => {
 
 
 
-
 });
 
 $("#reset-btn").on('click', (e) => {
+    resetData();
+    document.querySelector('#map-lists').innerHTML = "";
+    $('.sidebar-project').removeClass('active');
+    $('.sidebar-project').first().addClass('active');
+    $('#provinces').val(-1);
+   console.log($('#provinces').val());
+
+    loadMapData();
+})
+
+
+
+function resetData() {
+
+    
+    
+    if(map.getLayer("poi-labels")) {
+        map.removeLayer("poi-labels")
+    }
+
+    map.getStyle().layers.filter(layer => layer.id.includes('poi-labels')).forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
 
     map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
     })
 
-    map.getStyle().layers.filter(layer => layer.type === 'symbol').forEach(item => {
+    map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
-    })
+    }) 
 
   
 
@@ -244,8 +375,11 @@ $("#reset-btn").on('click', (e) => {
             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
             'text-radial-offset': 0.5,
             'text-justify': 'auto',
+            "text-size": 10,
         }
     });
+
+    
 
 
     map.addSource(`urban-areas-${timeStamp}`, {
@@ -264,11 +398,10 @@ $("#reset-btn").on('click', (e) => {
     });
 
     map.flyTo({
-        center: [83.0074, 28.4764],
-        zoom: 6, // note the camel-case
+        center: [84.1074, 28.4764],
+        zoom: 6.7, // note the camel-case
     })
-
-})
+}
 
 $("select.for-niceselect").niceSelect();
 
@@ -285,17 +418,11 @@ var map = new mapboxgl.Map({
 
     center: [84.1074, 28.4764],
     minZoom: 6.7, // note the camel-case
-    maxZoom: 10
+    maxZoom: 20
 });
 
 
-
-
-// Map
-
-map.on('load', function() {
-
-    
+function loadMapData() { 
     axios.post('/filter-response', {
         'selectedProject': null,
         'selectedProvince': null,
@@ -310,98 +437,19 @@ map.on('load', function() {
 
         buildLists(portalData);
 
-        function buildLists(portalData) {
-            portalData.features.forEach(function(data) {
-                const latlng = data.geometry.coordinates
-
-
-
-                var prop = data.properties;
-                var indId = prop.individual_id;
-
-
-                var name = indId ? prop.individual.name : prop.institution.name;
-
-
-                var userRequests = prop.user_request.projects
-
-
-
-                var requestedProjects = [];
-                userRequests.forEach(function(request) {
-                    requestedProjects.push(request.title);
-
-                })
-
-
-
-                var projectColor;
-
-
-                if (requestedProjects.length > 1) {
-                    projectColor = "main-color"
-                } else if (requestedProjects == "Oxygen") {
-                    projectColor = "prj-oxy"
-
-
-                } else if (requestedProjects == "COVID19 Safety Kit") {
-                    projectColor = "prj-cov"
-                } else if (requestedProjects == "Essentials") {
-                    projectColor = "prj-ess"
-                }
-
-                var listingitems = `
-                                    <div class="list-wrap">
-                                        <div class="icon ${projectColor}">
-                                            
-                                        </div>
-
-                                        <div class="des">
-                                            <h4>${name}</h4>
-                                            <p class= " forProject" > ${requestedProjects}</p>
-                                            <div class="date">
-                                                <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                `
-
-
-
-                var listings = document.getElementById('map-lists');
-
-
-                var listing = listings.appendChild(document.createElement('div'));
-                listing.className = 'data-item';
-
-                var link = listing.appendChild(document.createElement('a'));
-                link.className = 'title';
-                link.href = "#"
-                link.id = 'link-' + prop.id;
-                link.innerHTML = listingitems;
-
-
-
-                link.addEventListener("click", () => {
-                    var coords = latlng;
-
-
-                    map.flyTo({
-                        center: coords,
-                        zoom: 10,
-                        essential: true,
-                    });
-                })
-
-
-
-            })
-        }
+        
 
     });
+}
 
 
+// Map
+
+map.on('load', function() {
+
+    
+    
+    loadMapData();
 
 
     // loading the respond data
@@ -443,13 +491,14 @@ map.on('load', function() {
         filter: ["has", "point_count"],
         paint: {
             "circle-color": ["step", ["get", "point_count"], "#51bbd6", 100, "#f1f075", 750, "#f28cb1"],
-            "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40],
+            "circle-radius": ["step", ["get", "point_count"], 12 ,43 , 2],
         },
     });
 
     map.addLayer({
         id: "cluster-count",
         type: "symbol",
+        iconAllowOverlay: true,
         source: "cylinders",
         filter: ["has", "point_count"],
         layout: {
@@ -462,6 +511,7 @@ map.on('load', function() {
     map.addLayer({
         id: "unclustered-point",
         type: "symbol",
+        iconAllowOverlay: true,
         source: "cylinders",
         filter: ["!", ["has", "point_count"]],
         layout: {
@@ -573,12 +623,15 @@ map.on('load', function() {
     map.addLayer({
         'id': 'poi-labels',
         'type': 'symbol',
+        'iconAllowOverlay': 'true',
         'source': 'province-label',
         'layout': {
             'text-field': ['get', 'description'],
             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
             'text-radial-offset': 0.5,
             'text-justify': 'auto',
+            
+            "text-size": 11,
         }
     });
 
