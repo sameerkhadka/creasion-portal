@@ -56,18 +56,17 @@ class RequestController extends Controller
 
         if($totalNewRequestsCount<0){  $settingTotalRequests->value = $totalRequestsCount; $settingTotalRequests->update();  $totalNewRequestsCount=0; }
 
-        $newRequests = UserRequest::with(['individual','institution','projects'])->where('seen',null)->orderBy('id','desc')->take(10)->get();
 
-        if($totalNewRequestsCount==0) return response(['msg'=>'No New Request','totalNewRequestsCount'=>0,
-        'newRequests'=>$newRequests],200);
+        if($totalNewRequestsCount==0) return response(['msg'=>'No New Request','totalNewRequestsCount'=>0],200);
+        $newRequests = UserRequest::with(['individual','institution','projects'])->where('seen',null)->orderBy('id','desc')->take(10)->get();
 
         $settingTotalRequests->value = $totalRequestsCount;
         $settingTotalRequests->update();
-        
+
         return response([
             'msg'=>$totalNewRequestsCount.' New Requests',
             'totalNewRequestsCount'=>$totalNewRequestsCount,
-            'newRequests'=>$newRequests 
+            'newRequests'=>$newRequests
         ],200);
     }
 
