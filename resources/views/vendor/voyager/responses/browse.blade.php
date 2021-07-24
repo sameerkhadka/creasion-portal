@@ -256,18 +256,9 @@
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
 
-                                            @foreach($actions as $action)
+                                           @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
-                                                @php
-                                                    // need to recreate object because policy might depend on record data
-                                                    $class = get_class($action);
-                                                    $action = new $class($dataType, $data);
-                                                @endphp
-                                                @can ($action->getPolicy(), $data)
-                                                    <a href="{{ $action->getRoute($dataType->name) }}" title="{{ $action->getTitle() }}" {!! $action->convertAttributesToHtml() !!}>
-                                                        <i class="{{ $action->getIcon() }}"></i> <span class="hidden-xs hidden-sm">{{ $action->getTitle() }}</span>
-                                                    </a>
-                                                @endcan
+                                                    @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
                                         </td>
