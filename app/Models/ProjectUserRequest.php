@@ -12,4 +12,7 @@ class ProjectUserRequest extends Model
     protected $table = "project_user_request";
 
     public $timestamps = false;
+
+    public $incrementing = false;
+    
 }

@@ -9,4 +9,6 @@ class InventoryResponse extends Pivot
 {
     use HasFactory;
 
+    public $incrementing = false;
+
 }
