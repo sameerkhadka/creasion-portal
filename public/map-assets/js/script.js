@@ -10,7 +10,6 @@ $('.sidebar-project').on('click',function(e){
     $('.sidebar-project').removeClass('active');
     $(this).toggleClass('active')
 
-    console.log(this)
     var projectID =$(this).data("id");
     var projectName = $(this).data('title')
     
@@ -448,34 +447,8 @@ $("select.for-niceselect").niceSelect();
 
 
 // Map
-mapboxgl.accessToken = "pk.eyJ1Ijoia2hhZGthc2FtIiwiYSI6ImNrcmJzczRjZDBlMzQzMHBleXUzN3I5cnQifQ.lptDLSXqDJJ-foFLioGRZA";
+mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
 
-
-// var map = new mapboxgl.Map({
-//     container: "map",
-//     style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
-
-//     center: [84.1074, 28.4764],
-//     minZoom: 6.2, // note the camel-case
-//     maxZoom: 20
-
-// });
-
-// var bbox = [
-
-//     80.092948,
-//     31.254807,
-//     88.184761,
-//     25.782567
-// ];
-// map.fitBounds(bbox, {
-//     padding: {
-//         top: 100,
-//         bottom: 25,
-//         left: 15,
-//         right: 5
-//     }
-// });
 
 var mapBoxWidth = $('#map').width();
 
@@ -484,7 +457,7 @@ var mapBoxWidth = $('#map').width();
 if(mapBoxWidth < 1100) {
     var map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
+        style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
     
         center: [84.1074, 28.4764],
         minZoom: 6.2, // note the camel-case
@@ -493,7 +466,7 @@ if(mapBoxWidth < 1100) {
 } else if(mapBoxWidth > 1100) {
     var map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/khadkasam/ckrbta57z0vdg17n0161z08k6",
+        style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
     
         center: [84.1074, 28.4764],
         minZoom: 6.7, // note the camel-case
@@ -701,7 +674,7 @@ map.on('load', function() {
 
     map.on("click", "unclustered-point", function(e) {
         loadMarkerData(e);
-        // console.log(e)
+       
     });
 
 
@@ -762,7 +735,7 @@ function loadMarkerData(e) {
         var inventoryTitle = inventory.title;
         var inventoryQunatity = inventory.pivot.quantity;
 
-        // console.log(inventoryTitle, inventoryQunatity)
+      
 
         items = items + `
                             <div class="info-desc-wrapper">
