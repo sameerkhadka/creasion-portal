@@ -304,3 +304,53 @@ input.mapboxgl-ctrl-geocoder--input {
   padding-left: 35px !important;
 }
 
+.padding-left-none {
+  padding-left: 0;
+}
+
+span.header-dots {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background: #11b4da;
+  border-radius: 50%;
+  margin-right: 5px;
+  opacity: 0.5;
+}
+
+span.header-dots.Oxygen.For.Nepal {
+  background: #ee4545;
+  
+}
+
+span.header-dots.COVID19.Safety.Kit {
+  background: #5a45ee;
+}
+
+span.header-dots.Essentials {
+  background: #46e8bc;
+}
+
+.active span.header-dots {
+  opacity: 1;
+}
+
+#all.active {
+  color: #11b4da;
+
+}
+
+#project1.active {
+  color: #ee4545;
+ 
+}
+
+#project2.active {
+  color: #5a45ee;
+  
+}
+
+#project3.active {
+  color: #46e8bc;
+
+}

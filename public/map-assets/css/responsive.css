@@ -23,6 +23,16 @@
         width: 309px;
     }
 
+    .sidebar .sidebar-header {
+        padding: 15px 40px;
+    }
+
+    header .head-nav {
+        margin-left: 0;
+    }
+    
+
+
 }
 
 @media screen and (max-width: 1024px) {

@@ -43,15 +43,25 @@
 
                 <div class="head-nav">
                     <ul>
-                        <li ><a href="" data-title="All" data-id="null" class="sidebar-project active" id="all"><span></span>All</a> </li>
+                        <li ><a href="" data-title="All" data-id="null" class="sidebar-project active" id="all"><span class="header-dots all"></span>All</a> </li>
                             @foreach ($projects as $item)
-                        <li><a href="#" data-title= "{{ $item->title }}" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
+                        <li><a href="#" data-title= "{{ $item->title }}" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span class="header-dots {{ $item->title }}"></span>{{ $item->title }} </a> </li>
                         @endforeach
                     </ul>
                 </div>
 
-                <div class="request">
-                    <a href=""><ion-icon name="keypad-outline"></ion-icon> Request</a>
+                <div class="menu-right">
+                    <div class="request donate">
+                        <a href=""><ion-icon name="heart-outline"></ion-icon>Donate</a>
+                    </div>
+
+                    <div class="request">
+                        <a href=""><ion-icon name="keypad-outline"></ion-icon> Request</a>
+                    </div>
+
+                    <div class="menu">
+                        <a href=""><ion-icon name="reorder-two-outline"></ion-icon></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,7 +98,7 @@
                 </div>
             </div>
 
-            <div class="col-md-9 ">
+            <div class="col-md-9 padding-left-none ">
             <!-- <section class="filter">
                 <div class="filter-head">
                     <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
@@ -193,54 +203,7 @@
                 </div>
                 @endforeach
 
-                {{-- <div class="item">
-                    <img src="/map-assets/images/animal-nepal.png" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/batas-foundation.png" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/be-artsy.png" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/covid-alliance-for-nepal.png" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/covid19-rapid-action-task-force-c19-rat.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/humanity-foundation-nepal.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/jagadamba-steels.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/merging-nepsocs.png" alt="">
-                </div>
- 
-                <div class="item">
-                    <img src="/map-assets/images/mission-rebuild-nepal.png" alt="">
-                </div>
-                <div class="item">
-                    <img src="/map-assets/images/nepal-rising.png" alt="">
-                </div>
-                <div class="item">
-                    <img src="/map-assets/images/student-coalition-for-nepal.png" alt="">
-                </div>
-                <div class="item">
-                    <img src="/map-assets/images/syakar-trading-company-pvt-ltd.png" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="/map-assets/images/the-coca-cola-foundation.png" alt="">
-                </div> --}}
+                
 
             </div>
         </div>

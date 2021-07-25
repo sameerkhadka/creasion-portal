@@ -46,7 +46,7 @@ $('.sidebar-project').on('click',function(e){
 function buildLists(portalData) {
     
       
-
+     
         document.querySelector('.total-responds').innerText = portalData.features.length ;
 
 
@@ -435,10 +435,19 @@ function resetData() {
         },
     });
 
-    map.flyTo({
-        center: [84.1074, 28.4764],
-        zoom: 6.7, // note the camel-case
-    })
+    
+
+    if(mapBoxWidth < 1100) {
+        map.flyTo({
+            center: [84.1074, 28.2764],
+            zoom: 6.2, // note the camel-case
+        })
+    } else if(mapBoxWidth > 1100) {
+        map.flyTo({
+            center: [84.1074, 28.4764],
+            zoom: 6.7, // note the camel-case
+        })
+    }
 }
 
 $("select.for-niceselect").niceSelect();
@@ -459,7 +468,7 @@ if(mapBoxWidth < 1100) {
         container: "map",
         style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
     
-        center: [84.1074, 28.4764],
+        center: [84.1074, 28.2764],
         minZoom: 6.2, // note the camel-case
         maxZoom: 20
     });
@@ -532,7 +541,7 @@ map.on('load', function() {
 
     map.addLayer({
         id: "urban-areas-fill",
-        type: "line",
+        type: "fill",
         source: "urban-areas",
         layout: {
 
@@ -540,7 +549,9 @@ map.on('load', function() {
 
         },
         paint: {
-            "line-color": "#0a405a",
+            "fill-color": "#d0ecfb",
+            "fill-outline-color": "#0a405a",
+            "fill-opacity": 0.4, 
         },
     });
 
@@ -683,20 +694,39 @@ map.on('load', function() {
         'data': "/map-assets/json/label-province.geojson"
     });
 
-    map.addLayer({
-        'id': 'poi-labels',
-        'type': 'symbol',
-        'iconAllowOverlay': 'true',
-        'source': 'province-label',
-        'layout': {
-            'text-field': ['get', 'description'],
-            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-            'text-radial-offset': 0.5,
-            'text-justify': 'auto',
-            
-            "text-size": 14,
-        }
-    });
+    if(mapBoxWidth < 1100) {
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'iconAllowOverlay': 'true',
+            'source': 'province-label',
+            'layout': {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                
+                "text-size": 10,
+            }
+        });
+    } else if(mapBoxWidth > 1100) {
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'iconAllowOverlay': 'true',
+            'source': 'province-label',
+            'layout': {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                
+                "text-size": 14,
+            }
+        });
+    }
+
+    
 
 
 
