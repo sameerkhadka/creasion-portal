@@ -83,9 +83,6 @@
                                                 <input type="checkbox" class="select_all">
                                             </th>
                                         @endif
-                                        <th>
-                                            Name
-                                        </th>
                                         @foreach($dataType->browseRows as $row)
                                         <th>
                                             @if ($isServerSide && in_array($row->field, $sortableColumns))
@@ -109,13 +106,12 @@
                                 </thead>
                                 <tbody>
                                     @foreach($dataTypeContent as $data)
-                                    <tr @if(!$data->seen) style="font-weight:600!important" @endif>
+                                    <tr>
                                         @if($showCheckboxColumn)
                                             <td>
                                                 <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
                                             </td>
                                         @endif
-                                        <td>{{ $data->institution_id ? \App\Models\Institution::find($data->institution_id)->name : \App\Models\Individual::find($data->individual_id)->name}} </td>
                                         @foreach($dataType->browseRows as $row)
                                             @php
                                             if ($data->{$row->field.'_browse'}) {
@@ -170,7 +166,15 @@
                                                         {{ $data->{$row->field} }}
                                                     @endif
                                                 @elseif($row->type == 'checkbox')
-                                                    <input id="verify{{ $data->id }}" onclick="verify({{ $data->id }})" type="checkbox" @if($data->verified) checked @endif>
+                                                    @if(property_exists($row->details, 'on') && property_exists($row->details, 'off'))
+                                                        @if($data->{$row->field})
+                                                            <span class="label label-info">{{ $row->details->on }}</span>
+                                                        @else
+                                                            <span class="label label-primary">{{ $row->details->off }}</span>
+                                                        @endif
+                                                    @else
+                                                    {{ $data->{$row->field} }}
+                                                    @endif
                                                 @elseif($row->type == 'color')
                                                     <span class="badge badge-lg" style="background-color: {{ $data->{$row->field} }}">{{ $data->{$row->field} }}</span>
                                                 @elseif($row->type == 'text')
@@ -247,22 +251,11 @@
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
-
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
-                                            @php $response = \App\Models\Response::where('user_request_id',$data->id)->first(); @endphp
-                                            @if($response)
-                                                <a href="/admin/responses/{{ $response->id }}/edit" title="Response" class="btn btn-sm btn-success  pull-right view" style="margin-right:4px">
-                                                    <i class="voyager-bulb"></i> <span class="hidden-xs hidden-sm">Edit Reponse</span>
-                                                </a>
-                                            @else
-                                                <a href="/admin/responses/create?requestid={{ $data->id }}" title="Response" class="btn btn-sm btn-success pull-right view" style="margin-right:4px">
-                                                    <i class="voyager-bulb"></i> <span class="hidden-xs hidden-sm">Respond</span>
-                                                </a>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -324,23 +317,10 @@
 
 @section('javascript')
     <!-- DataTables -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
         <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
     @endif
     <script>
-        function verify(id){
-            if ($(`#verify${id}`).is(":checked"))
-            {
-                var val = 1;
-            }
-            else{
-                var val = 0;
-            }
-            axios.post('/verify-request',{ val,id }).then((response)=>{
-                toastr.success(response.data.msg);
-            });
-        }
         $(document).ready(function () {
             @if (!$dataType->server_side)
                 var table = $('#dataTable').DataTable({!! json_encode(

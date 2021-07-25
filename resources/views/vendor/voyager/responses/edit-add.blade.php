@@ -200,7 +200,7 @@ $add = is_null($dataTypeContent->getKey());
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-12 ">
+                            <div class="form-group col-md-12 ">
                                 <label class="control-label" for="name">Responded Data</label>
                             </div>
 
