@@ -487,24 +487,19 @@ class UserRequestController extends VoyagerBaseController
 
     public function destroy(Request $request, $id)
     {
-        $reqs = ProjectUserRequest::where('user_request_id', $id)->get();
+        $userRequest = UserRequest::find($id);
+        $userRequest->projects()->detach();
 
-        if($reqs)
-        {
-            foreach($reqs as $req)
-                {
-                    $req->delete();
-                }        
-        }
 
+        
         $response = Response::where('user_request_id', $id)->first();
+
+        $response->inventories()->detach(); 
         
         if($response)
         {
-                    $response->delete();       
+            $response->delete();       
         }
-
-        $userRequest = UserRequest::where('id', $id)->first();
 
         if($userRequest->individual_id)
         {
@@ -517,26 +512,11 @@ class UserRequestController extends VoyagerBaseController
 
         $info->delete();
 
-        $inventory = InventoryUserRequest::where('user_request_id', $id)->get();
+        $userRequest->inventories()->detach();
 
-        if($inventory)
-        {
-            foreach($inventory as $inv)
-                {
-                    $inv->delete();
-                }        
-        }
 
-        $items = InventoryResponse::where('response_id', $response->id)->get();
 
-        if($items)
-        {
-            foreach($items as $item)
-                {
-                    $item->delete();
-                }        
-        }   
-
+       
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
