@@ -12,4 +12,6 @@ class InventoryUserRequest extends Model
     protected $table = "inventory_user_request";
 
     public $timestamps = false;
+
+    public $incrementing = false;
 }

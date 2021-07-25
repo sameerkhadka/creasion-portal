@@ -16,6 +16,13 @@ use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
+use App\Models\ProjectUserRequest;
+use App\Models\Response;
+use App\Models\Individual;
+use App\Models\Institution;
+use App\Models\InventoryResponse;
+use App\Models\InventoryUserRequest;
+use App\Models\UserRequest;
 
 class UserRequestController extends VoyagerBaseController
 {
@@ -480,6 +487,56 @@ class UserRequestController extends VoyagerBaseController
 
     public function destroy(Request $request, $id)
     {
+        $reqs = ProjectUserRequest::where('user_request_id', $id)->get();
+
+        if($reqs)
+        {
+            foreach($reqs as $req)
+                {
+                    $req->delete();
+                }        
+        }
+
+        $response = Response::where('user_request_id', $id)->first();
+        
+        if($response)
+        {
+                    $response->delete();       
+        }
+
+        $userRequest = UserRequest::where('id', $id)->first();
+
+        if($userRequest->individual_id)
+        {
+            $info = Individual::where('id',$userRequest->individual_id)->first();
+        }
+        else
+        {
+            $info = Institution::where('id',$userRequest->institution_id)->first();
+        }
+
+        $info->delete();
+
+        $inventory = InventoryUserRequest::where('user_request_id', $id)->get();
+
+        if($inventory)
+        {
+            foreach($inventory as $inv)
+                {
+                    $inv->delete();
+                }        
+        }
+
+        $items = InventoryResponse::where('response_id', $response->id)->get();
+
+        if($items)
+        {
+            foreach($items as $item)
+                {
+                    $item->delete();
+                }        
+        }   
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -521,6 +578,9 @@ class UserRequestController extends VoyagerBaseController
         if ($res) {
             event(new BreadDataDeleted($dataType, $data));
         }
+
+
+
 
         /** no need to delete user_requests/project pivot table as it will be deleted
          * automatically.
