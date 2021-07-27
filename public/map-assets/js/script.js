@@ -522,7 +522,42 @@ map.on('load', function() {
 
     
     loadMapData();
+    map.addSource('province-label', {
+        'type': 'geojson',
+        'data': "/map-assets/json/label-province.geojson"
+    });
 
+    if(mapBoxWidth < 1100) {
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'iconAllowOverlay': 'true',
+            'source': 'province-label',
+            'layout': {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                
+                "text-size": 10,
+            }
+        });
+    } else if(mapBoxWidth > 1100) {
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'iconAllowOverlay': 'true',
+            'source': 'province-label',
+            'layout': {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                
+                "text-size": 14,
+            }
+        });
+    }
 
     // loading the respond data
     map.addSource("cylinders", {
@@ -564,7 +599,7 @@ map.on('load', function() {
         source: "cylinders",
         filter: ["has", "point_count"],
         paint: {
-            "circle-color": ["step", ["get", "point_count"], "#51bbd6", 100, "#f1f075", 750, "#f28cb1"],
+            "circle-color": ["step", ["get", "point_count"], "#51bbd6", 10, "#f1f075", 20, "#f28cb1"],
             'circle-radius': [
                 'step',
                 ['get', 'point_count'],
@@ -706,42 +741,7 @@ map.on('load', function() {
     });
 
 
-    // map.addSource('province-label', {
-    //     'type': 'geojson',
-    //     'data': "/map-assets/json/label-province.geojson"
-    // });
 
-    // if(mapBoxWidth < 1100) {
-    //     map.addLayer({
-    //         'id': 'poi-labels',
-    //         'type': 'symbol',
-    //         'iconAllowOverlay': 'true',
-    //         'source': 'province-label',
-    //         'layout': {
-    //             'text-field': ['get', 'description'],
-    //             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-    //             'text-radial-offset': 0.5,
-    //             'text-justify': 'auto',
-                
-    //             "text-size": 10,
-    //         }
-    //     });
-    // } else if(mapBoxWidth > 1100) {
-    //     map.addLayer({
-    //         'id': 'poi-labels',
-    //         'type': 'symbol',
-    //         'iconAllowOverlay': 'true',
-    //         'source': 'province-label',
-    //         'layout': {
-    //             'text-field': ['get', 'description'],
-    //             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-    //             'text-radial-offset': 0.5,
-    //             'text-justify': 'auto',
-                
-    //             "text-size": 14,
-    //         }
-    //     });
-    // }
 
     
 
