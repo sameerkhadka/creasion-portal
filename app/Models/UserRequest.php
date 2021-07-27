@@ -30,4 +30,8 @@ class UserRequest extends Model
     public function projects(){
         return $this->belongsToMany(Project::class);
     }
+
+    public function response(){
+        return $this->hasOne(Response::class,'user_request_id');
+    }
 }

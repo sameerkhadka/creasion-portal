@@ -579,18 +579,27 @@ map.on('load', function() {
             "text-field": "{point_count_abbreviated}",
 
             "text-size": 12,
-        },
+        }
     });
 
     map.addLayer({
         id: "unclustered-point",
-        type: "symbol",
+        type: "circle",
         iconAllowOverlay: true,
         source: "cylinders",
         filter: ["!", ["has", "point_count"]],
-        layout: {
-            "icon-image": "pulsing-dot",
-        },
+         paint: {
+        'circle-color': [
+        'match',
+        ['get', 'project_id'],
+        1,
+        '#ee4545',
+        2,
+        '#5a45ee',
+        3,
+        '#46e8bc',
+        /* other */ '#11b4da'
+        ]}
     });
 
     map.addSource("dot-point", {
