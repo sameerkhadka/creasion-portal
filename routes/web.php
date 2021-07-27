@@ -47,12 +47,12 @@ Route::get('/pieOld', function () {
 Route::GET('/pie', [ChartController::class,'index']);
 Route::POST('/piee', [ChartController::class,'dynamic'])->name('dynamic');
 
-Route::get('/', [RequestController::class,'index'])->name('index');
+Route::get('/request', [RequestController::class,'index'])->name('getRequest');
 
 
 Route::post('/filter-response', [FilterController::class,'filterResponse']);
 
-Route::get('/map',[MapController::class,'index'])->name('map');
+Route::get('/',[MapController::class,'index'])->name('index');
 
 Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
 
