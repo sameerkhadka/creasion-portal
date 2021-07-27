@@ -122,9 +122,10 @@ class UserRequestController extends VoyagerBaseController
                 }
 
                 $dataTypeContent = call_user_func([
-                    $query->orderBy($orderBy, $querySortOrder),
+                    $query->with('response')->orderBy($orderBy, $querySortOrder),
                     $getter,
                 ]);
+
             } elseif ($model->timestamps) {
                 $dataTypeContent = call_user_func([$query->latest($model::CREATED_AT), $getter]);
             } else {
@@ -138,6 +139,7 @@ class UserRequestController extends VoyagerBaseController
             $dataTypeContent = call_user_func([DB::table($dataType->name), $getter]);
             $model = false;
         }
+        ;
 
         // Check if BREAD is Translatable
         $isModelTranslatable = is_bread_translatable($model);
@@ -191,6 +193,9 @@ class UserRequestController extends VoyagerBaseController
             $view = "voyager::$slug.browse";
         }
 
+        $dataWithOutResponse = $dataTypeContent->where('response',null)->sortByDesc('created_at')->values();
+        $dataWithResponse = $dataTypeContent->where('response','!=',null)->sortByDesc('response.created_at')->values();
+        $dataTypeContent = $dataWithOutResponse->merge($dataWithResponse);
         return Voyager::view($view, compact(
             'actions',
             'dataType',

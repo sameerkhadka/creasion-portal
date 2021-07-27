@@ -38,6 +38,11 @@ class FilterController extends Controller
         foreach($features as $item){
             $response['features'][$i]['type']='Feature';
             $response['features'][$i]['properties']=$item;
+            if($item->userRequest->projects->count()==1){
+                $response['features'][$i]['properties']['project_id'] = $item->userRequest->projects[0]->id;
+            }else{
+                $response['features'][$i]['properties']['project_id'] = -1;
+            }
             $response['features'][$i]['geometry']['type']="Point";
             $response['features'][$i]['geometry']['coordinates']=$item->institution_id ? json_decode($item->institution->coordinates) : json_decode($item->individual->coordinates);
             $i++;
