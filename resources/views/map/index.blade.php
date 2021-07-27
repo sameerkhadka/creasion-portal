@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="request">
-                        <a href=""><ion-icon name="keypad-outline"></ion-icon> Request</a>
+                        <a href="{{ route('getRequest') }}"><ion-icon name="keypad-outline"></ion-icon> Request</a>
                     </div>
 
                     <div class="menu">
