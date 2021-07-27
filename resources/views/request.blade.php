@@ -41,30 +41,35 @@
 
 <body>
 
+
 <header>
-        <div class="container">
+        <div class="container-fluid">
             <div class="header-wrap">
                 <div class="header-logo">
-                    <a href="{{ route('index') }}">
-                        NEPAL RELIEF <span>PORTAL</span>
+                    <a href="">
+                        <img src="/map-assets/images/nepalreliefportal.svg" alt="">
                     </a>
                 </div>
 
-                <div class="head-nav">
-                    <a href="#section-map" class="active">Respond Maps</a>
-                    <a href="#section-demographs">DEMOGRAPHICS</a>
-                    <a href="#section-respond">Responds</a>
-                </div>
 
-                <div class="request">
-                    <a href=""><ion-icon name="keypad-outline"></ion-icon> Request</a>
+                <div class="menu-right">
+                    <div class="request donate">
+                        <a href=""><ion-icon name="heart-outline"></ion-icon>Donate</a>
+                    </div>
+
+                    <div class="request">
+                        <a href=""><ion-icon name="keypad-outline"></ion-icon> Request</a>
+                    </div>
+
+                    <div class="menu">
+                        <a href=""><ion-icon name="reorder-two-outline"></ion-icon></a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-
-<section class="section-request" id="app">
+    <section class="section-request" id="app">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -452,11 +457,11 @@
     <script>
 
         var coordinates = document.getElementById('coordinates');
-        mapboxgl.accessToken = "pk.eyJ1Ijoia2hhZGthc2FtIiwiYSI6ImNrcmJzczRjZDBlMzQzMHBleXUzN3I5cnQifQ.lptDLSXqDJJ-foFLioGRZA";
+        mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
         
         var map = new mapboxgl.Map({
             container: "map-select",
-            style: 'mapbox://styles/khadkasam/ckrd0c9tc212j17qyc5egnqm3',
+            style: 'mapbox://styles/mapbox/streets-v11',
             center: [84.1074, 28.4764],
             minZoom: 5.4, // note the camel-case
              maxZoom: 15
