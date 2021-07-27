@@ -565,7 +565,7 @@ map.on('load', function() {
         filter: ["has", "point_count"],
         paint: {
             "circle-color": ["step", ["get", "point_count"], "#51bbd6", 100, "#f1f075", 750, "#f28cb1"],
-            "circle-radius": ["step", ["get", "point_count"], 12 ,43 , 2],
+            "circle-radius": ["step", ["get", "point_count"], 12 ,43 , 50, 50],
         },
     });
 
@@ -616,7 +616,7 @@ map.on('load', function() {
         },
     });
 
-    var size = 80;
+    var size = 1000;
 
     var pulsingDot = {
         width: size,
