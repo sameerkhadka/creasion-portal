@@ -36,7 +36,7 @@
         <div class="container-fluid">
             <div class="header-wrap">
                 <div class="header-logo">
-                    <a href="">
+                    <a href="{{route('index')}}">
                         <img src="/map-assets/images/nepalreliefportal.svg" alt="">
                     </a>
                 </div>
@@ -143,58 +143,60 @@
         
     </section>
 
-    <section class="numbers" id="section-demographs">
+    <section class="data-display">
         <div class="container">
-            <div class="nums-head">
-                <h4>
-                    <ion-icon name="stats-chart-outline"></ion-icon> DEMOGRAPHICS
-                </h4>
+            <h4 class="section-title">Disaster Releif Impact</h4>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectet ipsum dolor sit amet, consectetipsum dolor sit amet, consectet
-                    ipsum dolor sit amet, consectetipsum dolor sit amet, consectet
-                    ipsum dolor sit amet, consectet
-                </p>
-            </div>
-
-                
-
-                <div class="demographs">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <!-- <div class="chart-sing">
-                                <figure class="highcharts-figure">
-                                    <div id="chart-gender"></div>
-                                  </figure>
-                            </div> -->
-
-                            <div class="chart-sing">
-                                <figure class="highcharts-figure">
-                                    <div id="chart-type"></div>
-                                  </figure>
-                            </div>
+            <div class="data-card">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="chart-sing">
+                            <figure class="highcharts-figure">
+                                <div id="chart-gender"></div>
+                                </figure>
                         </div>
+                    </div>
 
-                        <div class="col-md-5">
-                            <div class="chart-sing">
-                                <figure class="highcharts-figure">
-                                    <div id="chart-category"></div>
-                                  </figure>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="chart-sing">
-                                <figure class="highcharts-figure">
-                                    <div id="chart-inst-type"></div>
-                                  </figure>
-                            </div>
+                    <div class="col-md-8">
+                        <div class="chart-text">
+                            <p>
+                                With 64 % of our beneficiaries as women, our 
+                                relief initiatives have always been gender-sensitive and
+                                included support items specifically tailored for them for
+                                emergency situations. 
+                            </p>
                         </div>
                     </div>
                 </div>
 
+            </div>
+
+            <!-- <div class="data-card">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="chart-sing">
+                            <figure class="highcharts-figure">
+                                <div id="chart-category'"></div>
+                                </figure>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="chart-text">
+                            <p>
+                            We extend support to diverse institutions 
+                            and individuals on the basis of need expressed and experienced.
+                             Our motto has always been providing as much assistance as we 
+                             can to the best of our abilities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
         </div>
     </section>
+
 
     <section class="partners" id="section-partners">
         <div class="container">

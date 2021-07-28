@@ -59,12 +59,8 @@ header {
         align-items: center;
 
         .request.donate {
-            background: #fff;
-            border: 1px solid $base-color;
+            background: #C70039;
 
-            a {
-                color: $base-color;
-            }
         }
 
         .menu {
@@ -829,4 +825,16 @@ header {
     
     }
     
+}
+
+
+.data-display {
+    padding: 100px 0;
+
+    .chart-text {
+        p {
+            font-size: 34px;
+            font-family: "Proxima Nova";
+        }
+    }
 }

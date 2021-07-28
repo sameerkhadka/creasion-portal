@@ -718,7 +718,7 @@ map.on('load', function() {
         },
     });
 
-    var size = 80;
+    var size = 1000;
 
     var pulsingDot = {
         width: size,

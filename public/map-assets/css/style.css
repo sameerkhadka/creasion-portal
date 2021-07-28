@@ -55,12 +55,7 @@ header .menu-right {
 }
 
 header .menu-right .request.donate {
-  background: #fff;
-  border: 1px solid #11b4da;
-}
-
-header .menu-right .request.donate a {
-  color: #11b4da;
+  background: #C70039;
 }
 
 header .menu-right .menu ion-icon {
@@ -848,5 +843,14 @@ header .request a ion-icon {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #11b4da;
+}
+
+.data-display {
+  padding: 100px 0;
+}
+
+.data-display .chart-text p {
+  font-size: 34px;
+  font-family: "Proxima Nova";
 }
 /*# sourceMappingURL=style.css.map */
