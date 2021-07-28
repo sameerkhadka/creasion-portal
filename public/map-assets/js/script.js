@@ -158,7 +158,7 @@ function buildLists(portalData) {
     document.getElementById('map-lists').innerHTML = '';
     var incr = -1;
     paginateArray = myArr.reduce(function(rv,item,index){
-        if(index%4===0){
+        if(index%10===0){
             incr += 1;
         }
         (rv[incr] = rv[incr] || []).push(item) 
