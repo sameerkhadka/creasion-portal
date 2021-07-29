@@ -46,7 +46,8 @@ $('.sidebar-project').on('click',function(e){
     $('#districts').val(-1);
 
     
-    
+    resetData();
+
 });
 
 var paginateArray = {};
@@ -452,7 +453,7 @@ $("#reset-btn").on('click', (e) => {
 function resetData() {
 
     
-    
+   map.on('load', function() { 
     if(map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
@@ -531,6 +532,7 @@ function resetData() {
             zoom: 6.7, // note the camel-case
         })
     }
+    })
 }
 
 $("select.for-niceselect").niceSelect();
