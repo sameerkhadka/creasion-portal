@@ -143,20 +143,15 @@
 
     <section class="data-display">
         <div class="container">
-            <h4 class="section-title">Disaster Releif Impact</h4>
-
             <div class="data-card">
                 <div class="row align-items-center">
                     <div class="col-md-4">
                         <div class="chart-sing">
+                            <h4 class="chart-title">Relief Impacts by Gender</h4>
+
                             <figure class="highcharts-figure">
                                 <div id="chart-gender"></div>
-                                </figure>
-                        </div>
-                    </div>
-
-                    <div class="col-md-8">
-                        <div class="chart-text">
+                            </figure>
                             <p>
                                 With 64 % of our beneficiaries as women, our 
                                 relief initiatives have always been gender-sensitive and
@@ -165,6 +160,24 @@
                             </p>
                         </div>
                     </div>
+
+                    <div class="col-md-4">
+                        <div class="chart-sing">
+                            <h4 class="chart-title">Relief Impacts by Institution  Types</h4>
+
+                            <figure class="highcharts-figure">
+                                <div id="chart-institution"></div>
+                            </figure>
+                            <p>
+                                With 64 % of our beneficiaries as women, our 
+                                relief initiatives have always been gender-sensitive and
+                                included support items specifically tailored for them for
+                                emergency situations. 
+                            </p>
+                        </div>
+                    </div>
+
+                    
                 </div>
 
             </div>

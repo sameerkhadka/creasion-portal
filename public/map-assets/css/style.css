@@ -373,36 +373,6 @@ header .request a ion-icon {
   margin-top: 20px;
 }
 
-.numbers .demographs {
-  padding: 30px 0;
-  padding-top: 60px;
-}
-
-.numbers .demographs .chart-sing {
-  margin: 10px 0;
-}
-
-.numbers .demographs g.highcharts-exporting-group {
-  display: none;
-}
-
-.numbers .demographs text.highcharts-credits {
-  display: none;
-}
-
-.numbers .demographs tspan {
-  font-size: 14px;
-  font-family: 'Moderat';
-}
-
-.numbers .demographs tspan.heading-main {
-  display: block;
-}
-
-.numbers .demographs g.highcharts-legend.highcharts-no-tooltip {
-  display: none;
-}
-
 .partners {
   background: #eeefef;
   padding: 80px 0;
@@ -846,11 +816,55 @@ header .request a ion-icon {
 }
 
 .data-display {
-  padding: 100px 0;
+  padding: 80px 0;
 }
 
-.data-display .chart-text p {
-  font-size: 34px;
+.data-display .chart-sing {
+  margin: 10px 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 0 0 20px 0;
+}
+
+.data-display .chart-sing p {
+  padding: 40px;
   font-family: "Proxima Nova";
+}
+
+.data-display .chart-sing h4.chart-title {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px;
+  background: #e5eff4;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.data-display .highcharts-background {
+  fill: #f7f7f7;
+  stroke: #dcdcdc;
+  stroke-width: 2px;
+  border-radius: 10px;
+}
+
+.data-display g.highcharts-exporting-group {
+  display: none;
+}
+
+.data-display text.highcharts-credits {
+  display: none;
+}
+
+.data-display tspan {
+  font-size: 14px;
+  font-family: 'Moderat';
+}
+
+.data-display tspan.heading-main {
+  display: block;
+}
+
+.data-display g.highcharts-legend.highcharts-no-tooltip {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

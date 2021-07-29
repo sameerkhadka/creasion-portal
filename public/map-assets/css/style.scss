@@ -354,36 +354,7 @@ header {
         }
     }
 
-    .demographs {
-        padding: 30px 0;
-        padding-top: 60px;
-
-        .chart-sing {
-            margin: 10px 0;
-        }
-
-        g.highcharts-exporting-group {
-            display: none;
-        }
-
-        text.highcharts-credits {
-            display: none;
-        }
-
-        tspan {
-            font-size: 14px;
-            font-family: 'Moderat';
-        }
-
-        tspan.heading-main {
-            display: block;
-        }
-
-        g.highcharts-legend.highcharts-no-tooltip {
-            display: none;
-        }
-
-    }
+  
 }
 
 .partners {
@@ -829,12 +800,59 @@ header {
 
 
 .data-display {
-    padding: 100px 0;
+    padding: 80px 0;
 
-    .chart-text {
+
+    .chart-sing {
+        margin: 10px 0;
+        border: 1px solid #dcdcdc;
+        border-radius: 10px;
+        padding: 0 0 20px 0;
+
         p {
-            font-size: 34px;
+            padding: 40px;
             font-family: "Proxima Nova";
         }
+
+        h4.chart-title {
+            font-size: 18px;
+            font-weight: 500;
+            padding: 20px;
+            background: #e5eff4;
+            text-transform: uppercase;
+            text-align: center;
+        }
     }
+
+    .highcharts-background {
+        fill: #f7f7f7;
+        stroke: #dcdcdc;
+        stroke-width: 2px;
+        border-radius: 10px;
+    }
+
+    g.highcharts-exporting-group {
+        display: none;
+    }
+
+    text.highcharts-credits {
+        display: none;
+    }
+
+    tspan {
+        font-size: 14px;
+        font-family: 'Moderat';
+    }
+
+    tspan.heading-main {
+        display: block;
+    }
+
+    g.highcharts-legend.highcharts-no-tooltip {
+        display: none;
+    }
+
+
+    
 }
+

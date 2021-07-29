@@ -4,6 +4,7 @@ Highcharts.chart('chart-gender', {
       type: 'variablepie'
     },
     colors: ['#4680ea', '#ef769d'],
+    backgroundColor: "'#ef769d",
     title: {
       text: `  `
     },
@@ -161,29 +162,29 @@ Highcharts.chart('chart-gender', {
   //   }]
   // });
 
-  $('.partner-slider').owlCarousel({
-      loop: true,
+  // $('.partner-slider').owlCarousel({
+  //     loop: true,
 
-      autoplay: true,
-      animateOut: 'fadeOut',
-      animateIn: 'fadeIn',
-      margin: 15,
-      smartSpeed: 2500,
-      autoplayHoverPause:true,
-      slideBy: 3,
-      autoplayTimeout: 5000,
-      responsive: {
-          0: {
-              items: 2,
-          },
-          768: {
-              items: 3,
+  //     autoplay: true,
+  //     animateOut: 'fadeOut',
+  //     animateIn: 'fadeIn',
+  //     margin: 15,
+  //     smartSpeed: 2500,
+  //     autoplayHoverPause:true,
+  //     slideBy: 3,
+  //     autoplayTimeout: 5000,
+  //     responsive: {
+  //         0: {
+  //             items: 2,
+  //         },
+  //         768: {
+  //             items: 3,
           
-          },
-          1200: {
-              items: 6,
-          }
-      }
-  });
+  //         },
+  //         1200: {
+  //             items: 6,
+  //         }
+  //     }
+  // });
 
 
