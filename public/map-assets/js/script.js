@@ -176,6 +176,7 @@ function buildLists(portalData) {
     }
     $('.paginateBtn[data-type="back"]').attr('disabled','disabled')
     initializeCount();
+    $('#paginateDetail').html(`1 of ${paginateArray.length}`)
 
 }
 /** trial for pagination */
@@ -195,6 +196,8 @@ function buildLists(portalData) {
             mycount--;
             $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
         }
+        $('#paginateDetail').html(`${mycount+1} of ${paginateArray.length}`)
+
 
         paginateArray[mycount].forEach((item) => {
             document.getElementById('map-lists').appendChild(item)
