@@ -13,12 +13,16 @@ $('.sidebar-project').on('click',function(e){
     var projectID =$(this).data("id");
     var projectName = $(this).data('title')
     
+    resetData();
+
     axios.post('/filter-response', {
         'selectedProject': projectID,
         'selectedProvince': null,
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
+        console.log("data set")
+
         document.querySelector('#map-lists').innerHTML = "";
 
         document.querySelector('.sidebar-selected').innerText = projectName;
@@ -36,11 +40,13 @@ $('.sidebar-project').on('click',function(e){
 
     
 
+    
+
     $('#provinces').val(-1);
     $('#districts').val(-1);
 
     
-    resetData();
+    
 });
 
 var paginateArray = {};
@@ -466,6 +472,7 @@ function resetData() {
             map.removeLayer(item.id)
     }) 
 
+
   
 
 
@@ -494,22 +501,22 @@ function resetData() {
         data: "/map-assets/json/region.geojson",
     });
 
-    map.addLayer({
-        id: `urban-areas-${timeStamp}-fill`,
-        type: "fill",
-        source: `urban-areas-${timeStamp}`,
-        layout: {
-        },
-        paint: {
-            "fill-color": "#d0ecfb",
-            "fill-outline-color": "#0a405a",
-            "fill-opacity": 0.4, 
-        },
-    });
+    // map.addLayer({
+    //     id: `urban-areas-${timeStamp}-fill`,
+    //     type: "fill",
+    //     source: `urban-areas-${timeStamp}`,
+    //     layout: {
+    //     },
+    //     paint: {
+    //         "fill-color": "#d0ecfb",
+    //         "fill-outline-color": "#0a405a",
+    //         "fill-opacity": 0.4, 
+    //     },
+    // });
     
 
 
-    
+    console.log("map add delete")    
 
     
 
