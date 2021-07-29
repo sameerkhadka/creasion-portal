@@ -101,39 +101,39 @@
             </div>
 
             <div class="col-md-9 padding-left-none ">
-            <!-- <section class="filter">
-                <div class="filter-head">
-                    <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
-                </div>
-
-                <div class="filter-card-wrap">
-
-                    <div class="filter-card">
-                        <label>Province</label>
-
-                        <select  id="provinces">
-                            <option value="-1" selected disabled>Select Province</option>
-                        </select>
-
+                <section class="filter">
+                    <div class="filter-head">
+                        <h4><ion-icon name="funnel-outline"></ion-icon> Filter Results</h4>
                     </div>
 
-                    <div class="filter-card">
-                        <label>District</label>
+                    <div class="filter-card-wrap">
 
-                        <select  id="districts">
-                            <option value="-1" selected disabled>Select District</option>
-                        </select>
+                        <div class="filter-card">
+                            <label>Province</label>
 
+                            <select  id="provinces">
+                                <option value="-1" selected disabled>Select Province</option>
+                            </select>
+
+                        </div>
+
+                        <div class="filter-card">
+                            <label>District</label>
+
+                            <select  id="districts">
+                                <option value="-1" selected disabled>Select District</option>
+                            </select>
+
+                        </div>
+
+
+
+                        <div class="filter-card">
+                            <a href="" class="update">Update</a>
+                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Reset</button>
+                        </div>
                     </div>
-
-
-
-                    <div class="filter-card">
-                        <a href="" class="update">Update</a>
-                        <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Reset</button>
-                    </div>
-                </div>
-            </section> -->
+                </section>
                 <div id="map"></div>
             </div>
         </div>
@@ -165,16 +165,30 @@
 
                     <div class="col-md-4">
                         <div class="chart-sing">
+                            <h4 class="chart-title">Relief Impacts by Province</h4>
+
+                            <figure class="highcharts-figure">
+                                <div id="chart-province-type"></div>
+                            </figure>
+                            <p>
+                                We always try to cater to all the emergency requests that
+                                we receive despite of the geographical remoteness or 
+                                topographic difficulties.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="chart-sing">
                             <h4 class="chart-title">Relief Impacts by Institution  Types</h4>
 
                             <figure class="highcharts-figure">
-                                <div id="chart-institution"></div>
+                                <div id="chart-inst-type"></div>
                             </figure>
                             <p>
-                                With 64 % of our beneficiaries as women, our 
-                                relief initiatives have always been gender-sensitive and
-                                included support items specifically tailored for them for
-                                emergency situations. 
+                             We extend support to diverse institutions and individuals on the
+                                basis of need expressed and experienced. Our motto has always been
+                                providing as much assistance as we can to the best of our abilities.
                             </p>
                         </div>
                     </div>
@@ -184,29 +198,7 @@
 
             </div>
 
-            <!-- <div class="data-card">
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <div class="chart-sing">
-                            <figure class="highcharts-figure">
-                                <div id="chart-category'"></div>
-                                </figure>
-                        </div>
-                    </div>
 
-                    <div class="col-md-8">
-                        <div class="chart-text">
-                            <p>
-                            We extend support to diverse institutions 
-                            and individuals on the basis of need expressed and experienced.
-                             Our motto has always been providing as much assistance as we 
-                             can to the best of our abilities.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div> -->
         </div>
     </section>
 

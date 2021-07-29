@@ -235,6 +235,8 @@ $(".update").on("click", (e) => {
     e.preventDefault();
     var selectedProject = $(".sidebar-project.active").attr('data-id');
     var selectedProvince = $("#provinces").val();
+
+    console.log(selectedProvince);
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response', {
         'selectedProject': selectedProject,
@@ -260,6 +262,17 @@ $(".update").on("click", (e) => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
     })
+
+    if(selectedProvince) {
+
+        map.getStyle().layers.filter(layer => layer.id.includes('urban-areas')).forEach(item => {
+            if (map.getLayer(item.id))
+                map.removeLayer(item.id)
+        })
+
+    }
+
+    
 
     const currentTimestamp = Date.now()
     map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
@@ -476,9 +489,6 @@ function resetData() {
         }
     });
 
-    
-
-
     map.addSource(`urban-areas-${timeStamp}`, {
         type: "geojson",
         data: "/map-assets/json/region.geojson",
@@ -486,13 +496,20 @@ function resetData() {
 
     map.addLayer({
         id: `urban-areas-${timeStamp}-fill`,
-        type: "line",
+        type: "fill",
         source: `urban-areas-${timeStamp}`,
-        layout: {},
+        layout: {
+        },
         paint: {
-            "line-color": "#0a405a",
+            "fill-color": "#d0ecfb",
+            "fill-outline-color": "#0a405a",
+            "fill-opacity": 0.4, 
         },
     });
+    
+
+
+    
 
     
 
@@ -638,9 +655,6 @@ map.on('load', function() {
         type: "fill",
         source: "urban-areas",
         layout: {
-
-
-
         },
         paint: {
             "fill-color": "#d0ecfb",
@@ -759,14 +773,12 @@ map.on('load', function() {
             context.fill();
             context.stroke();
 
-            // Update this image's data with data from the canvas.
             this.data = context.getImageData(0, 0, this.width, this.height).data;
 
             // Continuously repaint the map, resulting
             // in the smooth animation of the dot.
             map.triggerRepaint();
 
-            // Return `true` to let the map know that the image was updated.
             return true;
         },
     };
