@@ -43,6 +43,8 @@ $('.sidebar-project').on('click',function(e){
     resetData();
 });
 
+var paginateArray = {};
+
 function buildLists(portalData) {
     
       
@@ -148,7 +150,64 @@ function buildLists(portalData) {
 
 
     })
+
+    /** trial for pagination */
+
+
+    var myArr = Array.from(document.getElementById('map-lists').children)
+    document.getElementById('map-lists').innerHTML = '';
+    var incr = -1;
+    paginateArray = myArr.reduce(function(rv,item,index){
+        if(index%10===0){
+            incr += 1;
+        }
+        (rv[incr] = rv[incr] || []).push(item) 
+        return rv;
+    },[])
+
+    paginateArray[0].forEach((item) => {
+        document.getElementById('map-lists').appendChild(item)
+    })
+    if(paginateArray.length==1){
+        $('.paginateBtn[data-type="forward"]').attr('disabled','disabled')
+    }else{
+        $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
+    }
+    $('.paginateBtn[data-type="back"]').attr('disabled','disabled')
+    initializeCount();
+
 }
+/** trial for pagination */
+    var mycount = 0;
+    function initializeCount(){
+        mycount = 0;
+    }
+
+    $('.paginateBtn').on('click',function(){
+        document.getElementById('map-lists').innerHTML = '';
+        const type = $(this).data('type');
+        if(type=='forward'){
+            mycount++;
+            $('.paginateBtn[data-type="back"]').removeAttr('disabled')
+        }
+        if(type=='back'){
+            mycount--;
+            $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
+        }
+
+        paginateArray[mycount].forEach((item) => {
+            document.getElementById('map-lists').appendChild(item)
+        })
+
+        if(mycount==0){
+            $('.paginateBtn[data-type="back"]').attr('disabled','disabled')
+        }
+        if(mycount==paginateArray.length-1){
+            $('.paginateBtn[data-type="forward"]').attr('disabled','disabled')
+        }
+
+    })
+/* trial for pagination */
 
 
 // Distirct with respect to province

@@ -46,7 +46,7 @@
         <div class="container-fluid">
             <div class="header-wrap">
                 <div class="header-logo">
-                    <a href="">
+                    <a href="{{route('index')}}">
                         <img src="/map-assets/images/nepalreliefportal.svg" alt="">
                     </a>
                 </div>
