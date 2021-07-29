@@ -41,6 +41,7 @@ $('.sidebar-project').on('click',function(e){
 
     
     resetData();
+
 });
 
 var paginateArray = {};
@@ -446,7 +447,7 @@ $("#reset-btn").on('click', (e) => {
 function resetData() {
 
     
-    
+   map.on('load', function() { 
     if(map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
@@ -494,18 +495,18 @@ function resetData() {
         data: "/map-assets/json/region.geojson",
     });
 
-    map.addLayer({
-        id: `urban-areas-${timeStamp}-fill`,
-        type: "fill",
-        source: `urban-areas-${timeStamp}`,
-        layout: {
-        },
-        paint: {
-            "fill-color": "#d0ecfb",
-            "fill-outline-color": "#0a405a",
-            "fill-opacity": 0.4, 
-        },
-    });
+    // map.addLayer({
+    //     id: `urban-areas-${timeStamp}-fill`,
+    //     type: "fill",
+    //     source: `urban-areas-${timeStamp}`,
+    //     layout: {
+    //     },
+    //     paint: {
+    //         "fill-color": "#d0ecfb",
+    //         "fill-outline-color": "#0a405a",
+    //         "fill-opacity": 0.4, 
+    //     },
+    // });
     
 
 
@@ -524,6 +525,7 @@ function resetData() {
             zoom: 6.7, // note the camel-case
         })
     }
+    })
 }
 
 $("select.for-niceselect").niceSelect();
