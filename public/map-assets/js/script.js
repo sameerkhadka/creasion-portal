@@ -451,8 +451,10 @@ $("#reset-btn").on('click', (e) => {
 
 
 function resetData() {
+    console.log("change")
+    const timeStamp = Date.now()
 
-    
+
    map.on('load', function() { 
     if(map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
@@ -477,8 +479,7 @@ function resetData() {
   
 
 
-    const timeStamp = Date.now()
-
+    
     map.addSource(`province-label-${timeStamp}`, {
         'type': 'geojson',
         'data': "/map-assets/json/label-province.geojson"
@@ -502,24 +503,18 @@ function resetData() {
         data: "/map-assets/json/region.geojson",
     });
 
-    // map.addLayer({
-    //     id: `urban-areas-${timeStamp}-fill`,
-    //     type: "fill",
-    //     source: `urban-areas-${timeStamp}`,
-    //     layout: {
-    //     },
-    //     paint: {
-    //         "fill-color": "#d0ecfb",
-    //         "fill-outline-color": "#0a405a",
-    //         "fill-opacity": 0.4, 
-    //     },
-    // });
-    
-
-
-    console.log("map add delete")    
-
-    
+    map.addLayer({
+        id: `urban-areas-${timeStamp}-fill`,
+        type: "fill",
+        source: `urban-areas-${timeStamp}`,
+        layout: {
+        },
+        paint: {
+            "fill-color": "#d0ecfb",
+            "fill-outline-color": "#0a405a",
+            "fill-opacity": 0.4, 
+        },
+    });
 
     if(mapBoxWidth < 1100) {
         map.flyTo({
@@ -532,7 +527,10 @@ function resetData() {
             zoom: 6.7, // note the camel-case
         })
     }
+
     })
+
+    
 }
 
 $("select.for-niceselect").niceSelect();
