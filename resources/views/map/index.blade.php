@@ -94,6 +94,7 @@
                             <p>Responds</p>
                             <button class="btn btn-primary paginateBtn" data-type="back" disabled>←</button>
                             <button class="btn btn-primary paginateBtn" data-type="forward">→</button>
+                            <div id="paginateDetail"></div>
                         </div>
                     </div>
                     <div id="map-lists"></div>
