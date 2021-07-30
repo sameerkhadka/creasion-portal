@@ -5,14 +5,14 @@ import {
 
 
 
-$('.sidebar-project').on('click',function(e){
+$('.sidebar-project').on('click', function (e) {
     e.preventDefault();
     $('.sidebar-project').removeClass('active');
     $(this).toggleClass('active')
 
-    var projectID =$(this).data("id");
+    var projectID = $(this).data("id");
     var projectName = $(this).data('title')
-    
+
     axios.post('/filter-response', {
         'selectedProject': projectID,
         'selectedProvince': null,
@@ -27,19 +27,19 @@ $('.sidebar-project').on('click',function(e){
 
         selectedProjectColor.classList.remove(1);
         selectedProjectColor.classList.remove(2);
-        selectedProjectColor.classList.remove(3);        
+        selectedProjectColor.classList.remove(3);
         selectedProjectColor.classList.toggle(projectID)
 
         buildLists(response.data)
 
     });
 
-    
+
 
     $('#provinces').val(-1);
     $('#districts').val(-1);
 
-    
+
     resetData();
 
 });
@@ -47,19 +47,19 @@ $('.sidebar-project').on('click',function(e){
 var paginateArray = {};
 
 function buildLists(portalData) {
-    
-      
-     
-        document.querySelector('.total-responds').innerText = portalData.features.length ;
 
 
-        portalData.features.forEach(function(data) {
+
+    document.querySelector('.total-responds').innerText = portalData.features.length;
+
+
+    portalData.features.forEach(function (data) {
         const latlng = data.geometry.coordinates
 
 
 
         var prop = data.properties;
-        
+
         var indId = prop.individual_id;
 
 
@@ -68,45 +68,45 @@ function buildLists(portalData) {
 
         var userRequests = prop.user_request.projects
 
-      
+
 
         var requestedProjects = [];
-      
-        userRequests.forEach(function(request) {
+
+        userRequests.forEach(function (request) {
             requestedProjects.push(request.title);
-            
+
         })
 
-        
 
-        
-        
+
+
+
 
         var projectColor;
 
         if (requestedProjects.length > 1) {
             projectColor = "main-color"
-            
-     
+
+
         } else if (requestedProjects == "Oxygen For Nepal") {
             projectColor = "prj-oxy"
-           
+
 
 
         } else if (requestedProjects == "COVID19 Safety Kit") {
             projectColor = "prj-cov"
-        
+
         } else if (requestedProjects == "Essentials") {
             projectColor = "prj-ess"
 
         }
 
-        
+
 
         var listingitems = `
                             <div class="list-wrap">
                                 <div class="icon ${projectColor}">
-                                    
+
                                 </div>
 
                                 <div class="des">
@@ -115,7 +115,7 @@ function buildLists(portalData) {
                                     <div class="date">
                                         <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
                                     </div>
-                                  
+
                                 </div>
                             </div>
                         `
@@ -134,7 +134,7 @@ function buildLists(portalData) {
         link.id = 'link-' + prop.id;
         link.innerHTML = listingitems;
 
-        
+
 
 
         link.addEventListener("click", () => {
@@ -158,59 +158,59 @@ function buildLists(portalData) {
     var myArr = Array.from(document.getElementById('map-lists').children)
     document.getElementById('map-lists').innerHTML = '';
     var incr = -1;
-    paginateArray = myArr.reduce(function(rv,item,index){
-        if(index%10===0){
+    paginateArray = myArr.reduce(function (rv, item, index) {
+        if (index % 10 === 0) {
             incr += 1;
         }
-        (rv[incr] = rv[incr] || []).push(item) 
+        (rv[incr] = rv[incr] || []).push(item)
         return rv;
-    },[])
+    }, [])
 
     paginateArray[0].forEach((item) => {
         document.getElementById('map-lists').appendChild(item)
     })
-    if(paginateArray.length==1){
-        $('.paginateBtn[data-type="forward"]').attr('disabled','disabled')
-    }else{
+    if (paginateArray.length == 1) {
+        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
+    } else {
         $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
     }
-    $('.paginateBtn[data-type="back"]').attr('disabled','disabled')
+    $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
     initializeCount();
     $('#paginateDetail').html(`1 of ${paginateArray.length}`)
 
 }
 /** trial for pagination */
-    var mycount = 0;
-    function initializeCount(){
-        mycount = 0;
+var mycount = 0;
+function initializeCount() {
+    mycount = 0;
+}
+
+$('.paginateBtn').on('click', function () {
+    document.getElementById('map-lists').innerHTML = '';
+    const type = $(this).data('type');
+    if (type == 'forward') {
+        mycount++;
+        $('.paginateBtn[data-type="back"]').removeAttr('disabled')
+    }
+    if (type == 'back') {
+        mycount--;
+        $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
+    }
+    $('#paginateDetail').html(`${mycount + 1} of ${paginateArray.length}`)
+
+
+    paginateArray[mycount].forEach((item) => {
+        document.getElementById('map-lists').appendChild(item)
+    })
+
+    if (mycount == 0) {
+        $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
+    }
+    if (mycount == paginateArray.length - 1) {
+        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
     }
 
-    $('.paginateBtn').on('click',function(){
-        document.getElementById('map-lists').innerHTML = '';
-        const type = $(this).data('type');
-        if(type=='forward'){
-            mycount++;
-            $('.paginateBtn[data-type="back"]').removeAttr('disabled')
-        }
-        if(type=='back'){
-            mycount--;
-            $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
-        }
-        $('#paginateDetail').html(`${mycount+1} of ${paginateArray.length}`)
-
-
-        paginateArray[mycount].forEach((item) => {
-            document.getElementById('map-lists').appendChild(item)
-        })
-
-        if(mycount==0){
-            $('.paginateBtn[data-type="back"]').attr('disabled','disabled')
-        }
-        if(mycount==paginateArray.length-1){
-            $('.paginateBtn[data-type="forward"]').attr('disabled','disabled')
-        }
-
-    })
+})
 /* trial for pagination */
 
 
@@ -219,7 +219,7 @@ provinces.forEach((item) => {
     $("#provinces").append(`<option value="${item.id}">${item.title}</option>`);
 });
 
-$("#provinces").on("change", function() {
+$("#provinces").on("change", function () {
     var provinceID = $(this).val();
     $("#districts").html("");
     var items = districts.filter((item) => {
@@ -252,7 +252,7 @@ $(".update").on("click", (e) => {
         buildLists(response.data)
     });
 
-    if(map.getLayer("poi-labels")) {
+    if (map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
 
@@ -267,7 +267,7 @@ $(".update").on("click", (e) => {
             map.removeLayer(item.id)
     })
 
-    if(selectedProvince) {
+    if (selectedProvince) {
 
         map.getStyle().layers.filter(layer => layer.id.includes('urban-areas')).forEach(item => {
             if (map.getLayer(item.id))
@@ -276,7 +276,7 @@ $(".update").on("click", (e) => {
 
     }
 
-    
+
 
     const currentTimestamp = Date.now()
     map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
@@ -312,7 +312,7 @@ $(".update").on("click", (e) => {
         },
     });
 
-// Map Fly to the Province
+    // Map Fly to the Province
     if (selectedProvince == 3) {
         var bbox = [
             83.9187728578849,
@@ -449,9 +449,48 @@ $("#reset-btn").on('click', (e) => {
 
 function resetData() {
 
-    
-   map.on('load', function() { 
-    if(map.getLayer("poi-labels")) {
+
+    map.on('load', function () {
+
+        const timeStamp = Date.now()
+
+        map.addSource(`province-label-${timeStamp}`, {
+            'type': 'geojson',
+            'data': "/map-assets/json/label-province.geojson"
+        });
+
+        map.addLayer({
+            'id': `poi-labels${timeStamp}`,
+            'type': 'symbol',
+            'source': `province-label-${timeStamp}`,
+            'layout': {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                "text-size": 14,
+            }
+        });
+
+        map.addSource(`urban-areas-${timeStamp}`, {
+            type: "geojson",
+            data: "/map-assets/json/region.geojson",
+        });
+
+        // map.addLayer({
+        //     id: `urban-areas-${timeStamp}-fill`,
+        //     type: "fill",
+        //     source: `urban-areas-${timeStamp}`,
+        //     layout: {
+        //     },
+        //     paint: {
+        //         "fill-color": "#d0ecfb",
+        //         "fill-outline-color": "#0a405a",
+        //         "fill-opacity": 0.4,
+        //     },
+        // });
+    })
+    if (map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
 
@@ -468,67 +507,18 @@ function resetData() {
     map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
-    }) 
-
-  
-
-
-    const timeStamp = Date.now()
-
-    map.addSource(`province-label-${timeStamp}`, {
-        'type': 'geojson',
-        'data': "/map-assets/json/label-province.geojson"
-    });
-
-    map.addLayer({
-        'id': `poi-labels${timeStamp}`,
-        'type': 'symbol',
-        'source': `province-label-${timeStamp}`,
-        'layout': {
-            'text-field': ['get', 'description'],
-            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-            'text-radial-offset': 0.5,
-            'text-justify': 'auto',
-            "text-size": 14,
-        }
-    });
-
-    map.addSource(`urban-areas-${timeStamp}`, {
-        type: "geojson",
-        data: "/map-assets/json/region.geojson",
-    });
-
-    // map.addLayer({
-    //     id: `urban-areas-${timeStamp}-fill`,
-    //     type: "fill",
-    //     source: `urban-areas-${timeStamp}`,
-    //     layout: {
-    //     },
-    //     paint: {
-    //         "fill-color": "#d0ecfb",
-    //         "fill-outline-color": "#0a405a",
-    //         "fill-opacity": 0.4, 
-    //     },
-    // });
-    
-
-
-    
-
-    
-
-    if(mapBoxWidth < 1100) {
+    })
+    if (mapBoxWidth < 1100) {
         map.flyTo({
             center: [84.1074, 28.2764],
             zoom: 6.2, // note the camel-case
         })
-    } else if(mapBoxWidth > 1100) {
+    } else if (mapBoxWidth > 1100) {
         map.flyTo({
             center: [84.1074, 28.4764],
             zoom: 6.7, // note the camel-case
         })
     }
-    })
 }
 
 $("select.for-niceselect").niceSelect();
@@ -544,26 +534,25 @@ var mapBoxWidth = $('#map').width();
 
 
 
-if(mapBoxWidth < 1100) {
+if (mapBoxWidth < 1100) {
     var map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
-    
+
         center: [84.1074, 28.2764],
         minZoom: 6.2, // note the camel-case
         maxZoom: 20
     });
-} else if(mapBoxWidth > 1100) {
+} else if (mapBoxWidth > 1100) {
     var map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
-    
+
         center: [84.1074, 28.4764],
         minZoom: 6.7, // note the camel-case
         maxZoom: 20
     });
 }
- 
 
 
 
@@ -571,7 +560,8 @@ if(mapBoxWidth < 1100) {
 
 
 
-function loadMapData() { 
+
+function loadMapData() {
     axios.post('/filter-response', {
         'selectedProject': null,
         'selectedProvince': null,
@@ -586,7 +576,7 @@ function loadMapData() {
 
         buildLists(portalData);
 
-        
+
 
     });
 }
@@ -598,17 +588,17 @@ function loadMapData() {
 
 // Map
 
-map.on('load', function() {
+map.on('load', function () {
 
 
-    
+
     loadMapData();
     map.addSource('province-label', {
         'type': 'geojson',
         'data': "/map-assets/json/label-province.geojson"
     });
 
-    if(mapBoxWidth < 1100) {
+    if (mapBoxWidth < 1100) {
         map.addLayer({
             'id': 'poi-labels',
             'type': 'symbol',
@@ -619,11 +609,11 @@ map.on('load', function() {
                 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
                 'text-radial-offset': 0.5,
                 'text-justify': 'auto',
-                
+
                 "text-size": 10,
             }
         });
-    } else if(mapBoxWidth > 1100) {
+    } else if (mapBoxWidth > 1100) {
         map.addLayer({
             'id': 'poi-labels',
             'type': 'symbol',
@@ -634,7 +624,7 @@ map.on('load', function() {
                 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
                 'text-radial-offset': 0.5,
                 'text-justify': 'auto',
-                
+
                 "text-size": 14,
             }
         });
@@ -664,7 +654,7 @@ map.on('load', function() {
         paint: {
             "fill-color": "#d0ecfb",
             "fill-outline-color": "#0a405a",
-            "fill-opacity": 0.4, 
+            "fill-opacity": 0.4,
         },
     });
 
@@ -686,7 +676,7 @@ map.on('load', function() {
                 30,
                 750,
                 40
-            ]   
+            ]
         },
     });
 
@@ -709,18 +699,19 @@ map.on('load', function() {
         iconAllowOverlay: true,
         source: "cylinders",
         filter: ["!", ["has", "point_count"]],
-         paint: {
-        'circle-color': [
-        'match',
-        ['get', 'project_id'],
-        1,
-        '#ee4545',
-        2,
-        '#5a45ee',
-        3,
-        '#46e8bc',
+        paint: {
+            'circle-color': [
+                'match',
+                ['get', 'project_id'],
+                1,
+                '#ee4545',
+                2,
+                '#5a45ee',
+                3,
+                '#46e8bc',
         /* other */ '#11b4da'
-        ]}
+            ]
+        }
     });
 
     map.addSource("dot-point", {
@@ -733,7 +724,7 @@ map.on('load', function() {
                     type: "Point",
                     coordinates: [83.0074, 28.4764], // icon position [lng, lat]
                 },
-            }, ],
+            },],
         },
     });
 
@@ -746,7 +737,7 @@ map.on('load', function() {
 
         // When the layer is added to the map,
         // get the rendering context for the map canvas.
-        onAdd: function() {
+        onAdd: function () {
             var canvas = document.createElement("canvas");
             canvas.width = this.width;
             canvas.height = this.height;
@@ -754,7 +745,7 @@ map.on('load', function() {
         },
 
         // Call once before every frame where the icon will be used.
-        render: function() {
+        render: function () {
             var duration = 1000;
             var t = (performance.now() % duration) / duration;
 
@@ -793,12 +784,12 @@ map.on('load', function() {
     });
 
     // inspect a cluster on click
-    map.on("click", "clusters", function(e) {
+    map.on("click", "clusters", function (e) {
         var features = map.queryRenderedFeatures(e.point, {
             layers: ["clusters"],
         });
         var clusterId = features[0].properties.cluster_id;
-        map.getSource("cylinders").getClusterExpansionZoom(clusterId, function(err, zoom) {
+        map.getSource("cylinders").getClusterExpansionZoom(clusterId, function (err, zoom) {
             if (err) return;
 
             map.easeTo({
@@ -811,15 +802,15 @@ map.on('load', function() {
 
 
 
-    map.on("click", "unclustered-point", function(e) {
+    map.on("click", "unclustered-point", function (e) {
         loadMarkerData(e);
-       
+
     });
 
 
 
 
-    
+
 
 
 
@@ -858,7 +849,7 @@ function loadMarkerData(e) {
         var inventoryTitle = inventory.title;
         var inventoryQunatity = inventory.pivot.quantity;
 
-      
+
 
         items = items + `
                             <div class="info-desc-wrapper">
@@ -920,13 +911,13 @@ function loadMarkerData(e) {
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">${getInstitution ? "Contact Number" : "Age"}</div>
-                                        <div class="text">${elective2 ? elective2 :""}</div>
+                                        <div class="text">${elective2 ? elective2 : ""}</div>
                                     </div>
                                 </div>
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">Municipality</div>
-                                        <div class="text">${ localLevelName || '' }</div>
+                                        <div class="text">${localLevelName || ''}</div>
                                     </div>
                                 </div>
                             </div>
@@ -944,6 +935,6 @@ function loadMarkerData(e) {
         .addTo(map);
 
 
-        
+
 
 }
