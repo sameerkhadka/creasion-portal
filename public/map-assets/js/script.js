@@ -21,7 +21,7 @@ $('.sidebar-project').on('click',function(e){
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
-        console.log("data set")
+ 
 
         document.querySelector('#map-lists').innerHTML = "";
 
@@ -246,7 +246,6 @@ $(".update").on("click", (e) => {
     var selectedProject = $(".sidebar-project.active").attr('data-id');
     var selectedProvince = $("#provinces").val();
 
-    console.log(selectedProvince);
     var selectedDistrict = $("#districts").val();
     axios.post('/filter-response', {
         'selectedProject': selectedProject,
@@ -440,7 +439,7 @@ $(".update").on("click", (e) => {
 });
 
 $("#reset-btn").on('click', (e) => {
-    resetData();
+    
     document.querySelector('#map-lists').innerHTML = "";
     $('.sidebar-project').removeClass('active');
     $('.sidebar-project').first().addClass('active');
@@ -449,16 +448,15 @@ $("#reset-btn").on('click', (e) => {
 
 
     loadMapData();
+    resetData();
 })
 
 
 
 function resetData() {
-    console.log("change")
     const timeStamp = Date.now()
 
 
-   map.on('load', function() { 
     if(map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
@@ -531,7 +529,7 @@ function resetData() {
         })
     }
 
-    })
+ 
 
     
 }
