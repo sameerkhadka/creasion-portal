@@ -255,20 +255,7 @@ $(".update").on("click", (e) => {
         buildLists(response.data)
     });
 
-    // if (map.getLayer("poi-labels")) {
-    //     map.removeLayer("poi-labels")
-    // }
-
-
-    // map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
-    //     if (map.getLayer(item.id))
-    //         map.removeLayer(item.id)
-    // })
-
-    // map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
-    //     if (map.getLayer(item.id))
-    //         map.removeLayer(item.id)
-    // })
+   
 
     if (selectedProvince) {
 
@@ -282,6 +269,22 @@ $(".update").on("click", (e) => {
 
 
     const currentTimestamp = Date.now()
+
+    map.getStyle().layers.filter(layer => layer.id.includes('poi-labels')).forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+
+    map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+
+    map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
+        if (map.getLayer(item.id))
+            map.removeLayer(item.id)
+    })
+
     map.addSource(`district-label${selectedProvince}-${currentTimestamp}`, {
         'type': 'geojson',
         'data': `../json/coordinates/label-province${selectedProvince}.geojson`
@@ -456,7 +459,7 @@ $("#reset-btn").on('click', (e) => {
         resetData();
         map.getSource('cylinders').setData(response.data);
 
-        console.log("This should be last")
+   
 
 
         var portalData = response.data;
@@ -467,6 +470,7 @@ $("#reset-btn").on('click', (e) => {
         
 
     });
+
 
     
     
@@ -480,7 +484,6 @@ $("#reset-btn").on('click', (e) => {
 
 function resetData() {
 
-    console.log("first")
 
     const timeStamp = Date.now()
 
@@ -690,9 +693,9 @@ map.on('load', function () {
         layout: {
         },
         paint: {
-            "fill-color": "#d0ecfb",
+            "fill-color": "transparent",
             "fill-outline-color": "#0a405a",
-            "fill-opacity": 0.4,
+            "fill-opacity": 0.8,
         },
     });
 
