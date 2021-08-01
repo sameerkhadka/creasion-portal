@@ -4,14 +4,13 @@
 
 	.filter {
         top: 1% !important;
-        height: 100% !important;
     }
     .map-wrapper .filter .filter-card .nice-select {
         height: 40px;
     }
 
     .map-wrapper .filter {
-        width: 320px;
+        width: 261px;
         padding-left: 20px;
     }
 

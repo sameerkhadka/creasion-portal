@@ -116,23 +116,27 @@ header .request a ion-icon {
 
 .map-wrapper .filter {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 65px;
+  top: 1%;
   z-index: 2;
-  width: 230px;
-  background: #fff;
-  min-height: 400px;
-  padding: 40px 0;
+  width: 261px;
+  padding: 0 20px;
   background-color: #ffffff;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   -webkit-transition: -webkit-transform 450ms;
   transition: -webkit-transform 450ms;
   transition: transform 450ms;
   transition: transform 450ms, -webkit-transform 450ms;
+}
+
+.map-wrapper .filter .filter-card-wrap {
+  display: none;
+}
+
+.map-wrapper .filter .filter-card-wrap.open {
+  display: block !important;
 }
 
 .map-wrapper .filter .nice-select.open .list {
@@ -142,13 +146,12 @@ header .request a ion-icon {
 }
 
 .map-wrapper .filter .filter-head {
-  margin: 35px 0;
+  padding: 15px 0;
 }
 
 .map-wrapper .filter .filter-head h4 {
-  font-size: 19px;
-  color: #000;
-  margin: 15px 0;
+  font-size: 14px;
+  color: #1E130C;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,7 +165,7 @@ header .request a ion-icon {
 }
 
 .map-wrapper .filter .filter-card {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .map-wrapper .filter .filter-card label {
@@ -171,10 +174,9 @@ header .request a ion-icon {
   margin-bottom: 5px;
 }
 
-.map-wrapper .filter .filter-card .nice-select {
-  float: none;
-  width: 248px;
-  height: 48px;
+.map-wrapper .filter .filter-card select {
+  width: 100%;
+  height: 34px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -182,17 +184,23 @@ header .request a ion-icon {
       -ms-flex-align: center;
           align-items: center;
   color: #0a0a0a;
+  border: 1px solid #333;
+  font-size: 13px;
+  border: 1px solid #dedede;
+  padding-left: 5px;
+}
+
+.map-wrapper .filter .filter-card select:focus {
+  outline: none;
 }
 
 .map-wrapper .filter .filter-card a, .map-wrapper .filter .filter-card button {
-  width: 125px;
   background: #11b4da;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
   border: 0;
   color: #fff;
-  height: 40px;
   margin: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -202,10 +210,13 @@ header .request a ion-icon {
           justify-content: center;
   text-decoration: none;
   cursor: pointer;
+  font-size: 14px;
+  padding: 7px 20px;
+  border-radius: 3px;
 }
 
 .map-wrapper .filter .filter-card a i, .map-wrapper .filter .filter-card button i {
-  margin-right: 5px;
+  margin-right: 8px;
   font-size: 13px;
 }
 

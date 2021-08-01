@@ -73,12 +73,6 @@
                 
                 <div class="sidebar">
                     <div class="sidebar-header">
-                        <!-- <ul>
-                            <li ><a href="" data-id="null" class="sidebar-project active" id="all"><span></span>All</a> </li>
-                             @foreach ($projects as $item)
-                            <li><a href="#" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span></span>{{ $item->title }} </a> </li>
-                            @endforeach
-                        </ul> -->
 
                         <div class="selected-project">
                             <span class="icon icon-color"></span>
@@ -131,7 +125,7 @@
 
                         <div class="filter-card">
                             <a href="" class="update">Update</a>
-                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Reset</button>
+                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Clear All</button>
                         </div>
                     </div>
                 </section>

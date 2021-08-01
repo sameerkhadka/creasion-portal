@@ -12,11 +12,6 @@ $('.sidebar-project').on('click', function (e) {
 
     var projectID = $(this).data("id");
     var projectName = $(this).data('title')
-<<<<<<< HEAD
-    
-    resetData();
-=======
->>>>>>> dd8d2e109bf0e66c688e40d8a3d9285621dd950d
 
     axios.post('/filter-response', {
         'selectedProject': projectID,
@@ -260,20 +255,20 @@ $(".update").on("click", (e) => {
         buildLists(response.data)
     });
 
-    if (map.getLayer("poi-labels")) {
-        map.removeLayer("poi-labels")
-    }
+    // if (map.getLayer("poi-labels")) {
+    //     map.removeLayer("poi-labels")
+    // }
 
 
-    map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
-        if (map.getLayer(item.id))
-            map.removeLayer(item.id)
-    })
+    // map.getStyle().layers.filter(layer => layer.type === 'line').forEach(item => {
+    //     if (map.getLayer(item.id))
+    //         map.removeLayer(item.id)
+    // })
 
-    map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
-        if (map.getLayer(item.id))
-            map.removeLayer(item.id)
-    })
+    // map.getStyle().layers.filter(layer => layer.id.includes('district-labels--')).forEach(item => {
+    //     if (map.getLayer(item.id))
+    //         map.removeLayer(item.id)
+    // })
 
     if (selectedProvince) {
 
@@ -449,47 +444,49 @@ $("#reset-btn").on('click', (e) => {
     $('#provinces').val(-1);
     $('#districts').val(-1);
 
+    var filterCard = document.querySelector('.filter-card-wrap');
+    filterCard.classList.remove("open")
 
-    loadMapData();
-    resetData();
+    axios.post('/filter-response', {
+        'selectedProject': null,
+        'selectedProvince': null,
+        'selectedDistrict': null
+    }).then((response) => {
+  
+        resetData();
+        map.getSource('cylinders').setData(response.data);
+
+        console.log("This should be last")
+
+
+        var portalData = response.data;
+
+        buildLists(portalData);
+
+
+        
+
+    });
+
+    
+    
+
+    
+
+    
 })
 
 
 
 function resetData() {
+
+    console.log("first")
+
     const timeStamp = Date.now()
 
-
-
-    map.on('load', function () {
-
-        const timeStamp = Date.now()
-
-        map.addSource(`province-label-${timeStamp}`, {
-            'type': 'geojson',
-            'data': "/map-assets/json/label-province.geojson"
-        });
-
-        map.addLayer({
-            'id': `poi-labels${timeStamp}`,
-            'type': 'symbol',
-            'source': `province-label-${timeStamp}`,
-            'layout': {
-                'text-field': ['get', 'description'],
-                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-                'text-radial-offset': 0.5,
-                'text-justify': 'auto',
-                "text-size": 14,
-            }
-        });
-
-        map.addSource(`urban-areas-${timeStamp}`, {
-            type: "geojson",
-            data: "/map-assets/json/region.geojson",
-        });
+    
 
   
-    })
     if (map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
@@ -508,6 +505,47 @@ function resetData() {
         if (map.getLayer(item.id))
             map.removeLayer(item.id)
     })
+
+
+    map.addSource(`province-label-${timeStamp}`, {
+        'type': 'geojson',
+        'data': "/map-assets/json/label-province.geojson"
+    });
+
+    map.addLayer({
+        'id': `poi-labels${timeStamp}`,
+        'type': 'symbol',
+        'source': `province-label-${timeStamp}`,
+        'layout': {
+            'text-field': ['get', 'description'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            "text-size": 14,
+        }
+    });
+    
+
+    map.addSource(`urban-areas-${timeStamp}`, {
+        type: "geojson",
+        data: "/map-assets/json/region.geojson",
+    });
+
+    map.addLayer({
+        id: `urban-areas-fill-${timeStamp}`,
+        type: "fill",
+        source: `urban-areas-${timeStamp}`,
+        layout: {
+        },
+        paint: {
+            "fill-color": "transparent",
+            "fill-outline-color": "#0a405a",
+            "fill-opacity": 0.8,
+        },
+    });
+
+    
+
     if (mapBoxWidth < 1100) {
         map.flyTo({
             center: [84.1074, 28.2764],
@@ -690,6 +728,7 @@ map.on('load', function () {
             "text-field": "{point_count_abbreviated}",
 
             "text-size": 12,
+            "text-allow-overlap" : true
         }
     });
 
@@ -937,4 +976,14 @@ function loadMarkerData(e) {
 
 
 
+}
+
+
+var filterHead = document.querySelector('.filter-head');
+var filterCard = document.querySelector('.filter-card-wrap');
+
+if (filterHead) {
+    filterHead.addEventListener('click', () => {
+        filterCard.classList.add("open")
+    })
 }

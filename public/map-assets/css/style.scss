@@ -122,22 +122,24 @@ header {
 
     .filter {
         position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
-
-        width: 230px;
-        background: #fff;
-        min-height: 400px;
-
-        padding: 40px 0;
+        right: 65px;
+        top: 1%;
+        z-index: 2;
+        width: 261px;
+        padding: 0 20px;
         background-color: #ffffff;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
 
         cursor: pointer;
         transition: transform 450ms;
+
+        .filter-card-wrap {
+            display: none;
+        } 
+
+        .filter-card-wrap.open {
+            display: block !important;
+        }
 
         .nice-select.open .list {
             width: 100%;
@@ -146,14 +148,11 @@ header {
         }
 
         .filter-head {
-            margin: 35px 0;
-
-
+            padding: 15px 0;
 
             h4 {
-                font-size: 19px;
-                color: #000;
-                margin: 15px 0;
+                font-size: 14px;
+                color: #1E130C;
                 display: flex;
                 align-items: center;
 
@@ -165,7 +164,7 @@ header {
         }
 
         .filter-card {
-            margin-bottom: 25px;
+            margin-bottom: 15px;
 
             label {
                 font-size: 14px;
@@ -173,30 +172,38 @@ header {
                 margin-bottom: 5px;
             }
 
-            .nice-select {
-                float: none;
-                width: 248px;
-                height: 48px;
+            select {
+                width: 100%;
+                height: 34px;
                 display: flex;
                 align-items: center;
                 color: #0a0a0a;
+                border: 1px solid #333;
+                font-size: 13px;
+                border: 1px solid #dedede;
+                padding-left: 5px;
+
+                &:focus {
+                    outline: none;
+                }
             }
 
             a, button {
-                width: 125px;
                 background: #11b4da;
                 display: inline-flex;
                 border: 0;
                 color: #fff;
-                height: 40px;
                 margin: 0;
                 align-items: center;
                 justify-content: center;
                 text-decoration: none;
                 cursor: pointer;
+                font-size: 14px;
+                padding: 7px 20px;
+                border-radius: 3px;
 
                 i {
-                    margin-right: 5px;
+                    margin-right: 8px;
                     font-size: 13px;
                 }
             }
