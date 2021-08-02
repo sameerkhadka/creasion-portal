@@ -159,28 +159,28 @@ function buildLists(portalData) {
     /** trial for pagination */
 
 
-    var myArr = Array.from(document.getElementById('map-lists').children)
-    document.getElementById('map-lists').innerHTML = '';
-    var incr = -1;
-    paginateArray = myArr.reduce(function (rv, item, index) {
-        if (index % 10 === 0) {
-            incr += 1;
-        }
-        (rv[incr] = rv[incr] || []).push(item)
-        return rv;
-    }, [])
+    // var myArr = Array.from(document.getElementById('map-lists').children)
+    // document.getElementById('map-lists').innerHTML = '';
+    // var incr = -1;
+    // paginateArray = myArr.reduce(function (rv, item, index) {
+    //     if (index % 10 === 0) {
+    //         incr += 1;
+    //     }
+    //     (rv[incr] = rv[incr] || []).push(item)
+    //     return rv;
+    // }, [])
 
-    paginateArray[0].forEach((item) => {
-        document.getElementById('map-lists').appendChild(item)
-    })
-    if (paginateArray.length == 1) {
-        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
-    } else {
-        $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
-    }
-    $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
-    initializeCount();
-    $('#paginateDetail').html(`1 of ${paginateArray.length}`)
+    // paginateArray[0].forEach((item) => {
+    //     document.getElementById('map-lists').appendChild(item)
+    // })
+    // if (paginateArray.length == 1) {
+    //     $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
+    // } else {
+    //     $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
+    // }
+    // $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
+    // initializeCount();
+    // $('#paginateDetail').html(`1 of ${paginateArray.length}`)
 
 }
 /** trial for pagination */
@@ -318,15 +318,137 @@ $(".update").on("click", (e) => {
         },
     });
 
-    // Map Fly to the Province
-    if (selectedProvince == 3) {
-        var bbox = [
-            83.9187728578849,
-            26.9191431698797,
-            86.5727626547517,
-            28.3862845807188
-        ];
-        map.fitBounds(bbox, {
+    if(!selectedDistrict) {
+
+        if (selectedProvince == 3) {
+            var bbox = [
+                83.9187728578849,
+                26.9191431698797,
+                86.5727626547517,
+                28.3862845807188
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+
+        } else if (selectedProvince == 1) {
+            var bbox = [
+                86.1559244137852,
+                26.3478370706644,
+                88.2016677742523,
+                28.1130612812249
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+
+        } else if (selectedProvince == 2) {
+            var bbox = [
+                84.4838899645418,
+                26.4223835197793,
+                87.0145939355117,
+                27.4631790982775
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+        } else if (selectedProvince == 4) {
+            var bbox = [
+                82.8773532738891,
+                27.4378229151552,
+                85.1980163344162,
+                29.3313585169325
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+        } else if (selectedProvince == 5) {
+            var bbox = [
+                81.0592010293138,
+                27.3302256530826,
+                84.0285404645032,
+                28.8692280187363
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+        } else if (selectedProvince == 6) {
+            var bbox = [
+                80.981051199357,
+                28.1511099599141,
+                83.6804351913103,
+                30.4472763312289
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+        } else if (selectedProvince == 7) {
+            var bbox = [
+                80.0585843010467,
+                28.3945109653181,
+                81.8082221152366,
+                30.246722785497
+            ];
+            map.fitBounds(bbox, {
+                padding: {
+                    top: 100,
+                    bottom: 25,
+                    left: 15,
+                    right: 5
+                }
+            });
+
+        }
+
+    }
+
+    else {
+      
+        
+
+        let districtBbox = districts.filter( function(e) {
+            return e.id == selectedDistrict
+        })
+
+    
+
+        map.fitBounds(districtBbox[0].bbox, {
             padding: {
                 top: 100,
                 bottom: 25,
@@ -334,105 +456,7 @@ $(".update").on("click", (e) => {
                 right: 5
             }
         });
-
-
-    } else if (selectedProvince == 1) {
-        var bbox = [
-            86.1559244137852,
-            26.3478370706644,
-            88.2016677742523,
-            28.1130612812249
-        ];
-        map.fitBounds(bbox, {
-            padding: {
-                top: 100,
-                bottom: 25,
-                left: 15,
-                right: 5
-            }
-        });
-
-
-    } else if (selectedProvince == 2) {
-        var bbox = [
-            84.4838899645418,
-            26.4223835197793,
-            87.0145939355117,
-            27.4631790982775
-        ];
-        map.fitBounds(bbox, {
-            padding: {
-                top: 100,
-                bottom: 25,
-                left: 15,
-                right: 5
-            }
-        });
-
-    } else if (selectedProvince == 4) {
-        var bbox = [
-            82.8773532738891,
-            27.4378229151552,
-            85.1980163344162,
-            29.3313585169325
-        ];
-        map.fitBounds(bbox, {
-            padding: {
-                top: 100,
-                bottom: 25,
-                left: 15,
-                right: 5
-            }
-        });
-
-    } else if (selectedProvince == 5) {
-        var bbox = [
-            81.0592010293138,
-            27.3302256530826,
-            84.0285404645032,
-            28.8692280187363
-        ];
-        map.fitBounds(bbox, {
-            padding: {
-                top: 100,
-                bottom: 25,
-                left: 15,
-                right: 5
-            }
-        });
-
-    } else if (selectedProvince == 6) {
-        var bbox = [
-            80.981051199357,
-            28.1511099599141,
-            83.6804351913103,
-            30.4472763312289
-        ];
-        map.fitBounds(bbox, {
-            padding: {
-                top: 100,
-                bottom: 25,
-                left: 15,
-                right: 5
-            }
-        });
-
-    } else if (selectedProvince == 7) {
-        var bbox = [
-            80.0585843010467,
-            28.3945109653181,
-            81.8082221152366,
-            30.246722785497
-        ];
-        map.fitBounds(bbox, {
-            padding: {
-                top: 100,
-                bottom: 25,
-                left: 15,
-                right: 5
-            }
-        });
-
+        
     }
 
 
@@ -521,10 +545,10 @@ function resetData() {
         'source': `province-label-${timeStamp}`,
         'layout': {
             'text-field': ['get', 'description'],
-            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-            'text-radial-offset': 0.5,
-            'text-justify': 'auto',
-            "text-size": 14,
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                "text-size": 12,
         }
     });
     
@@ -666,7 +690,7 @@ map.on('load', function () {
                 'text-radial-offset': 0.5,
                 'text-justify': 'auto',
 
-                "text-size": 14,
+                "text-size": 12,
             }
         });
     }
@@ -708,7 +732,7 @@ map.on('load', function () {
         source: "cylinders",
         filter: ["has", "point_count"],
         paint: {
-            "circle-color": ["step", ["get", "point_count"], "#51bbd6", 10, "#f1f075", 20, "#f28cb1"],
+            "circle-color": ["step", ["get", "point_count"], "#51bbd6", 10, "#51bbd6", 20, "#51bbd6"],
             'circle-radius': [
                 'step',
                 ['get', 'point_count'],

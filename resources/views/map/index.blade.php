@@ -86,9 +86,9 @@
                         <div class="responded-num">
                             <h4 class="total-responds">00</h4>
                             <p>Responds</p>
-                            <button class="btn btn-primary paginateBtn" data-type="back" disabled>←</button>
+                            <!-- <button class="btn btn-primary paginateBtn" data-type="back" disabled>←</button>
                             <button class="btn btn-primary paginateBtn" data-type="forward">→</button>
-                            <div id="paginateDetail"></div>
+                            <div id="paginateDetail"></div> -->
                         </div>
                     </div>
                     <div id="map-lists"></div>
@@ -197,7 +197,6 @@
         </div>
     </section>
 
-
     <section class="partners" id="section-partners">
         <div class="container">
             <div class="partner-slider owl-carousel">
@@ -213,7 +212,9 @@
         </div>
     </section>
 
+    <!-- <div class="about-slide">
 
+    </div> -->
    
     <script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>
