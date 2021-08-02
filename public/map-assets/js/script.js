@@ -19,7 +19,7 @@ $('.sidebar-project').on('click', function (e) {
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
- 
+
 
         document.querySelector('#map-lists').innerHTML = "";
 
@@ -38,7 +38,7 @@ $('.sidebar-project').on('click', function (e) {
 
 
 
-    
+
 
     $('#provinces').val(-1);
     $('#districts').val(-1);
@@ -165,6 +165,7 @@ function buildLists(portalData) {
 
     document.getElementById('map-lists').innerHTML = '';
     var incr = -1;
+
     paginateArray = myArr.reduce(function (rv, item, index) {
         if (index % 10 === 0) {
             incr += 1;
@@ -172,10 +173,11 @@ function buildLists(portalData) {
         (rv[incr] = rv[incr] || []).push(item)
         return rv;
     }, [])
+    if(paginateArray.length>0){
+        paginateArray[0].forEach((item) => {
+            document.getElementById('map-lists').appendChild(item)
+        })
 
-    paginateArray[0].forEach((item) => {
-        document.getElementById('map-lists').appendChild(item)
-    })
     if (paginateArray.length == 1) {
         $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
     } else {
@@ -184,6 +186,15 @@ function buildLists(portalData) {
     $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
     initializeCount();
     $('#paginateDetail').html(`1 of ${paginateArray.length}`)
+    }
+    else{
+        $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
+        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
+        $('#paginateDetail').html('')
+
+    }
+
+
 
 
 
@@ -265,7 +276,7 @@ $(".update").on("click", (e) => {
         buildLists(response.data)
     });
 
-   
+
 
     if (selectedProvince) {
 
@@ -449,14 +460,14 @@ $(".update").on("click", (e) => {
     }
 
     else {
-      
-        
+
+
 
         let districtBbox = districts.filter( function(e) {
             return e.id == selectedDistrict
         })
 
-    
+
 
         map.fitBounds(districtBbox[0].bbox, {
             padding: {
@@ -466,7 +477,7 @@ $(".update").on("click", (e) => {
                 right: 5
             }
         });
-        
+
     }
 
 
@@ -474,7 +485,7 @@ $(".update").on("click", (e) => {
 });
 
 $("#reset-btn").on('click', (e) => {
-    
+
     document.querySelector('#map-lists').innerHTML = "";
     $('.sidebar-project').removeClass('active');
     $('.sidebar-project').first().addClass('active');
@@ -489,11 +500,11 @@ $("#reset-btn").on('click', (e) => {
         'selectedProvince': null,
         'selectedDistrict': null
     }).then((response) => {
-  
+
         resetData();
         map.getSource('cylinders').setData(response.data);
 
-   
+
 
 
         var portalData = response.data;
@@ -505,17 +516,17 @@ $("#reset-btn").on('click', (e) => {
         document.querySelector('span.icon').classList.remove(2);
         document.querySelector('span.icon').classList.remove(3);
 
-        
+
 
     });
 
 
-    
-    
 
-    
 
-    
+
+
+
+
 })
 
 
@@ -525,9 +536,9 @@ function resetData() {
 
     const timeStamp = Date.now()
 
-    
 
-  
+
+
     if (map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
@@ -565,7 +576,7 @@ function resetData() {
                 "text-size": 12,
         }
     });
-    
+
 
     map.addSource(`urban-areas-${timeStamp}`, {
         type: "geojson",
@@ -585,7 +596,7 @@ function resetData() {
         },
     });
 
-    
+
 
     if (mapBoxWidth < 1100) {
         map.flyTo({
