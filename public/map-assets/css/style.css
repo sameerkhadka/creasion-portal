@@ -1,5 +1,5 @@
 header {
-  height: 90px;
+  height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -111,7 +111,7 @@ header .request a ion-icon {
   top: 0;
   bottom: 0;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 80px);
 }
 
 .map-wrapper .filter {
@@ -608,8 +608,46 @@ header .request a ion-icon {
 
 .sidebar #map-lists {
   position: relative;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 180px);
   overflow-y: auto;
+}
+
+.sidebar .list-pagination {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  background: #f1f1f1;
+  width: 100%;
+  padding: 10px 30px;
+}
+
+.sidebar .list-pagination .prev-next {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.sidebar .list-pagination .prev-next button {
+  background: #c9c9c9;
+  border-radius: 7px;
+  width: 40px;
+  height: 26px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar .list-pagination .prev-next #paginateDetail {
+  margin: 0 15px;
 }
 
 .sidebar .sidebar-header {
@@ -715,6 +753,7 @@ header .request a ion-icon {
 
 .sidebar .data-item:last-child {
   border-bottom: 0;
+  margin-bottom: 50px;
 }
 
 .sidebar .data-item a:hover {

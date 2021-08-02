@@ -160,6 +160,9 @@ function buildLists(portalData) {
 
 
     var myArr = Array.from(document.getElementById('map-lists').children)
+
+
+
     document.getElementById('map-lists').innerHTML = '';
     var incr = -1;
     paginateArray = myArr.reduce(function (rv, item, index) {
@@ -182,12 +185,15 @@ function buildLists(portalData) {
     initializeCount();
     $('#paginateDetail').html(`1 of ${paginateArray.length}`)
 
+
+
 }
 /** trial for pagination */
 var mycount = 0;
 function initializeCount() {
     mycount = 0;
 }
+
 
 $('.paginateBtn').on('click', function () {
     document.getElementById('map-lists').innerHTML = '';
@@ -215,6 +221,10 @@ $('.paginateBtn').on('click', function () {
     }
 
 })
+
+
+
+
 /* trial for pagination */
 
 
