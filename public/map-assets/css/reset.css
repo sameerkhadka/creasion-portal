@@ -354,3 +354,15 @@ span.header-dots.Essentials {
   color: #46e8bc;
 
 }
+
+.info-card-header.essentials {
+  background: #46e8bc;
+}
+
+.info-card-header.covid-saftey {
+  background: #5a45ee;
+}
+
+.info-card-header.oxygen-for-nepal {
+  background: #ee4545;
+}

@@ -103,7 +103,7 @@ header .request a ion-icon {
 
 .map-wrapper .row .bg-color {
   padding: 0;
-  background-color: #E5EFF4;
+  background-color: #fbfbfb;
 }
 
 .map-wrapper #map {
@@ -212,7 +212,6 @@ header .request a ion-icon {
   cursor: pointer;
   font-size: 14px;
   padding: 7px 20px;
-  border-radius: 3px;
 }
 
 .map-wrapper .filter .filter-card a ion-icon, .map-wrapper .filter .filter-card button ion-icon {
@@ -314,7 +313,7 @@ header .request a ion-icon {
   letter-spacing: 0px;
   color: #242424;
   width: 60%;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Proxima Nova';
   font-weight: lighter;
 }
@@ -325,8 +324,9 @@ header .request a ion-icon {
   letter-spacing: 0px;
   color: #000000;
   font-family: 'Proxima Nova';
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 300;
+  margin-left: 4px;
 }
 
 .map-wrapper .items {
@@ -872,7 +872,6 @@ header .request a ion-icon {
 .data-display .chart-sing {
   margin: 10px 0;
   border: 1px solid #dcdcdc;
-  border-radius: 10px;
   padding: 0 0 20px 0;
 }
 

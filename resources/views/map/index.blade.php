@@ -25,8 +25,9 @@
     <link rel="stylesheet" href="/map-assets/assets/fonts/Moderat/style.css">
     <link rel="stylesheet" href="/map-assets/assets/fonts/Proxima Nova/stylesheet.css">
 
-    <link rel="stylesheet" href="/map-assets/css/reset.css">
+    
     <link rel="stylesheet" href="/map-assets/css/style.css">
+    <link rel="stylesheet" href="/map-assets/css/reset.css">
     <link rel="stylesheet" href="/map-assets/css/responsive.css">
 
 </head>
@@ -148,7 +149,7 @@
     <section class="data-display">
         <div class="container">
             <div class="data-card">
-                <div class="row align-items-center">
+                <div class="row ">
                     <div class="col-md-4">
                         <div class="chart-sing">
                             <h4 class="chart-title">Relief Impacts by Gender</h4>

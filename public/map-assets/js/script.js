@@ -911,9 +911,13 @@ function loadMarkerData(e) {
     var coordinates = e.features[0].geometry.coordinates.slice();
 
     var type = e.features[0].properties.type;
+    var projectSelect = e.features[0].properties.project_id
+    console.log(projectSelect)
 
-    var institution = e.features[0].properties.institution_id;
-    var individual = e.features[0].properties.individual_id;
+    
+
+
+
 
 
     var getInstitution = JSON.parse(e.features[0].properties.institution)
@@ -921,9 +925,7 @@ function loadMarkerData(e) {
 
 
     var name = getInstitution ? getInstitution.name : getIndividual.name,
-        provinceId = getInstitution ? getInstitution.province.id : getIndividual.province.id,
         provinceName = getInstitution ? getInstitution.province.title : getIndividual.province.title,
-        districtId = getInstitution ? getInstitution.district.id : getIndividual.district.id,
         districtName = getInstitution ? getInstitution.district.title : getIndividual.district.title,
         localLevelName = getInstitution ? getInstitution.local_level?.title : getIndividual.local_level?.title,
 
@@ -1023,8 +1025,18 @@ function loadMarkerData(e) {
                         </div>
                         `
         )
+
+        
         .addTo(map);
 
+        if (projectSelect == 1) {
+            console.log("where")
+             document.querySelector('.info-card-header').classList.add("oxygen-for-nepal")
+        }else if (projectSelect == 2) {
+            document.querySelector('.info-card-header').classList.add("covid-saftey")
+        }else if (projectSelect == 3) {
+            document.querySelector('.info-card-header').classList.add("essentials")
+        }
 
 
 
