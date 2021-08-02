@@ -86,9 +86,9 @@
                         <div class="responded-num">
                             <h4 class="total-responds">00</h4>
                             <p>Responds</p>
-                            <!-- <button class="btn btn-primary paginateBtn" data-type="back" disabled>←</button>
+                            <button class="btn btn-primary paginateBtn" data-type="back" disabled>←</button>
                             <button class="btn btn-primary paginateBtn" data-type="forward">→</button>
-                            <div id="paginateDetail"></div> -->
+                            <div id="paginateDetail"></div>
                         </div>
                     </div>
                     <div id="map-lists"></div>
@@ -125,7 +125,7 @@
 
                         <div class="filter-card">
                             <a href="" class="update">Update</a>
-                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Clear All</button>
+                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Clear</button>
                         </div>
                     </div>
                 </section>

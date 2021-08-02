@@ -215,8 +215,8 @@ header .request a ion-icon {
   border-radius: 3px;
 }
 
-.map-wrapper .filter .filter-card a i, .map-wrapper .filter .filter-card button i {
-  margin-right: 8px;
+.map-wrapper .filter .filter-card a ion-icon, .map-wrapper .filter .filter-card button ion-icon {
+  margin-right: 4px;
   font-size: 13px;
 }
 

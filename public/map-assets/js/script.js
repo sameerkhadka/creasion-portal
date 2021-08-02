@@ -159,28 +159,28 @@ function buildLists(portalData) {
     /** trial for pagination */
 
 
-    // var myArr = Array.from(document.getElementById('map-lists').children)
-    // document.getElementById('map-lists').innerHTML = '';
-    // var incr = -1;
-    // paginateArray = myArr.reduce(function (rv, item, index) {
-    //     if (index % 10 === 0) {
-    //         incr += 1;
-    //     }
-    //     (rv[incr] = rv[incr] || []).push(item)
-    //     return rv;
-    // }, [])
+    var myArr = Array.from(document.getElementById('map-lists').children)
+    document.getElementById('map-lists').innerHTML = '';
+    var incr = -1;
+    paginateArray = myArr.reduce(function (rv, item, index) {
+        if (index % 10 === 0) {
+            incr += 1;
+        }
+        (rv[incr] = rv[incr] || []).push(item)
+        return rv;
+    }, [])
 
-    // paginateArray[0].forEach((item) => {
-    //     document.getElementById('map-lists').appendChild(item)
-    // })
-    // if (paginateArray.length == 1) {
-    //     $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
-    // } else {
-    //     $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
-    // }
-    // $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
-    // initializeCount();
-    // $('#paginateDetail').html(`1 of ${paginateArray.length}`)
+    paginateArray[0].forEach((item) => {
+        document.getElementById('map-lists').appendChild(item)
+    })
+    if (paginateArray.length == 1) {
+        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
+    } else {
+        $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
+    }
+    $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
+    initializeCount();
+    $('#paginateDetail').html(`1 of ${paginateArray.length}`)
 
 }
 /** trial for pagination */
@@ -490,6 +490,10 @@ $("#reset-btn").on('click', (e) => {
 
         buildLists(portalData);
 
+        document.querySelector('.sidebar-selected').innerText = "All";
+        document.querySelector('span.icon').classList.remove(1);
+        document.querySelector('span.icon').classList.remove(2);
+        document.querySelector('span.icon').classList.remove(3);
 
         
 
@@ -545,9 +549,9 @@ function resetData() {
         'source': `province-label-${timeStamp}`,
         'layout': {
             'text-field': ['get', 'description'],
-                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-                'text-radial-offset': 0.5,
-                'text-justify': 'auto',
+                'text-variable-anchor': ['bottom','left', 'top', 'right'],
+                'text-radial-offset': 0.4,
+                'text-justify': 'left',
                 "text-size": 12,
         }
     });
