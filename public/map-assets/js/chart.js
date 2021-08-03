@@ -178,11 +178,11 @@ Highcharts.chart('chart-inst-type', {
               items: 2,
           },
           768: {
-              items: 3,
+              items: 4,
           
           },
           1200: {
-              items: 6,
+              items: 7,
           }
       }
   });
