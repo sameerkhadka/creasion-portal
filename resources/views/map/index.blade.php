@@ -25,8 +25,9 @@
     <link rel="stylesheet" href="/map-assets/assets/fonts/Moderat/style.css">
     <link rel="stylesheet" href="/map-assets/assets/fonts/Proxima Nova/stylesheet.css">
 
-    <link rel="stylesheet" href="/map-assets/css/reset.css">
+    
     <link rel="stylesheet" href="/map-assets/css/style.css">
+    <link rel="stylesheet" href="/map-assets/css/reset.css">
     <link rel="stylesheet" href="/map-assets/css/responsive.css">
 
 </head>
@@ -86,12 +87,19 @@
                         <div class="responded-num">
                             <h4 class="total-responds">00</h4>
                             <p>Responds</p>
-                            <!-- <button class="btn btn-primary paginateBtn" data-type="back" disabled>←</button>
-                            <button class="btn btn-primary paginateBtn" data-type="forward">→</button>
-                            <div id="paginateDetail"></div> -->
+                            
                         </div>
                     </div>
                     <div id="map-lists"></div>
+
+                    <div class="list-pagination">
+                            <div class="prev-next">
+                            <button class="paginateBtn" data-type="back" disabled>←</button>
+                            <div id="paginateDetail"></div>
+                            <button class=" paginateBtn" data-type="forward">→</button>
+                            </div>
+                            
+                    </div>
                 </div>
             </div>
 
@@ -125,7 +133,7 @@
 
                         <div class="filter-card">
                             <a href="" class="update">Update</a>
-                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Clear All</button>
+                            <button id="reset-btn"><ion-icon name="refresh-outline"></ion-icon> Clear</button>
                         </div>
                     </div>
                 </section>
@@ -141,7 +149,7 @@
     <section class="data-display">
         <div class="container">
             <div class="data-card">
-                <div class="row align-items-center">
+                <div class="row ">
                     <div class="col-md-4">
                         <div class="chart-sing">
                             <h4 class="chart-title">Relief Impacts by Gender</h4>

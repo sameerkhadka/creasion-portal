@@ -19,7 +19,7 @@ $('.sidebar-project').on('click', function (e) {
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
- 
+
 
         document.querySelector('#map-lists').innerHTML = "";
 
@@ -38,7 +38,7 @@ $('.sidebar-project').on('click', function (e) {
 
 
 
-    
+
 
     $('#provinces').val(-1);
     $('#districts').val(-1);
@@ -159,28 +159,44 @@ function buildLists(portalData) {
     /** trial for pagination */
 
 
-    // var myArr = Array.from(document.getElementById('map-lists').children)
-    // document.getElementById('map-lists').innerHTML = '';
-    // var incr = -1;
-    // paginateArray = myArr.reduce(function (rv, item, index) {
-    //     if (index % 10 === 0) {
-    //         incr += 1;
-    //     }
-    //     (rv[incr] = rv[incr] || []).push(item)
-    //     return rv;
-    // }, [])
+    var myArr = Array.from(document.getElementById('map-lists').children)
 
-    // paginateArray[0].forEach((item) => {
-    //     document.getElementById('map-lists').appendChild(item)
-    // })
-    // if (paginateArray.length == 1) {
-    //     $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
-    // } else {
-    //     $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
-    // }
-    // $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
-    // initializeCount();
-    // $('#paginateDetail').html(`1 of ${paginateArray.length}`)
+
+
+    document.getElementById('map-lists').innerHTML = '';
+    var incr = -1;
+
+    paginateArray = myArr.reduce(function (rv, item, index) {
+        if (index % 10 === 0) {
+            incr += 1;
+        }
+        (rv[incr] = rv[incr] || []).push(item)
+        return rv;
+    }, [])
+    if(paginateArray.length>0){
+        paginateArray[0].forEach((item) => {
+            document.getElementById('map-lists').appendChild(item)
+        })
+
+    if (paginateArray.length == 1) {
+        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
+    } else {
+        $('.paginateBtn[data-type="forward"]').removeAttr('disabled')
+    }
+    $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
+    initializeCount();
+    $('#paginateDetail').html(`1 of ${paginateArray.length}`)
+    }
+    else{
+        $('.paginateBtn[data-type="back"]').attr('disabled', 'disabled')
+        $('.paginateBtn[data-type="forward"]').attr('disabled', 'disabled')
+        $('#paginateDetail').html('')
+
+    }
+
+
+
+
 
 }
 /** trial for pagination */
@@ -188,6 +204,7 @@ var mycount = 0;
 function initializeCount() {
     mycount = 0;
 }
+
 
 $('.paginateBtn').on('click', function () {
     document.getElementById('map-lists').innerHTML = '';
@@ -215,6 +232,10 @@ $('.paginateBtn').on('click', function () {
     }
 
 })
+
+
+
+
 /* trial for pagination */
 
 
@@ -255,7 +276,7 @@ $(".update").on("click", (e) => {
         buildLists(response.data)
     });
 
-   
+
 
     if (selectedProvince) {
 
@@ -439,14 +460,14 @@ $(".update").on("click", (e) => {
     }
 
     else {
-      
-        
+
+
 
         let districtBbox = districts.filter( function(e) {
             return e.id == selectedDistrict
         })
 
-    
+
 
         map.fitBounds(districtBbox[0].bbox, {
             padding: {
@@ -456,7 +477,7 @@ $(".update").on("click", (e) => {
                 right: 5
             }
         });
-        
+
     }
 
 
@@ -464,7 +485,7 @@ $(".update").on("click", (e) => {
 });
 
 $("#reset-btn").on('click', (e) => {
-    
+
     document.querySelector('#map-lists').innerHTML = "";
     $('.sidebar-project').removeClass('active');
     $('.sidebar-project').first().addClass('active');
@@ -479,29 +500,33 @@ $("#reset-btn").on('click', (e) => {
         'selectedProvince': null,
         'selectedDistrict': null
     }).then((response) => {
-  
+
         resetData();
         map.getSource('cylinders').setData(response.data);
 
-   
+
 
 
         var portalData = response.data;
 
         buildLists(portalData);
 
+        document.querySelector('.sidebar-selected').innerText = "All";
+        document.querySelector('span.icon').classList.remove(1);
+        document.querySelector('span.icon').classList.remove(2);
+        document.querySelector('span.icon').classList.remove(3);
 
-        
+
 
     });
 
 
-    
-    
 
-    
 
-    
+
+
+
+
 })
 
 
@@ -511,9 +536,9 @@ function resetData() {
 
     const timeStamp = Date.now()
 
-    
 
-  
+
+
     if (map.getLayer("poi-labels")) {
         map.removeLayer("poi-labels")
     }
@@ -545,13 +570,13 @@ function resetData() {
         'source': `province-label-${timeStamp}`,
         'layout': {
             'text-field': ['get', 'description'],
-                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-                'text-radial-offset': 0.5,
-                'text-justify': 'auto',
+                'text-variable-anchor': ['bottom','left', 'top', 'right'],
+                'text-radial-offset': 0.4,
+                'text-justify': 'left',
                 "text-size": 12,
         }
     });
-    
+
 
     map.addSource(`urban-areas-${timeStamp}`, {
         type: "geojson",
@@ -571,7 +596,7 @@ function resetData() {
         },
     });
 
-    
+
 
     if (mapBoxWidth < 1100) {
         map.flyTo({
@@ -886,9 +911,13 @@ function loadMarkerData(e) {
     var coordinates = e.features[0].geometry.coordinates.slice();
 
     var type = e.features[0].properties.type;
+    var projectSelect = e.features[0].properties.project_id
+    console.log(projectSelect)
 
-    var institution = e.features[0].properties.institution_id;
-    var individual = e.features[0].properties.individual_id;
+    
+
+
+
 
 
     var getInstitution = JSON.parse(e.features[0].properties.institution)
@@ -896,9 +925,7 @@ function loadMarkerData(e) {
 
 
     var name = getInstitution ? getInstitution.name : getIndividual.name,
-        provinceId = getInstitution ? getInstitution.province.id : getIndividual.province.id,
         provinceName = getInstitution ? getInstitution.province.title : getIndividual.province.title,
-        districtId = getInstitution ? getInstitution.district.id : getIndividual.district.id,
         districtName = getInstitution ? getInstitution.district.title : getIndividual.district.title,
         localLevelName = getInstitution ? getInstitution.local_level?.title : getIndividual.local_level?.title,
 
@@ -998,8 +1025,18 @@ function loadMarkerData(e) {
                         </div>
                         `
         )
+
+        
         .addTo(map);
 
+        if (projectSelect == 1) {
+            console.log("where")
+             document.querySelector('.info-card-header').classList.add("oxygen-for-nepal")
+        }else if (projectSelect == 2) {
+            document.querySelector('.info-card-header').classList.add("covid-saftey")
+        }else if (projectSelect == 3) {
+            document.querySelector('.info-card-header').classList.add("essentials")
+        }
 
 
 

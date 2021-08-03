@@ -168,7 +168,7 @@ Highcharts.chart('chart-inst-type', {
       animateOut: 'fadeOut',
       animateIn: 'fadeIn',
       margin: 15,
-      smartSpeed: 2500,
+      smartSpeed: 4500,
       autoplayHoverPause:true,
       slideBy: 3,
       autoplayTimeout: 5000,
@@ -177,11 +177,11 @@ Highcharts.chart('chart-inst-type', {
               items: 2,
           },
           768: {
-              items: 3,
+              items: 4,
           
           },
           1200: {
-              items: 6,
+              items: 7,
           }
       }
   });

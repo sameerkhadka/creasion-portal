@@ -1,5 +1,5 @@
 header {
-  height: 90px;
+  height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -103,7 +103,7 @@ header .request a ion-icon {
 
 .map-wrapper .row .bg-color {
   padding: 0;
-  background-color: #E5EFF4;
+  background-color: #fbfbfb;
 }
 
 .map-wrapper #map {
@@ -111,7 +111,7 @@ header .request a ion-icon {
   top: 0;
   bottom: 0;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 80px);
 }
 
 .map-wrapper .filter {
@@ -212,11 +212,10 @@ header .request a ion-icon {
   cursor: pointer;
   font-size: 14px;
   padding: 7px 20px;
-  border-radius: 3px;
 }
 
-.map-wrapper .filter .filter-card a i, .map-wrapper .filter .filter-card button i {
-  margin-right: 8px;
+.map-wrapper .filter .filter-card a ion-icon, .map-wrapper .filter .filter-card button ion-icon {
+  margin-right: 4px;
   font-size: 13px;
 }
 
@@ -314,7 +313,7 @@ header .request a ion-icon {
   letter-spacing: 0px;
   color: #242424;
   width: 60%;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Proxima Nova';
   font-weight: lighter;
 }
@@ -325,8 +324,9 @@ header .request a ion-icon {
   letter-spacing: 0px;
   color: #000000;
   font-family: 'Proxima Nova';
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 300;
+  margin-left: 4px;
 }
 
 .map-wrapper .items {
@@ -386,12 +386,12 @@ header .request a ion-icon {
 
 .partners {
   background: #eeefef;
-  padding: 80px 0;
+  padding: 50px 0 0;
 }
 
 .partners .item img {
   width: 100%;
-  height: 170px;
+  height: 120px;
   -o-object-fit: contain;
      object-fit: contain;
   background: white;
@@ -608,8 +608,46 @@ header .request a ion-icon {
 
 .sidebar #map-lists {
   position: relative;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 180px);
   overflow-y: auto;
+}
+
+.sidebar .list-pagination {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  background: #f1f1f1;
+  width: 100%;
+  padding: 10px 30px;
+}
+
+.sidebar .list-pagination .prev-next {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.sidebar .list-pagination .prev-next button {
+  background: #c9c9c9;
+  border-radius: 7px;
+  width: 40px;
+  height: 26px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar .list-pagination .prev-next #paginateDetail {
+  margin: 0 15px;
 }
 
 .sidebar .sidebar-header {
@@ -715,6 +753,7 @@ header .request a ion-icon {
 
 .sidebar .data-item:last-child {
   border-bottom: 0;
+  margin-bottom: 50px;
 }
 
 .sidebar .data-item a:hover {
@@ -827,14 +866,14 @@ header .request a ion-icon {
 }
 
 .data-display {
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 .data-display .chart-sing {
   margin: 10px 0;
   border: 1px solid #dcdcdc;
-  border-radius: 10px;
   padding: 0 0 20px 0;
+  min-height: 675px;
 }
 
 .data-display .chart-sing p {
@@ -853,7 +892,6 @@ header .request a ion-icon {
 
 .data-display .highcharts-background {
   fill: #f7f7f7;
-  stroke: #dcdcdc;
   stroke-width: 2px;
   border-radius: 10px;
 }
