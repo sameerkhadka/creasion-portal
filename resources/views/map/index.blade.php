@@ -316,7 +316,7 @@
     },
     series: [{
         name: "",
-      data: [1.6, 2, 5, 2.8, 1, 0.5, 2]
+      data: @json($values)
     }]
   });
 
@@ -345,6 +345,57 @@
       }
   });
     </script>
+<script>
+Highcharts.chart('chart-inst-type', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: ``
+    },
+    accessibility: {
+      announceNewData: {
+        enabled: true
+      }
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      title: {
+        text: 'Relief reached out'
+      }
+  
+    },
+    legend: {
+      enabled: false
+    },
+    plotOptions: {
+      series: {
+        borderWidth: 0,
+        dataLabels: {
+          enabled: true,
+          format: '{point.y:.1f}%'
+        }
+      }
+    },
+  
+    tooltip: {
+      headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+      pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+  
+    series: [
+      {
+        name: "Browsers",
+        colorByPoint: true,
+        data: @json($institutionchart)
+      }
+    ]
+  });
 
+
+
+</script>
 </body>
 </html>

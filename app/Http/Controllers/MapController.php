@@ -12,14 +12,6 @@ use Illuminate\Http\Request;
 class MapController extends Controller
 {
     public function index(){
-        $result = ProvinceChart::orderBy('order')->get();
-        $data = [];
-        $value = [];
-        foreach($result as $val){
-            array_push($data,$val->name);
-            array_push($value,$val->value);
-       }
-       $provinceName = $data;  
         $genderData = [
             [
             'name' => 'Male',
@@ -39,8 +31,30 @@ class MapController extends Controller
             $genderData[0]['z'] = 50;
             $genderData[0]['z'] = 40;
         }
+
+        $result = ProvinceChart::orderBy('order')->get();
+        $data = [];
+        $value = [];
+        foreach($result as $val){
+            array_push($data,$val->name);
+            array_push($value,$val->value);
+       }
+       $provinceName = $data;  
+       $values = array_map('floatval', $value);
+
+        
+       $all = InstitutionChart::orderBy('order')->get();
+       foreach($all as $item)
+       {
+           $institutionchart[] = [
+                "name" => $item->name,
+                "y" => floatval($item->value)
+           ];
+       }    
+
         $projects = Project::all();
         $partners = Partner::orderBy('order')->get();
-        return view('map.index',compact('projects','partners', 'genderData','provinceName','value'));
+
+        return view('map.index',compact('projects','partners', 'genderData','provinceName','values','institutionchart'));
     }
 }
