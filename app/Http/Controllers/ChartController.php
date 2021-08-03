@@ -7,17 +7,31 @@ use Illuminate\Http\Request;
 use App\Models\Particular;
 
 use App\Models\Project;
+use App\Models\Response;
 
 class ChartController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
-        return view('pie', compact('projects'));
+
+        return $mydata = [
+            [
+                'name' => 'Male',
+                'y'=> 90,
+                'z'=> 40,
+            ],
+            [
+            'name' => 'Female',
+            'y'=> 90,
+            'z'=> 40,
+        ]
+            ];
+        $response = Response::where('individual_id','!=',null)->with(['individual','userRequest'])->get();
+        return $response;
     }
 
     public function dynamic(Request $request)
-    {   
+    {
         $get = $request->value;
         $result = Particular::select('*')
         ->where('project_id', '=', $get)
