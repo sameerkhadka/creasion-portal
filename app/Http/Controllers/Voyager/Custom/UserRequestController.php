@@ -496,14 +496,14 @@ class UserRequestController extends VoyagerBaseController
         $userRequest->projects()->detach();
 
 
-        
+
         $response = Response::where('user_request_id', $id)->first();
 
-        $response->inventories()->detach(); 
-        
+
         if($response)
         {
-            $response->delete();       
+            $response->inventories()->detach();
+            $response->delete();
         }
 
         if($userRequest->individual_id)
@@ -521,7 +521,7 @@ class UserRequestController extends VoyagerBaseController
 
 
 
-       
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
