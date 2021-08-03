@@ -10,9 +10,8 @@ Highcharts.chart('chart-gender', {
     },
     tooltip: {
       headerFormat: '',
-      // pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-      //   'Area (square km): <b>{point.y}</b><br/>' +
-      //   'Population density (people per square km): <b>{point.z}</b><br/>'
+      pointFormat: 'Total: <b>{point.y}</b><br/>' 
+        // 'Population density (people per square km): <b>{point.z}</b><br/>'
     },
     series: [{
       minPointSize: 10,
@@ -21,13 +20,13 @@ Highcharts.chart('chart-gender', {
       name: 'Gender',
       data: [{
         name: 'Male',
-        y: 75,
-        z: 92.9,
+        y: 90,
+        z: 40,
       
       }, {
         name: 'Female',
-        y: 25,
-        z: 118.7,
+        y: 125,
+        z: 50,
       
       }]
     }]
