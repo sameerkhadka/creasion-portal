@@ -21,7 +21,7 @@ class Response extends Model
     }
 
     public function userRequest(){
-        return $this->belongsTo(UserRequest::class)->select(['id'])->with('projects');
+        return $this->belongsTo(UserRequest::class)->where('verified',1)->select(['id','verified'])->with('projects');
     }
 
 
