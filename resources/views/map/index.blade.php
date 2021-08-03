@@ -262,5 +262,31 @@
 
     <script type="module" src="/map-assets/js/script.js"></script>
 
+    <script>
+        Highcharts.chart('chart-gender', {
+    chart: {
+      type: 'variablepie'
+    },
+    colors: ['#4680ea', '#ef769d'],
+    backgroundColor: "'#ef769d",
+    title: {
+      text: `  `
+    },
+    tooltip: {
+      headerFormat: '',
+      pointFormat: 'Total: <b>{point.y}</b><br/>' 
+        // 'Population density (people per square km): <b>{point.z}</b><br/>'
+    },
+    series: [{
+      minPointSize: 10,
+      innerSize: '20%',
+      zMin: 0,
+      name: 'Gender',
+      data: @json($genderData)
+    }]
+  });
+
+    </script>
+
 </body>
 </html>

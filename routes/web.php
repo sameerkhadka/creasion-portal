@@ -44,8 +44,9 @@ Route::get('/pieOld', function () {
 //         );
 //     }
 // });
-Route::GET('/pie', [ChartController::class,'index']);
+Route::get('/gender-data', [ChartController::class,'index']);
 Route::POST('/piee', [ChartController::class,'dynamic'])->name('dynamic');
+
 
 Route::get('/request', [RequestController::class,'index'])->name('getRequest');
 
