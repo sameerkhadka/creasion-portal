@@ -890,3 +890,26 @@ header {
     
 }
 
+.about-slide {
+    position: fixed;
+    top: 0;
+    background: #fff;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    padding: 80px 20px;
+  
+    .abt-container {
+        max-width: 44.86486rem;
+        margin: auto;
+        text-align: center;
+    }
+
+    .abt p {
+        font-family: "Proxima Nova";
+        margin-top: 20px;
+        font-weight: 300;
+    }
+
+
+}

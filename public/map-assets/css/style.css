@@ -916,4 +916,26 @@ header .request a ion-icon {
 .data-display g.highcharts-legend.highcharts-no-tooltip {
   display: none;
 }
+
+.about-slide {
+  position: fixed;
+  top: 0;
+  background: #fff;
+  width: 100%;
+  height: 100vh;
+  z-index: 5;
+  padding: 80px 20px;
+}
+
+.about-slide .abt-container {
+  max-width: 44.86486rem;
+  margin: auto;
+  text-align: center;
+}
+
+.about-slide .abt p {
+  font-family: "Proxima Nova";
+  margin-top: 20px;
+  font-weight: 300;
+}
 /*# sourceMappingURL=style.css.map */
