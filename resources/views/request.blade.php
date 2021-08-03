@@ -386,8 +386,15 @@
                     formData.append('modelData', JSON.stringify(this.modelData));
                     formData.append('projectWithInventories', JSON.stringify(this.projectsWithInventories));
                     axios.post('{{ route("request") }}',formData).then(function(response){
-                        window.location = document.referrer;
+                        /** temporary code */
+                        tempthis.modelData.institution = JSON.parse(JSON.stringify(myInitial.data.modelData.institution));
+                        tempthis.modelData.individual = JSON.parse(JSON.stringify(myInitial.data.modelData.individual));
+                        tempthis.modelData.localAddress = '';
                         tempthis.processing = false;
+                        toastr.success('Successfully added data. Please add more!!');
+                        /** temporary disabled
+                        window.location = document.referrer;
+                        tempthis.processing = false; */
                     }).catch(function(error){
                         if (error.response) {
                             Object.values(error.response.data.errors).forEach((error)=>{
@@ -448,7 +455,7 @@
     <!-- Load the `mapbox-gl-geocoder` plugin. -->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
- 
+
 <!-- Promise polyfill script is required -->
 <!-- to use Mapbox GL Geocoder in IE 11. -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
@@ -458,7 +465,7 @@
 
         var coordinates = document.getElementById('coordinates');
         mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1cXVmeXFiZzB1eSJ9.A7dJUR4ppKJDKWZypF_0lA";
-        
+
         var map = new mapboxgl.Map({
             container: "map-select",
             style: 'mapbox://styles/mapbox/streets-v11',
@@ -466,13 +473,13 @@
             minZoom: 5.4, // note the camel-case
              maxZoom: 15
         });
-        
+
         var marker = new mapboxgl.Marker({
         draggable: true
         })
         .setLngLat([85.32399, 27.70254])
         .addTo(map);
-        
+
         function onDragEnd() {
         var lngLat = marker.getLngLat();
         coordinates.style.display = 'block';
@@ -480,9 +487,9 @@
         coordinates.innerHTML =
         'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
         }
-        
+
         marker.on('dragend', onDragEnd);
-        
+
             map.addControl(
                 new mapboxgl.GeolocateControl({
                     positionOptions: {
@@ -491,7 +498,7 @@
                 trackUserLocation: true
                 })
             );
-        
+
             map.addControl(
             new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
@@ -499,7 +506,7 @@
             })
             );
             </script>
-        
+
 
 <script type="module" src="{{ asset('js/custom.js') }}"></script>
 <script>
