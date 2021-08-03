@@ -5,11 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Partner;
 use App\Models\Response;
+use App\Models\ProvinceChart;
+use App\Models\InstitutionChart;
 use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
     public function index(){
+        $result = ProvinceChart::orderBy('order')->get();
+        $data = [];
+        $value = [];
+        foreach($result as $val){
+            array_push($data,$val->name);
+            array_push($value,$val->value);
+       }
+       $provinceName = $data;  
         $genderData = [
             [
             'name' => 'Male',
@@ -31,6 +41,6 @@ class MapController extends Controller
         }
         $projects = Project::all();
         $partners = Partner::orderBy('order')->get();
-        return view('map.index',compact('projects','partners', 'genderData'));
+        return view('map.index',compact('projects','partners', 'genderData','provinceName','value'));
     }
 }

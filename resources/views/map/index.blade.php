@@ -272,6 +272,79 @@
   });
 
     </script>
+    <script>
+        
+  Highcharts.chart('chart-province-type', {
+    chart: {
+      type: 'bar'
+    },
+    
+    
+    title: {
+      text: ``
+    },
+    
+    xAxis: {
+      categories: @json($provinceName),
+      title: {
+        text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Relief Bar',
+        align: 'high'
+      },
+      labels: {
+        overflow: 'justify'
+      }
+    },
+    tooltip: {
+      valueSuffix: ' millions'
+    },
+    plotOptions: {
+      bar: {
+        dataLabels: {
+          enabled: true
+        }
+      }
+    },
+  
+    credits: {
+      enabled: false
+    },
+    series: [{
+        name: "",
+      data: [1.6, 2, 5, 2.8, 1, 0.5, 2]
+    }]
+  });
+
+  $('.partner-slider').owlCarousel({
+      loop: true,
+
+      autoplay: true,
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      margin: 15,
+      smartSpeed: 4500,
+      autoplayHoverPause:true,
+      slideBy: 3,
+      autoplayTimeout: 5000,
+      responsive: {
+          0: {
+              items: 2,
+          },
+          768: {
+              items: 4,
+          
+          },
+          1200: {
+              items: 7,
+          }
+      }
+  });
+    </script>
 
 </body>
 </html>
