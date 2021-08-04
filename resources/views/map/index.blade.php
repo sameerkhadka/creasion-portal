@@ -319,6 +319,130 @@
   });
 
     </script>
+    <script>
+        
+  Highcharts.chart('chart-province-type', {
+    chart: {
+      type: 'bar'
+    },
+    
+    
+    title: {
+      text: ``
+    },
+    
+    xAxis: {
+      categories: @json($provinceName),
+      title: {
+        text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Relief Bar',
+        align: 'high'
+      },
+      labels: {
+        overflow: 'justify'
+      }
+    },
+    tooltip: {
+      valueSuffix: ' millions'
+    },
+    plotOptions: {
+      bar: {
+        dataLabels: {
+          enabled: true
+        }
+      }
+    },
+  
+    credits: {
+      enabled: false
+    },
+    series: [{
+        name: "",
+      data: @json($values)
+    }]
+  });
 
+  $('.partner-slider').owlCarousel({
+      loop: true,
+
+      autoplay: true,
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      margin: 15,
+      smartSpeed: 4500,
+      autoplayHoverPause:true,
+      slideBy: 3,
+      autoplayTimeout: 5000,
+      responsive: {
+          0: {
+              items: 2,
+          },
+          768: {
+              items: 4,
+          
+          },
+          1200: {
+              items: 7,
+          }
+      }
+  });
+    </script>
+<script>
+Highcharts.chart('chart-inst-type', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: ``
+    },
+    accessibility: {
+      announceNewData: {
+        enabled: true
+      }
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      title: {
+        text: 'Relief reached out'
+      }
+  
+    },
+    legend: {
+      enabled: false
+    },
+    plotOptions: {
+      series: {
+        borderWidth: 0,
+        dataLabels: {
+          enabled: true,
+          format: '{point.y:.1f}%'
+        }
+      }
+    },
+  
+    tooltip: {
+      headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+      pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+  
+    series: [
+      {
+        name: "Browsers",
+        colorByPoint: true,
+        data: @json($institutionchart)
+      }
+    ]
+  });
+
+
+
+</script>
 </body>
 </html>
