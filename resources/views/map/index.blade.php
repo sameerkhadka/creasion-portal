@@ -161,11 +161,9 @@
                             <figure class="highcharts-figure">
                                 <div id="chart-gender"></div>
                             </figure>
+                            <?php $item = \App\Models\ChartData::where('id',3)->first(); ?>
                             <p>
-                                With 64 % of our beneficiaries as women, our 
-                                relief initiatives have always been gender-sensitive and
-                                included support items specifically tailored for them for
-                                emergency situations. 
+                               {{ $item->description }}
                             </p>
                         </div>
                     </div>
@@ -177,10 +175,9 @@
                             <figure class="highcharts-figure">
                                 <div id="chart-province-type"></div>
                             </figure>
+                            <?php $item = \App\Models\ChartData::where('id',2)->first(); ?>
                             <p>
-                                We always try to cater to all the emergency requests that
-                                we receive despite of the geographical remoteness or 
-                                topographic difficulties.
+                               {{ $item->description }}
                             </p>
                         </div>
                     </div>
@@ -192,10 +189,9 @@
                             <figure class="highcharts-figure">
                                 <div id="chart-inst-type"></div>
                             </figure>
+                            <?php $item = \App\Models\ChartData::where('id',1)->first(); ?>
                             <p>
-                             We extend support to diverse institutions and individuals on the
-                                basis of need expressed and experienced. Our motto has always been
-                                providing as much assistance as we can to the best of our abilities.
+                               {{ $item->description }}
                             </p>
                         </div>
                     </div>
