@@ -29,8 +29,23 @@
     header .head-nav {
         margin-left: 0;
     }
-    
 
+    .about-slide {
+        padding: 10px;
+    }
+    
+    .about-slide .abt img {
+        width: 380px;
+        margin-bottom: 10px;
+    }
+
+    .about-slide .abt-center {
+        margin-top: 40px;
+    }
+
+    .about-slide .abt-footer{
+        padding-top: 20px;
+    }
 
 }
 

@@ -385,7 +385,7 @@ header .request a ion-icon {
 }
 
 .partners {
-  background: #eeefef;
+  background: #f7f7f7;
   padding: 50px 0 0;
 }
 
@@ -915,5 +915,122 @@ header .request a ion-icon {
 
 .data-display g.highcharts-legend.highcharts-no-tooltip {
   display: none;
+}
+
+.about-slide.open {
+  display: block;
+}
+
+.about-slide {
+  position: fixed;
+  top: 0;
+  background: #fff;
+  width: 100%;
+  height: 100vh;
+  z-index: 5;
+  padding: 80px 20px;
+  display: none;
+}
+
+.about-slide button.hide-abt {
+  position: absolute;
+  right: 0px;
+  font-size: 24px;
+  top: -40px;
+  border: 1px solid #a2a2a2;
+  border-radius: 50%;
+  width: 30px;
+  color: #565454;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.about-slide .abt-container {
+  max-width: 44.86486rem;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+.about-slide .abt img {
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+.about-slide .abt p {
+  font-family: "Proxima Nova";
+  font-weight: 300;
+}
+
+.about-slide .abt-center {
+  margin-top: 90px;
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.about-slide .navs {
+  text-align: left;
+}
+
+.about-slide .navs a {
+  display: block;
+  margin: 12px 0;
+  color: #909090;
+}
+
+.about-slide .navs a:last-child {
+  margin-bottom: 0;
+}
+
+.about-slide .social a {
+  color: #909090;
+  width: 30px;
+  height: 30px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border: 1px solid #909090;
+  border-radius: 50%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 10px;
+}
+
+.about-slide .social a i {
+  font-size: 14px;
+}
+
+.about-slide .abt-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 30px;
+  border-top: 1px solid #dcdcdc;
+  margin-top: 30px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.about-slide .abt-footer img {
+  height: 20px;
+  margin-right: 8px;
+}
+
+.about-slide .abt-footer p {
+  font-size: 14px;
+  font-family: "Proxima Nova";
 }
 /*# sourceMappingURL=style.css.map */
