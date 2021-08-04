@@ -29,7 +29,7 @@ class MapController extends Controller
         $genderData[1]['y'] = $response->where('individual.gender','Female')->count();
         if($genderData[0]['y'] > $genderData[1]['y'] ){
             $genderData[0]['z'] = 50;
-            $genderData[0]['z'] = 40;
+            $genderData[1]['z'] = 40;
         }
 
         $result = ProvinceChart::orderBy('order')->get();
@@ -39,10 +39,10 @@ class MapController extends Controller
             array_push($data,$val->name);
             array_push($value,$val->value);
        }
-       $provinceName = $data;  
+       $provinceName = $data;
        $values = array_map('floatval', $value);
 
-        
+
        $all = InstitutionChart::orderBy('order')->get();
        foreach($all as $item)
        {
@@ -50,7 +50,7 @@ class MapController extends Controller
                 "name" => $item->name,
                 "y" => floatval($item->value)
            ];
-       }    
+       }
 
         $projects = Project::all();
         $partners = Partner::orderBy('order')->get();
