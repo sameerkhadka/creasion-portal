@@ -241,11 +241,11 @@
 
             <div class="abt-center">
                 <div class="navs">
-                    <a href="">FAQs </a>
-                    <a href="">OFN Chapters</a>
-                    <a href="">Success Stories</a>
-                    <a href="">COVID-19 Resources </a>
-                    <a href="">Important Links</a>
+                    <a href=""><span>FAQs</span> </a>
+                    <a href=""><span>OFN Chapters</span></a>
+                    <a href=""><span>Success Stories</span></a>
+                    <a href=""><span>COVID-19 Resources</span> </a>
+                    <a href=""><span>Important Links</span></a>
                 </div>
 
                 <div class="social">
@@ -281,9 +281,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
+    <script src="/map-assets/js/gsap.min.js"></script>
+    <script src="/map-assets/js/ScrollTrigger.min.js"></script>
+    <script src="/map-assets/js/CSSRulePlugin.min.js"></script>
 
     <script src="/map-assets/js/chart.js"></script>
     <script src="/map-assets/js/gsapscripts.js"></script>
