@@ -8,6 +8,7 @@ use App\Models\Particular;
 
 use App\Models\Project;
 use App\Models\Response;
+use App\Models\ChartData;
 
 class ChartController extends Controller
 {
@@ -52,5 +53,18 @@ class ChartController extends Controller
         $projects = Project::all();
         $id = $get;
         return response(compact('id','sum','chartData','quantity','color','projects'));
+    }
+
+    public function chartData(Request $request, $id)
+    {
+        $item = ChartData::find($id);
+        $item->description = $request->description;
+        $item->save();
+        return redirect()->back();
+    }
+
+    public function gender_charts()
+    {
+        return view('gender_charts');
     }
 }

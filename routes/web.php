@@ -65,6 +65,8 @@ Route::get('/new-request', [RequestController::class,'new_request'])->name('new_
 
 Route::POST('/responses/add', [RequestController::class,'add_response'])->name('add_response');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin'], function () {    
+    Route::POST('/chartdata/{id}', [ChartController::class,'chartData'])->name('chart.update');
+    Route::GET('/gender-charts', [ChartController::class,'gender_charts']);
     Voyager::routes();
 });
