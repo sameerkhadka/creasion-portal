@@ -365,7 +365,7 @@ header {
 }
 
 .partners {
-    background: #eeefef;
+    background: #f7f7f7;
     padding: 50px 0 0;
 
     .item {
@@ -890,6 +890,10 @@ header {
     
 }
 
+.about-slide.open {
+    display: block;
+}
+
 .about-slide {
     position: fixed;
     top: 0;
@@ -898,18 +902,100 @@ header {
     height: 100vh;
     z-index: 5;
     padding: 80px 20px;
+    display: none;
+
+
+    button.hide-abt {
+        position: absolute;
+        right: 0px;
+        font-size: 24px;
+        top: -40px;
+        border: 1px solid #a2a2a2;
+        border-radius: 50%;
+        width: 30px;
+        color: #565454;
+        z-index: 3;
+        cursor: pointer;
+    }
   
     .abt-container {
         max-width: 44.86486rem;
         margin: auto;
         text-align: center;
+        position: relative;
     }
 
-    .abt p {
-        font-family: "Proxima Nova";
-        margin-top: 20px;
-        font-weight: 300;
+    .abt {
+        img {
+            width: 500px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-family: "Proxima Nova";
+            font-weight: 300;
+        }
     }
+
+    .abt-center {
+        margin-top: 90px;
+        padding: 20px 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content:space-between;
+    }
+
+    .navs {
+        text-align: left;
+        
+        a {
+            display: block;
+            margin: 12px 0;
+            color: #909090;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .social {
+        a {
+            color: #909090;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            border: 1px solid #909090;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+
+            i {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .abt-footer {
+        display: flex;
+        padding-top: 30px;
+        border-top: 1px solid #dcdcdc;
+        margin-top: 30px;
+        justify-content: center;
+
+        img {
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        p {
+            font-size: 14px;
+            font-family: "Proxima Nova";
+        }
+    }
+
+    
 
 
 }

@@ -16,6 +16,10 @@
 
     <link rel="stylesheet" href="/map-assets/css/animate.css">
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
 
@@ -61,7 +65,7 @@
                     </div>
 
                     <div class="menu">
-                        <a href=""><ion-icon name="reorder-two-outline"></ion-icon></a>
+                        <a href="#" class="menu-btn"><ion-icon name="reorder-two-outline"></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -221,17 +225,45 @@
     </section>
 
     <div class="about-slide">
+        
+
         <div class="abt-container">
+            <button class="hide-abt"><ion-icon name="close-outline"></ion-icon></button> 
+
             <div class="abt">
-                <img src="/map-assets/images/creasion.png" class="logo-spin" alt="">
+                <!-- <img src="/map-assets/images/creasion.png" class="logo-spin" alt=""> -->
+                <img src="/map-assets/images/nepalreliefportal.svg" alt="">
                 <p>
-                    Nepal Relief Portal is Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
-                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Nepal Relief is an initiative of CREASION for quick disaster response. 
+                The interventions are implemented in collaboration and through the support
+                 of civil society organizations, individual volunteers, NGOs, private 
+                 sectors and youth groups. Through Nepal Relief, we focus on quick response
+                  as a short- term solution and move towards rehabilitation as a 
+                  long-term solution to disaster management.  
                 </p>
+            </div>
+
+            <div class="abt-center">
+                <div class="navs">
+                    <a href="">FAQs </a>
+                    <a href="">OFN Chapters</a>
+                    <a href="">Success Stories</a>
+                    <a href="">COVID-19 Resources </a>
+                    <a href="">Important Links</a>
+                </div>
+
+                <div class="social">
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="abt-footer">
+
+                <img src="/map-assets/images/creasion.png"  alt=""><p> Initiated by: CREASION</p>
+
             </div>
         </div>
     </div>
