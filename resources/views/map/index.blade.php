@@ -220,6 +220,14 @@
         </div>
     </section>
 
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <img src="/map-assets/images/creasion.png"  alt=""><p> Initiated by: CREASION</p>
+            </div>
+        </div>
+    </footer>
+
     <div class="about-slide">
         
 

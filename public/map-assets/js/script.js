@@ -10,6 +10,8 @@ $('.sidebar-project').on('click', function (e) {
     $('.sidebar-project').removeClass('active');
     $(this).toggleClass('active')
 
+    resetData();
+
     var projectID = $(this).data("id");
     var projectName = $(this).data('title')
 
@@ -44,7 +46,7 @@ $('.sidebar-project').on('click', function (e) {
     $('#districts').val(-1);
 
 
-    resetData();
+    
 
 });
 
@@ -682,7 +684,7 @@ map.on('load', function () {
 
 
 
-    loadMapData();
+    
     map.addSource('province-label', {
         'type': 'geojson',
         'data': "/map-assets/json/label-province.geojson"
@@ -805,19 +807,9 @@ map.on('load', function () {
         }
     });
 
-    map.addSource("dot-point", {
-        type: "geojson",
-        data: {
-            type: "FeatureCollection",
-            features: [{
-                type: "Feature",
-                geometry: {
-                    type: "Point",
-                    coordinates: [83.0074, 28.4764], // icon position [lng, lat]
-                },
-            },],
-        },
-    });
+    
+
+    loadMapData();
 
     var size = 1000;
 
@@ -912,7 +904,7 @@ function loadMarkerData(e) {
 
     var type = e.features[0].properties.type;
     var projectSelect = e.features[0].properties.project_id
-    console.log(projectSelect)
+   
 
     
 
@@ -1030,7 +1022,6 @@ function loadMarkerData(e) {
         .addTo(map);
 
         if (projectSelect == 1) {
-            console.log("where")
              document.querySelector('.info-card-header').classList.add("oxygen-for-nepal")
         }else if (projectSelect == 2) {
             document.querySelector('.info-card-header').classList.add("covid-saftey")

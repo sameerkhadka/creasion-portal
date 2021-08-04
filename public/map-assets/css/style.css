@@ -386,7 +386,7 @@ header .request a ion-icon {
 
 .partners {
   background: #f7f7f7;
-  padding: 50px 0 0;
+  padding: 50px 0 20px;
 }
 
 .partners .item img {
@@ -939,7 +939,7 @@ header .request a ion-icon {
   visibility: hidden;
 }
 
-.about-slide button.hide-abt {
+.about-slide .hide-abt {
   position: absolute;
   right: 0px;
   font-size: 24px;
@@ -950,6 +950,12 @@ header .request a ion-icon {
   color: #565454;
   z-index: 3;
   cursor: pointer;
+}
+
+.about-slide .hide-abt:hover {
+  background: #11b4da;
+  color: #fff;
+  border: 1px solid #11b4da;
 }
 
 .about-slide .abt-container {
@@ -1047,6 +1053,26 @@ header .request a ion-icon {
 
 .about-slide .abt-footer p {
   font-size: 13px;
+  font-family: "Proxima Nova";
+}
+
+.footer-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.footer-container img {
+  height: 20px;
+  margin-right: 8px;
+}
+
+.footer-container p {
+  font-size: 14px;
   font-family: "Proxima Nova";
 }
 /*# sourceMappingURL=style.css.map */

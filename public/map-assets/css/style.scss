@@ -366,7 +366,7 @@ header {
 
 .partners {
     background: #f7f7f7;
-    padding: 50px 0 0;
+    padding: 50px 0 20px;
 
     .item {
         img {
@@ -911,7 +911,7 @@ header {
     // display: none;
 
 
-    button.hide-abt {
+    .hide-abt {
         position: absolute;
         right: 0px;
         font-size: 24px;
@@ -922,6 +922,12 @@ header {
         color: #565454;
         z-index: 3;
         cursor: pointer;
+
+        &:hover {
+            background: #11b4da;
+            color: #fff;
+            border: 1px solid #11b4da;
+        }
     }
   
     .abt-container {
@@ -1011,4 +1017,20 @@ header {
     
 
 
+}
+
+.footer-container {
+        display: flex;
+        padding:  20px 0;
+        justify-content: center;
+
+        img {
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        p {
+            font-size: 14px;
+            font-family: "Proxima Nova";
+        }
 }
