@@ -143,15 +143,23 @@ function buildLists(portalData) {
 
 
 
-        link.addEventListener("click", () => {
+        link.addEventListener("click", (e) => {
             var coords = latlng;
 
+            console.log(e)
+            
 
             map.flyTo({
                 center: coords,
-                zoom: 10,
+                zoom: 15,
                 essential: true,
             });
+
+            
+
+        
+            
+            
         })
 
 
@@ -682,7 +690,13 @@ function loadMapData() {
 
 map.on('load', function () {
 
-
+    var scale = new mapboxgl.ScaleControl({
+        maxWidth: 80,
+        unit: 'imperial'
+        });
+        map.addControl(scale);
+         
+        scale.setUnit('metric');
 
     
     map.addSource('province-label', {
@@ -866,7 +880,7 @@ map.on('load', function () {
         pixelRatio: 2
     });
 
-    // inspect a cluster on click
+    // inspect a  on click
     map.on("click", "clusters", function (e) {
         var features = map.queryRenderedFeatures(e.point, {
             layers: ["clusters"],
@@ -886,7 +900,9 @@ map.on('load', function () {
 
 
     map.on("click", "unclustered-point", function (e) {
+    
         loadMarkerData(e);
+        
 
     });
 
