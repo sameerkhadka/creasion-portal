@@ -46,7 +46,7 @@ $('.sidebar-project').on('click', function (e) {
     $('#districts').val(-1);
 
 
-    
+
 
 });
 
@@ -146,20 +146,20 @@ function buildLists(portalData) {
         link.addEventListener("click", (e) => {
             var coords = latlng;
 
-            console.log(e)
-            
 
             map.flyTo({
                 center: coords,
-                zoom: 15,
+                zoom: 20,
                 essential: true,
             });
 
-            
 
-        
-            
-            
+            loadMarkerData(data,false);
+
+
+
+
+
         })
 
 
@@ -542,6 +542,7 @@ $("#reset-btn").on('click', (e) => {
 
 
 function resetData() {
+    removePopup();
 
 
     const timeStamp = Date.now()
@@ -695,10 +696,10 @@ map.on('load', function () {
         unit: 'imperial'
         });
         map.addControl(scale);
-         
+
         scale.setUnit('metric');
 
-    
+
     map.addSource('province-label', {
         'type': 'geojson',
         'data': "/map-assets/json/label-province.geojson"
@@ -821,7 +822,7 @@ map.on('load', function () {
         }
     });
 
-    
+
 
     loadMapData();
 
@@ -900,9 +901,9 @@ map.on('load', function () {
 
 
     map.on("click", "unclustered-point", function (e) {
-    
-        loadMarkerData(e);
-        
+
+        loadMarkerData(e,true);
+
 
     });
 
@@ -915,23 +916,16 @@ map.on('load', function () {
 
 });
 
-function loadMarkerData(e) {
-    var coordinates = e.features[0].geometry.coordinates.slice();
-
-    var type = e.features[0].properties.type;
-    var projectSelect = e.features[0].properties.project_id
-   
-
-    
-
-
-
-
-
-    var getInstitution = JSON.parse(e.features[0].properties.institution)
-    var getIndividual = JSON.parse(e.features[0].properties.individual)
-
-
+function loadMarkerData(e,checkE) {
+    removePopup();
+    let featureData;
+    if(checkE) featureData = e.features[0];
+    else featureData = e;
+    var coordinates = featureData.geometry.coordinates.slice();
+    var type = featureData.properties.type;
+    var projectSelect = featureData.properties.project_id
+    var getInstitution = checkE ? JSON.parse(featureData.properties.institution) : featureData.properties.institution
+    var getIndividual = checkE ? JSON.parse(featureData.properties.individual) : featureData.properties.individual
     var name = getInstitution ? getInstitution.name : getIndividual.name,
         provinceName = getInstitution ? getInstitution.province.title : getIndividual.province.title,
         districtName = getInstitution ? getInstitution.district.title : getIndividual.district.title,
@@ -942,7 +936,7 @@ function loadMarkerData(e) {
         elective1 = getInstitution ? getInstitution.contact_person : getIndividual.gender,
         elective2 = getInstitution ? getInstitution.contact_number : getIndividual.age;
 
-    var inventories = JSON.parse(e.features[0].properties.inventories);
+    var inventories = checkE ? JSON.parse(featureData.properties.inventories) : featureData.properties.inventories;
 
     var items = "";
 
@@ -1034,7 +1028,7 @@ function loadMarkerData(e) {
                         `
         )
 
-        
+
         .addTo(map);
 
         if (projectSelect == 1) {
@@ -1047,6 +1041,11 @@ function loadMarkerData(e) {
 
 
 
+}
+
+function removePopup(){
+    var popUps = document.getElementsByClassName('mapboxgl-popup');
+    if (popUps[0]) popUps[0].remove();
 }
 
 
