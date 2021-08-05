@@ -20,6 +20,8 @@ $('.sidebar-project').on('click', function (e) {
         'selectedProvince': null,
         'selectedDistrict': null
     }).then((response) => {
+
+
         map.getSource('cylinders').setData(response.data);
 
 
@@ -544,6 +546,7 @@ $("#reset-btn").on('click', (e) => {
 function resetData() {
     removePopup();
 
+    document.getElementById('loading').innerHTML = "<p>Loading...</p>"
 
     const timeStamp = Date.now()
 
@@ -661,6 +664,7 @@ if (mapBoxWidth < 1100) {
 
 
 
+document.getElementById('loading').innerHTML = "<p>Loading...</p>"
 
 function loadMapData() {
     axios.post('/filter-response', {
@@ -669,15 +673,9 @@ function loadMapData() {
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
-
-
-
-
         var portalData = response.data;
-
         buildLists(portalData);
-
-
+        document.getElementById('loading').innerHTML = "";
 
     });
 }

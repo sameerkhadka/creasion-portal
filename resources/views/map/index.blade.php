@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/map-assets/assets/fonts/Moderat/style.css">
     <link rel="stylesheet" href="/map-assets/assets/fonts/Proxima Nova/stylesheet.css">
 
-    
+
     <link rel="stylesheet" href="/map-assets/css/style.css">
     <link rel="stylesheet" href="/map-assets/css/reset.css">
     <link rel="stylesheet" href="/map-assets/css/responsive.css">
@@ -73,9 +73,12 @@
     </header>
 
     <section class="map-wrapper">
+        <div id="loading">
+
+        </div>
         <div class="row">
             <div class="col-md-3 bg-color  ">
-                
+
                 <div class="sidebar">
                     <div class="sidebar-header">
 
@@ -91,7 +94,7 @@
                         <div class="responded-num">
                             <h4 class="total-responds">00</h4>
                             <p>Responds</p>
-                            
+
                         </div>
                     </div>
                     <div id="map-lists"></div>
@@ -102,7 +105,7 @@
                             <div id="paginateDetail"></div>
                             <button class=" paginateBtn" data-type="forward">→</button>
                             </div>
-                            
+
                     </div>
                 </div>
             </div>
@@ -145,9 +148,9 @@
             </div>
         </div>
 
-        
 
-        
+
+
     </section>
 
     <section class="data-display">
@@ -196,7 +199,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
 
             </div>
@@ -214,7 +217,7 @@
                 </div>
                 @endforeach
 
-                
+
 
             </div>
         </div>
@@ -229,21 +232,21 @@
     </footer>
 
     <div class="about-slide">
-        
+
 
         <div class="abt-container">
-            <button class="hide-abt"><ion-icon name="close-outline"></ion-icon></button> 
+            <button class="hide-abt"><ion-icon name="close-outline"></ion-icon></button>
 
             <div class="abt">
                 <!-- <img src="/map-assets/images/creasion.png" class="logo-spin" alt=""> -->
                 <img src="/map-assets/images/nepalreliefportal.svg" alt="">
                 <p>
-                Nepal Relief is an initiative of CREASION for quick disaster response. 
+                Nepal Relief is an initiative of CREASION for quick disaster response.
                 The interventions are implemented in collaboration and through the support
-                 of civil society organizations, individual volunteers, NGOs, private 
+                 of civil society organizations, individual volunteers, NGOs, private
                  sectors and youth groups. Through Nepal Relief, we focus on quick response
-                  as a short- term solution and move towards rehabilitation as a 
-                  long-term solution to disaster management.  
+                  as a short- term solution and move towards rehabilitation as a
+                  long-term solution to disaster management.
                 </p>
             </div>
 
@@ -271,7 +274,7 @@
             </div>
         </div>
     </div>
-   
+
     <script src="/map-assets/js/jquery.min.js"></script>
     <script src="/map-assets/js/bootstrap.js"></script>
     <script src="/map-assets/js/owl.carousel.min.js"></script>
@@ -310,7 +313,7 @@
     },
     tooltip: {
       headerFormat: '',
-      pointFormat: 'Total: <b>{point.y}</b><br/>' 
+      pointFormat: 'Total: <b>{point.y}</b><br/>'
         // 'Population density (people per square km): <b>{point.z}</b><br/>'
     },
     series: [{
@@ -324,17 +327,17 @@
 
     </script>
     <script>
-        
+
   Highcharts.chart('chart-province-type', {
     chart: {
       type: 'bar'
     },
-    
-    
+
+
     title: {
       text: ``
     },
-    
+
     xAxis: {
       categories: @json($provinceName),
       title: {
@@ -361,7 +364,7 @@
         }
       }
     },
-  
+
     credits: {
       enabled: false
     },
@@ -388,7 +391,7 @@
           },
           768: {
               items: 4,
-          
+
           },
           1200: {
               items: 7,
@@ -416,7 +419,7 @@ Highcharts.chart('chart-inst-type', {
       title: {
         text: 'Relief reached out'
       }
-  
+
     },
     legend: {
       enabled: false
@@ -430,12 +433,12 @@ Highcharts.chart('chart-inst-type', {
         }
       }
     },
-  
+
     tooltip: {
       headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
     },
-  
+
     series: [
       {
         name: "Browsers",
