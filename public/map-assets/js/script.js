@@ -20,8 +20,6 @@ $('.sidebar-project').on('click', function (e) {
         'selectedProvince': null,
         'selectedDistrict': null
     }).then((response) => {
-
-
         map.getSource('cylinders').setData(response.data);
 
 
@@ -48,7 +46,7 @@ $('.sidebar-project').on('click', function (e) {
     $('#districts').val(-1);
 
 
-
+    
 
 });
 
@@ -155,13 +153,9 @@ function buildLists(portalData) {
                 essential: true,
             });
 
-
             loadMarkerData(data,false);
 
-
-
-
-
+            
         })
 
 
@@ -544,9 +538,7 @@ $("#reset-btn").on('click', (e) => {
 
 
 function resetData() {
-    removePopup();
 
-    document.getElementById('loading').innerHTML = "<p>Loading...</p>"
 
     const timeStamp = Date.now()
 
@@ -664,7 +656,6 @@ if (mapBoxWidth < 1100) {
 
 
 
-document.getElementById('loading').innerHTML = "<p>Loading...</p>"
 
 function loadMapData() {
     axios.post('/filter-response', {
@@ -673,9 +664,15 @@ function loadMapData() {
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
+
+
+
+
         var portalData = response.data;
+
         buildLists(portalData);
-        document.getElementById('loading').innerHTML = "";
+
+
 
     });
 }
@@ -694,10 +691,10 @@ map.on('load', function () {
         unit: 'imperial'
         });
         map.addControl(scale);
-
+         
         scale.setUnit('metric');
 
-
+    
     map.addSource('province-label', {
         'type': 'geojson',
         'data': "/map-assets/json/label-province.geojson"
@@ -820,7 +817,7 @@ map.on('load', function () {
         }
     });
 
-
+    
 
     loadMapData();
 
@@ -900,8 +897,9 @@ map.on('load', function () {
 
     map.on("click", "unclustered-point", function (e) {
 
-        loadMarkerData(e,true);
-
+        
+        loadMarkerData(e);
+        
 
     });
 
@@ -914,16 +912,25 @@ map.on('load', function () {
 
 });
 
-function loadMarkerData(e,checkE) {
-    removePopup();
-    let featureData;
-    if(checkE) featureData = e.features[0];
-    else featureData = e;
-    var coordinates = featureData.geometry.coordinates.slice();
-    var type = featureData.properties.type;
-    var projectSelect = featureData.properties.project_id
-    var getInstitution = checkE ? JSON.parse(featureData.properties.institution) : featureData.properties.institution
-    var getIndividual = checkE ? JSON.parse(featureData.properties.individual) : featureData.properties.individual
+function loadMarkerData(e) {
+
+
+    var coordinates = e.features[0].geometry.coordinates.slice();
+
+    var type ;
+    var projectSelect = e.features[0].properties.project_id
+   
+
+    
+
+
+
+
+
+    var getInstitution = JSON.parse(e.features[0].properties.institution)
+    var getIndividual = JSON.parse(e.features[0].properties.individual)
+
+
     var name = getInstitution ? getInstitution.name : getIndividual.name,
         provinceName = getInstitution ? getInstitution.province.title : getIndividual.province.title,
         districtName = getInstitution ? getInstitution.district.title : getIndividual.district.title,
@@ -934,7 +941,7 @@ function loadMarkerData(e,checkE) {
         elective1 = getInstitution ? getInstitution.contact_person : getIndividual.gender,
         elective2 = getInstitution ? getInstitution.contact_number : getIndividual.age;
 
-    var inventories = checkE ? JSON.parse(featureData.properties.inventories) : featureData.properties.inventories;
+    var inventories = JSON.parse(e.features[0].properties.inventories);
 
     var items = "";
 
@@ -961,7 +968,7 @@ function loadMarkerData(e,checkE) {
 
 
 
-    new mapboxgl.Popup()
+      new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(
             `
@@ -1026,7 +1033,7 @@ function loadMarkerData(e,checkE) {
                         `
         )
 
-
+        
         .addTo(map);
 
         if (projectSelect == 1) {
@@ -1039,11 +1046,6 @@ function loadMarkerData(e,checkE) {
 
 
 
-}
-
-function removePopup(){
-    var popUps = document.getElementsByClassName('mapboxgl-popup');
-    if (popUps[0]) popUps[0].remove();
 }
 
 
