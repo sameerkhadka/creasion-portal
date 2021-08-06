@@ -74,7 +74,7 @@
 
     <section class="map-wrapper">
         <div id="loading">
-
+           
         </div>
         <div class="row">
             <div class="col-md-3 bg-color  ">

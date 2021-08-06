@@ -4,6 +4,18 @@ import {
 } from "../resources.js";
 
 
+const preLoader = () => {
+    var loadingDiv = document.querySelector('#loading');
+
+    loadingDiv.innerHTML =`
+    <div class="loading-wrap">
+        <div class="load">
+            <hr/><hr/><hr/><hr/>
+        </div>
+    </div>
+    `
+}
+
 
 $('.sidebar-project').on('click', function (e) {
     e.preventDefault();
@@ -20,6 +32,8 @@ $('.sidebar-project').on('click', function (e) {
         'selectedProvince': null,
         'selectedDistrict': null
     }).then((response) => {
+
+
         map.getSource('cylinders').setData(response.data);
 
 
@@ -34,6 +48,8 @@ $('.sidebar-project').on('click', function (e) {
         selectedProjectColor.classList.remove(3);
         selectedProjectColor.classList.toggle(projectID)
 
+        document.getElementById('loading').innerHTML = "";
+
         buildLists(response.data)
 
     });
@@ -46,7 +62,7 @@ $('.sidebar-project').on('click', function (e) {
     $('#districts').val(-1);
 
 
-    
+
 
 });
 
@@ -112,16 +128,13 @@ function buildLists(portalData) {
         var listingitems = `
                             <div class="list-wrap">
                                 <div class="icon ${projectColor}">
-
                                 </div>
-
                                 <div class="des">
                                     <h4>${name}</h4>
                                     <p class= " forProject" > ${requestedProjects}</p>
                                     <div class="date">
                                         <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
                                     </div>
-
                                 </div>
                             </div>
                         `
@@ -153,9 +166,13 @@ function buildLists(portalData) {
                 essential: true,
             });
 
+
             loadMarkerData(data,false);
 
-            
+
+
+
+
         })
 
 
@@ -509,7 +526,7 @@ $("#reset-btn").on('click', (e) => {
 
         resetData();
         map.getSource('cylinders').setData(response.data);
-
+        document.getElementById('loading').innerHTML = "";
 
 
 
@@ -538,7 +555,10 @@ $("#reset-btn").on('click', (e) => {
 
 
 function resetData() {
+    
+    removePopup();
 
+    preLoader();
 
     const timeStamp = Date.now()
 
@@ -657,6 +677,7 @@ if (mapBoxWidth < 1100) {
 
 
 
+
 function loadMapData() {
     axios.post('/filter-response', {
         'selectedProject': null,
@@ -664,15 +685,9 @@ function loadMapData() {
         'selectedDistrict': null
     }).then((response) => {
         map.getSource('cylinders').setData(response.data);
-
-
-
-
         var portalData = response.data;
-
         buildLists(portalData);
-
-
+        document.getElementById('loading').innerHTML = "";
 
     });
 }
@@ -684,17 +699,20 @@ function loadMapData() {
 
 // Map
 
+
+
 map.on('load', function () {
+    preLoader();
 
     var scale = new mapboxgl.ScaleControl({
         maxWidth: 80,
         unit: 'imperial'
         });
         map.addControl(scale);
-         
+
         scale.setUnit('metric');
 
-    
+
     map.addSource('province-label', {
         'type': 'geojson',
         'data': "/map-assets/json/label-province.geojson"
@@ -817,7 +835,7 @@ map.on('load', function () {
         }
     });
 
-    
+
 
     loadMapData();
 
@@ -897,9 +915,8 @@ map.on('load', function () {
 
     map.on("click", "unclustered-point", function (e) {
 
-        
-        loadMarkerData(e);
-        
+        loadMarkerData(e,true);
+
 
     });
 
@@ -912,25 +929,16 @@ map.on('load', function () {
 
 });
 
-function loadMarkerData(e) {
-
-
-    var coordinates = e.features[0].geometry.coordinates.slice();
-
-    var type ;
-    var projectSelect = e.features[0].properties.project_id
-   
-
-    
-
-
-
-
-
-    var getInstitution = JSON.parse(e.features[0].properties.institution)
-    var getIndividual = JSON.parse(e.features[0].properties.individual)
-
-
+function loadMarkerData(e,checkE) {
+    removePopup();
+    let featureData;
+    if(checkE) featureData = e.features[0];
+    else featureData = e;
+    var coordinates = featureData.geometry.coordinates.slice();
+    var type = featureData.properties.type;
+    var projectSelect = featureData.properties.project_id
+    var getInstitution = checkE ? JSON.parse(featureData.properties.institution) : featureData.properties.institution
+    var getIndividual = checkE ? JSON.parse(featureData.properties.individual) : featureData.properties.individual
     var name = getInstitution ? getInstitution.name : getIndividual.name,
         provinceName = getInstitution ? getInstitution.province.title : getIndividual.province.title,
         districtName = getInstitution ? getInstitution.district.title : getIndividual.district.title,
@@ -941,7 +949,7 @@ function loadMarkerData(e) {
         elective1 = getInstitution ? getInstitution.contact_person : getIndividual.gender,
         elective2 = getInstitution ? getInstitution.contact_number : getIndividual.age;
 
-    var inventories = JSON.parse(e.features[0].properties.inventories);
+    var inventories = checkE ? JSON.parse(featureData.properties.inventories) : featureData.properties.inventories;
 
     var items = "";
 
@@ -956,10 +964,8 @@ function loadMarkerData(e) {
                                 <div class="data">
                                     <div class="title">${inventoryTitle}</div>
                                     <div class="text">${inventoryQunatity}</div>
-
                                 </div>
                             </div>
-
                             `
 
 
@@ -968,31 +974,25 @@ function loadMarkerData(e) {
 
 
 
-      new mapboxgl.Popup()
+    new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(
             `
                         <div class="info-card">
                             <div class="info-card-header">
                                 <h4>${name}</h4>
-
-
                             </div>
-
                             <div class="info-desc">
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">${getInstitution ? "Instituation Type" : "Respone Type"}</div>
                                         <div class="text">${type}</div>
-
                                     </div>
-
                                 </div>
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">Province</div>
                                         <div class="text">${provinceName}</div>
-
                                     </div>
                                 </div>
                                 <div class="info-desc-wrapper">
@@ -1007,7 +1007,6 @@ function loadMarkerData(e) {
                                         <div class="text">${districtName}</div>
                                     </div>
                                 </div>
-
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">${getInstitution ? "Contact Number" : "Age"}</div>
@@ -1025,15 +1024,13 @@ function loadMarkerData(e) {
                                 <h5>Responded with</h5>
                                 <div class="item-wrapper">
                                     ${items}
-
                                 </div>
                             </div>
-
                         </div>
                         `
         )
 
-        
+
         .addTo(map);
 
         if (projectSelect == 1) {
@@ -1046,6 +1043,11 @@ function loadMarkerData(e) {
 
 
 
+}
+
+function removePopup(){
+    var popUps = document.getElementsByClassName('mapboxgl-popup');
+    if (popUps[0]) popUps[0].remove();
 }
 
 

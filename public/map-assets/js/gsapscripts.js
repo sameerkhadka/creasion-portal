@@ -38,3 +38,10 @@ menuBtn.addEventListener("click", () => {
 hideBtn.addEventListener("click", () => {
     tl.reverse(0.7);
 } )
+
+preloader = gsap.timeline({repeat: -1});
+preloader.set("circle#c1", {autoAlpha:.7})
+  .to("circle#c1", .5, {scale: .2, x: "+=5", transformOrigin:"50% 50%"})
+  .to("circle#c1", .5, {scale:1, x: "-=5",transformOrigin:"50% 50%"} );
+
+//animate second circle
