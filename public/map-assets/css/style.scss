@@ -1136,6 +1136,11 @@ header {
     li.accordion-item {
         border-bottom: 1px solid #dcdcdc;
         margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
         
     }
 

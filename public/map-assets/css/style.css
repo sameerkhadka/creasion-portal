@@ -1186,6 +1186,11 @@ header .request a ion-icon {
   margin-bottom: 30px;
 }
 
+.faq li.accordion-item:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
 .faq .accordion-title {
   font-size: 22px;
   font-weight: 300;
