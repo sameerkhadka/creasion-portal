@@ -57,6 +57,14 @@ Route::get('/',[MapController::class,'index'])->name('index');
 
 Route::get('/faqs',[MapController::class,'faqs'])->name('faqs');
 
+Route::get('/covid-19-resources',[MapController::class,'covidResources'])->name('covid-19-resources');
+
+Route::get('/important-links',[MapController::class,'importantLinks'])->name('important-links');
+
+Route::get('/ofn-chapters',[MapController::class,'ofnChapters'])->name('ofn-chapters');
+
+Route::get('/success-stories',[MapController::class,'successStories'])->name('success-stories');
+
 Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
 
 Route::post('/update-data', [CheckboxController::class,'updateStatus'])->name('update-data');

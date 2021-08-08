@@ -54,19 +54,6 @@
             </div>
         </header>
 
-        <section class="overview">
-            <div class="container">
-                <!-- <p>Nepal Relief is an initiative of CREASION for quick disaster response. 
-                The interventions are implemented in collaboration and through the
-                 support of civil society organizations, individual volunteers, 
-                 NGOs, private sectors and youth groups. Through Nepal Relief,
-                 we focus on quick response as a short- term solution and move 
-                 towards rehabilitation as a long-term solution to disaster 
-                 management.
-            </p> -->
-            </div>
-        </section>
-
         <section class="faq">
             <div class="container">
                 <div class="faq-head">
@@ -215,11 +202,13 @@
 
                 <div class="abt-center">
                     <div class="navs">
-                        <a href="{{route('faqs') }}"><span>FAQs</span> </a>
-                        <a href=""><span>OFN Chapters</span></a>
-                        <a href=""><span>Success Stories</span></a>
-                        <a href=""><span>COVID-19 Resources</span> </a>
-                        <a href=""><span>Important Links</span></a>
+                    <div class="navs">
+                            <a href="{{route('faqs') }}"><span>FAQs</span> </a>
+                            <a href="{{route('ofn-chapters') }}"><span>OFN Chapters</span></a>
+                            <a href="{{route('success-stories') }}"><span>Success Stories</span></a>
+                            <a href="{{route('covid-19-resources') }}"><span>COVID-19 Resources</span> </a>
+                            <a href="{{route('important-links') }}"><span>Important Links</span></a>
+                        </div>
                     </div>
 
                     <div class="social">

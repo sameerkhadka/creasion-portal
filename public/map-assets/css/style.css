@@ -1244,4 +1244,15 @@ header .request a ion-icon {
   display: block;
   margin-bottom: 15px;
 }
+
+.resource-card {
+  padding: 10px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  margin: 15px 0;
+}
+
+.resource-card img {
+  width: 100%;
+}
 /*# sourceMappingURL=style.css.map */

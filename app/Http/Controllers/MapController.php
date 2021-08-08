@@ -17,6 +17,23 @@ class MapController extends Controller
         return view('faqs');
     }
 
+    public function covidResources(){
+        return view('covid-19-resources');
+    }
+
+    public function importantLinks(){
+        return view('important-links');
+    }
+
+    public function ofnChapters(){
+        return view('ofn-chapters');
+    }
+
+    public function successStories(){
+        return view('success-stories');
+    }
+
+
     public function index(){
         $genderData = [
             [

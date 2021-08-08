@@ -253,10 +253,10 @@
             <div class="abt-center">
                 <div class="navs">
                     <a href="{{route('faqs') }}"><span>FAQs</span> </a>
-                    <a href=""><span>OFN Chapters</span></a>
-                    <a href=""><span>Success Stories</span></a>
-                    <a href=""><span>COVID-19 Resources</span> </a>
-                    <a href=""><span>Important Links</span></a>
+                    <a href="{{route('ofn-chapters') }}"><span>OFN Chapters</span></a>
+                    <a href="{{route('success-stories') }}"><span>Success Stories</span></a>
+                    <a href="{{route('covid-19-resources') }}"><span>COVID-19 Resources</span> </a>
+                    <a href="{{route('important-links') }}"><span>Important Links</span></a>
                 </div>
 
                 <div class="social">
