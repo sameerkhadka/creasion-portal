@@ -651,7 +651,7 @@ header .request a ion-icon {
 }
 
 .sidebar .sidebar-header {
-  background: #e9f2f6;
+  background: #f1f1f1;
   border-bottom: 1px solid #cccfd1;
   padding: 25px 40px;
   display: -webkit-box;
@@ -977,6 +977,7 @@ header .request a ion-icon {
 .about-slide .abt p {
   font-family: "Proxima Nova";
   font-weight: 300;
+  font-size: 18px;
 }
 
 .about-slide .abt-center {
@@ -1002,6 +1003,7 @@ header .request a ion-icon {
   margin: 12px 0;
   color: #909090;
   overflow: hidden;
+  font-size: 18px;
 }
 
 .about-slide .navs a span {
@@ -1052,7 +1054,7 @@ header .request a ion-icon {
 }
 
 .about-slide .abt-footer p {
-  font-size: 13px;
+  font-size: 14px;
   font-family: "Proxima Nova";
 }
 
@@ -1141,5 +1143,100 @@ header .request a ion-icon {
   border-radius: 50%;
   -webkit-animation: spin 2s ease infinite;
           animation: spin 2s ease infinite;
+}
+
+.faq {
+  background: #f1f1f1;
+  padding: 80px 0;
+}
+
+.faq .faq-head {
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 1130px;
+  text-align: center;
+}
+
+.faq .faq-head h4 {
+  font-size: 32px;
+  text-align: center;
+  font-weight: 400;
+  font-family: "Proxima Nova";
+}
+
+.faq .faq-head p {
+  font-size: 16px;
+  font-family: 'Proxima Nova';
+  font-weight: 100;
+  width: 70%;
+  margin: 20px auto;
+}
+
+.faq .faq-wrap {
+  width: 1130px;
+  margin: auto;
+}
+
+.faq .accordion-content {
+  display: none;
+}
+
+.faq li.accordion-item {
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 30px;
+}
+
+.faq .accordion-title {
+  font-size: 22px;
+  font-weight: 300;
+  padding-bottom: 20px;
+  position: relative;
+  display: block;
+}
+
+.faq .accordion-title:hover {
+  color: #11b4da;
+}
+
+.faq .accordion-title label {
+  font-family: 'Proxima Nova';
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.faq .accordion-title i {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+
+.faq .accordion-title i img {
+  width: 20px;
+}
+
+.faq a.accordion-title.active {
+  color: #11b4da;
+}
+
+.faq a.accordion-title.active i {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.faq .accordion-content {
+  margin-bottom: 40px;
+  font-weight: 100;
+  padding: 0 35px;
+}
+
+.faq .accordion-content span {
+  font-size: 18px;
+  font-family: 'Proxima Nova';
+  display: block;
+  margin-bottom: 15px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -9,8 +9,14 @@ use App\Models\ProvinceChart;
 use App\Models\InstitutionChart;
 use Illuminate\Http\Request;
 
+
+
 class MapController extends Controller
 {
+    public function faqs(){
+        return view('faqs');
+    }
+
     public function index(){
         $genderData = [
             [

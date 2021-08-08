@@ -55,6 +55,8 @@ Route::post('/filter-response', [FilterController::class,'filterResponse']);
 
 Route::get('/',[MapController::class,'index'])->name('index');
 
+Route::get('/faqs',[MapController::class,'faqs'])->name('faqs');
+
 Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name('verify-request');
 
 Route::post('/update-data', [CheckboxController::class,'updateStatus'])->name('update-data');

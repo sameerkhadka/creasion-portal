@@ -58,13 +58,48 @@
 
 
 @media screen and (max-width: 768px) {
+    header .head-nav {
+        display: none;
+    }
+
+    .request {
+        display: none !important;
+    }
+
+    div#map-lists {
+        display: none;
+        height: auto;
+    }
+
+    .sidebar .list-pagination {
+        display: none !important;
+    }
+
+    .map-wrapper .filter {
+        display: none ;
+    }
+    
 
 }
 
 
 
 @media screen and (max-width: 480px) { 
-	
+	.about-slide .abt img {
+        width: 90%;
+
+    }
+
+    .about-slide .abt-center {
+        display: block;
+    }
+
+    .about-slide .navs {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    
 }
 
 

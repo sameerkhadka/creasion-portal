@@ -252,7 +252,7 @@
 
             <div class="abt-center">
                 <div class="navs">
-                    <a href=""><span>FAQs</span> </a>
+                    <a href="{{route('faqs') }}"><span>FAQs</span> </a>
                     <a href=""><span>OFN Chapters</span></a>
                     <a href=""><span>Success Stories</span></a>
                     <a href=""><span>COVID-19 Resources</span> </a>
