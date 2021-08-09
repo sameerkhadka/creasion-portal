@@ -1,4 +1,4 @@
-var menuBtn = document.querySelector(".menu-btn");
+var menuBtn = document.querySelectorAll(".menu-btn");
 var aboutSlides = document.querySelector(".about-slide")
 var hideBtn = document.querySelector(".hide-abt")
 
@@ -31,9 +31,13 @@ tl.from('.navs a span', {
 }, "-=1");
 
 
-menuBtn.addEventListener("click", () => {
-    tl.play();
-} )
+menuBtn.forEach(btn => {
+    btn.addEventListener("click", () => {
+        tl.play();
+    } )
+});
+
+
 
 hideBtn.addEventListener("click", () => {
     tl.reverse(0.7);

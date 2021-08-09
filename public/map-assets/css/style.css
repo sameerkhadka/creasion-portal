@@ -1,3 +1,11 @@
+.mb-header {
+  display: none;
+}
+
+.home-btn {
+  display: none;
+}
+
 header {
   height: 80px;
   display: -webkit-box;
