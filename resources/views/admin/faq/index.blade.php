@@ -6,7 +6,6 @@
         .dragItem {
             width: 49%;
             margin-bottom: 2%;
-            border-radius: 20px;
             border: 1px solid #c5ccce !important;
         }
 
