@@ -67,23 +67,20 @@
                 <div class="faq-wrap">
                     <div class="faq-accordion-content">
                         <ul class="accordion">
+                            @foreach($items as $item)
                             <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i><img src="/map-assets/images/caret.png" alt="" /></i>
-                                    <label>Q:</label>What is Nepal Relief?
+                                    <label>Q:</label>{{$item->question}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>
-                                        Nepal Relief is a disaster response and management initiative that aims to provide quick support to affected individuals, families and communities of any kind of disasters. Nepal Relief Portal has
-                                        been envisioned by CREASION as a one-stop platform to request for help for any emergency resources required during disasters. Currently, the portal focuses on facilitating an efficient medium for
-                                        individuals and institutions to request assistance for necessities to fight COVID-19 pandemic such as oxygen cylinders, concentrators and safety gear such as masks, PPE sets, gloves, etc. Along with
-                                        that, request for relief materials for flood displaced communities can also be made.
-                                    </p>
+                                    {!!$item->answer!!}
                                 </div>
                             </li>
+                            @endforeach
 
-                            <li class="accordion-item">
+                            {{-- <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i><img src="/map-assets/images/caret.png" alt="" /></i>
                                     <label>Q:</label>What are the current ongoing projects implemented by Nepal Relief?
@@ -144,7 +141,7 @@
                                         As for the oxygen cylinders, we are making the procurements from China. We have already purchased over 300 oxygen cylinders and are in the process of transporting more oxygen cylinders to Nepal.
                                     </p>
                                 </div>
-                            </li>
+                            </li> --}}
 
                           
                         </ul>
