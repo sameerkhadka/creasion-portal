@@ -216,8 +216,18 @@
         <footer>
             <div class="container">
                 <div class="footer-container">
-                    <img src="/map-assets/images/creasion.png" alt="" />
-                    <p>Initiated by: CREASION</p>
+                    <div class="footer-div">
+                        <p>© 2021 <a href="https://creasion.org/">CREASION</a>. All Rights Reserved</p>
+                    </div>
+
+                    <div class="footer-div">
+                        <img src="/map-assets/images/creasion.png" alt="" />
+                     
+                    </div>
+
+                    <div class="footer-div">
+                        <p>Powered by <a href="https://www.hueshine.com/">Hue Shine</a></p>
+                    </div>
                 </div>
             </div>
         </footer>

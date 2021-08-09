@@ -64,6 +64,10 @@
                     </p>
                 </div>
 
+                <div class="stories-wrap">
+                    <iframe src="https://uploads.knightlab.com/storymapjs/60370d07b6a7d328e87a259f5c4a1d4a/hue-shine-nepal-relief-portal/index.html" frameborder="0" width="100%" height="800"></iframe>
+                </div>
+
             </div>
         </section>
 

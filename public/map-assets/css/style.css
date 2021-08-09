@@ -1071,9 +1071,9 @@ header .request a ion-icon {
   display: -ms-flexbox;
   display: flex;
   padding: 20px 0;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .footer-container img {
@@ -1084,6 +1084,10 @@ header .request a ion-icon {
 .footer-container p {
   font-size: 14px;
   font-family: "Proxima Nova";
+}
+
+.footer-container a:hover {
+  color: #11b4da;
 }
 
 #loading {
