@@ -72,7 +72,7 @@
                         <?php $links = App\Models\Link::where('link_categories_id', $item->id)->get(); ?>
                         @foreach($links as $li)
                             <div class="link-card">
-                            <a href="{{$li->link}}">{{$li->title}}</a>
+                            <a href="{{$li->link}}" target="_blank">{{$li->title}}</a>
                             </div>
                         @endforeach
 
