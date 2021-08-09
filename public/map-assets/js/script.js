@@ -4,6 +4,18 @@ import {
 } from "../resources.js";
 
 
+const preLoader = () => {
+    var loadingDiv = document.querySelector('#loading');
+
+    loadingDiv.innerHTML =`
+    <div class="loading-wrap">
+        <div class="load">
+            <hr/><hr/><hr/><hr/>
+        </div>
+    </div>
+    `
+}
+
 
 $('.sidebar-project').on('click', function (e) {
     e.preventDefault();
@@ -35,6 +47,8 @@ $('.sidebar-project').on('click', function (e) {
         selectedProjectColor.classList.remove(2);
         selectedProjectColor.classList.remove(3);
         selectedProjectColor.classList.toggle(projectID)
+
+        document.getElementById('loading').innerHTML = "";
 
         buildLists(response.data)
 
@@ -114,16 +128,13 @@ function buildLists(portalData) {
         var listingitems = `
                             <div class="list-wrap">
                                 <div class="icon ${projectColor}">
-
                                 </div>
-
                                 <div class="des">
                                     <h4>${name}</h4>
                                     <p class= " forProject" > ${requestedProjects}</p>
                                     <div class="date">
                                         <p><ion-icon name="today-outline"></ion-icon><span>2021-07-08 </span> </p>
                                     </div>
-
                                 </div>
                             </div>
                         `
@@ -515,7 +526,7 @@ $("#reset-btn").on('click', (e) => {
 
         resetData();
         map.getSource('cylinders').setData(response.data);
-
+        document.getElementById('loading').innerHTML = "";
 
 
 
@@ -544,9 +555,10 @@ $("#reset-btn").on('click', (e) => {
 
 
 function resetData() {
+    
     removePopup();
 
-    document.getElementById('loading').innerHTML = "<p>Loading...</p>"
+    preLoader();
 
     const timeStamp = Date.now()
 
@@ -636,9 +648,19 @@ mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1c
 
 var mapBoxWidth = $('#map').width();
 
+if (mapBoxWidth < 700) {
+    var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
 
+        center: [84.1074, 28.2764],
+        minZoom: 5, // note the camel-case
+        maxZoom: 20
+    });
 
-if (mapBoxWidth < 1100) {
+}
+
+else if (mapBoxWidth < 1100) {
     var map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/yogeshkarki/ckrbsffmr0ugg18q9lyyggrmu",
@@ -647,6 +669,7 @@ if (mapBoxWidth < 1100) {
         minZoom: 6.2, // note the camel-case
         maxZoom: 20
     });
+
 } else if (mapBoxWidth > 1100) {
     var map = new mapboxgl.Map({
         container: "map",
@@ -656,6 +679,7 @@ if (mapBoxWidth < 1100) {
         minZoom: 6.7, // note the camel-case
         maxZoom: 20
     });
+
 }
 
 
@@ -664,7 +688,8 @@ if (mapBoxWidth < 1100) {
 
 
 
-document.getElementById('loading').innerHTML = "<p>Loading...</p>"
+
+
 
 function loadMapData() {
     axios.post('/filter-response', {
@@ -687,7 +712,10 @@ function loadMapData() {
 
 // Map
 
+
+
 map.on('load', function () {
+    preLoader();
 
     var scale = new mapboxgl.ScaleControl({
         maxWidth: 80,
@@ -703,7 +731,24 @@ map.on('load', function () {
         'data': "/map-assets/json/label-province.geojson"
     });
 
-    if (mapBoxWidth < 1100) {
+    if (mapBoxWidth < 700) {
+        map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'iconAllowOverlay': 'true',
+            'source': 'province-label',
+            'layout': {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+
+                "text-size": 5,
+            }
+        });
+    } 
+
+    else if (mapBoxWidth < 1100) {
         map.addLayer({
             'id': 'poi-labels',
             'type': 'symbol',
@@ -949,10 +994,8 @@ function loadMarkerData(e,checkE) {
                                 <div class="data">
                                     <div class="title">${inventoryTitle}</div>
                                     <div class="text">${inventoryQunatity}</div>
-
                                 </div>
                             </div>
-
                             `
 
 
@@ -968,24 +1011,18 @@ function loadMarkerData(e,checkE) {
                         <div class="info-card">
                             <div class="info-card-header">
                                 <h4>${name}</h4>
-
-
                             </div>
-
                             <div class="info-desc">
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">${getInstitution ? "Instituation Type" : "Respone Type"}</div>
                                         <div class="text">${type}</div>
-
                                     </div>
-
                                 </div>
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">Province</div>
                                         <div class="text">${provinceName}</div>
-
                                     </div>
                                 </div>
                                 <div class="info-desc-wrapper">
@@ -1000,7 +1037,6 @@ function loadMarkerData(e,checkE) {
                                         <div class="text">${districtName}</div>
                                     </div>
                                 </div>
-
                                 <div class="info-desc-wrapper">
                                     <div class="data">
                                         <div class="title">${getInstitution ? "Contact Number" : "Age"}</div>
@@ -1018,10 +1054,8 @@ function loadMarkerData(e,checkE) {
                                 <h5>Responded with</h5>
                                 <div class="item-wrapper">
                                     ${items}
-
                                 </div>
                             </div>
-
                         </div>
                         `
         )

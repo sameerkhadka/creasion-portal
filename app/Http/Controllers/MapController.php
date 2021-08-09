@@ -9,8 +9,31 @@ use App\Models\ProvinceChart;
 use App\Models\InstitutionChart;
 use Illuminate\Http\Request;
 
+
+
 class MapController extends Controller
 {
+    public function faqs(){
+        return view('faqs');
+    }
+
+    public function covidResources(){
+        return view('covid-19-resources');
+    }
+
+    public function importantLinks(){
+        return view('important-links');
+    }
+
+    public function ofnChapters(){
+        return view('ofn-chapters');
+    }
+
+    public function successStories(){
+        return view('success-stories');
+    }
+
+
     public function index(){
         $genderData = [
             [
