@@ -1246,7 +1246,7 @@ header .request a ion-icon {
   padding: 0 35px;
 }
 
-.faq .accordion-content span {
+.faq .accordion-content p {
   font-size: 18px;
   font-family: 'Proxima Nova';
   display: block;
