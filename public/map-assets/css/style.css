@@ -1258,6 +1258,61 @@ header .request a ion-icon {
   border: 1px solid #fff;
   background-color: #fff;
   margin: 15px 0;
+  position: relative;
+}
+
+.resource-card:hover .card-hover {
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.resource-card:hover .download-resource {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+
+.resource-card .download-resource {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  z-index: 2;
+  border: 1px solid #fff;
+  background-color: #fff;
+  width: 40px;
+  height: 45px;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.resource-card .download-resource ion-icon {
+  color: #11b4da;
+  font-size: 24px;
+}
+
+.resource-card .card-hover {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  background: #11b4da6b;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .resource-card img {

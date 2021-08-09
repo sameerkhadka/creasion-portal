@@ -647,6 +647,10 @@ mapboxgl.accessToken = "pk.eyJ1IjoieW9nZXNoa2Fya2kiLCJhIjoiY2txZXphNHNlMGNybDJ1c
 
 
 var mapBoxWidth = $('#map').width();
+// const nepalBound = [
+//     [88.0774, 30.3041],
+//     [79.2883, 28.2850]
+// ]
 
 if (mapBoxWidth < 700) {
     var map = new mapboxgl.Map({
@@ -655,7 +659,8 @@ if (mapBoxWidth < 700) {
 
         center: [84.1074, 28.2764],
         minZoom: 5, // note the camel-case
-        maxZoom: 20
+        maxZoom: 20,
+        // maxBounds: nepalBound
     });
 
 }
@@ -667,7 +672,8 @@ else if (mapBoxWidth < 1100) {
 
         center: [84.1074, 28.2764],
         minZoom: 6.2, // note the camel-case
-        maxZoom: 20
+        maxZoom: 20,
+        // maxBounds: nepalBound
     });
 
 } else if (mapBoxWidth > 1100) {
@@ -677,7 +683,8 @@ else if (mapBoxWidth < 1100) {
 
         center: [84.1074, 28.4764],
         minZoom: 6.7, // note the camel-case
-        maxZoom: 20
+        maxZoom: 20,
+        // maxBounds: nepalBound
     });
 
 }

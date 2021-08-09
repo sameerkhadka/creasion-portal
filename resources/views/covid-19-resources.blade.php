@@ -58,10 +58,6 @@
             <div class="container">
                 <div class="faq-head">
                     <h4>Covid-19 Resources</h4>
-                    <!-- <p>Nepal Relief is an initiative of CREASION for quick disaster response.
-                    hrough Nepal Relief, we focus on quick response as a short- term solution 
-                    and move towards rehabilitation as a long-term solution to disaster management. 
-                    </p> -->
                 </div>
 
 
@@ -70,48 +66,64 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/1. What to do if family members are covid infected.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/10_What to do if you have COVID-19 symptoms_Maithili.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/10_What to do if you have COVID-19 symptoms_Maithili_2.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/11_How to treat COVID-19 at home_Maithili.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/1. What to do if family members are covid infected.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/10_What to do if you have COVID-19 symptoms_Maithili.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/10_What to do if you have COVID-19 symptoms_Maithili_2.png" alt="">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="resource-card">
+                                <span class="card-hover"></span>
+                                <div class="download-resource"><a href=""><ion-icon name="download-outline"></ion-icon></a></div>
                                 <img src="/map-assets/images/covid-resource/11_How to treat COVID-19 at home_Maithili.png" alt="">
                             </div>
                         </div>

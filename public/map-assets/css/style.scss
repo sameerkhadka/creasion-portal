@@ -1208,7 +1208,56 @@ header {
     padding: 10px;
     border: 1px solid #fff;
     background-color: #fff;
+
     margin: 15px 0;
+    position: relative;
+
+    &:hover {
+        .card-hover {
+            height: 100%;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .download-resource {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    .download-resource {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        z-index: 2;
+        border: 1px solid #fff;
+        background-color: #fff;
+        width: 40px;
+        height: 45px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s;
+
+        ion-icon {
+            color: $base-color;
+            font-size:24px;
+        }
+    }
+    
+    .card-hover {
+        position: absolute;
+        width: 100%;
+        height: 0;
+        background: #11b4da6b;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+
+    }    
 
     img {
         width: 100%;
