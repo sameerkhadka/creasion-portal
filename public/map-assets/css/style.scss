@@ -1032,7 +1032,7 @@ header {
 .footer-container {
         display: flex;
         padding:  20px 0;
-        justify-content: center;
+        justify-content: space-between;
 
         img {
             height: 20px;
@@ -1043,7 +1043,17 @@ header {
             font-size: 14px;
             font-family: "Proxima Nova";
         }
+
+        a {
+            &:hover {
+                color: $base-color;
+            }
+        }
+
+
 }
+
+
 #loading {
     position: absolute;
     width: 100%;
