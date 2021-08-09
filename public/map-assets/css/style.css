@@ -1318,4 +1318,41 @@ header .request a ion-icon {
 .resource-card img {
   width: 100%;
 }
+
+.link-wrap {
+  background: #fff;
+  padding: 40px;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.link-wrap h6 {
+  font-family: "Proxima Nova";
+}
+
+.link-wrap .link-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.link-wrap .link-box .link-card {
+  border: 1px solid #CCCFD1;
+  margin: 15px 15px 15px 0;
+}
+
+.link-wrap .link-box .link-card a {
+  font-family: "Proxima Nova";
+  font-size: 14px;
+  padding: 20px;
+  display: block;
+}
+
+.link-wrap .link-box .link-card a:hover {
+  color: #11b4da;
+}
 /*# sourceMappingURL=style.css.map */

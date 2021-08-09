@@ -1264,3 +1264,41 @@ header {
 
     }
 }
+
+.link-wrap {
+    background: #fff;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
+
+    h6 {
+        font-family: "Proxima Nova";
+    }
+
+    .link-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 15px;
+        
+        .link-card {
+            border: 1px solid #CCCFD1;
+            margin: 15px 15px 15px 0;
+
+            a {
+                font-family: "Proxima Nova";
+                font-size: 14px;
+                padding: 20px;
+                display: block;
+
+                &:hover {
+                    color: $base-color;
+
+                }
+
+            }
+        
+        }
+    
+    }
+
+}
