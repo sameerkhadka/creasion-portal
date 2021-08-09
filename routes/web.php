@@ -4,6 +4,7 @@ use App\District;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\CheckboxController;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\MapController;
 use App\Province;
@@ -45,7 +46,7 @@ Route::get('/pieOld', function () {
 //     }
 // });
 Route::get('/gender-data', [ChartController::class,'index']);
-Route::POST('/piee', [ChartController::class,'dynamic'])->name('dynamic');
+Route::post('/piee', [ChartController::class,'dynamic'])->name('dynamic');
 
 
 Route::get('/request', [RequestController::class,'index'])->name('getRequest');
@@ -59,14 +60,16 @@ Route::post('/verify-request', [RequestController::class,'verifyRequest'])->name
 
 Route::post('/update-data', [CheckboxController::class,'updateStatus'])->name('update-data');
 
-Route::POST('/request', [RequestController::class,'request'])->name('request');
+Route::post('/request', [RequestController::class,'request'])->name('request');
 
 Route::get('/new-request', [RequestController::class,'new_request'])->name('new_request');
 
-Route::POST('/responses/add', [RequestController::class,'add_response'])->name('add_response');
+Route::post('/responses/add', [RequestController::class,'add_response'])->name('add_response');
 
-Route::group(['prefix' => 'admin'], function () {    
-    Route::POST('/chartdata/{id}', [ChartController::class,'chartData'])->name('chart.update');
-    Route::GET('/gender-charts', [ChartController::class,'gender_charts']);
+Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::post('/chartdata/{id}', [ChartController::class,'chartData'])->name('chart.update');
+    Route::get('/gender-charts', [ChartController::class,'gender_charts']);
+    Route::get('faq',[FAQController::class,'index']);
+    Route::post('faq',[FAQController::class,'save'])->name('faq.update');
 });
