@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Partner;
+use App\Models\Faq;
 use App\Models\Response;
 use App\Models\ProvinceChart;
 use App\Models\InstitutionChart;
@@ -14,7 +15,8 @@ use Illuminate\Http\Request;
 class MapController extends Controller
 {
     public function faqs(){
-        return view('faqs');
+        $items = Faq::orderBy('order', 'ASC')->get();
+        return view('faqs',compact('items'));
     }
 
     public function covidResources(){
