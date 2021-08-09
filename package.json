@@ -11,11 +11,14 @@
     },
     "devDependencies": {
         "axios": "^0.21",
+        "cross-env": "^7.0.3",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^29.1.0",
+        "@ckeditor/ckeditor5-vue2": "^1.0.5",
         "toastr": "^2.1.4",
         "vue2-dropzone": "^3.6.0"
     }
