@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Partner;
+use App\Models\CovidResource;
 use App\Models\Faq;
 use App\Models\Response;
 use App\Models\ProvinceChart;
@@ -20,7 +21,8 @@ class MapController extends Controller
     }
 
     public function covidResources(){
-        return view('covid-19-resources');
+        $items = CovidResource::orderBy('order', 'ASC')->get();
+        return view('covid-19-resources',compact('items'));
     }
 
     public function importantLinks(){
