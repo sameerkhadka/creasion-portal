@@ -73,14 +73,14 @@
                                     <label>Q:</label>What is Nepal Relief?
                                 </a>
 
-                                <p class="accordion-content">
-                                    <span>
+                                <div class="accordion-content">
+                                    <p>
                                         Nepal Relief is a disaster response and management initiative that aims to provide quick support to affected individuals, families and communities of any kind of disasters. Nepal Relief Portal has
                                         been envisioned by CREASION as a one-stop platform to request for help for any emergency resources required during disasters. Currently, the portal focuses on facilitating an efficient medium for
                                         individuals and institutions to request assistance for necessities to fight COVID-19 pandemic such as oxygen cylinders, concentrators and safety gear such as masks, PPE sets, gloves, etc. Along with
                                         that, request for relief materials for flood displaced communities can also be made.
-                                    </span>
-                                </p>
+                                    </p>
+                                </div>
                             </li>
 
                             <li class="accordion-item">
@@ -89,29 +89,29 @@
                                     <label>Q:</label>What are the current ongoing projects implemented by Nepal Relief?
                                 </a>
 
-                                <p class="accordion-content">
-                                    <span>
+                                <div class="accordion-content">
+                                    <p>
                                         In response to the COVID-19 pandemic, we have initiated Oxygen for Nepal campaign that primarily caters to the need of oxygen through provisions of oxygen cylinders and oxygen concentrators. We have
                                         already provided over 600 oxygen cylinders and three oxygen concentrators to patients in need. In partnership with civil- society organizations and the private sector, Oxygen for Nepal has also
                                         procured 10 Oxygen Generating Units. Each unit can serve 50 beds and 15 cylinders at the same time, 24 hours a day. That is 650 patients who will receive continuous oxygen at any given time.
-                                    </span>
+                                    </p>
 
-                                    <span>
+                                    <p>
                                         Along with the provision of these essential resources, we are also involved in the arrangement and distribution of basic safety gear such as gloves, masks, PPEs and sanitizers to the front-line
                                         workers. We have already distributed over 1600 PPE sets to different frontline workers all over Nepal.
-                                    </span>
+                                    </p>
 
-                                    <span>
+                                    <p>
                                         As part of the COVID-19 intervention, we launched #FeedTheWorkers campaign to help sustain the livelihoods of vulnerable communities of waste worker, daily wage labourers, children and the
                                         differently- abled. Through the campaign, over 1200 ration packages have been distributed in Kathmandu, Lalitpur, Bhaktapur, Nuwakot, Chitwan and Rautahat.
-                                    </span>
+                                    </p>
 
-                                    <span>
+                                    <p>
                                         As we were dealing with the COVID-19 crisis, the catastrophe caused by the monsoon floods led us to quickly respond through COVID-19 Monsoon Relief campaign. In collaboration with Nepal Share and
                                         other organizations, we have already reached over 500 families in flood-hit areas of Sindhupalchowk and Lamjung with food, medical and safety kit, daily essentials such as mosquito nets, tarpaulins
                                         and solar lamps.
-                                    </span>
-                                </p>
+                                    </p>
+                                </div>
                             </li>
 
                             <li class="accordion-item">
@@ -120,12 +120,12 @@
                                     <label>Q:</label>Why are we doing this and why are we also appealing to you?
                                 </a>
 
-                                <p class="accordion-content">
-                                    <span>
+                                <div class="accordion-content">
+                                    <p>
                                         Because we love our country and its people. And because we believe we can, and should, help to solve the current crisis in whichever little or big way we can. We believe you love Nepal and its people
                                         too and will stand with us at this time.
-                                    </span>
-                                </p>
+                                    </p>
+                                </div>
                             </li>
 
                             <li class="accordion-item">
@@ -134,44 +134,19 @@
                                     <label>Q:</label>Where are the oxygen cylinders and oxygen generating units coming from?
                                 </a>
 
-                                <p class="accordion-content">
-                                    <span>
+                                <div class="accordion-content">
+                                    <p>
                                         We were able to source 11 oxygen generating units from NOVAIR, an ISO 9001 and ISO 13485 certified French manufacturer specialized in the design and manufacture of the medical gas system. For now – 10
                                         of those have been procured. If we are able to bring in more money, we will negotiate the remaining one.
-                                    </span>
+                                    </p>
 
-                                    <span>
+                                    <p>
                                         As for the oxygen cylinders, we are making the procurements from China. We have already purchased over 300 oxygen cylinders and are in the process of transporting more oxygen cylinders to Nepal.
-                                    </span>
-                                </p>
+                                    </p>
+                                </div>
                             </li>
 
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">
-                                    <i><img src="/map-assets/images/caret.png" alt="" /></i>
-                                    <label>Q:</label>How is the relief being managed for flood displaced communities?  
-                                </a>
-
-                                <p class="accordion-content">
-                                    <span>
-                                    We have launched #FillTheBucket campaign through which one can support a flood displaced family with average of 5 members at an amount of Rs. 3000. Besides, our supporting partners and other anonymous
-                                    partners have provided us help to arrange the required relief materials.
-                                    </span>
-                                </p>
-                            </li>
-
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">
-                                    <i><img src="/map-assets/images/caret.png" alt="" /></i>
-                                    <label>Q:</label>How can we donate?
-                                </a>
-
-                                <p class="accordion-content">
-                                    <span>
-                                        You can donate to us
-                                    </span>
-                                </p>
-                            </li>
+                          
                         </ul>
                     </div>
                 </div>

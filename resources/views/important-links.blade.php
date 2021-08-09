@@ -58,10 +58,42 @@
             <div class="container">
                 <div class="faq-head">
                     <h4>Important Links</h4>
-                    <p>Nepal Relief is an initiative of CREASION for quick disaster response.
+                    <!-- <p>Nepal Relief is an initiative of CREASION for quick disaster response.
                     hrough Nepal Relief, we focus on quick response as a short- term solution 
                     and move towards rehabilitation as a long-term solution to disaster management. 
-                    </p>
+                    </p> -->
+                </div>
+
+                <div class="link-wrap">
+                    <h6>Essential Services</h6>
+
+                    <div class="link-card">
+                        <a href="">Nepal Ventilator Bank </a>
+                    </div>
+
+                    <div class="link-card">
+                        <a href="">Plasma Connect  </a>
+                    </div>
+
+                    <div class="link-card">
+                        <a href="">Vaccines for Nepal </a>
+                    </div>
+
+                    <div class="link-card">
+                        <a href="">CoVid19-Dashboard </a>
+                    </div>
+
+                    <div class="link-card">
+                        <a href="">Vaccine- First Dose Registration </a>
+                    </div>
+
+                    <div class="link-card">
+                        <a href="">Mental Health Helpline </a>
+                    </div>
+
+                    <div class="link-card">
+                        <a href="">Nepal Telemedicine Helpline </a>
+                    </div>
                 </div>
 
              
