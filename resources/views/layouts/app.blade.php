@@ -46,7 +46,7 @@
                             </li>
                             @foreach ($projects as $item)
                             <li>
-                                <a href="#" data-title="{{ $item->title }}" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span class="header-dots {{ $item->title }}"></span>  </a>
+                                <a href="#" data-title="{{ $item->title }}" data-id="{{ $item->id }}" class="sidebar-project" id="{{ 'project'.$item->id }}"><span class="header-dots {{ $item->title }}"></span>{{ $item->title }}  </a>
                             </li>
                             @endforeach
                         </ul>
