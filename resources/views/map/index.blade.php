@@ -217,11 +217,11 @@
             <div class="container">
                 <div class="footer-container">
                     <div class="footer-div">
-                        <p>© 2021 <a href="https://creasion.org/">CREASION</a>. All Rights Reserved</p>
+                        <p><img src="/map-assets/images/creasion.png" alt="" /><a href="https://creasion.org/">CREASION</a> All Rights Reserved</p>
                     </div>
 
                     <div class="footer-div">
-                        <img src="/map-assets/images/creasion.png" alt="" />
+                        
                      
                     </div>
 

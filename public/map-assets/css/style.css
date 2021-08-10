@@ -1077,8 +1077,9 @@ header .request a ion-icon {
 }
 
 .footer-container img {
-  height: 20px;
+  height: 18px;
   margin-right: 8px;
+  margin-top: -4px;
 }
 
 .footer-container p {
