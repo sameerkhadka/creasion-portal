@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Partner;
 use App\Models\CovidResource;
 use App\Models\Faq;
+use App\Models\LinkCategory;
 use App\Models\Response;
 use App\Models\ProvinceChart;
 use App\Models\InstitutionChart;
@@ -26,7 +27,8 @@ class MapController extends Controller
     }
 
     public function importantLinks(){
-        return view('important-links');
+        $items = LinkCategory::all();
+        return view('important-links',compact('items'));
     }
 
     public function ofnChapters(){
