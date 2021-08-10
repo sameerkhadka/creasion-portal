@@ -1,5 +1,5 @@
-import  inventories  from "./json/inventory.js";
+// import  inventories  from "./json/inventory.js";
 
 
 
-console.log(inventories);
+// console.log(inventories);

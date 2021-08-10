@@ -1,30 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nepal Relief Fund</title>
-
-    <link rel="stylesheet" href="/map-assets/css/bootstrap.css">
-
-    <link rel="stylesheet" href="/map-assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/map-assets/css/owl.theme.default.min.css">
-
-    <link rel="stylesheet" href="/map-assets/css/animate.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css"  />
-
-    <link rel="stylesheet" href="/map-assets/assets/fonts/Moderat/style.css">
-    <link rel="stylesheet" href="/map-assets/assets/fonts/Proxima Nova/stylesheet.css">
-
-    <link rel="stylesheet" href="/map-assets/css/reset.css">
-    <link rel="stylesheet" href="/map-assets/css/style.css">
-    <link rel="stylesheet" href="/map-assets/css/responsive.css">
+    @extends('layouts.app')
+    @section('css')
     <link rel="stylesheet" href="{{ asset('css/vue2Dropzone.min.css') }}">
 
     <style>
@@ -36,39 +11,9 @@
                 height: 300px;
         }
     </style>
+    @endsection
 
-</head>
-
-<body>
-
-
-<header>
-        <div class="container-fluid">
-            <div class="header-wrap">
-                <div class="header-logo">
-                    <a href="{{route('index')}}">
-                        <img src="/map-assets/images/nepalreliefportal.svg" alt="">
-                    </a>
-                </div>
-
-
-                <div class="menu-right">
-                    <div class="request donate">
-                        <a href=""><ion-icon name="heart-outline"></ion-icon>Donate</a>
-                    </div>
-
-                    <div class="request">
-                        <a href=""><ion-icon name="keypad-outline"></ion-icon> Request</a>
-                    </div>
-
-                    <div class="menu">
-                        <a href=""><ion-icon name="reorder-two-outline"></ion-icon></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    @section('body')
     <section class="section-request" id="app">
         <div class="container">
             <div class="row">
@@ -292,12 +237,12 @@
             </div>
         </div>
     </section>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
 
-</body>
+@section('script')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/vue.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-datepicker/1.6.2/vuejs-datepicker.min.js" integrity="sha512-SxUBqfNhPSntua7WUkt171HWx4SV4xoRm14vLNsdDR/kQiMn8iMUeopr8VahPpuvRjQKeOiMJTJFH5NHzNUHYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('js/vue2dropzone.js') }}"></script>
@@ -430,13 +375,6 @@
     toastr.success('{{ session("success") }}')
 @endif
 </script>
-<script src="/map-assets/js/jquery.min.js"></script>
-    <script src="/map-assets/js/bootstrap.js"></script>
-    <script src="/map-assets/js/owl.carousel.min.js"></script>
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 <!--
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
@@ -446,12 +384,9 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <!-- <script src="/map-assets/js/chart.js"></script> -->
-    <script type="module" src="/map-assets/js/script.js"></script>
-    <script type="module" src="/map-assets/js/request.js"></script>
+    {{-- <script type="module" src="/map-assets/js/script.js"></script> --}}
+    {{-- <script type="module" src="/map-assets/js/request.js"></script> --}}
     <!-- Load the `mapbox-gl-geocoder` plugin. -->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
@@ -547,15 +482,5 @@ $("#institution").on("click", function(){
     $("#individual-form").removeClass("activeTab");
     $("#institution-form").addClass("activeTab");
 })
-
-
-
-
-
-
 </script>
-
-
-
-
-</html>
+@endsection
