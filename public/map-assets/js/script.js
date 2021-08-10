@@ -4,6 +4,38 @@ import {
 } from "../resources.js";
 
 
+var mobilleDropdownSelect = document.querySelector('#m-project-select');
+
+mobilleDropdownSelect.addEventListener('change', function(){
+    preLoader();
+    var projectID = this.value;
+
+    document.querySelector('.project-wrap .icon').classList.remove(1);
+    document.querySelector('.project-wrap .icon').classList.remove(2);
+    document.querySelector('.project-wrap .icon').classList.remove(3);
+    document.querySelector('.project-wrap .icon').classList.toggle(this.value);
+
+    axios.post('/filter-response', {
+        'selectedProject': projectID,
+        'selectedProvince': null,
+        'selectedDistrict': null
+    }).then((response) => {
+
+
+        map.getSource('cylinders').setData(response.data);
+
+        document.getElementById('loading').innerHTML = "";
+
+        console.log(response.data.features.length)
+     
+        document.querySelector('.responds h4').innerHTML = response.data.features.length;
+    });
+})
+
+
+
+
+
 const preLoader = () => {
     var loadingDiv = document.querySelector('#loading');
 
@@ -708,6 +740,8 @@ function loadMapData() {
         var portalData = response.data;
         buildLists(portalData);
         document.getElementById('loading').innerHTML = "";
+        
+        document.querySelector('.responds h4').innerHTML = portalData.features.length;
 
     });
 }

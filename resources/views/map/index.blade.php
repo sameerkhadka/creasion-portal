@@ -11,11 +11,16 @@
 
                                 <div class="project-dropdown">
                                     <p>Selected Project </p>
-                                    <select class="form-select">
-                                        <option value="all">All</option>
-                                        <option value="1">Oxygen For Nepal</option> 
-                                        <option value="2">Covid-19 Safety Kit</option>
-                                        <option value="3">Essentials </option>
+
+                                    <select class="form-select" id="m-project-select" >
+                                        <option value="all" selected>All</option>
+                                        @foreach ($projects as $item)
+                                            <option value="{{ $item->id }}" >{{ $item->title }}</option>
+
+                                        
+                                        @endforeach
+
+                                
                                     </select>
                                 </div>
                             </div>
