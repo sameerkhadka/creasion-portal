@@ -2,6 +2,58 @@
   display: none;
 }
 
+.mb-mapheader {
+  display: none;
+  padding: 15px 40px;
+  background: #f1f1f1;
+  border-bottom: 1px solid #cccfd1;
+}
+
+.mb-mapheader .project-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.mb-mapheader .responds {
+  text-align: center;
+}
+
+.mb-mapheader .responds h4 {
+  font-size: 25px;
+}
+
+.mb-mapheader p {
+  font-family: "Proxima Nova";
+  font-size: 12px;
+  line-height: 1;
+}
+
+.mb-mapheader span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #11b4da;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.mb-mapheader .form-select {
+  font-size: 18px;
+  background: transparent;
+  border: 0;
+  width: 180px;
+  margin-top: 2px;
+  margin-left: -5px;
+}
+
+.mb-mapheader .form-select:focus {
+  outline: none;
+}
+
 .home-btn {
   display: none;
 }
