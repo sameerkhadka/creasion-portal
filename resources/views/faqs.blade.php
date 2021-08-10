@@ -3,10 +3,9 @@
         <section class="faq">
             <div class="container">
                 <div class="faq-head">
-                    <h4>Frequently Asked Questions</h4>
-                    <p>Nepal Relief is an initiative of CREASION for quick disaster response.
-                    hrough Nepal Relief, we focus on quick response as a short- term solution 
-                    and move towards rehabilitation as a long-term solution to disaster management. 
+                    <h4>Frequently Asked Questions</h4>                    
+                    <?php $item = \App\Models\ChartData::where('id',5)->first(); ?>
+                    <p>{{$item->description}}
                     </p>
                 </div>
 

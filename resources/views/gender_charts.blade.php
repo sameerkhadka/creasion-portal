@@ -25,3 +25,11 @@
     </div>
 </div>
 @stop
+
+@section('javascript')
+<script>
+    @if(Session::has('msg'))
+     toastr.success("{{ session('msg') }}");
+    @endif
+</script>
+@endsection
