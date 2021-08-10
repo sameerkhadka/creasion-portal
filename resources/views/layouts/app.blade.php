@@ -89,16 +89,15 @@
         </header>
 
         @yield('body')
-
         <footer>
             <div class="container">
                 <div class="footer-container">
                     <div class="footer-div">
-                        <p>© 2021 <a href="https://creasion.org/">CREASION</a>. All Rights Reserved</p>
+                        <p><img src="/map-assets/images/creasion.png" alt="" /><a href="https://creasion.org/">CREASION</a> All Rights Reserved</p>
                     </div>
 
                     <div class="footer-div">
-                        <img src="/map-assets/images/creasion.png" alt="" />
+                        
                      
                     </div>
 
@@ -145,12 +144,14 @@
                 </div>
             </div>
         </div>
+
         <script src="/map-assets/js/jquery.min.js"></script>
         <script src="/map-assets/js/bootstrap.js"></script>
         <script src="/map-assets/js/owl.carousel.min.js"></script>
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
