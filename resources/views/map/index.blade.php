@@ -5,6 +5,32 @@
             <div class="row">
                 <div class="col-md-3 bg-color">
                     <div class="sidebar">
+                        <div class="mb-mapheader">
+                            <div class="project-wrap">
+                                <span class="icon icon-color"></span>
+
+                                <div class="project-dropdown">
+                                    <p>Selected Project </p>
+
+                                    <select class="form-select" id="m-project-select" >
+                                        <option value="all" selected>All</option>
+                                        @foreach ($projects as $item)
+                                            <option value="{{ $item->id }}" >{{ $item->title }}</option>
+
+                                        
+                                        @endforeach
+
+                                
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="responds">
+                                <h4>00</h4>
+                                <p>Responds</p>
+                            </div>
+                        </div>
+
                         <div class="sidebar-header">
                             <div class="selected-project">
                                 <span class="icon icon-color"></span>

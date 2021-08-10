@@ -4,9 +4,62 @@ $base-color: #11b4da;
     display: none;
 }
 
+.mb-mapheader {
+    display: none;
+    padding: 15px 40px;
+    background: #f1f1f1;
+    border-bottom: 1px solid #cccfd1;
+
+    .project-wrap {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .responds {
+        text-align: center;
+
+        h4 {
+            font-size: 25px;
+        }
+    }
+
+    p {
+        font-family: "Proxima Nova";
+        font-size: 12px;
+        line-height: 1;
+    }
+
+    span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: #11b4da;
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-top: 15px;
+    }
+
+    .form-select {
+        
+        font-size: 18px;
+        background: transparent;
+        border: 0;
+        width: 180px;
+        margin-top: 2px;
+        margin-left: -5px;
+
+        &:focus {
+            outline: none
+        }
+
+    }
+
+}
+
 .home-btn {
     display: none;
 }
+
 
 header {
     height: 80px;

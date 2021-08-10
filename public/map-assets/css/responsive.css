@@ -143,6 +143,15 @@
         height: 35px;
     } 
 
+    .sidebar .sidebar-header {
+        display: none;
+    }
+
+    .mb-mapheader {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .request.donate {
         background: transparent;
         border: 1px solid #11b4da;
