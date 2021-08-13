@@ -120,6 +120,20 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 <script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 
 <script>
+ @php $linkCategories=\App\Models\LinkCategory::all(); @endphp   
+ var dropDownElement=$('div#39-dropdown-element > .panel-body > ul');
+ @foreach($linkCategories as $category)
+    dropDownElement.append('<li id='+'link'+'{{ $category->id }}'+'><a target="_self" href="/admin/links?linkId='+'{{ $category->id }}'+'"><span class="icon voyager-file-text"></span> <span class="title">'+'{{ $category->title }}'+'</span></a></li>');
+@endforeach
+@if(request('linkId'))
+        @php $linkId = request('linkId'); @endphp
+        $('#link'+'{{ $linkId }}').addClass('active');
+        $('#link'+'{{ $linkId }}').parent().parent().parent().parent().addClass('active');
+        $('#link'+'{{ $linkId }}').parent().parent().parent("div").addClass('collapse-in').removeClass('collapse');
+@endif
+</script>
+
+<script>
     @if(Session::has('alerts'))
         let alerts = {!! json_encode(Session::get('alerts')) !!};
         helpers.displayAlerts(alerts, toastr);
