@@ -196,6 +196,11 @@
     .faq .accordion-content {
         padding: 0 30px;
     }
+
+    .map-wrapper .mapboxgl-popup-content {
+        width: 94vw !important;
+        max-width: 100vw;
+    }
     
 }
 

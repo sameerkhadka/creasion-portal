@@ -194,7 +194,7 @@ function buildLists(portalData) {
 
             map.flyTo({
                 center: coords,
-                zoom: 20,
+                zoom: 15,
                 essential: true,
             });
 

@@ -102,6 +102,7 @@
 
                                 <figure class="highcharts-figure">
                                     <div id="chart-gender"></div>
+                                    <!-- <div id="forGender"></div> -->
                                 </figure>
                                 <?php $item = \App\Models\ChartData::where('id',3)->first(); ?>
                                 <p>
@@ -116,6 +117,8 @@
 
                                 <figure class="highcharts-figure">
                                     <div id="chart-province-type"></div>
+
+                                    <!-- <div id="forProvince"></div> -->
                                 </figure>
                                 <?php $item = \App\Models\ChartData::where('id',2)->first(); ?>
                                 <p>
@@ -129,6 +132,7 @@
                                 <h4 class="chart-title">Relief Impacts by Institution Types</h4>
 
                                 <figure class="highcharts-figure">
+                                  <!-- <div id="chartdiv"></div> -->
                                     <div id="chart-inst-type"></div>
                                 </figure>
                                 <?php $item = \App\Models\ChartData::where('id',1)->first(); ?>
@@ -159,10 +163,20 @@
         <script src="https://code.highcharts.com/highcharts.js"></script> 
         <script src="https://code.highcharts.com/modules/variable-pie.js"></script> 
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>       
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>    
+        
+        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
         <script src="/map-assets/js/chart.js"></script> 
 
         <script type="module" src="/map-assets/js/script.js"></script> 
+
+      
+
+
+
 
         <script>                                                         
                   Highcharts.chart('chart-gender', {
@@ -174,6 +188,9 @@
               title: {
                 text: `  `
               },
+              legend: {
+                  enabled: true
+                },
               tooltip: {
                 headerFormat: '',
                 pointFormat: 'Total: <b>{point.y}</b><br/>'
@@ -199,6 +216,7 @@
               title: {
                 text: ``
               },
+
 
               xAxis: {
                 categories: @json($provinceName),
@@ -283,6 +301,10 @@
                   }
 
                 },
+
+                
+              colors:["#7cb5ec"],
+
                 legend: {
                   enabled: false
                 },

@@ -275,6 +275,7 @@ header {
         }
     }
 
+    
     .mapboxgl-popup-content {
 
         border-radius: 10px;
@@ -911,12 +912,14 @@ header {
         }
 
         h4.chart-title {
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 19px;
+            font-weight: 600;
             padding: 20px;
-            background: #e5eff4;
+            background: #11b4da;
+            color: #fff;
             text-transform: uppercase;
             text-align: center;
+            font-family: "Proxima Nova";
         }
     }
 
@@ -934,14 +937,14 @@ header {
         display: none;
     }
 
-    tspan {
-        font-size: 14px;
-        font-family: 'Moderat';
-    }
+    // tspan {
+    //     font-size: 14px;
+    //     font-family: 'Moderat';
+    // }
 
-    tspan.heading-main {
-        display: block;
-    }
+    // tspan.heading-main {
+    //     display: block;
+    // }
 
     g.highcharts-legend.highcharts-no-tooltip {
         display: none;
@@ -1366,3 +1369,10 @@ header {
     }
 
 }
+
+#chartdiv, #forGender, #forProvince {
+    width: 100%;
+    height: 500px;
+  }
+
+  

@@ -943,12 +943,14 @@ header .request a ion-icon {
 }
 
 .data-display .chart-sing h4.chart-title {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 600;
   padding: 20px;
-  background: #e5eff4;
+  background: #11b4da;
+  color: #fff;
   text-transform: uppercase;
   text-align: center;
+  font-family: "Proxima Nova";
 }
 
 .data-display .highcharts-background {
@@ -963,15 +965,6 @@ header .request a ion-icon {
 
 .data-display text.highcharts-credits {
   display: none;
-}
-
-.data-display tspan {
-  font-size: 14px;
-  font-family: 'Moderat';
-}
-
-.data-display tspan.heading-main {
-  display: block;
 }
 
 .data-display g.highcharts-legend.highcharts-no-tooltip {
@@ -1412,5 +1405,10 @@ header .request a ion-icon {
 
 .link-wrap .link-box .link-card a:hover {
   color: #11b4da;
+}
+
+#chartdiv, #forGender, #forProvince {
+  width: 100%;
+  height: 500px;
 }
 /*# sourceMappingURL=style.css.map */
