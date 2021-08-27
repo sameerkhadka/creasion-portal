@@ -58,6 +58,28 @@
 @stop
 
 @section('content')
+<div class="page-content browse container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <?php $item = \App\Models\ChartData::where('id',5)->first(); ?>
+                <form action="{{ route('chart.update', $item->id) }}" method="POST">
+                @csrf
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="description" class="control-label">Header Description</label> 
+                        <textarea name="description" id="" class="form-control"  rows="5">{{$item->description ? $item->description : ""}}</textarea>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                            <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="page-content edit-add container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -100,6 +122,11 @@
 @stop
 
 @section('javascript')
+<script>
+    @if(Session::has('msg'))
+     toastr.success("{{ session('msg') }}");
+    @endif
+</script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"

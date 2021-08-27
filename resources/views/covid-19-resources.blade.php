@@ -3,7 +3,9 @@
         <section class="faq">
             <div class="container">
                 <div class="faq-head">
-                    <h4>Covid-19 Resources</h4>
+                    <h4>Covid-19 Resources</h4>                    
+                    <?php $item = \App\Models\ChartData::where('id',8)->first(); ?>
+                    <p>{{$item->description}}</p>
                 </div>
 
 

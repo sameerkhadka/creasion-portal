@@ -60,7 +60,7 @@ class ChartController extends Controller
         $item = ChartData::find($id);
         $item->description = $request->description;
         $item->save();
-        return redirect()->back();
+        return back()->with('msg','Updated Successfully');
     }
 
     public function gender_charts()

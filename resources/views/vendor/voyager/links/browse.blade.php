@@ -8,7 +8,7 @@
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->getTranslatedAttribute('display_name_plural') }}
         </h1>
         @can('add', app($dataType->model_name))
-            <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
+            <a href="{{ route('voyager.'.$dataType->slug.'.create', 'linkId='.request('linkId')) }}" class="btn btn-success btn-add-new">
                 <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
             </a>
         @endcan
@@ -17,7 +17,7 @@
         @endcan
         @can('edit', app($dataType->model_name))
             @if(!empty($dataType->order_column) && !empty($dataType->order_display_column))
-                <a href="{{ route('voyager.'.$dataType->slug.'.order') }}" class="btn btn-primary btn-add-new">
+                <a href="{{ route('voyager.'.$dataType->slug.'.order', 'linkId='.request('linkId')) }}" class="btn btn-primary btn-add-new">
                     <i class="voyager-list"></i> <span>{{ __('voyager::bread.order') }}</span>
                 </a>
             @endif
@@ -37,6 +37,30 @@
 @stop
 
 @section('content')
+
+<div class="page-content browse container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <?php $item = \App\Models\ChartData::where('id',9)->first(); ?>
+                <form action="{{ route('chart.update', $item->id) }}" method="POST">
+                @csrf
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="description" class="control-label">Header Description</label> 
+                        <textarea name="description" id="" class="form-control"  rows="5">{{$item->description ? $item->description : ""}}</textarea>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                            <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
         <div class="row">
@@ -253,7 +277,7 @@
                                         <td class="no-sort no-click bread-actions">
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
-                                                    @include('voyager::bread.partials.actions', ['action' => $action])
+                                                    @include('vendor.voyager.links.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
                                         </td>
@@ -288,29 +312,6 @@
         </div>
     </div>
 
-    
-    <div class="page-content browse container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <?php $item = \App\Models\ChartData::where('id',1)->first(); ?>
-                    <form action="{{ route('chart.update', $item->id) }}" method="POST">
-                    @csrf
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label for="description" class="control-label">Description</label> 
-                            <textarea name="description" id="" class="form-control"  rows="10">{{$item->description ? $item->description : ""}}</textarea>
-                        </div>
-                    </div>
-
-                    <div class="panel-footer">
-                                <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {{-- Single delete modal --}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
