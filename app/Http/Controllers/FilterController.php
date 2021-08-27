@@ -10,11 +10,11 @@ class FilterController extends Controller
     public function filterResponse(Request $request){
         $provinceID  = (int)$request->selectedProvince; //3
         $districtID  = (int)$request->selectedDistrict; //31
-        $projectID = (int)$request->selectedProject; 
+        $projectID = (int)$request->selectedProject;
         // $provinceID  = 3; //3
         // $districtID  = 31; //31
         // $projectID = $request->filterProject; //
-        $responses = Response::with(['userRequest','institution','individual','inventories'])->get();
+        $responses = Response::with(['userRequest','institution','individual','inventories'])->orderBy('created_at','desc')->get();
         $features = $responses->when($districtID,function($query) use ($districtID){
                 return $query->filter(function($item) use ($districtID){
                     return optional($item->individual)->district_id==$districtID || optional($item->institution)->district_id==$districtID;
