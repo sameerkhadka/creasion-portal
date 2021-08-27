@@ -108,6 +108,12 @@
             </div>
         </footer>
 
+        <!-- <div class="donate-popup">
+            <div class="donate-container">
+
+            </div>
+        </div> -->
+
         <div class="about-slide">
             <div class="abt-container">
                 <button class="hide-abt"><ion-icon name="close-outline"></ion-icon></button>

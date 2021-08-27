@@ -6,7 +6,7 @@ import {
 
 var mobilleDropdownSelect = document.querySelector('#m-project-select');
 
-mobilleDropdownSelect.addEventListener('change', function(){
+    mobilleDropdownSelect.addEventListener('change', function(){
     preLoader();
     var projectID = this.value;
 
@@ -23,10 +23,10 @@ mobilleDropdownSelect.addEventListener('change', function(){
 
 
         map.getSource('cylinders').setData(response.data);
-
+        
         document.getElementById('loading').innerHTML = "";
 
-        console.log(response.data.features.length)
+     
      
         document.querySelector('.responds h4').innerHTML = response.data.features.length;
     });
@@ -317,6 +317,7 @@ $("#provinces").on("change", function () {
 
 $(".update").on("click", (e) => {
     e.preventDefault();
+    preLoader();
     var selectedProject = $(".sidebar-project.active").attr('data-id');
     var selectedProvince = $("#provinces").val();
 
@@ -329,6 +330,7 @@ $(".update").on("click", (e) => {
         map.getSource('cylinders').setData(response.data);
         document.querySelector('#map-lists').innerHTML = "";
         buildLists(response.data)
+        document.getElementById('loading').innerHTML = "";
     });
 
 
@@ -540,7 +542,7 @@ $(".update").on("click", (e) => {
 });
 
 $("#reset-btn").on('click', (e) => {
-
+    preLoader();
     document.querySelector('#map-lists').innerHTML = "";
     $('.sidebar-project').removeClass('active');
     $('.sidebar-project').first().addClass('active');
@@ -827,7 +829,7 @@ map.on('load', function () {
         data: "/map-assets/cylinder.json",
         cluster: true,
         clusterMaxZoom: 14,
-        clusterRadius: 70,
+        clusterRadius: 40,
     });
 
     // boundry for the states
