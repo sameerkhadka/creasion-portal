@@ -1487,4 +1487,18 @@ header .request a ion-icon {
   text-align: left;
   display: inline-block;
 }
+
+.ofn-chapter {
+  margin: 30px auto;
+}
+
+.ofn-chapter ul li {
+  font-size: 17px;
+  font-family: 'Proxima Nova';
+  font-weight: 100;
+  list-style: auto;
+  width: 580px;
+  text-align: left;
+  margin: 15px auto;
+}
 /*# sourceMappingURL=style.css.map */
