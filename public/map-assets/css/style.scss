@@ -143,7 +143,7 @@ header {
         a {
             color: #fff;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 15px;
             display: flex;
             align-items: center;
             font-family: 'Proxima Nova';
@@ -212,7 +212,7 @@ header {
             padding: 15px 0;
 
             h4 {
-                font-size: 14px;
+                font-size: 15px;
                 color: #1E130C;
                 display: flex;
                 align-items: center;
@@ -228,7 +228,7 @@ header {
             margin-bottom: 15px;
 
             label {
-                font-size: 14px;
+                font-size: 15px;
                 display: block;
                 margin-bottom: 5px;
             }
@@ -259,7 +259,7 @@ header {
                 justify-content: center;
                 text-decoration: none;
                 cursor: pointer;
-                font-size: 14px;
+                font-size: 15px;
                 padding: 7px 20px;
 
                 ion-icon {
@@ -523,7 +523,7 @@ header {
         }
 
         p {
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 0px;
         }
 
@@ -775,7 +775,7 @@ header {
     }
 
    .data-item {
-        margin: 10px 0;
+        
         border-bottom: 1px solid #CCCFD1;
         padding: 15px 38px;
 
@@ -788,15 +788,13 @@ header {
             margin-bottom: 50px;
         }
 
-        a {
-            &:hover {
-                color: inherit;
+       
+        &:hover {
+            background-color: #11b4da1f;
 
-                h4 {
-                    color: #11b4da;
-                }
-            }
+            
         }
+        
 
 
 
@@ -842,14 +840,14 @@ header {
             }
 
             p {
-                font-size: 14px;
+                font-size: 15px;
                 margin: 5px 0 3px;
                 line-height: 1;
                 color: #717171;
             }
 
             h6 {
-                font-size: 14px;  
+                font-size: 15px;  
             }
 
            .date {
@@ -860,11 +858,11 @@ header {
                 }
                 span {
                     margin-left: 5px;
-                    font-size: 14px;
+                    font-size: 15px;
                 }
 
                p {
-                   font-size: 14px;
+                   font-size: 15px;
                }
            }
        }
@@ -912,14 +910,18 @@ header {
         }
 
         h4.chart-title {
-            font-size: 19px;
+            font-size: 22px;
             font-weight: 600;
             padding: 20px;
-            background: #11b4da;
+            background: #29aecd;
             color: #fff;
             text-transform: uppercase;
             text-align: center;
             font-family: "Proxima Nova";
+
+            span {
+                font-weight: 300;
+            }
         }
     }
 
@@ -938,7 +940,7 @@ header {
     }
 
     // tspan {
-    //     font-size: 14px;
+    //     font-size: 15px;
     //     font-family: 'Moderat';
     // }
 
@@ -1057,7 +1059,7 @@ header {
             margin-left: 10px;
 
             i {
-                font-size: 14px;
+                font-size: 15px;
             }
         }
     }
@@ -1075,7 +1077,7 @@ header {
         }
 
         p {
-            font-size: 14px;
+            font-size: 15px;
             font-family: "Proxima Nova";
         }
     }
@@ -1097,7 +1099,7 @@ header {
         }
 
         p {
-            font-size: 14px;
+            font-size: 15px;
             font-family: "Proxima Nova";
         }
 
@@ -1190,7 +1192,7 @@ header {
         }
 
         p {
-            font-size: 16px;
+            font-size: 17px;
             font-family: 'Proxima Nova';
             font-weight: 100;
             width: 70%;
@@ -1353,7 +1355,7 @@ header {
 
             a {
                 font-family: "Proxima Nova";
-                font-size: 14px;
+                font-size: 15px;
                 padding: 20px;
                 display: block;
 

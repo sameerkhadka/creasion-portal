@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="request donate">
-                        <a href=""><ion-icon name="heart-outline"></ion-icon>Donate</a>
+                        <a href="#" class="donate-btn"><ion-icon name="heart-outline"></ion-icon>Donate</a>
                     </div>
 
                     <div class="request">
@@ -93,7 +93,7 @@
             <div class="container">
                 <div class="footer-container">
                     <div class="footer-div">
-                        <p><img src="/map-assets/images/creasion.png" alt="" /><a href="https://creasion.org/">CREASION</a> All Rights Reserved</p>
+                        <p><img src="/map-assets/images/creasion.png" alt="" /><a href="https://creasion.org/" target="_blank">CREASION</a> All Rights Reserved</p>
                     </div>
 
                     <div class="footer-div">
@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="footer-div">
-                        <p>Powered by <a href="https://www.hueshine.com/">Hue Shine</a></p>
+                        <p>Powered by <a href="https://www.hueshine.com/" target="_blank">Hue Shine</a></p>
                     </div>
                 </div>
             </div>
@@ -151,10 +151,10 @@
                     </div>
 
                     <div class="social">
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 

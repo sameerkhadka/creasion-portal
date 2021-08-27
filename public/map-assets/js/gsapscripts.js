@@ -1,4 +1,4 @@
-var donateBtn = document.querySelector('.donate-btn');
+var donateBtn = document.querySelectorAll('.donate-btn');
 var donateBox = document.querySelector('.donate-popup');
 var donateHide = document.querySelector('.hide-donate');
 
@@ -17,9 +17,11 @@ tl2.from(".donate-container", {
 })
 
 
-donateBtn.addEventListener("click", () => {
-    tl2.play();
-} )
+donateBtn.forEach(dBtn => {
+    dBtn.addEventListener("click", () => {
+        tl2.play();
+    } )
+});
 
 donateHide.addEventListener("click", () => {
     tl2.reverse(0.7);

@@ -142,7 +142,7 @@ header .request {
 header .request a {
   color: #fff;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -211,7 +211,7 @@ header .request a ion-icon {
 }
 
 .map-wrapper .filter .filter-head h4 {
-  font-size: 14px;
+  font-size: 15px;
   color: #1E130C;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -230,7 +230,7 @@ header .request a ion-icon {
 }
 
 .map-wrapper .filter .filter-card label {
-  font-size: 14px;
+  font-size: 15px;
   display: block;
   margin-bottom: 5px;
 }
@@ -271,7 +271,7 @@ header .request a ion-icon {
           justify-content: center;
   text-decoration: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   padding: 7px 20px;
 }
 
@@ -538,7 +538,7 @@ header .request a ion-icon {
 }
 
 .section-request .form-card p {
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 
@@ -803,7 +803,6 @@ header .request a ion-icon {
 }
 
 .sidebar .data-item {
-  margin: 10px 0;
   border-bottom: 1px solid #CCCFD1;
   padding: 15px 38px;
 }
@@ -817,12 +816,8 @@ header .request a ion-icon {
   margin-bottom: 50px;
 }
 
-.sidebar .data-item a:hover {
-  color: inherit;
-}
-
-.sidebar .data-item a:hover h4 {
-  color: #11b4da;
+.sidebar .data-item:hover {
+  background-color: #11b4da1f;
 }
 
 .sidebar .data-item .list-wrap {
@@ -872,14 +867,14 @@ header .request a ion-icon {
 }
 
 .sidebar .data-item .list-wrap p {
-  font-size: 14px;
+  font-size: 15px;
   margin: 5px 0 3px;
   line-height: 1;
   color: #717171;
 }
 
 .sidebar .data-item .list-wrap h6 {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .sidebar .data-item .list-wrap .date {
@@ -894,11 +889,11 @@ header .request a ion-icon {
 
 .sidebar .data-item .list-wrap .date span {
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .sidebar .data-item .list-wrap .date p {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .item-list-wrapper {
@@ -943,14 +938,18 @@ header .request a ion-icon {
 }
 
 .data-display .chart-sing h4.chart-title {
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 600;
   padding: 20px;
-  background: #11b4da;
+  background: #29aecd;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
   font-family: "Proxima Nova";
+}
+
+.data-display .chart-sing h4.chart-title span {
+  font-weight: 300;
 }
 
 .data-display .highcharts-background {
@@ -1087,7 +1086,7 @@ header .request a ion-icon {
 }
 
 .about-slide .social a i {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .about-slide .abt-footer {
@@ -1108,7 +1107,7 @@ header .request a ion-icon {
 }
 
 .about-slide .abt-footer p {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "Proxima Nova";
 }
 
@@ -1129,7 +1128,7 @@ header .request a ion-icon {
 }
 
 .footer-container p {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "Proxima Nova";
 }
 
@@ -1224,7 +1223,7 @@ header .request a ion-icon {
 }
 
 .faq .faq-head p {
-  font-size: 16px;
+  font-size: 17px;
   font-family: 'Proxima Nova';
   font-weight: 100;
   width: 70%;
@@ -1398,7 +1397,7 @@ header .request a ion-icon {
 
 .link-wrap .link-box .link-card a {
   font-family: "Proxima Nova";
-  font-size: 14px;
+  font-size: 15px;
   padding: 20px;
   display: block;
 }
