@@ -1,3 +1,32 @@
+var donateBtn = document.querySelector('.donate-btn');
+var donateBox = document.querySelector('.donate-popup');
+var donateHide = document.querySelector('.hide-donate');
+
+var tl2 = gsap.timeline();
+tl2.pause(true);
+
+tl2.to(".donate-popup", {
+    opacity: 1,
+    visibility:"visible",
+    duration: 0.8,
+
+})
+tl2.from(".donate-container", {
+    scale: 0,
+    duration: 0.5,
+})
+
+
+donateBtn.addEventListener("click", () => {
+    tl2.play();
+} )
+
+donateHide.addEventListener("click", () => {
+    tl2.reverse(0.7);
+} )
+
+
+
 var menuBtn = document.querySelectorAll(".menu-btn");
 var aboutSlides = document.querySelector(".about-slide")
 var hideBtn = document.querySelector(".hide-abt")

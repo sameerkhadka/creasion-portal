@@ -55,7 +55,7 @@
 
                     <div class="menu-right">
                         <div class="request donate">
-                            <a href=""><ion-icon name="heart-outline"></ion-icon>Donate</a>
+                            <a href="#" class="donate-btn"><ion-icon name="heart-outline"></ion-icon>Donate</a>
                         </div>
 
                         <div class="request">
@@ -108,11 +108,25 @@
             </div>
         </footer>
 
-        <!-- <div class="donate-popup">
+        <div class="donate-popup">
+            
             <div class="donate-container">
+                <button class="hide-donate"><ion-icon name="close-outline"></ion-icon></button>
+                <div class="donate-head">
+                    <ion-icon name="heart-outline"></ion-icon> <h5>Donate</h5>
+                </div>
+                <div class="donate-body">
+                    <ul>
+                        <li><span>Bank Name:</span> NMB BANK  </li>
+                        <li><span>Branch: </span> Boudha Branch </li>
+                        <li><span>Swift Code:</span> NMBBNPKA</li>
+                        <li><span>Account Name:</span> CREASION</li>
+                        <li><span>Account Number: </span> 1510142939500013</li>
 
+                    </ul>
+                </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="about-slide">
             <div class="abt-container">

@@ -1411,4 +1411,81 @@ header .request a ion-icon {
   width: 100%;
   height: 500px;
 }
+
+.donate-popup {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100vh;
+  z-index: 59;
+  padding: 80px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.donate-popup .hide-donate {
+  position: absolute;
+  right: 0px;
+  font-size: 24px;
+  top: -40px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 30px;
+  color: #fff;
+  z-index: 59;
+  cursor: pointer;
+}
+
+.donate-popup .donate-container {
+  max-width: 39.36486rem;
+  margin: auto;
+  position: relative;
+  background: #fff;
+}
+
+.donate-popup .donate-head {
+  background: #C70039;
+  color: #fff;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.donate-popup .donate-head h5 {
+  font-weight: 600;
+  font-family: 'Proxima Nova';
+  text-transform: uppercase;
+  font-size: 17px;
+}
+
+.donate-popup .donate-head ion-icon {
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+.donate-popup .donate-body {
+  padding: 15px;
+  font-family: 'Proxima Nova';
+}
+
+.donate-popup .donate-body ul li {
+  margin: 10px auto;
+  width: 50%;
+}
+
+.donate-popup .donate-body ul li span {
+  width: 160px;
+  text-align: left;
+  display: inline-block;
+}
 /*# sourceMappingURL=style.css.map */
