@@ -92,51 +92,55 @@
     <div class="container">
         <div class="data-card">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="chart-sing">
-                        <h4 class="chart-title"><span>Relief Impacts by</span> Gender</h4>
+              <div class="col-md-4">
+                <div class="chart-sing">
+                    <h4 class="chart-title"><span>Relief Impacts by</span> Institution Types</h4>
 
-                        <figure class="highcharts-figure">
-                            <div id="chart-gender"></div>
-                            <!-- <div id="forGender"></div> -->
-                        </figure>
-                        <?php $item = \App\Models\ChartData::where('id',3)->first(); ?>
-                        <p>
-                            {{ $item->description }}
-                        </p>
-                    </div>
+                    <figure class="highcharts-figure">
+                        <!-- <div id="chartdiv"></div> -->
+                        <div id="chart-inst-type"></div>
+                    </figure>
+                    <?php $item = \App\Models\ChartData::where('id',1)->first(); ?>
+                    <p>
+                        {{ $item->description }}
+                    </p>
                 </div>
+              </div>    
 
-                <div class="col-md-4">
-                    <div class="chart-sing">
-                        <h4 class="chart-title"><span>Relief Impacts by</span> Province</h4>
+                
 
-                        <figure class="highcharts-figure">
-                            <div id="chart-province-type"></div>
+              <div class="col-md-4">
+                  <div class="chart-sing">
+                      <h4 class="chart-title"><span>Relief Impacts by</span> Gender</h4>
 
-                            <!-- <div id="forProvince"></div> -->
-                        </figure>
-                        <?php $item = \App\Models\ChartData::where('id',2)->first(); ?>
-                        <p>
-                            {{ $item->description }}
-                        </p>
-                    </div>
-                </div>
+                      <figure class="highcharts-figure">
+                          <div id="chart-gender"></div>
+                          <!-- <div id="forGender"></div> -->
+                      </figure>
+                      <?php $item = \App\Models\ChartData::where('id',3)->first(); ?>
+                      <p>
+                          {{ $item->description }}
+                      </p>
+                  </div>
+              </div>
 
-                <div class="col-md-4">
-                    <div class="chart-sing">
-                        <h4 class="chart-title"><span>Relief Impacts by</span> Institution Types</h4>
+              <div class="col-md-4">
+                  <div class="chart-sing">
+                      <h4 class="chart-title"><span>Relief Impacts by</span> Province</h4>
 
-                        <figure class="highcharts-figure">
-                            <!-- <div id="chartdiv"></div> -->
-                            <div id="chart-inst-type"></div>
-                        </figure>
-                        <?php $item = \App\Models\ChartData::where('id',1)->first(); ?>
-                        <p>
-                            {{ $item->description }}
-                        </p>
-                    </div>
-                </div>
+                      <figure class="highcharts-figure">
+                          <div id="chart-province-type"></div>
+
+                          <!-- <div id="forProvince"></div> -->
+                      </figure>
+                      <?php $item = \App\Models\ChartData::where('id',2)->first(); ?>
+                      <p>
+                          {{ $item->description }}
+                      </p>
+                  </div>
+              </div>
+
+                
             </div>
         </div>
     </div>
@@ -169,23 +173,26 @@
 
 <script>
   
-      Highcharts.setOptions({
-          colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-              return {
-                linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-                stops: [
-                    [0, '#9bddec'],
-                    [1, '#29aecd']
-                ]
-              };
-          })
-      });
+      // Highcharts.setOptions({
+      //     colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+      //         return {
+      //           linearGradient: { x1: 1, x2: 0, y1: 1, y2: 0 },
+      //           stops: [
+      //             [0, '#fc988a'],
+      //             [1, '#bcf9eb']
+      //           ]
+      //         };
+      //     })
+      // });
 
       var forGender = Highcharts.chart('chart-gender', {
         chart: {
           type: 'variablepie'
         },
+        
+        colors: ["#56cffe", "#98e8b1"],
       
+
         backgroundColor: "'#ef769d",
         title: {
           text: `  `
@@ -213,28 +220,19 @@
     Highcharts.setOptions({
           colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
               return {
-                linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+                linearGradient: { x1: 0, x2: 1, y1: 0, y2: 1 },
                 stops: [
-                    [0, '#089bbd'],
-                    [1, '#66d2ea']
+                  [0, '#56cffe'],
+                    [1, '#6ea1fc']
                 ]
               };
           })
       });
-
+  
     Highcharts.chart('chart-province-type', {
       chart: {
         type: 'bar'
       },
-
-      color: {
-          linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-          stops: [
-            [0, '#8edaea'],
-            [1, '#57b5ca']
-          ]
-      },
-
 
       title: {
         text: ``
@@ -284,8 +282,8 @@
               return {
                 linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
                 stops: [
-                    [0, '#8edaea'],
-                    [1, '#57b5ca']
+                  [0, '#56cffe'],
+                    [1, '#6ea1fc']
                 ]
               };
           })
