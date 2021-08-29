@@ -59,6 +59,10 @@
         width: auto !important;
     }
 
+    .data-display .chart-sing h4.chart-title {
+        font-size: 18px;
+    }
+
 }
 
 @media screen and (max-width: 1024px) {
