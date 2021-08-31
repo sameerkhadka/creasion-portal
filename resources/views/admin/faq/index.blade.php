@@ -182,7 +182,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         },
         methods: {
             del(element) {
-                if (confirm(`Do you really want to question Question "${this.faqs.indexOf(element)+1}" ?`)) {
+                if (confirm(`Do you really want to delete Question "${this.faqs.indexOf(element)+1}" ?`)) {
                     if (element.id) {
                         this.toBeDeleted.push(element.id);
                     }

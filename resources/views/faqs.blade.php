@@ -13,16 +13,18 @@
                     <div class="faq-accordion-content">
                         <ul class="accordion">
                             @foreach($items as $item)
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">
-                                    <i><img src="/map-assets/images/caret.png" alt="" /></i>
-                                    <label>Q:</label>{{$item->question}}
-                                </a>
+                                @if($item->question)
+                                    <li class="accordion-item">
+                                        <a class="accordion-title" href="javascript:void(0)">
+                                            <i><img src="/map-assets/images/caret.png" alt="" /></i>
+                                            <label>Q:</label>{{$item->question}}
+                                        </a>
 
-                                <div class="accordion-content">
-                                    {!!$item->answer!!}
-                                </div>
-                            </li>
+                                        <div class="accordion-content">
+                                            {!!$item->answer!!}
+                                        </div>
+                                    </li>
+                                @endif
                             @endforeach
 
                             {{-- <li class="accordion-item">
