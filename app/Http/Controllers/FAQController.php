@@ -30,7 +30,7 @@ class FAQController extends Controller
                     Faq::create($item);
                 }
             }
-            return response(['msg'=>'Successfully Updated'],200);
+            return response(['faqs'=>Faq::orderBy('order')->get()],200);
         }
         catch(Exception $e){
             return response(['msg'=>$e->getMessage()],$e->getStatusCode());

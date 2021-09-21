@@ -165,7 +165,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 answer: ''
             }],
             toBeDeleted: [],
-            drag: false
+            drag: false,
+            disable:false
         },
         computed: {
             dragOptions() {
@@ -198,13 +199,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             },
             save() {
                 let that = this;
-                this.submitting = true;
+                this.disable = true;
                 axios.post('{{ route('faq.update') }}', {
                     items: this.faqs,
                     toBeDeleted: this.toBeDeleted
                 }).then(function(response) {
-                    that.submitting = false;
-                    toastr.success(response.data.msg)
+                    that.disable = false;
+                    that.faqs = response.data.faqs;
+                    toastr.success('Successfully added data. Please add more!!')
                 })
             }
         }
