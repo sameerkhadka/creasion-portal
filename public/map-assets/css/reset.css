@@ -65,7 +65,7 @@ span.icon.icon-color.\32 {
 }
 
 span.icon.icon-color.\33 {
-  background: #46E8BC !important;
+  background: #fbd517 !important;
 }
 
 .prj-oxy, a#oxygen-for-nepal span{
@@ -73,7 +73,7 @@ span.icon.icon-color.\33 {
 }
 
 .prj-ess, a#essentials span  {
-  background: #46E8BC;
+  background: #fbd517;
 }
 
 .prj-cov, a#covid-19-safety-kit span {
@@ -328,7 +328,7 @@ span.header-dots.COVID19.Safety.Kit {
 }
 
 span.header-dots.Essentials {
-  background: #46e8bc;
+  background: #fbd517;
 }
 
 .active span.header-dots {
@@ -351,12 +351,12 @@ span.header-dots.Essentials {
 }
 
 #project3.active {
-  color: #46e8bc;
+  color: #fbd517;
 
 }
 
 .info-card-header.essentials {
-  background: #46e8bc;
+  background: #fbd517;
 }
 
 .info-card-header.covid-saftey {
@@ -385,7 +385,7 @@ span.header-dots.Essentials {
   animation-delay:-1s !important;
 }
 .load :nth-child(3){
-  background:#46e8bc !important;
+  background:#fbd517 !important;
   animation-delay:-0.5s !important;
 }
 .load :last-child{background: #11b4da}

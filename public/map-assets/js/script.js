@@ -902,7 +902,7 @@ map.on('load', function () {
                 2,
                 '#5a45ee',
                 3,
-                '#46e8bc',
+                '#fbd517',
         /* other */ '#11b4da'
             ]
         }

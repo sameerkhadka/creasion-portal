@@ -85,6 +85,7 @@ header .header-wrap {
 
 header .header-logo a img {
   width: 140px;
+  margin-left: 30px;
 }
 
 header .head-nav {
@@ -849,7 +850,7 @@ header .request a ion-icon {
 }
 
 .sidebar .data-item .list-wrap .prj-ess {
-  background: #46E8BC;
+  background: #fbd517;
 }
 
 .sidebar .data-item .list-wrap .prj-cov {
