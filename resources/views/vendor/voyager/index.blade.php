@@ -21,7 +21,18 @@
                     </tr>
                 </thead>
                 <tbody id="requestBody">
-                    
+                    <!-- @foreach ($newRequests as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->individual ? $item->individual->name : $item->institution->name }}</td>
+                            <td>
+                                <a href="/admin/responses/create?requestid={{ $item->id }}" title="Response"
+                                    class="btn btn-sm btn-success pull-right view" style="margin-right:4px">
+                                    <i class="voyager-bulb"></i><span class="hidden-xs hidden-sm">Respond</span>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach -->
                 </tbody>
             </table>
 
