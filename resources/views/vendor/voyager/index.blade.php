@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody id="requestBody">
-                    @foreach ($newRequests as $item)
+                    <!-- @foreach ($newRequests as $item) -->
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->individual ? $item->individual->name : $item->institution->name }}</td>
@@ -32,7 +32,7 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                    <!-- @endforeach -->
                 </tbody>
             </table>
 
